@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ChatGPT vs Gemini vs Claude: qual usar em 2025? — Aprenda com AI</title>
+  <meta name="description" content="Comparação completa entre ChatGPT, Gemini e Claude: pontos fortes, limitações, preços e quando usar cada um. Guia prático para escolher a IA certa para cada tarefa." />
+  <meta property="og:title" content="ChatGPT vs Gemini vs Claude: qual usar em 2025? — Aprenda com AI" />
+  <meta property="og:description" content="Comparação completa entre ChatGPT, Gemini e Claude: pontos fortes, limitações, preços e quando usar cada um." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://aprendacomai.com/artigos/chatgpt-vs-gemini-vs-claude.html" />
+  <link rel="canonical" href="https://aprendacomai.com/artigos/chatgpt-vs-gemini-vs-claude.html" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Manrope:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../style.css" />
+  <link rel="stylesheet" href="../final-hero.css" />
+
+  <style>
+    :root {
+      --bg:        #0b0c0e;
+      --surface:   #13151a;
+      --border:    #1e2028;
+      --accent:    #d7ff3f;
+      --accent2:   #a8cc28;
+      --text:      #e5e7eb;
+      --muted:     #c7c9c5;
+      --dim:       #6b7280;
+      --font-head: 'Space Grotesk', sans-serif;
+      --font-body: 'Manrope', sans-serif;
+      --font-mono: 'DM Mono', monospace;
+
+      /* cores dos modelos */
+      --chatgpt:  #74d066;
+      --gemini:   #60a5fa;
+      --claude:   #c084fc;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: 1rem;
+      line-height: 1.7;
+    }
+
+    /* NAV */
+    .nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(11,12,14,.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: .85rem 1.5rem;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo { font-family: var(--font-head); font-weight: 700; font-size: 1.1rem; color: var(--accent); text-decoration: none; }
+    .nav-links { display: flex; gap: 1.5rem; }
+    .nav-links a { color: var(--muted); text-decoration: none; font-size: .9rem; transition: color .2s; }
+    .nav-links a:hover { color: var(--accent); }
+
+    /* BREADCRUMB */
+    .breadcrumb {
+      max-width: 780px; margin: 0 auto; padding: 1.2rem 1.5rem .4rem;
+      display: flex; align-items: center; gap: .5rem;
+      font-size: .82rem; color: var(--dim); flex-wrap: wrap;
+    }
+    .breadcrumb a { color: var(--dim); text-decoration: none; }
+    .breadcrumb a:hover { color: var(--accent); }
+    .breadcrumb span { color: var(--dim); }
+
+    /* HERO */
+    .article-hero { max-width: 780px; margin: 0 auto; padding: 2.5rem 1.5rem 2rem; }
+    .article-badge {
+      display: inline-block;
+      font-family: var(--font-mono); font-size: .75rem; font-weight: 500;
+      color: var(--bg); background: var(--accent);
+      padding: .25rem .75rem; border-radius: 999px;
+      margin-bottom: 1.1rem; letter-spacing: .04em; text-transform: uppercase;
+    }
+    .article-hero h1 {
+      font-family: var(--font-head); font-size: clamp(1.9rem, 4vw, 2.7rem);
+      font-weight: 700; line-height: 1.2; color: #fff; margin-bottom: 1rem;
+    }
+    .article-hero h1 em { font-style: normal; color: var(--accent); }
+    .article-meta {
+      display: flex; flex-wrap: wrap; gap: .75rem;
+      font-size: .82rem; color: var(--dim);
+      padding-top: 1rem; border-top: 1px solid var(--border);
+    }
+
+    /* BODY */
+    .article-body { max-width: 780px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+    .article-body h2 {
+      font-family: var(--font-head); font-size: 1.45rem; font-weight: 700;
+      color: #fff; margin: 2.8rem 0 1rem;
+    }
+    .article-body h3 {
+      font-family: var(--font-head); font-size: 1.1rem; font-weight: 600;
+      color: var(--text); margin: 2rem 0 .6rem;
+    }
+    .article-body p { color: var(--muted); margin-bottom: 1.1rem; }
+    .article-body ul, .article-body ol { color: var(--muted); padding-left: 1.4rem; margin-bottom: 1.1rem; }
+    .article-body li { margin-bottom: .4rem; }
+    .article-body strong { color: var(--text); font-weight: 600; }
+    .article-body a { color: var(--accent); text-decoration: none; }
+    .article-body a:hover { text-decoration: underline; }
+
+    /* CALLOUT */
+    .callout {
+      border-left: 3px solid var(--accent); background: var(--surface);
+      border-radius: 0 8px 8px 0; padding: 1rem 1.25rem; margin: 1.5rem 0;
+    }
+    .callout.tip  { border-color: var(--accent); }
+    .callout.info { border-color: #60a5fa; }
+    .callout-title {
+      font-family: var(--font-mono); font-size: .78rem; font-weight: 500;
+      text-transform: uppercase; letter-spacing: .06em; margin-bottom: .4rem;
+    }
+    .callout.tip  .callout-title { color: var(--accent); }
+    .callout.info .callout-title { color: #60a5fa; }
+    .callout p { margin: 0; font-size: .93rem; }
+
+    /* MODEL CARDS */
+    .model-cards {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem; margin: 1.8rem 0;
+    }
+    .model-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 12px; padding: 1.4rem 1.3rem;
+      border-top: 3px solid transparent;
+    }
+    .model-card.chatgpt { border-top-color: var(--chatgpt); }
+    .model-card.gemini  { border-top-color: var(--gemini); }
+    .model-card.claude  { border-top-color: var(--claude); }
+
+    .model-name {
+      font-family: var(--font-head); font-weight: 700; font-size: 1.1rem;
+      margin-bottom: .2rem;
+    }
+    .model-card.chatgpt .model-name { color: var(--chatgpt); }
+    .model-card.gemini  .model-name { color: var(--gemini); }
+    .model-card.claude  .model-name { color: var(--claude); }
+
+    .model-maker {
+      font-family: var(--font-mono); font-size: .72rem; color: var(--dim);
+      margin-bottom: .9rem;
+    }
+    .model-card p { font-size: .88rem; color: var(--muted); margin-bottom: 0; }
+
+    /* COMPARISON TABLE */
+    .table-wrap { overflow-x: auto; margin: 1.5rem 0; border-radius: 10px; border: 1px solid var(--border); }
+    table { width: 100%; border-collapse: collapse; }
+    thead th {
+      background: var(--surface); font-family: var(--font-head);
+      font-size: .85rem; font-weight: 600; color: var(--accent);
+      padding: .85rem 1rem; text-align: left; border-bottom: 1px solid var(--border);
+    }
+    thead th.th-chatgpt { color: var(--chatgpt); }
+    thead th.th-gemini  { color: var(--gemini); }
+    thead th.th-claude  { color: var(--claude); }
+    tbody tr { border-bottom: 1px solid var(--border); }
+    tbody tr:last-child { border-bottom: none; }
+    tbody tr:hover { background: rgba(255,255,255,.02); }
+    tbody td { padding: .8rem 1rem; font-size: .88rem; color: var(--muted); }
+    tbody td:first-child { color: var(--text); font-weight: 500; }
+    .td-good { color: #74d066; font-weight: 600; }
+    .td-mid  { color: #f59e0b; font-weight: 600; }
+    .td-bad  { color: #f87171; font-weight: 600; }
+
+    /* USE CASE GRID */
+    .usecase-grid { display: flex; flex-direction: column; gap: .85rem; margin: 1.5rem 0; }
+    .usecase-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 10px; padding: 1.1rem 1.2rem;
+      display: grid; grid-template-columns: 1fr auto; gap: .5rem 1.5rem;
+      align-items: start;
+    }
+    .usecase-task {
+      font-family: var(--font-head); font-weight: 600; color: #fff;
+      font-size: .95rem; margin-bottom: .3rem;
+    }
+    .usecase-why { font-size: .87rem; color: var(--muted); margin: 0; }
+    .usecase-winner {
+      font-family: var(--font-mono); font-size: .78rem; font-weight: 700;
+      padding: .3rem .75rem; border-radius: 999px; white-space: nowrap;
+      align-self: center;
+    }
+    .usecase-winner.chatgpt { background: rgba(116,208,102,.15); color: var(--chatgpt); border: 1px solid rgba(116,208,102,.3); }
+    .usecase-winner.gemini  { background: rgba(96,165,250,.15);  color: var(--gemini);  border: 1px solid rgba(96,165,250,.3);  }
+    .usecase-winner.claude  { background: rgba(192,132,252,.15); color: var(--claude);  border: 1px solid rgba(192,132,252,.3);  }
+    .usecase-winner.empate  { background: rgba(215,255,63,.1);   color: var(--accent);  border: 1px solid rgba(215,255,63,.3);   }
+
+    /* PLAN TABLE */
+    .plan-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(215px, 1fr));
+      gap: .85rem; margin: 1.5rem 0;
+    }
+    .plan-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 10px; padding: 1.2rem;
+    }
+    .plan-card .plan-model {
+      font-family: var(--font-mono); font-size: .72rem; text-transform: uppercase;
+      letter-spacing: .05em; margin-bottom: .4rem; display: block;
+    }
+    .plan-card.chatgpt .plan-model { color: var(--chatgpt); }
+    .plan-card.gemini  .plan-model { color: var(--gemini);  }
+    .plan-card.claude  .plan-model { color: var(--claude);  }
+    .plan-card h4 {
+      font-family: var(--font-head); font-weight: 700; color: #fff;
+      font-size: .95rem; margin-bottom: .5rem;
+    }
+    .plan-card ul { padding-left: 1.1rem; margin: 0; }
+    .plan-card li { font-size: .85rem; color: var(--muted); margin-bottom: .3rem; }
+
+    /* HIGHLIGHT BOX */
+    .highlight-box {
+      border: 1px solid rgba(215,255,63,.25); background: rgba(215,255,63,.05);
+      border-radius: 10px; padding: 1.4rem 1.5rem; margin: 1.8rem 0;
+    }
+    .highlight-box h4 {
+      font-family: var(--font-head); font-size: 1rem; font-weight: 700;
+      color: var(--accent); margin-bottom: .7rem;
+    }
+    .highlight-box p { color: var(--muted); font-size: .92rem; margin-bottom: .5rem; }
+    .highlight-box p:last-child { margin-bottom: 0; }
+
+    /* CTA */
+    .cta-section {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 14px; padding: 2.2rem 2rem; text-align: center;
+      max-width: 780px; margin: 0 auto 4rem;
+    }
+    .cta-section h2 {
+      font-family: var(--font-head); font-size: 1.5rem; font-weight: 700;
+      color: #fff; margin-bottom: .6rem;
+    }
+    .cta-section p { color: var(--muted); font-size: .95rem; margin-bottom: 1.4rem; }
+    .cta-btn {
+      display: inline-block; background: var(--accent); color: var(--bg);
+      font-family: var(--font-head); font-weight: 700; font-size: .95rem;
+      padding: .8rem 2rem; border-radius: 8px; text-decoration: none;
+      transition: background .2s, transform .15s;
+    }
+    .cta-btn:hover { background: var(--accent2); transform: translateY(-2px); }
+
+    /* FOOTER */
+    .footer {
+      border-top: 1px solid var(--border);
+      text-align: center; padding: 2rem 1.5rem;
+      font-size: .82rem; color: var(--dim); margin-top: 4rem;
+    }
+    .footer a { color: var(--dim); text-decoration: none; }
+    .footer a:hover { color: var(--accent); }
+
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+      .article-hero h1 { font-size: 1.65rem; }
+      .usecase-card { grid-template-columns: 1fr; }
+      .usecase-winner { justify-self: start; }
+    }
+  </style>
+  <link rel="icon" type="image/png" href="../favicon.ico.png">
+<link rel="stylesheet" href="../site-menu.css">
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="../index.html" class="nav-logo">Aprenda com AI</a>
+  <div class="nav-links">
+    <a href="../index.html">Início</a>
+    <a href="../comece-aqui.html">Comece Aqui</a>
+    <a href="../artigos.html">Artigos</a>
+    <a href="../biblioteca-de-prompts.html">Biblioteca de Prompts</a>
+    <a href="../calculadora-ia.html">Calculadora de Impacto</a>
+    <a href="../sobre.html">Sobre</a>
+    <a href="../contato.html">Contato</a>
+  </div>
+</nav>
+
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="../index.html">Inicio</a>
+    <span>/</span>
+    <a href="../artigos.html">Artigos</a>
+    <span>/</span>
+    <span>ChatGPT vs Gemini vs Claude</span>
+  </nav>
+
+  <header class="article-hero">
+    <span class="article-badge">Guias</span>
+    <h1><em>ChatGPT vs Gemini vs Claude:</em> qual IA usar para cada tarefa?</h1>
+    <div class="article-meta">
+      <span>Ferramentas: ChatGPT, Gemini, Claude</span>
+    </div>
+  </header>
+
+  <main class="article-body">
+
+    <p>A pergunta que mais aparece para quem está começando com IA é: qual desses três usar? E a resposta honesta é que depende. Cada um tem pontos fortes reais e situações onde claramente performa melhor.</p>
+
+    <p>Este guia compara ChatGPT, Gemini e Claude de forma prática — sem hype, sem patrocínio — para que você saiba exatamente qual acionar para cada tipo de tarefa.</p>
+
+    <h2>Conhecendo os três</h2>
+
+    <div class="model-cards">
+      <div class="model-card chatgpt">
+        <div class="model-name">ChatGPT</div>
+        <div class="model-maker">OpenAI &mdash; lançado em 2022</div>
+        <p>O mais conhecido e usado no mundo. Ecossistema gigante de plugins, GPTs customizados e integrações. O modelo topo de linha é o GPT-4o, com versões mais avançadas no plano pago.</p>
+      </div>
+      <div class="model-card gemini">
+        <div class="model-name">Gemini</div>
+        <div class="model-maker">Google &mdash; lançado em 2023</div>
+        <p>Integrado ao ecossistema Google (Drive, Docs, Gmail, Search). Forte em pesquisa com acesso à internet nativo e em tarefas que se beneficiam de contexto do mundo real e atual.</p>
+      </div>
+      <div class="model-card claude">
+        <div class="model-name">Claude</div>
+        <div class="model-maker">Anthropic &mdash; lançado em 2023</div>
+        <p>Destaca-se em textos longos, raciocínio cuidadoso e consistência ao longo de conversas extensas. Janela de contexto enorme — processa documentos inteiros de uma vez.</p>
+      </div>
+    </div>
+
+    <h2>Comparação geral</h2>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Critério</th>
+            <th class="th-chatgpt">ChatGPT</th>
+            <th class="th-gemini">Gemini</th>
+            <th class="th-claude">Claude</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Qualidade de escrita</td>
+            <td class="td-good">Muito boa</td>
+            <td class="td-mid">Boa</td>
+            <td class="td-good">Muito boa</td>
+          </tr>
+          <tr>
+            <td>Raciocínio e análise</td>
+            <td class="td-good">Excelente</td>
+            <td class="td-mid">Boa</td>
+            <td class="td-good">Excelente</td>
+          </tr>
+          <tr>
+            <td>Acesso à internet</td>
+            <td class="td-mid">Plano pago</td>
+            <td class="td-good">Nativo (gratuito)</td>
+            <td class="td-mid">Plano pago</td>
+          </tr>
+          <tr>
+            <td>Contexto (texto longo)</td>
+            <td class="td-mid">Bom</td>
+            <td class="td-mid">Bom</td>
+            <td class="td-good">Excelente</td>
+          </tr>
+          <tr>
+            <td>Integração Google</td>
+            <td class="td-bad">Nenhuma</td>
+            <td class="td-good">Nativa</td>
+            <td class="td-bad">Nenhuma</td>
+          </tr>
+          <tr>
+            <td>Geração de imagens</td>
+            <td class="td-good">DALL-E (pago)</td>
+            <td class="td-good">Imagen (nativo)</td>
+            <td class="td-bad">Nao gera</td>
+          </tr>
+          <tr>
+            <td>Plugins e integrações</td>
+            <td class="td-good">Enorme ecossistema</td>
+            <td class="td-mid">Crescendo</td>
+            <td class="td-mid">Integrações diretas</td>
+          </tr>
+          <tr>
+            <td>Plano gratuito</td>
+            <td class="td-mid">Limitado</td>
+            <td class="td-good">Generoso</td>
+            <td class="td-mid">Limitado</td>
+          </tr>
+          <tr>
+            <td>Preço do plano pago</td>
+            <td>~US$ 20/mês</td>
+            <td>~US$ 20/mês</td>
+            <td>~US$ 20/mês</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>Para cada tarefa, qual usar?</h2>
+
+    <div class="usecase-grid">
+      <div class="usecase-card">
+        <div>
+          <div class="usecase-task">Escrever textos longos (artigos, relatórios, e-books)</div>
+          <p class="usecase-why">Claude mantém consistência e tom ao longo de textos extensos sem "esquecer" o contexto do início.</p>
+        </div>
+        <span class="usecase-winner claude">Claude</span>
+      </div>
+      <div class="usecase-card">
+        <div>
+          <div class="usecase-task">Pesquisa com informações atuais</div>
+          <p class="usecase-why">Gemini tem acesso à internet por padrão, mesmo no plano gratuito. Cita fontes e traz dados recentes.</p>
+        </div>
+        <span class="usecase-winner gemini">Gemini</span>
+      </div>
+      <div class="usecase-card">
+        <div>
+          <div class="usecase-task">Programação e debugging de código</div>
+          <p class="usecase-why">ChatGPT e Claude estão empatados aqui. ChatGPT tem mais exemplos de código no treinamento; Claude explica melhor o raciocínio.</p>
+        </div>
+        <span class="usecase-winner empate">Empate</span>
+      </div>
+      <div class="usecase-card">
+        <div>
+          <div class="usecase-task">Resumir e analisar documentos grandes</div>
+          <p class="usecase-why">Claude tem a maior janela de contexto e processa documentos inteiros com precisão. Ideal para PDFs, contratos e relatórios.</p>
+        </div>
+        <span class="usecase-winner claude">Claude</span>
+      </div>
+      <div class="usecase-card">
+        <div>
+          <div class="usecase-task">Trabalhar dentro do Google Workspace</div>
+          <p class="usecase-why">Gemini está integrado nativamente ao Drive, Docs, Gmail e Sheets. Nenhum dos outros chega perto disso.</p>
+        </div>
+        <span class="usecase-winner gemini">Gemini</span>
+      </div>
+      <div class="usecase-card">
+        <div>
+          <div class="usecase-task">Criar GPTs e automações via API</div>
+          <p class="usecase-why">O ecossistema de GPTs customizados e a maturidade da API da OpenAI ainda são referência no mercado.</p>
+        </div>
+        <span class="usecase-winner chatgpt">ChatGPT</span>
+      </div>
+      <div class="usecase-card">
+        <div>
+          <div class="usecase-task">Criação de imagens</div>
+          <p class="usecase-why">Gemini gera imagens com Imagen no plano gratuito. ChatGPT usa DALL-E mas requer plano pago. Claude não gera imagens.</p>
+        </div>
+        <span class="usecase-winner gemini">Gemini</span>
+      </div>
+      <div class="usecase-card">
+        <div>
+          <div class="usecase-task">Análise critica e raciocínio complexo</div>
+          <p class="usecase-why">Claude tende a dar respostas mais nuançadas, reconhecer incerteza e evitar simplificações em análises profundas.</p>
+        </div>
+        <span class="usecase-winner claude">Claude</span>
+      </div>
+      <div class="usecase-card">
+        <div>
+          <div class="usecase-task">Uso no dia a dia (tudo um pouco)</div>
+          <p class="usecase-why">ChatGPT tem a interface mais polida, mais recursos integrados e é o mais testado para uso geral por mais tempo.</p>
+        </div>
+        <span class="usecase-winner chatgpt">ChatGPT</span>
+      </div>
+    </div>
+
+    <h2>Planos gratuitos: o que você realmente ganha</h2>
+
+    <div class="plan-grid">
+      <div class="plan-card chatgpt">
+        <span class="plan-model">ChatGPT Free</span>
+        <h4>Funcional, com limites</h4>
+        <ul>
+          <li>Acesso ao GPT-4o com limite diário</li>
+          <li>Sem acesso à internet (pesquisa desabilitada)</li>
+          <li>Sem geracão de imagens</li>
+          <li>Sem memoria entre conversas</li>
+          <li>Bom para textos, codigo e perguntas gerais</li>
+        </ul>
+      </div>
+      <div class="plan-card gemini">
+        <span class="plan-model">Gemini Free</span>
+        <h4>O mais generoso dos três</h4>
+        <ul>
+          <li>Acesso ao Gemini 1.5 Flash (rápido e capaz)</li>
+          <li>Pesquisa na internet nativa sem custo</li>
+          <li>Geração de imagens incluida</li>
+          <li>Integrado ao Google Workspace (Drive, Docs)</li>
+          <li>Contexto de até 1 milhão de tokens</li>
+        </ul>
+      </div>
+      <div class="plan-card claude">
+        <span class="plan-model">Claude Free</span>
+        <h4>Qualidade alta, bem limitado</h4>
+        <ul>
+          <li>Acesso ao Claude com limite de mensagens diário</li>
+          <li>Sem acesso à internet</li>
+          <li>Upload de arquivos e PDFs incluido</li>
+          <li>Contexto longo mesmo no gratuito</li>
+          <li>Ótimo para análise de documentos</li>
+        </ul>
+      </div>
+    </div>
+
+    <h2>Pontos fortes e fracos de cada um</h2>
+
+    <h3>ChatGPT</h3>
+    <p><strong>Pontos fortes:</strong> ecossistema maduro, GPTs customizados, integração com DALL-E para imagens, histórico longo de uso e exemplos na internet, ótimo para código.</p>
+    <p><strong>Pontos fracos:</strong> plano gratuito limitado sem internet, pode ser verboso e repetitivo em respostas longas, tende a "concordar" com o usuário em vez de corrigir.</p>
+
+    <h3>Gemini</h3>
+    <p><strong>Pontos fortes:</strong> plano gratuito mais generoso, internet nativa sem custo, integração perfeita com o ecossistema Google, janela de contexto enorme (1M tokens no Pro).</p>
+    <p><strong>Pontos fracos:</strong> escrita criativa e raciocínio nuançado ainda ficam atrás dos concorrentes, interface menos polida, menor histórico de uso no mercado brasileiro.</p>
+
+    <h3>Claude</h3>
+    <p><strong>Pontos fortes:</strong> excelente para textos longos e consistentes, análise profunda e honesta, janela de contexto grande, menos propenso a inventar informações.</p>
+    <p><strong>Pontos fracos:</strong> plano gratuito bem limitado em quantidade de mensagens, sem geração de imagens, menos integrações nativas com outras plataformas.</p>
+
+    <div class="callout info">
+      <div class="callout-title">Nota sobre modelos</div>
+      <p>Cada empresa lança atualizações constantes. Os modelos mencionados aqui (GPT-4o, Gemini 1.5, Claude Sonnet) refletem o cenário atual, mas as capacidades mudam rápido. Vale testar a versão mais recente de cada um para a sua tarefa específica.</p>
+    </div>
+
+    <h2>A estratégia que profissionais usam</h2>
+
+    <p>Quem usa IA no trabalho de forma avançada raramente fica preso a um único modelo. A abordagem mais produtiva é ter acesso a dois ou três e saber qual acionar dependendo da tarefa.</p>
+
+    <div class="highlight-box">
+      <h4>Setup recomendado para freelancers e criadores</h4>
+      <p><strong>Gratuito:</strong> Gemini como padrão (internet nativa e integração com Google) + Claude Free para análise de documentos e textos que precisam de mais cuidado.</p>
+      <p><strong>Pago (um plano):</strong> Claude Pro para quem escreve muito ou analisa documentos longos. ChatGPT Plus para quem programa muito ou precisa de GPTs customizados.</p>
+      <p><strong>Pago (dois planos):</strong> Claude Pro + Gemini Advanced é uma combinação poderosa — cobre escrita, análise, pesquisa em tempo real e integração com Google Workspace.</p>
+    </div>
+
+    <div class="callout tip">
+      <div class="callout-title">Dica prática</div>
+      <p>Antes de assinar qualquer plano, use todos os três no plano gratuito por uma semana com as suas tarefas reais. A diferença de qualidade para o seu caso específico vai ficar clara — e você vai saber exatamente pelo que está pagando antes de pagar.</p>
+    </div>
+
+  </main>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <h2>Prompts que funcionam nos três modelos</h2>
+    <p>A biblioteca de prompts tem templates testados no ChatGPT, Gemini e Claude — para escrita, análise, código e muito mais.</p>
+    <a href="../biblioteca-de-prompts.html" class="cta-btn">Acessar biblioteca de prompts</a>
+  </section>
+
+  
+  <section class="related-articles">
+    <div class="related-inner">
+      <h2 class="related-title">Artigos Relacionados</h2>
+      <div class="related-grid">
+      <a href="o-que-sao-agentes-de-ia.html" class="related-card">
+        <span class="related-badge">Guias</span>
+        <h3 class="related-card-title">O que são agentes de IA e como funcionam</h3>
+        <span class="related-arrow">→</span>
+      </a>
+      <a href="o-que-e-perplexity-ai.html" class="related-card">
+        <span class="related-badge">Guias</span>
+        <h3 class="related-card-title">O que é o Perplexity AI e como usar para pesquisar</h3>
+        <span class="related-arrow">→</span>
+      </a>
+      <a href="gemini-google-drive-docs.html" class="related-card">
+        <span class="related-badge">Tutoriais</span>
+        <h3 class="related-card-title">Como usar o Gemini no Google Drive e Docs</h3>
+        <span class="related-arrow">→</span>
+      </a>
+      </div>
+    </div>
+  </section>
+<footer class="footer">
+    <p>Aprenda com AI &mdash; <a href="../index.html">Inicio</a> &middot; <a href="../artigos.html">Artigos</a> &middot; <a href="../catalogo-ferramentas.html">Ferramentas</a> &middot; <a href="../sobre.html">Sobre</a> &middot; <a href="../contato.html">Contato</a> &middot; <a href="../politica-de-privacidade.html">Política de Privacidade</a> &middot; <a href="../termos-de-uso.html">Termos de Uso</a></p>
+  </footer>
+
+  <script src="../script.js"></script>
+<script src="../cookie-consent.js" defer></script>
+<script src="../site-menu.js" defer></script>
+</body>
+</html>

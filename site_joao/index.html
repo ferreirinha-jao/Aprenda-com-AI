@@ -1,0 +1,388 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Guias práticos de IA em português: ChatGPT, Gemini, Claude, prompts e automações sem programar.">
+  <title>Aprenda com AI — guias práticos de inteligência artificial</title>
+  <link rel="canonical" href="https://aprendacomai.com/">
+  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://aprendacomai.com/#website",
+        "name": "Aprenda com AI",
+        "url": "https://aprendacomai.com/",
+        "description": "Guias práticos de inteligência artificial em português: ChatGPT, Gemini, Claude, prompts e automações sem programar.",
+        "publisher": {
+          "@id": "https://aprendacomai.com/#organization"
+        }
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://aprendacomai.com/#organization",
+        "name": "Aprenda com AI",
+        "url": "https://aprendacomai.com/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://aprendacomai.com/og-image.png"
+        }
+      }
+    ]
+  }
+  </script>
+
+  <link rel="apple-touch-icon" href="favicon.ico.png">
+  <meta property="og:site_name" content="Aprenda com AI">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Aprenda com AI — guias práticos de inteligência artificial">
+  <meta property="og:description" content="Guias práticos de IA em português: ChatGPT, Gemini, Claude, prompts e automações sem programar.">
+  <meta property="og:url" content="https://aprendacomai.com/">
+  <meta property="og:image" content="https://aprendacomai.com/og-image.svg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Aprenda com AI — guias práticos de inteligência artificial">
+  <meta name="twitter:description" content="Guias práticos de IA em português: ChatGPT, Gemini, Claude, prompts e automações sem programar.">
+  <meta name="twitter:image" content="https://aprendacomai.com/og-image.svg">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Inter:wght@300;400;500;600&family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="icon" type="image/png" href="favicon.ico.png">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="final-hero.css">
+
+  <style>
+  .static-hero { position: relative; min-height: 700px; height: auto; overflow: hidden; background-color: #0b0c0e; background-image: radial-gradient(circle at 18% 48%, rgba(215, 255, 63, .35) 0%, rgba(37, 210, 70, .22) 28%, rgba(11, 12, 14, 0) 65%); }
+  .static-hero-content { position: relative; z-index: 2; display: flex; align-items: center; justify-content: space-between; min-height: 619px; padding: 4rem clamp(22px, 8vw, 135px) 8rem; }
+  .static-hero .hero-copy { width: min(100%, 42rem); }
+  .static-hero .hero-bg-title { position: static; transform: none; pointer-events: none; }
+  .static-hero .hero-bg-title h1 { max-width: none !important; margin: 0 !important; color: rgba(255, 255, 255, .85); }
+  .static-hero .static-tagline { max-width: 32rem; margin: 2rem 0 0; color: #e5e7eb; font: 1.2rem/1.6 "DM Mono", monospace; }
+  .static-hero .hero-image-container { width: min(42%, 34rem); min-height: 1px; }
+  
+  @media (max-width: 720px) {
+    .static-hero { min-height: 0; }
+    .static-hero-content { min-height: 0; padding: 3rem 1.25rem 4rem; flex-direction: column; align-items: flex-start; }
+    .static-hero .hero-copy { width: 100%; max-width: none; }
+    .static-hero .hero-image-container { display: flex; width: 100%; min-height: 0; justify-content: center; }
+    .static-hero .hero-bg-title h1 { font-size: clamp(2.2rem, 10vw, 4rem) !important; }
+    .static-hero .static-tagline { margin-top: 1.5rem; font-size: 1rem; }
+  }
+
+  /* --- ESTILOS DO CHAT FLUTUANTE --- */
+  #ai-chat-widget {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 9999;
+    font-family: inherit;
+  }
+  #chat-toggle-btn {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    background-color: #d7ff3f;
+    color: #0b0c0e;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    transition: transform 0.2s;
+  }
+  #chat-toggle-btn:hover {
+    transform: scale(1.05);
+  }
+  #chat-window {
+    position: absolute;
+    bottom: 70px;
+    right: 0;
+    width: 320px;
+    height: 400px;
+    background-color: #121316;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+  #chat-window.chat-hidden {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(10px);
+  }
+  .chat-header {
+    background-color: #0b0c0e;
+    padding: 12px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #ffffff;
+    font-size: 0.9rem;
+    font-weight: bold;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  }
+  #chat-close-btn {
+    background: none;
+    border: none;
+    color: #94a3b8;
+    font-size: 1.2rem;
+    cursor: pointer;
+  }
+  .chat-body {
+    flex: 1;
+    padding: 12px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .chat-message {
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    max-width: 80%;
+    line-height: 1.4;
+  }
+  .chat-message.bot {
+    background-color: #1e2025;
+    color: #e2e8f0;
+    align-self: flex-start;
+  }
+  .chat-message.user {
+    background-color: #d7ff3f;
+    color: #0b0c0e;
+    align-self: flex-end;
+  }
+  .chat-footer {
+    padding: 10px;
+    background-color: #0b0c0e;
+    display: flex;
+    gap: 6px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+  }
+  #chat-input {
+    flex: 1;
+    background-color: #1e2025;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    padding: 8px;
+    color: #fff;
+    font-size: 0.85rem;
+  }
+  #chat-input:focus {
+    outline: none;
+    border-color: #d7ff3f;
+  }
+  #chat-send-btn {
+    background-color: #d7ff3f;
+    color: #0b0c0e;
+    border: none;
+    border-radius: 6px;
+    padding: 0 12px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 0.85rem;
+  }
+</style>
+
+<link rel="stylesheet" href="site-menu.css">
+</head>
+<body>
+  <div class="noise" aria-hidden="true"></div>
+
+  <!-- Header correto e posicionado fora da hero -->
+  <header>
+    <nav class="navbar">
+        <a href="index.html" class="logo">Aprenda com AI</a>
+        <ul class="nav-links">
+            <li><a href="index.html">Início</a></li>
+            <li><a href="comece-aqui.html">Comece Aqui</a></li>
+            <li><a href="artigos.html">Artigos</a></li>
+            <li><a href="biblioteca-de-prompts.html">Biblioteca de Prompts</a></li>
+            <li><a href="calculadora-ia.html">Calculadora de Impacto</a></li>
+            <li><a href="sobre.html">Sobre</a></li>
+            <li><a href="contato.html">Contato</a></li>
+        </ul>
+    </nav>
+</header>
+
+  <main id="inicio">
+    <section class="hero-container static-hero">
+      <div class="static-hero-content">
+        <div class="hero-copy">
+          <div class="hero-bg-title"><h1>INTELIGÊNCIA<br>ARTIFICIAL</h1></div>
+          <p class="static-tagline">• A nova fluência é saber conversar com máquinas</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="intro" id="metodo">
+      <p class="eyebrow">01 — NOSSA ABORDAGEM</p>
+      <div class="intro-grid">
+        <h2>IA não é um atalho.<br><em>É uma nova linguagem.</em></h2>
+        <div>
+          <p class="body-copy">Dominar Inteligência Artificial não é sobre automatizar tarefas, é sobre multiplicar sua capacidade de criar, resolver problemas e liderar o futuro.</p>
+          <a class="text-link" href="biblioteca-de-prompts.html">Explorar Biblioteca de Prompts <span>→</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="tracks" id="trilhas">
+      <div class="section-heading">
+        <p class="eyebrow">02 — ESCOLHA SUA TRILHA</p>
+        <h2>Conhecimento que<br>vira <em>prática.</em></h2>
+      </div>
+      <div class="track-list">
+        <a href="artigos/prompts-imagens-design.html" class="track-card"><span class="track-index">01</span><div><h3>IA para criar</h3><p>Imagens, vídeos, textos e ideias que carregam a sua assinatura.</p></div><span class="track-arrow">↗</span></a>
+        <a href="artigos/prompts-produtividade.html" class="track-card"><span class="track-index">02</span><div><h3>IA para trabalhar</h3><p>Fluxos, estratégia e produtividade para fazer mais do que importa.</p></div><span class="track-arrow">↗</span></a>
+        <a href="artigos/automacao-atendimento-ia.html" class="track-card"><span class="track-index">03</span><div><h3>IA para automatizar</h3><p>Sistemas que trabalham por você — sem precisar ser programador.</p></div><span class="track-arrow">↗</span></a>
+      </div>
+    </section>
+
+    <section class="final-cta" id="comecar">
+      <p class="eyebrow">O FUTURO JÁ COMEÇOU</p>
+      <h2>Aprenda como fazer a IA<br><em>trabalhar por você.</em></h2>
+      <a class="big-button" href="comece-aqui.html">Quero começar <span>↗</span></a>
+    </section>
+  </main>
+
+  <footer class="inner-footer">
+    <a class="logo" href="index.html">aprendacom<span>AI.</span></a>
+    <p>© 2026 Aprenda com AI</p>
+    <div>
+      <a href="sobre.html">Sobre</a>
+      <a href="contato.html">Contato</a>
+      <a href="politica-de-privacidade.html">Política de Privacidade</a>
+      <a href="termos-de-uso.html">Termos de Uso</a>
+    </div>
+  </footer>
+
+  <script src="script.js" defer></script> <!-- Widget do Chatbot Flutuante -->
+<div id="ai-chat-widget">
+  <!-- Botão Flutuante no Canto -->
+  <button id="chat-toggle-btn" aria-label="Abrir Chat">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 21 1.9-5.7a8.5 8.5 0 1 1 3.8 3.8z"/></svg>
+  </button>
+
+  <!-- Janela do Chat -->
+  <div id="chat-window" class="chat-hidden">
+    <div class="chat-header">
+      <span>Assistente Aprenda com AI</span>
+      <button id="chat-close-btn">&times;</button>
+    </div>
+    <div class="chat-body" id="chat-messages">
+      <div class="chat-message bot">
+        E aí! Sou o assistente virtual do Aprenda com AI. Posso te ajudar a encontrar os melhores conteúdos do site. Experimente me dizer o que você procura, por exemplo: “quero ver coisas sobre imagens”, “conteúdos sobre automação” ou “como usar o Claude”.
+      </div>
+    </div>
+    <div class="chat-footer">
+      <input type="text" id="chat-input" placeholder="Digite sua dúvida..." />
+      <button id="chat-send-btn">Enviar</button>
+    </div>
+  </div>
+</div> 
+<script>
+    const toggleBtn = document.getElementById('chat-toggle-btn');
+    const closeBtn = document.getElementById('chat-close-btn');
+    const chatWindow = document.getElementById('chat-window');
+    const sendBtn = document.getElementById('chat-send-btn');
+    const chatInput = document.getElementById('chat-input');
+    const chatMessages = document.getElementById('chat-messages');
+
+    // Base de dados dos artigos locais (mantém tudo o que você já cadastrou)
+    const baseArtigos = [
+        { keywords: ['imagem', 'imagens', 'design', 'foto'], titulo: 'Prompts para Imagens e Design', url: 'artigos/prompts-imagens-design.html' },
+        { keywords: ['claude'], titulo: 'Como Usar o Claude IA: Guia Completo', url: 'artigos/guia-claude-ia.html' },
+        { keywords: ['automacao', 'automação', 'n8n', 'bot', 'fluxo'], titulo: 'Como montar o primeiro fluxo de atendimento com IA', url: 'artigos/automacao-atendimento-ia.html' },
+        { keywords: ['atendimento', 'cliente', 'resposta'], titulo: 'Respostas Automáticas para Clientes Usando IA', url: 'artigos/respostas-automaticas-ia.html' },
+        { keywords: ['prompt', 'prompts', 'produtividade', 'trabalho'], titulo: 'Produtividade & Trabalho no Dia a Dia', url: 'artigos/prompts-produtividade.html' },
+        { keywords: ['rotina', 'organizar', 'tarefas'], titulo: 'Como Usar o ChatGPT para Organizar Sua Rotina', url: 'artigos/chatgpt-rotina.html' },
+        { keywords: ['resumo', 'resumir', 'texto', 'artigo'], titulo: 'Como Resumir Textos e Artigos Longos Usando IA', url: 'artigos/resumir-textos-ia.html' },
+        { keywords: ['historia', 'história', 'inteligencia artificial', 'inteligência artificial', 'ia'], titulo: 'A História da Inteligência Artificial', url: 'artigos/historia-da-ia.html' }
+    ];
+
+    // Funções de abrir e fechar o chat
+    toggleBtn.addEventListener('click', () => {
+      chatWindow.classList.remove('chat-hidden');
+    });
+
+    closeBtn.addEventListener('click', () => {
+      chatWindow.classList.add('chat-hidden');
+    });
+
+    function appendMessage(sender, text, messageId) {
+        const messageDiv = document.createElement('div');
+        messageDiv.classList.add('chat-message', sender);
+      if (messageId) messageDiv.id = messageId;
+        
+        if (sender === 'bot') {
+            let formattedText = text
+                .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                .replace(/• (.*?): \[(.*?)\]\((.*?)\)/g, '• <a href="$3" target="_blank" style="color: #ccff00; text-decoration: underline;"><strong>$1: $2</strong></a>')
+                .replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" target="_blank" style="color: #ccff00; text-decoration: underline;"><strong>$1</strong></a>')
+                .replace(/\n/g, '<br>');
+            messageDiv.innerHTML = formattedText;
+        } else {
+            messageDiv.textContent = text;
+        }
+
+        chatMessages.appendChild(messageDiv);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    // Envio de mensagem
+    function sendMessage() {
+        const text = chatInput.value.trim();
+        if (!text) return;
+
+        appendMessage('user', text);
+        chatInput.value = '';
+
+        processUserQuery(text);
+    }
+
+    sendBtn.addEventListener('click', sendMessage);
+    chatInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') sendMessage();
+    });
+
+    // A chave deve ser guardada no servidor, nunca no HTML publicado.
+
+    function processUserQuery(text) {
+      const query = text.toLowerCase();
+      const recommendations = baseArtigos.filter((article) =>
+        article.keywords.some((keyword) => query.includes(keyword))
+      );
+      const uniqueRecommendations = [...new Map(
+        recommendations.map((article) => [article.url, article])
+      ).values()];
+
+      let response = "Hmm, não encontrei um artigo exato para isso. Tente buscar por “imagens”, “Claude”, “automação” ou “prompts”.";
+
+      if (uniqueRecommendations.length) {
+        const links = uniqueRecommendations
+          .slice(0, 3)
+          .map((article) => `• [${article.titulo}](${article.url})`)
+          .join('\n');
+
+        response = `Encontrei estes conteúdos para você:\n\n${links}`;
+      }
+
+      window.setTimeout(() => {
+        appendMessage('bot', response);
+      }, 500);
+    }
+</script>
+<script src="cookie-consent.js" defer></script>
+<script src="site-menu.js" defer></script>
+</body>
+</html>

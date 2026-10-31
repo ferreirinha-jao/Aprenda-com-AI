@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Como usar IA para propostas comerciais | Aprenda com AI</title>
+  <meta name="description" content="Aprenda a usar IA para criar propostas comerciais profissionais mais rápido: estrutura, prompts prontos e como personalizar para cada cliente." />
+  <meta name="keywords" content="proposta comercial com IA, ChatGPT proposta, criar proposta de serviço, IA para vendas, proposta profissional" />
+  <meta name="author" content="Aprenda com AI" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Como usar IA para propostas comerciais" />
+  <meta property="og:description" content="Estrutura, prompts e estratégias para criar propostas comerciais profissionais com IA — mais rápido e com mais qualidade." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://aprendacomai.com/artigos/usar-ia-para-propostas-comerciais.html" />
+  <meta property="og:site_name" content="Aprenda com AI" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Manrope:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="../style.css" />
+  <link rel="stylesheet" href="../final-hero.css" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #0b0c0e;
+      --surface:   #13151a;
+      --border:    #1e2028;
+      --accent:    #d7ff3f;
+      --accent2:   #a8cc28;
+      --text:      #e5e7eb;
+      --muted:     #c7c9c5;
+      --dim:       #6b7280;
+      --font-head: 'Space Grotesk', sans-serif;
+      --font-body: 'Manrope', sans-serif;
+      --font-mono: 'DM Mono', monospace;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: 1rem;
+      line-height: 1.75;
+      min-height: 100vh;
+    }
+
+    /* NAV */
+    .site-nav { position: sticky; top: 0; z-index: 100; background: rgba(11,12,14,.85); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); padding: 0 1.5rem; }
+    .nav-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 60px; gap: 2rem; }
+    .nav-logo { font-family: var(--font-head); font-weight: 700; font-size: 1.1rem; color: var(--text); text-decoration: none; white-space: nowrap; }
+    .nav-logo span { color: var(--accent); }
+    .nav-links { display: flex; align-items: center; gap: 1.5rem; list-style: none; flex-wrap: wrap; }
+    .nav-links a { color: var(--muted); text-decoration: none; font-size: .875rem; font-family: var(--font-head); font-weight: 500; transition: color .2s; }
+    .nav-links a:hover { color: var(--accent); }
+
+    /* HERO */
+    .article-hero { background: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(215,255,63,.13) 0%, transparent 65%); border-bottom: 1px solid var(--border); padding: 4rem 1.5rem 3rem; text-align: center; }
+    .article-hero .badge { display: inline-block; background: rgba(215,255,63,.12); color: var(--accent); border: 1px solid rgba(215,255,63,.25); border-radius: 999px; padding: .25rem .9rem; font-family: var(--font-mono); font-size: .75rem; letter-spacing: .05em; text-transform: uppercase; margin-bottom: 1.25rem; }
+    .article-hero h1 { font-family: var(--font-head); font-size: clamp(1.75rem, 4vw, 2.75rem); font-weight: 700; line-height: 1.2; max-width: 780px; margin: 0 auto 1rem; }
+    .article-hero h1 em { font-style: normal; color: var(--accent); }
+    .article-meta { display: flex; align-items: center; justify-content: center; gap: 1.25rem; flex-wrap: wrap; font-size: .8rem; color: var(--dim); font-family: var(--font-mono); margin-top: 1.25rem; }
+
+    /* LAYOUT */
+    .article-wrap { max-width: 760px; margin: 0 auto; padding: 3.5rem 1.5rem 5rem; }
+
+    /* BREADCRUMB */
+    .breadcrumb { max-width: 760px; margin: 0 auto; padding: 1rem 1.5rem 0; display: flex; align-items: center; gap: .5rem; font-size: .78rem; color: var(--dim); font-family: var(--font-mono); }
+    .breadcrumb a { color: var(--dim); text-decoration: none; transition: color .2s; }
+    .breadcrumb a:hover { color: var(--accent); }
+    .breadcrumb span { color: var(--accent); }
+
+    /* TIPOGRAFIA */
+    .article-body h2 { font-family: var(--font-head); font-size: 1.4rem; font-weight: 700; color: var(--text); margin: 2.5rem 0 .75rem; padding-bottom: .5rem; border-bottom: 1px solid var(--border); }
+    .article-body h3 { font-family: var(--font-head); font-size: 1.1rem; font-weight: 600; color: var(--accent); margin: 2rem 0 .5rem; }
+    .article-body p { color: var(--muted); margin-bottom: 1.25rem; }
+    .article-body strong { color: var(--text); font-weight: 600; }
+    .article-body a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+    .article-body a:hover { color: var(--accent2); }
+    .article-body ul, .article-body ol { color: var(--muted); margin: 0 0 1.25rem 1.5rem; }
+    .article-body li { margin-bottom: .5rem; }
+    .article-body li strong { color: var(--text); }
+
+    /* CALLOUT */
+    .callout { border-radius: 10px; padding: 1.1rem 1.25rem; margin: 1.75rem 0; border-left: 3px solid; }
+    .callout-tip  { background: rgba(215,255,63,.07); border-color: var(--accent); }
+    .callout-info { background: rgba(99,179,237,.07);  border-color: #63b3ed; }
+    .callout-warn { background: rgba(251,191,36,.07);  border-color: #fbbf24; }
+    .callout-title { font-family: var(--font-mono); font-size: .75rem; font-weight: 500; text-transform: uppercase; letter-spacing: .07em; margin-bottom: .4rem; }
+    .callout-tip  .callout-title { color: var(--accent); }
+    .callout-info .callout-title { color: #63b3ed; }
+    .callout-warn .callout-title { color: #fbbf24; }
+    .callout p { color: var(--muted); margin: 0; font-size: .95rem; }
+
+    /* STEPS */
+    .steps { display: flex; flex-direction: column; gap: 1rem; margin: 1.5rem 0; }
+    .step { display: flex; gap: 1rem; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 1.1rem 1.25rem; align-items: flex-start; }
+    .step-num { flex-shrink: 0; width: 2rem; height: 2rem; background: var(--accent); color: #0b0c0e; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: var(--font-head); font-weight: 700; font-size: .85rem; }
+    .step-content h4 { font-family: var(--font-head); font-weight: 600; font-size: .95rem; color: var(--text); margin-bottom: .25rem; }
+    .step-content p { font-size: .9rem; color: var(--muted); margin: 0; }
+
+    /* SECTION CARDS — estrutura da proposta */
+    .section-list { display: flex; flex-direction: column; gap: .75rem; margin: 1.5rem 0; }
+    .section-item { display: flex; gap: 1rem; align-items: flex-start; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 1rem 1.25rem; }
+    .section-label { flex-shrink: 0; background: rgba(215,255,63,.12); color: var(--accent); border: 1px solid rgba(215,255,63,.2); border-radius: 6px; padding: .2rem .6rem; font-family: var(--font-mono); font-size: .7rem; font-weight: 500; text-transform: uppercase; letter-spacing: .05em; white-space: nowrap; margin-top: .15rem; }
+    .section-text h4 { font-family: var(--font-head); font-weight: 600; font-size: .9rem; color: var(--text); margin-bottom: .2rem; }
+    .section-text p { font-size: .82rem; color: var(--dim); margin: 0; }
+
+    /* CODE BLOCK */
+    .code-block { background: #0d0f13; border: 1px solid var(--border); border-radius: 10px; padding: 1.1rem 1.25rem; margin: 1.25rem 0; overflow-x: auto; }
+    .code-block pre { font-family: var(--font-mono); font-size: .82rem; color: #a3e635; line-height: 1.7; white-space: pre-wrap; word-break: break-word; }
+    .code-label { font-family: var(--font-mono); font-size: .7rem; color: var(--dim); text-transform: uppercase; letter-spacing: .08em; margin-bottom: .5rem; }
+
+    /* HIGHLIGHT */
+    .highlight-box { background: rgba(215,255,63,.06); border: 1px solid rgba(215,255,63,.18); border-radius: 12px; padding: 1.5rem 1.75rem; margin: 2rem 0; }
+    .highlight-box p { color: var(--muted); margin: 0; font-size: .95rem; }
+    .highlight-box p + p { margin-top: .75rem; }
+
+    /* ERROS GRID */
+    .erro-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
+    .erro-card { background: var(--surface); border: 1px solid var(--border); border-left: 3px solid #f87171; border-radius: 10px; padding: 1.1rem; }
+    .erro-card h4 { font-family: var(--font-head); font-weight: 600; font-size: .88rem; color: #f87171; margin-bottom: .3rem; }
+    .erro-card p { font-size: .82rem; color: var(--dim); margin: 0; }
+
+    /* CTA */
+    .article-cta { background: radial-gradient(ellipse 80% 80% at 50% 50%, rgba(215,255,63,.1) 0%, transparent 70%); border: 1px solid rgba(215,255,63,.2); border-radius: 16px; padding: 2.5rem; text-align: center; margin-top: 3rem; }
+    .article-cta h3 { font-family: var(--font-head); font-size: 1.3rem; font-weight: 700; color: var(--text); margin-bottom: .6rem; }
+    .article-cta p { color: var(--muted); font-size: .95rem; margin-bottom: 1.5rem; }
+    .btn-accent { display: inline-flex; align-items: center; gap: .5rem; background: var(--accent); color: #0b0c0e; font-family: var(--font-head); font-weight: 700; font-size: .9rem; padding: .65rem 1.5rem; border-radius: 8px; text-decoration: none; transition: background .2s, transform .15s; }
+    .btn-accent:hover { background: var(--accent2); transform: translateY(-1px); }
+    /* Botão do CTA: evita que a cor de link do artigo apague o texto */
+    .article-body a.btn-accent, .article-body a.btn-accent:hover { color: #0b0c0e; text-decoration: none; }
+    .btn-ghost { display: inline-flex; align-items: center; gap: .5rem; border: 1px solid var(--border); color: var(--muted); font-family: var(--font-head); font-weight: 500; font-size: .9rem; padding: .65rem 1.5rem; border-radius: 8px; text-decoration: none; margin-left: .75rem; transition: border-color .2s, color .2s; }
+    .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* FOOTER */
+    .site-footer { background: var(--surface); border-top: 1px solid var(--border); padding: 2.5rem 1.5rem; text-align: center; }
+    .footer-inner { max-width: 1100px; margin: 0 auto; }
+    .footer-logo { font-family: var(--font-head); font-weight: 700; font-size: 1rem; color: var(--text); text-decoration: none; display: inline-block; margin-bottom: 1rem; }
+    .footer-logo span { color: var(--accent); }
+    .footer-links { display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; margin-bottom: 1.25rem; list-style: none; }
+    .footer-links a { color: var(--dim); text-decoration: none; font-size: .8rem; transition: color .2s; }
+    .footer-links a:hover { color: var(--accent); }
+    .footer-copy { font-size: .75rem; color: var(--dim); font-family: var(--font-mono); }
+
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+      .article-hero { padding: 2.5rem 1rem 2rem; }
+      .article-wrap { padding: 2rem 1rem 3rem; }
+      .btn-ghost { margin-left: 0; margin-top: .5rem; }
+    }
+  </style>
+  <link rel="icon" type="image/png" href="../favicon.ico.png">
+  <link rel="canonical" href="https://aprendacomai.com/artigos/como-usar-ia-para-propostas-comerciais.html">
+<link rel="stylesheet" href="../site-menu.css">
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="site-nav">
+    <div class="nav-inner">
+      <a class="nav-logo" href="../index.html">Aprenda com <span>AI</span></a>
+      <ul class="nav-links">
+        <li><a href="../index.html">Início</a></li>
+        <li><a href="../comece-aqui.html">Comece Aqui</a></li>
+        <li><a href="../artigos.html">Artigos</a></li>
+        <li><a href="../biblioteca-de-prompts.html">Biblioteca de Prompts</a></li>
+        <li><a href="../calculadora-ia.html">Calculadora de Impacto</a></li>
+        <li><a href="../sobre.html">Sobre</a></li>
+        <li><a href="../contato.html">Contato</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- BREADCRUMB -->
+  <div class="breadcrumb">
+    <a href="../index.html">Início</a>
+    <span>›</span>
+    <a href="../artigos.html">Artigos</a>
+    <span>›</span>
+    Como usar IA para propostas comerciais
+  </div>
+
+  <!-- HERO -->
+  <header class="article-hero">
+    <div class="badge">Negócios</div>
+    <h1>Como usar <em>IA</em> para propostas comerciais</h1>
+    <div class="article-meta">
+      <span>Ferramentas: ChatGPT, Claude, Google Docs</span>
+    </div>
+  </header>
+
+  <!-- ARTIGO -->
+  <main class="article-wrap">
+    <article class="article-body">
+
+      <p>
+        Proposta comercial é uma das partes mais travadas do processo de vendas. Você sai de uma reunião empolgado, o cliente demonstrou interesse, e aí você vai escrever a proposta — e trava. Não sabe por onde começar, fica reescrevendo o mesmo parágrafo, e no final manda algo genérico que não reflete o que você discutiu na conversa.
+      </p>
+      <p>
+        Com IA, esse processo muda. Você não vai substituir o seu julgamento sobre o cliente — mas vai eliminar o trabalho braçal de estruturar, redigir e formatar. Em vez de 2 horas escrevendo, você passa 20 minutos revisando e personalizando.
+      </p>
+
+      <!-- O que a IA faz bem aqui -->
+      <h2>O que a IA faz bem em propostas</h2>
+
+      <p>
+        A IA é boa nas partes que todo mundo odeia: estruturar a lógica, redigir os parágrafos de abertura e encerramento, formatar a tabela de preços, escrever a seção de metodologia. As partes que exigem o seu conhecimento — o diagnóstico do cliente, os números reais, os prazos — você fornece. A IA organiza e redige.
+      </p>
+
+      <ul>
+        <li><strong>Estrutura lógica:</strong> sabe montar o fluxo de uma proposta que convence — problema, solução, prova, investimento, próximos passos.</li>
+        <li><strong>Tom profissional:</strong> transforma anotações informais em texto polido sem soar robótico.</li>
+        <li><strong>Adaptação por setor:</strong> ajusta a linguagem para falar com um dentista, uma oficina mecânica ou uma empresa de TI.</li>
+        <li><strong>Variantes de preço:</strong> gera versões com pacotes diferentes — básico, intermediário, premium — a partir de uma descrição do serviço.</li>
+        <li><strong>Objecoes respondidas:</strong> antecipa dúvidas comuns e sugere como endereçá-las no corpo da proposta.</li>
+      </ul>
+
+      <!-- Estrutura de uma boa proposta -->
+      <h2>Estrutura de uma proposta que converte</h2>
+
+      <p>
+        Antes de usar qualquer prompt, você precisa entender o que uma boa proposta precisa ter. Uma proposta não é um catálogo de serviços — é um documento que <strong>resolve a dor do cliente em texto</strong>. A estrutura abaixo é o padrão que funciona:
+      </p>
+
+      <div class="section-list">
+        <div class="section-item">
+          <div class="section-label">1</div>
+          <div class="section-text">
+            <h4>Contexto e diagnóstico</h4>
+            <p>Mostre que você entendeu o problema do cliente. Repita o que ele disse na reunião com suas próprias palavras. Isso prova que você ouviu — e elimina a sensação de proposta genérica.</p>
+          </div>
+        </div>
+        <div class="section-item">
+          <div class="section-label">2</div>
+          <div class="section-text">
+            <h4>O que vai ser feito</h4>
+            <p>Descreva a solução de forma clara e específica — não "faremos uma automação", mas "vamos automatizar o processo X que hoje ocupa Y horas da sua equipe por semana".</p>
+          </div>
+        </div>
+        <div class="section-item">
+          <div class="section-label">3</div>
+          <div class="section-text">
+            <h4>Como será feito</h4>
+            <p>Metodologia em etapas. Dá segurança ao cliente saber o que esperar em cada fase do projeto — sem isso, o valor percebido cai.</p>
+          </div>
+        </div>
+        <div class="section-item">
+          <div class="section-label">4</div>
+          <div class="section-text">
+            <h4>Resultados esperados</h4>
+            <p>Sempre que possível, coloque números. "Redução de X horas semanais", "retorno estimado de Y vezes o investimento". Números tornam o valor concreto.</p>
+          </div>
+        </div>
+        <div class="section-item">
+          <div class="section-label">5</div>
+          <div class="section-text">
+            <h4>Investimento</h4>
+            <p>Valor, forma de pagamento, o que está incluído e o que não está. Clareza aqui evita desentendimentos depois.</p>
+          </div>
+        </div>
+        <div class="section-item">
+          <div class="section-label">6</div>
+          <div class="section-text">
+            <h4>Próximos passos</h4>
+            <p>Termine sempre com uma ação clara: o que acontece quando o cliente disser sim, qual o prazo de validade da proposta, como entrar em contato.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Prompt principal -->
+      <h2>O prompt principal para gerar a proposta</h2>
+
+      <p>
+        Com a estrutura em mente, use este prompt como base. Quanto mais informação você fornecer sobre o cliente e a conversa que teve, mais personalizada e convincente a proposta vai sair.
+      </p>
+
+      <div class="code-block">
+        <div class="code-label">Prompt — Proposta comercial completa</div>
+        <pre>
+Você é um especialista em vendas e redação comercial.
+Crie uma proposta comercial profissional com base nas informações abaixo.
+
+SOBRE O MEU NEGÓCIO:
+Nome: [seu nome ou empresa]
+Serviço oferecido: [descreva o que você faz]
+Diferencial: [o que te diferencia da concorrência]
+
+SOBRE O CLIENTE:
+Nome da empresa/pessoa: [nome do cliente]
+Segmento: [setor de atuação]
+Problema que ele tem: [descreva o problema ou necessidade que ele relatou]
+O que ele quer alcançar: [objetivo dele]
+Informações da reunião: [anote tudo que ele disse que for relevante]
+
+ESCOPO DO PROJETO:
+O que será entregue: [liste as entregas]
+Prazo estimado: [quanto tempo vai levar]
+Valor: [quanto vai cobrar]
+Forma de pagamento: [condições]
+
+TOM:
+[profissional e direto / descontraído mas sério / técnico / consultivo]
+
+Estruture a proposta com: contexto e diagnóstico, solução proposta,
+metodologia em etapas, resultados esperados, investimento e próximos passos.
+Use linguagem em português do Brasil, clara e sem jargões desnecessários.
+        </pre>
+      </div>
+
+      <!-- Personalizacao -->
+      <h2>Como personalizar para cada cliente</h2>
+
+      <p>
+        O erro mais comum ao usar IA para propostas é mandar o texto gerado sem personalizar. A IA cria uma base excelente — mas você precisa injetar os detalhes específicos da conversa que teve. Isso é o que separa uma proposta que fecha de uma que vai para o lixo.
+      </p>
+
+      <div class="callout callout-tip">
+        <div class="callout-title">Regra de ouro da personalizacao</div>
+        <p>
+          Em algum ponto da proposta, cite algo que o cliente disse na reunião — textualmente ou parafraseado. Isso prova que a proposta foi feita para ele, não copiada de um template. Exemplo: <em>"Como você mencionou na nossa conversa, o maior gargalo hoje é o tempo que sua equipe gasta respondendo as mesmas perguntas repetidas no WhatsApp…"</em>
+        </p>
+      </div>
+
+      <h3>Prompt para personalizar um trecho</h3>
+
+      <div class="code-block">
+        <div class="code-label">Prompt — Personalizar abertura da proposta</div>
+        <pre>
+Reescreva a abertura desta proposta para soar mais personalizada
+e conectada com o que o cliente relatou.
+
+O cliente disse na reunião: [transcreva o que ele falou]
+O problema principal dele é: [problema]
+O que ele mais enfatizou como urgente: [urgência]
+
+Abertura atual:
+[cole o texto gerado]
+
+A nova abertura deve mostrar que entendemos o contexto específico dele,
+não parecer um template. Tom: [profissional / próximo / consultivo].
+        </pre>
+      </div>
+
+      <!-- Variantes de preco -->
+      <h2>Criando pacotes de preço com IA</h2>
+
+      <p>
+        Oferecer apenas um preço é um erro. Quando o cliente tem só uma opção, a decisão dele é entre "sim" e "não". Com três opções — básico, intermediário, avançado — a decisão passa a ser "qual dos três". Isso aumenta a taxa de fechamento.
+      </p>
+
+      <p>
+        A IA monta esses pacotes para você com um prompt simples:
+      </p>
+
+      <div class="code-block">
+        <div class="code-label">Prompt — Pacotes de preco</div>
+        <pre>
+Crie 3 pacotes de preço para o seguinte serviço:
+
+Serviço: [descreva]
+Valor que tenho em mente para o pacote intermediário: R$ [valor]
+
+Para cada pacote (Essencial / Profissional / Premium), defina:
+- Nome do pacote
+- O que está incluído (seja específico)
+- O que NÃO está incluído
+- Prazo de entrega
+- Valor sugerido (baseado no intermediário que forneci)
+- Para quem é indicado (perfil do cliente)
+
+O pacote Essencial deve ter cerca de 60% do valor do Profissional.
+O Premium deve ter cerca de 160% do valor do Profissional.
+Use linguagem direta e objetiva.
+        </pre>
+      </div>
+
+      <!-- Objecoes -->
+      <h2>Antecipando objeções na proposta</h2>
+
+      <p>
+        Toda proposta vai gerar dúvidas. O cliente vai pensar: "Será que vale o preço?", "E se não funcionar?", "Já tentei algo parecido antes". Uma proposta bem feita antecipa essas objeções e as responde antes do cliente perguntar.
+      </p>
+
+      <div class="code-block">
+        <div class="code-label">Prompt — Secao de perguntas frequentes</div>
+        <pre>
+Com base na proposta abaixo, crie uma seção de "Perguntas Frequentes"
+com 4 a 5 objeções comuns que um cliente desse segmento teria,
+e as respostas que desmontam cada objeção.
+
+As objeções mais comuns nesse tipo de venda são sobre:
+[preço / prazo / confiança / ROI / complexidade de implementação]
+
+Segmento do cliente: [setor]
+Proposta: [cole o texto da proposta]
+
+Responda cada objeção de forma direta, honesta e sem soar defensivo.
+        </pre>
+      </div>
+
+      <!-- Erros comuns -->
+      <h2>Erros comuns ao usar IA para propostas</h2>
+
+      <div class="erro-grid">
+        <div class="erro-card">
+          <h4>Mandar sem revisar</h4>
+          <p>A IA pode inventar detalhes ou usar linguagem genérica demais. Sempre leia do início ao fim antes de enviar.</p>
+        </div>
+        <div class="erro-card">
+          <h4>Dar pouco contexto</h4>
+          <p>Prompt vago gera proposta vaga. Quanto mais você detalhar o cliente e a conversa, melhor o resultado.</p>
+        </div>
+        <div class="erro-card">
+          <h4>Proposta sem número</h4>
+          <p>A IA evita números por padrão. Force ela a incluir estimativas de resultados — é o que convence o cliente.</p>
+        </div>
+        <div class="erro-card">
+          <h4>Tom errado para o cliente</h4>
+          <p>Uma proposta para uma padaria e uma para uma empresa de TI precisam de tons diferentes. Especifique no prompt.</p>
+        </div>
+        <div class="erro-card">
+          <h4>Sem próximos passos claros</h4>
+          <p>A IA às vezes termina de forma vaga. Revise sempre o fechamento e garanta que há uma ação clara para o cliente tomar.</p>
+        </div>
+        <div class="erro-card">
+          <h4>Copiar texto sem adaptar</h4>
+          <p>O texto gerado é um rascunho. Adicione seu estilo, histórias reais e detalhes da conversa — isso fecha mais contratos.</p>
+        </div>
+      </div>
+
+      <!-- Workflow completo -->
+      <h2>Workflow completo: da reunião à proposta enviada</h2>
+
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <h4>Anote tudo durante a reunião</h4>
+            <p>Nome do cliente, problema principal, o que ele disse textualmente, urgência, objeções que levantou, o que ele já tentou antes. Quanto mais detalhes, melhor.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <h4>Preencha o prompt principal</h4>
+            <p>Use o prompt de proposta completa deste artigo, preenchendo cada campo com as informações da reunião. Não deixe campos vazios.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <h4>Gere e ajuste o tom</h4>
+            <p>Leia o rascunho. Se o tom ficou muito formal ou muito solto, peça para ajustar: "Reescreva em tom mais [direto / próximo / técnico]."</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <div class="step-content">
+            <h4>Injete a personalizacao</h4>
+            <p>Adicione referências específicas à conversa que teve. Um parágrafo que só faz sentido para aquele cliente específico muda completamente a percepção.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">5</div>
+          <div class="step-content">
+            <h4>Revise os números e prazos</h4>
+            <p>Confirme que todos os valores, datas e entregáveis estão corretos. A IA pode arredondar ou suavizar números — certifique-se de que o que está escrito é o que você vai entregar.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">6</div>
+          <div class="step-content">
+            <h4>Formate e envie</h4>
+            <p>Cole no Google Docs, Word ou numa ferramenta de proposta como o PandaDoc. Envie com uma mensagem curta e direta — não precisa de introdução longa por mensagem.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="callout callout-info">
+        <div class="callout-title">Ferramenta extra</div>
+        <p>
+          Se você envia propostas com frequência, vale a pena conhecer o <strong>PandaDoc</strong> ou o <strong>Better Proposals</strong> — ferramentas de proposta que permitem ver quando o cliente abriu, quanto tempo ficou em cada seção e enviar com assinatura digital. O plano gratuito do PandaDoc já permite criar propostas bonitas com templates prontos.
+        </p>
+      </div>
+
+      <!-- CTA -->
+      <div class="article-cta">
+        <h3>Prompts prontos para o seu negócio</h3>
+        <p>A Biblioteca de Prompts tem comandos organizados para atendimento ao cliente, criação de conteúdo e estratégia de negócios — incluindo prompts para prospecção e follow-up.</p>
+        <a href="../biblioteca-de-prompts.html" class="btn-accent">Ver Biblioteca de Prompts</a>
+        <a href="../artigos.html" class="btn-ghost">Mais artigos</a>
+      </div>
+
+    </article>
+  </main>
+
+  <!-- FOOTER -->
+  
+  <section class="related-articles">
+    <div class="related-inner">
+      <h2 class="related-title">Artigos Relacionados</h2>
+      <div class="related-grid">
+      <a href="como-montar-portfolio-de-automacoes.html" class="related-card">
+        <span class="related-badge">Negócios</span>
+        <h3 class="related-card-title">Como montar um portfólio de automações</h3>
+        <span class="related-arrow">→</span>
+      </a>
+      <a href="como-prospectar-clientes-locais.html" class="related-card">
+        <span class="related-badge">Negócios</span>
+        <h3 class="related-card-title">Como prospectar clientes locais com IA</h3>
+        <span class="related-arrow">→</span>
+      </a>
+      <a href="chatgpt-vs-gemini-vs-claude.html" class="related-card">
+        <span class="related-badge">Guias</span>
+        <h3 class="related-card-title">ChatGPT vs Gemini vs Claude: qual IA usar em 2025</h3>
+        <span class="related-arrow">→</span>
+      </a>
+      </div>
+    </div>
+  </section>
+<footer class="site-footer">
+    <div class="footer-inner">
+      <a class="footer-logo" href="../index.html">Aprenda com <span>AI</span></a>
+      <ul class="footer-links">
+        <li><a href="../sobre.html">Sobre</a></li>
+        <li><a href="../contato.html">Contato</a></li>
+        <li><a href="../politica-de-privacidade.html">Política de Privacidade</a></li>
+        <li><a href="../termos-de-uso.html">Termos de Uso</a></li>
+      </ul>
+      <p class="footer-copy">© 2026 Aprenda com AI · Feito com muita IA</p>
+    </div>
+  </footer>
+
+  <script src="../script.js"></script>
+<script src="../cookie-consent.js" defer></script>
+<script src="../site-menu.js" defer></script>
+</body>
+</html>

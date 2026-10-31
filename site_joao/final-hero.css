@@ -1,0 +1,88 @@
+:root { --lime: #d7ff3f; --hero: #121316; }
+
+.hero-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 700px;
+  overflow: hidden;
+  background: var(--hero);
+  color: #fff;
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+.navbar {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 81px;
+  padding: 0 clamp(22px, 5vw, 78px);
+  border-bottom: 1px solid rgba(255, 255, 255, .12);
+  box-shadow: none !important;
+}
+
+.logo { color: #fff; text-decoration: none; font-size: 17px; font-weight: 600; letter-spacing: -1px; }
+.logo span { color: var(--lime); }
+.nav-links { display: flex; align-items: center; gap: 2rem; margin-left: auto; }
+.nav-link, .btn-cta { color: #fff; text-decoration: none; font-size: 12px; }
+.btn-cta { border-bottom: 1px solid var(--lime); padding-bottom: 5px; }
+
+.hero-bg-title {
+  position: absolute;
+  top: 50%;
+  left: clamp(15px, 3vw, 48px);
+  z-index: 1;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.hero-bg-title h1 {
+  max-width: 90% !important;
+  margin: 0 0 2rem !important;
+  color: #2b2c2c;
+  font-size: clamp(3.8rem, 5vw, 6.2rem) !important;
+  font-weight: 700;
+  line-height: .95 !important;
+  letter-spacing: -.07em;
+}
+
+.hero-image-container {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  position: relative;
+  overflow: visible;
+  background: transparent;
+  border: 0;
+  -webkit-mask-image: linear-gradient(to left, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 100%);
+  mask-image: linear-gradient(to left, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 100%);
+}
+
+.hero-robot-img {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  max-height: 520px;
+  object-fit: contain;
+  mix-blend-mode: screen;
+  opacity: 1;
+  filter: contrast(1.15) brightness(1.12);
+  image-rendering: auto;
+}
+
+.intro, .tracks, .final-cta { font-family: Manrope, sans-serif; }
+
+@media (max-width: 720px) {
+  .hero-container { min-height: 650px; }
+  .navbar { height: 68px; }
+  .nav-links { display: none; }
+  .hero-bg-title { top: 35%; left: 12px; }
+  .hero-bg-title h1 { font-size: 20vw; }
+  .hero-image-container { justify-content: center; }
+  .hero-robot-img { max-height: min(55vh, 320px); }
+}

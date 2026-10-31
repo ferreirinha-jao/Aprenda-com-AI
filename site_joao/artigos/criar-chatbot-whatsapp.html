@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Como criar um chatbot para WhatsApp com IA — Aprenda com AI</title>
+  <meta name="description" content="Aprenda a criar um chatbot para WhatsApp usando n8n, Evolution API e ChatGPT. Automatize atendimento, qualificação de leads e respostas 24 horas por dia." />
+  <meta property="og:title" content="Como criar um chatbot para WhatsApp com IA — Aprenda com AI" />
+  <meta property="og:description" content="Crie um chatbot para WhatsApp com n8n, Evolution API e ChatGPT. Atendimento automático, qualificação de leads e respostas com IA." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://aprendacomai.com/artigos/criar-chatbot-whatsapp.html" />
+  <link rel="canonical" href="https://aprendacomai.com/artigos/criar-chatbot-whatsapp.html" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Manrope:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../style.css" />
+  <link rel="stylesheet" href="../final-hero.css" />
+
+  <style>
+    :root {
+      --bg:        #0b0c0e;
+      --surface:   #13151a;
+      --border:    #1e2028;
+      --accent:    #d7ff3f;
+      --accent2:   #a8cc28;
+      --text:      #e5e7eb;
+      --muted:     #c7c9c5;
+      --dim:       #6b7280;
+      --font-head: 'Space Grotesk', sans-serif;
+      --font-body: 'Manrope', sans-serif;
+      --font-mono: 'DM Mono', monospace;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: 1rem;
+      line-height: 1.7;
+    }
+
+    /* NAV */
+    .nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(11,12,14,.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: .85rem 1.5rem;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo { font-family: var(--font-head); font-weight: 700; font-size: 1.1rem; color: var(--accent); text-decoration: none; }
+    .nav-links { display: flex; gap: 1.5rem; }
+    .nav-links a { color: var(--muted); text-decoration: none; font-size: .9rem; transition: color .2s; }
+    .nav-links a:hover { color: var(--accent); }
+
+    /* BREADCRUMB */
+    .breadcrumb {
+      max-width: 780px; margin: 0 auto; padding: 1.2rem 1.5rem .4rem;
+      display: flex; align-items: center; gap: .5rem;
+      font-size: .82rem; color: var(--dim); flex-wrap: wrap;
+    }
+    .breadcrumb a { color: var(--dim); text-decoration: none; }
+    .breadcrumb a:hover { color: var(--accent); }
+    .breadcrumb span { color: var(--dim); }
+
+    /* HERO */
+    .article-hero {
+      max-width: 780px; margin: 0 auto;
+      padding: 2.5rem 1.5rem 2rem;
+    }
+    .article-badge {
+      display: inline-block;
+      font-family: var(--font-mono); font-size: .75rem; font-weight: 500;
+      color: var(--bg); background: var(--accent);
+      padding: .25rem .75rem; border-radius: 999px;
+      margin-bottom: 1.1rem; letter-spacing: .04em; text-transform: uppercase;
+    }
+    .article-hero h1 {
+      font-family: var(--font-head); font-size: clamp(1.9rem, 4vw, 2.7rem);
+      font-weight: 700; line-height: 1.2; color: #fff;
+      margin-bottom: 1rem;
+    }
+    .article-hero h1 em { font-style: normal; color: var(--accent); }
+    .article-meta {
+      display: flex; flex-wrap: wrap; gap: .75rem;
+      font-size: .82rem; color: var(--dim);
+      padding-top: 1rem; border-top: 1px solid var(--border);
+    }
+
+    /* BODY */
+    .article-body {
+      max-width: 780px; margin: 0 auto;
+      padding: 2rem 1.5rem 4rem;
+    }
+    .article-body h2 {
+      font-family: var(--font-head); font-size: 1.45rem; font-weight: 700;
+      color: #fff; margin: 2.8rem 0 1rem;
+    }
+    .article-body h3 {
+      font-family: var(--font-head); font-size: 1.1rem; font-weight: 600;
+      color: var(--text); margin: 2rem 0 .6rem;
+    }
+    .article-body p { color: var(--muted); margin-bottom: 1.1rem; }
+    .article-body ul, .article-body ol {
+      color: var(--muted); padding-left: 1.4rem; margin-bottom: 1.1rem;
+    }
+    .article-body li { margin-bottom: .4rem; }
+    .article-body strong { color: var(--text); font-weight: 600; }
+    .article-body a { color: var(--accent); text-decoration: none; }
+    .article-body a:hover { text-decoration: underline; }
+
+    /* CALLOUT */
+    .callout {
+      border-left: 3px solid var(--accent);
+      background: var(--surface);
+      border-radius: 0 8px 8px 0;
+      padding: 1rem 1.25rem;
+      margin: 1.5rem 0;
+    }
+    .callout.tip  { border-color: var(--accent); }
+    .callout.warn { border-color: #f59e0b; }
+    .callout.info { border-color: #60a5fa; }
+    .callout-title {
+      font-family: var(--font-mono); font-size: .78rem; font-weight: 500;
+      text-transform: uppercase; letter-spacing: .06em; margin-bottom: .4rem;
+    }
+    .callout.tip  .callout-title { color: var(--accent); }
+    .callout.warn .callout-title { color: #f59e0b; }
+    .callout.info .callout-title { color: #60a5fa; }
+    .callout p { margin: 0; font-size: .93rem; }
+
+    /* STEP CARDS */
+    .steps { display: flex; flex-direction: column; gap: 1rem; margin: 1.5rem 0; }
+    .step-card {
+      display: flex; gap: 1.1rem;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 10px; padding: 1.1rem 1.2rem;
+    }
+    .step-num {
+      flex-shrink: 0; width: 32px; height: 32px;
+      border-radius: 50%; background: var(--accent);
+      color: var(--bg); font-family: var(--font-head);
+      font-weight: 700; font-size: .9rem;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .step-content h4 {
+      font-family: var(--font-head); font-weight: 600; color: #fff;
+      font-size: 1rem; margin-bottom: .3rem;
+    }
+    .step-content p { margin: 0; font-size: .9rem; color: var(--muted); }
+
+    /* TOOL CARDS */
+    .tool-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: .85rem; margin: 1.5rem 0;
+    }
+    .tool-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 10px; padding: 1.15rem 1.25rem;
+    }
+    .tool-card .tool-name {
+      font-family: var(--font-head); font-weight: 700; color: #fff;
+      font-size: 1rem; margin-bottom: .25rem;
+    }
+    .tool-card .tool-tags { display: flex; gap: .4rem; margin-bottom: .6rem; flex-wrap: wrap; }
+    .tool-tag {
+      font-family: var(--font-mono); font-size: .68rem; font-weight: 500;
+      padding: .15rem .55rem; border-radius: 999px;
+    }
+    .tool-tag.free   { background: rgba(116,208,102,.15); color: #74d066; border: 1px solid rgba(116,208,102,.3); }
+    .tool-tag.paid   { background: rgba(245,158,11,.15);  color: #f59e0b; border: 1px solid rgba(245,158,11,.3); }
+    .tool-tag.open   { background: rgba(96,165,250,.15);  color: #60a5fa; border: 1px solid rgba(96,165,250,.3); }
+    .tool-card p { margin: 0; font-size: .87rem; color: var(--muted); }
+
+    /* PROMPT BOX */
+    .prompt-box {
+      background: #0d0f13; border: 1px solid var(--border);
+      border-radius: 10px; margin: 1.5rem 0; overflow: hidden;
+    }
+    .prompt-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: .65rem 1rem;
+      background: var(--surface); border-bottom: 1px solid var(--border);
+    }
+    .prompt-label { font-family: var(--font-mono); font-size: .75rem; color: var(--dim); }
+    .copy-btn {
+      font-family: var(--font-mono); font-size: .72rem; color: var(--accent);
+      background: transparent; border: 1px solid rgba(215,255,63,.3);
+      border-radius: 5px; padding: .2rem .6rem; cursor: pointer; transition: background .2s;
+    }
+    .copy-btn:hover { background: rgba(215,255,63,.1); }
+    .prompt-body {
+      padding: 1.1rem 1.2rem;
+      font-family: var(--font-mono); font-size: .83rem;
+      color: var(--muted); line-height: 1.7; white-space: pre-wrap;
+    }
+
+    /* COMPARISON TABLE */
+    .table-wrap { overflow-x: auto; margin: 1.5rem 0; border-radius: 10px; border: 1px solid var(--border); }
+    table { width: 100%; border-collapse: collapse; }
+    thead th {
+      background: var(--surface); font-family: var(--font-head);
+      font-size: .85rem; font-weight: 600; color: var(--accent);
+      padding: .85rem 1rem; text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+    tbody tr { border-bottom: 1px solid var(--border); }
+    tbody tr:last-child { border-bottom: none; }
+    tbody tr:hover { background: rgba(255,255,255,.02); }
+    tbody td { padding: .8rem 1rem; font-size: .88rem; color: var(--muted); }
+    tbody td:first-child { color: var(--text); font-weight: 500; }
+    .td-good { color: #74d066; font-weight: 600; }
+    .td-mid  { color: #f59e0b; font-weight: 600; }
+    .td-bad  { color: #f87171; font-weight: 600; }
+
+    /* STACK DIAGRAM */
+    .stack-box {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 10px; padding: 1.5rem; margin: 1.5rem 0;
+    }
+    .stack-box h4 {
+      font-family: var(--font-head); font-weight: 700; color: #fff;
+      font-size: 1rem; margin-bottom: 1.1rem; text-align: center;
+    }
+    .stack-row {
+      display: flex; align-items: center; gap: .75rem; margin-bottom: .6rem;
+    }
+    .stack-row:last-child { margin-bottom: 0; }
+    .stack-label {
+      font-family: var(--font-mono); font-size: .72rem; color: var(--dim);
+      min-width: 90px; text-align: right; flex-shrink: 0;
+    }
+    .stack-item {
+      flex: 1; background: rgba(215,255,63,.08); border: 1px solid rgba(215,255,63,.2);
+      border-radius: 6px; padding: .4rem .85rem;
+      font-family: var(--font-head); font-size: .88rem; font-weight: 600; color: var(--accent);
+      text-align: center;
+    }
+    .stack-arrow {
+      font-size: .8rem; color: var(--dim); text-align: center; margin: .1rem 0;
+      padding-left: 96px;
+    }
+
+    /* HIGHLIGHT BOX */
+    .highlight-box {
+      border: 1px solid rgba(215,255,63,.25);
+      background: rgba(215,255,63,.05);
+      border-radius: 10px; padding: 1.4rem 1.5rem; margin: 1.8rem 0;
+    }
+    .highlight-box h4 {
+      font-family: var(--font-head); font-size: 1rem; font-weight: 700;
+      color: var(--accent); margin-bottom: .7rem;
+    }
+    .highlight-box p { color: var(--muted); font-size: .92rem; margin-bottom: .5rem; }
+    .highlight-box p:last-child { margin-bottom: 0; }
+
+    /* ERRO GRID */
+    .erro-grid { display: flex; flex-direction: column; gap: .85rem; margin: 1.5rem 0; }
+    .erro-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-left: 3px solid #f87171; border-radius: 0 8px 8px 0;
+      padding: 1rem 1.2rem;
+    }
+    .erro-card h4 {
+      font-family: var(--font-head); font-weight: 600; color: #f87171;
+      font-size: .95rem; margin-bottom: .3rem;
+    }
+    .erro-card p { margin: 0; font-size: .88rem; color: var(--muted); }
+
+    /* CTA */
+    .cta-section {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 14px; padding: 2.2rem 2rem; text-align: center;
+      max-width: 780px; margin: 0 auto 4rem;
+    }
+    .cta-section h2 {
+      font-family: var(--font-head); font-size: 1.5rem; font-weight: 700;
+      color: #fff; margin-bottom: .6rem;
+    }
+    .cta-section p { color: var(--muted); font-size: .95rem; margin-bottom: 1.4rem; }
+    .cta-btn {
+      display: inline-block; background: var(--accent); color: var(--bg);
+      font-family: var(--font-head); font-weight: 700; font-size: .95rem;
+      padding: .8rem 2rem; border-radius: 8px; text-decoration: none;
+      transition: background .2s, transform .15s;
+    }
+    .cta-btn:hover { background: var(--accent2); transform: translateY(-2px); }
+
+    /* FOOTER */
+    .footer {
+      border-top: 1px solid var(--border);
+      text-align: center; padding: 2rem 1.5rem;
+      font-size: .82rem; color: var(--dim); margin-top: 4rem;
+    }
+    .footer a { color: var(--dim); text-decoration: none; }
+    .footer a:hover { color: var(--accent); }
+
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+      .article-hero h1 { font-size: 1.65rem; }
+      .step-card { flex-direction: column; gap: .6rem; }
+      .stack-label { min-width: 70px; font-size: .65rem; }
+    }
+  </style>
+  <link rel="icon" type="image/png" href="../favicon.ico.png">
+<link rel="stylesheet" href="../site-menu.css">
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="../index.html" class="nav-logo">Aprenda com AI</a>
+  <div class="nav-links">
+    <a href="../index.html">Início</a>
+    <a href="../comece-aqui.html">Comece Aqui</a>
+    <a href="../artigos.html">Artigos</a>
+    <a href="../biblioteca-de-prompts.html">Biblioteca de Prompts</a>
+    <a href="../calculadora-ia.html">Calculadora de Impacto</a>
+    <a href="../sobre.html">Sobre</a>
+    <a href="../contato.html">Contato</a>
+  </div>
+</nav>
+
+  <!-- BREADCRUMB -->
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="../index.html">Inicio</a>
+    <span>/</span>
+    <a href="../artigos.html">Artigos</a>
+    <span>/</span>
+    <span>Criar chatbot para WhatsApp</span>
+  </nav>
+
+  <!-- HERO -->
+  <header class="article-hero">
+    <span class="article-badge">Tutoriais</span>
+    <h1>Como criar um <em>chatbot para WhatsApp</em> com IA do zero</h1>
+    <div class="article-meta">
+      <span>Ferramentas: n8n, Evolution API, ChatGPT</span>
+    </div>
+  </header>
+
+  <!-- BODY -->
+  <main class="article-body">
+
+    <p>WhatsApp é o canal de comunicação mais usado no Brasil — e também onde a maioria das pequenas empresas perde leads por demorar para responder ou não ter processo de atendimento. Um chatbot com IA resolve isso: responde na hora, qualifica o lead e só transfere para o humano quando necessário.</p>
+
+    <p>Neste artigo você vai entender as opções disponíveis, a stack técnica mais usada por freelancers brasileiros e como montar um bot funcional do zero.</p>
+
+    <h2>O que um chatbot de WhatsApp pode fazer</h2>
+
+    <p>Antes de entrar na técnica, vale entender o que faz sentido automatizar — e o que ainda precisa de atendimento humano.</p>
+
+    <div class="tool-grid">
+      <div class="tool-card">
+        <div class="tool-name">Atendimento 24/7</div>
+        <div class="tool-tags"><span class="tool-tag free">Automático</span></div>
+        <p>Responde mensagens fora do horário comercial com informações sobre produtos, preços, endereço e funcionamento.</p>
+      </div>
+      <div class="tool-card">
+        <div class="tool-name">Qualificação de leads</div>
+        <div class="tool-tags"><span class="tool-tag free">Automático</span></div>
+        <p>Faz perguntas para entender a necessidade, orçamento e urgência antes de repassar para o time comercial.</p>
+      </div>
+      <div class="tool-card">
+        <div class="tool-name">Agendamento</div>
+        <div class="tool-tags"><span class="tool-tag free">Automático</span></div>
+        <p>Verifica disponibilidade e confirma horários diretamente no WhatsApp, integrado ao Google Calendar ou Calendly.</p>
+      </div>
+      <div class="tool-card">
+        <div class="tool-name">FAQ inteligente</div>
+        <div class="tool-tags"><span class="tool-tag free">Automático</span></div>
+        <p>Responde perguntas frequentes com base em uma base de conhecimento específica do negócio.</p>
+      </div>
+      <div class="tool-card">
+        <div class="tool-name">Follow-up automático</div>
+        <div class="tool-tags"><span class="tool-tag free">Automático</span></div>
+        <p>Envia sequência de mensagens para leads que não responderam ou clientes que precisam de retorno.</p>
+      </div>
+      <div class="tool-card">
+        <div class="tool-name">Triagem para humano</div>
+        <div class="tool-tags"><span class="tool-tag paid">Híbrido</span></div>
+        <p>Identifica quando a conversa precisa de atendimento especializado e transfere para o atendente certo com contexto.</p>
+      </div>
+    </div>
+
+    <h2>As três abordagens para criar um bot no WhatsApp</h2>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Abordagem</th>
+            <th>Ferramentas</th>
+            <th>Custo</th>
+            <th>Complexidade</th>
+            <th>Ideal para</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Plataformas prontas</td>
+            <td>ManyChat, Kommo, Take Blip</td>
+            <td class="td-mid">R$ 150–800/mês</td>
+            <td class="td-good">Baixa</td>
+            <td>Quem não quer codar nada</td>
+          </tr>
+          <tr>
+            <td>No-code + API não oficial</td>
+            <td>n8n + Evolution API</td>
+            <td class="td-good">R$ 30–80/mês</td>
+            <td class="td-mid">Média</td>
+            <td>Freelancers e automadores</td>
+          </tr>
+          <tr>
+            <td>WhatsApp Business API oficial</td>
+            <td>Meta + n8n ou código</td>
+            <td class="td-mid">Variável por mensagem</td>
+            <td class="td-bad">Alta</td>
+            <td>Empresas com volume alto</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>Para quem está começando ou montando bots para clientes pequenos, a combinação <strong>n8n + Evolution API</strong> é a mais popular no Brasil: barata, flexível e sem depender de aprovação da Meta.</p>
+
+    <div class="callout warn">
+      <div class="callout-title">Aviso importante</div>
+      <p>A Evolution API usa a sessão do WhatsApp Web, não a API oficial da Meta. O número pode ser banido se o uso for muito agressivo (mensagens em massa, comportamento de spam). Use com moderação e sempre com opt-in dos contatos.</p>
+    </div>
+
+    <h2>A stack técnica: n8n + Evolution API + ChatGPT</h2>
+
+    <div class="stack-box">
+      <h4>Como as peças se encaixam</h4>
+      <div class="stack-row">
+        <span class="stack-label">Usuário</span>
+        <div class="stack-item">Mensagem no WhatsApp</div>
+      </div>
+      <div class="stack-arrow">↓</div>
+      <div class="stack-row">
+        <span class="stack-label">Receptor</span>
+        <div class="stack-item">Evolution API — recebe e envia mensagens</div>
+      </div>
+      <div class="stack-arrow">↓</div>
+      <div class="stack-row">
+        <span class="stack-label">Orquestrador</span>
+        <div class="stack-item">n8n — processa, decide, integra com outros sistemas</div>
+      </div>
+      <div class="stack-arrow">↓</div>
+      <div class="stack-row">
+        <span class="stack-label">Inteligencia</span>
+        <div class="stack-item">ChatGPT / Claude — gera respostas em linguagem natural</div>
+      </div>
+      <div class="stack-arrow">↓</div>
+      <div class="stack-row">
+        <span class="stack-label">Resposta</span>
+        <div class="stack-item">Evolution API — envia resposta para o usuário</div>
+      </div>
+    </div>
+
+    <h2>Passo a passo: montando o bot</h2>
+
+    <div class="steps">
+      <div class="step-card">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <h4>Suba a Evolution API</h4>
+          <p>A forma mais fácil é via Railway ou Render (ambos têm plano gratuito para começar). O repositório oficial tem um botão de deploy com 1 clique. Após subir, acesse o painel e crie uma instância.</p>
+        </div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <h4>Conecte o número de WhatsApp</h4>
+          <p>Na Evolution API, gere o QR Code e escancie com o WhatsApp do número que será usado pelo bot. Recomendado: use um chip dedicado, separado do WhatsApp pessoal.</p>
+        </div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <h4>Configure o Webhook no n8n</h4>
+          <p>No n8n, crie um novo workflow com um nó Webhook. Copie a URL gerada e configure na Evolution API para que cada mensagem recebida dispare esse webhook.</p>
+        </div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">4</div>
+        <div class="step-content">
+          <h4>Processe a mensagem recebida</h4>
+          <p>O webhook vai receber um JSON com os dados da mensagem. Extraia o número de quem mandou, o texto e a instância. Filtre para ignorar mensagens do próprio bot (echo).</p>
+        </div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">5</div>
+        <div class="step-content">
+          <h4>Envie para o ChatGPT com contexto</h4>
+          <p>Use o nó OpenAI (ou HTTP Request para a API) e passe a mensagem com um system prompt que define a personalidade e o conhecimento do bot. Inclua o histórico de conversa para o bot ter memória.</p>
+        </div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">6</div>
+        <div class="step-content">
+          <h4>Envie a resposta de volta</h4>
+          <p>Com a resposta do ChatGPT em mãos, faça um HTTP Request para a Evolution API com o endpoint de envio de mensagem, passando o número do destinatário e o texto gerado.</p>
+        </div>
+      </div>
+    </div>
+
+    <h2>O system prompt faz toda a diferença</h2>
+
+    <p>O comportamento do bot depende diretamente do prompt de sistema. Um prompt mal feito resulta num bot que inventa informações, foge do assunto ou responde de forma estranha.</p>
+
+    <div class="prompt-box">
+      <div class="prompt-header">
+        <span class="prompt-label">System prompt — Bot de atendimento para clínica</span>
+        <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.prompt-box').querySelector('.prompt-body').textContent.trim())">Copiar</button>
+      </div>
+      <div class="prompt-body">Você é a assistente virtual da [Nome da Clínica], uma clínica de [especialidade] localizada em [cidade].
+
+Seu nome é [nome do bot] e você atende pelo WhatsApp.
+
+SEU PAPEL:
+- Responder dúvidas sobre serviços, preços e funcionamento da clínica
+- Ajudar pacientes a agendar consultas
+- Encaminhar casos urgentes ou complexos para atendimento humano
+
+INFORMAÇÕES DA CLÍNICA:
+- Serviços: [liste os serviços]
+- Preços: [liste ou diga que depende de avaliação]
+- Horário de atendimento: [dias e horários]
+- Endereço: [endereço completo]
+- Para agendar: [instrução de como agendar]
+
+REGRAS IMPORTANTES:
+- Nunca invente informações. Se não souber algo, diga que vai verificar e peça contato.
+- Não faça diagnósticos médicos. Apenas informe sobre os serviços.
+- Se a pessoa estiver em emergência, oriente a ligar para o SAMU (192) imediatamente.
+- Se a conversa precisar de atendimento humano, diga: "Vou te conectar com nossa equipe agora."
+- Seja cordial, use linguagem simples e evite termos técnicos.
+
+Responda sempre em português do Brasil, de forma direta e amigável.</div>
+    </div>
+
+    <div class="prompt-box">
+      <div class="prompt-header">
+        <span class="prompt-label">Prompt para criar system prompt personalizado</span>
+        <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.prompt-box').querySelector('.prompt-body').textContent.trim())">Copiar</button>
+      </div>
+      <div class="prompt-body">Preciso criar um system prompt para um chatbot de WhatsApp.
+
+Informações do negócio:
+- Tipo de empresa: [ex: academia, imobiliária, pet shop]
+- Nome da empresa: [nome]
+- Cidade: [cidade]
+- Serviços oferecidos: [liste]
+- Preços (se puder compartilhar): [preços ou "variam"]
+- Horário de funcionamento: [horário]
+- Tom de comunicação desejado: [ex: formal, descontraído, amigável]
+
+Crie um system prompt completo para o ChatGPT que:
+1. Define a personalidade e o papel do bot
+2. Inclui as informações do negócio de forma estruturada
+3. Define regras claras do que o bot pode e não pode fazer
+4. Instrui quando transferir para atendimento humano
+5. Garante respostas em português do Brasil
+
+O prompt deve evitar que o bot invente informações e mantenha foco no negócio.</div>
+    </div>
+
+    <h2>Como adicionar memória de conversa</h2>
+
+    <p>Por padrão, cada mensagem enviada ao ChatGPT é tratada como nova conversa — o bot não lembra o que foi dito antes. Para resolver isso, você precisa armazenar o histórico.</p>
+
+    <div class="steps">
+      <div class="step-card">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <h4>Armazene cada mensagem em banco de dados</h4>
+          <p>Use o nó do Redis, SQLite ou Supabase no n8n para salvar cada mensagem com o número do contato, o texto e o papel (user/assistant). Redis é o mais rápido para esse uso.</p>
+        </div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <h4>Recupere as últimas N mensagens</h4>
+          <p>Antes de enviar para o ChatGPT, busque as últimas 5 a 10 mensagens daquele número. Limite o histórico para não estourar o contexto da API.</p>
+        </div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <h4>Monte o array de mensagens</h4>
+          <p>Formate as mensagens no padrão da OpenAI: array com objetos {role: "user"/"assistant", content: "texto"}. Adicione a nova mensagem do usuário ao final antes de enviar.</p>
+        </div>
+      </div>
+    </div>
+
+    <h2>Alternativas mais simples para começar</h2>
+
+    <p>Se a stack n8n + Evolution API parece complexa demais para um primeiro projeto, existem alternativas que entregam um bot funcional mais rápido.</p>
+
+    <div class="tool-grid">
+      <div class="tool-card">
+        <div class="tool-name">ManyChat</div>
+        <div class="tool-tags"><span class="tool-tag paid">Pago</span></div>
+        <p>Interface visual para criar fluxos. Integra com WhatsApp Business oficial. Bom para fluxos simples sem necessidade de IA generativa.</p>
+      </div>
+      <div class="tool-card">
+        <div class="tool-name">Typebot</div>
+        <div class="tool-tags"><span class="tool-tag open">Open source</span><span class="tool-tag free">Gratuito</span></div>
+        <p>Cria fluxos de conversa visuais com blocos. Tem integração com OpenAI. Pode ser embedado em sites além do WhatsApp.</p>
+      </div>
+      <div class="tool-card">
+        <div class="tool-name">Zapi</div>
+        <div class="tool-tags"><span class="tool-tag paid">Pago</span></div>
+        <p>API brasileira para WhatsApp. Mais estável que Evolution para quem quer foco no produto sem gerenciar infraestrutura.</p>
+      </div>
+      <div class="tool-card">
+        <div class="tool-name">Flowise</div>
+        <div class="tool-tags"><span class="tool-tag open">Open source</span><span class="tool-tag free">Gratuito</span></div>
+        <p>Builder visual de agentes de IA. Integra com WhatsApp via webhook. Ótimo para bots com RAG (base de conhecimento).</p>
+      </div>
+    </div>
+
+    <h2>Erros comuns ao criar chatbots de WhatsApp</h2>
+
+    <div class="erro-grid">
+      <div class="erro-card">
+        <h4>Bot que inventa informações</h4>
+        <p>Sem instrução clara no system prompt, o ChatGPT vai "alucinar" preços, endereços e serviços. Sempre defina: "Se não souber, diga que vai verificar."</p>
+      </div>
+      <div class="erro-card">
+        <h4>Sem transferência para humano</h4>
+        <p>Um bot que tenta resolver tudo e nunca transfere frustra o cliente quando o problema é complexo. Defina gatilhos claros para escalar para atendente.</p>
+      </div>
+      <div class="erro-card">
+        <h4>Número principal usado para o bot</h4>
+        <p>Se o número for banido pela Evolution API, o cliente perde o contato comercial. Sempre use um número dedicado para o bot.</p>
+      </div>
+      <div class="erro-card">
+        <h4>Sem limite de histórico</h4>
+        <p>Enviar todas as mensagens de uma conversa longa para a API é caro e pode ultrapassar o limite de tokens. Limite a 10 mensagens ou use resumo.</p>
+      </div>
+      <div class="erro-card">
+        <h4>Bot sem personalidade definida</h4>
+        <p>Um bot genérico que poderia ser de qualquer empresa não passa credibilidade. Dê um nome, um tom e uma identidade alinhada com a marca do cliente.</p>
+      </div>
+    </div>
+
+    <div class="highlight-box">
+      <h4>Quanto cobrar por um chatbot para cliente?</h4>
+      <p>O mercado brasileiro pratica entre R$ 1.500 e R$ 5.000 para desenvolvimento de um bot básico, mais uma mensalidade de R$ 300 a R$ 800 para manutenção e hospedagem.</p>
+      <p>O valor aumenta com a complexidade: integrações com CRM, múltiplos fluxos, base de conhecimento com RAG e dashboards de analytics. Um bot bem documentado que você consegue replicar para outros clientes do mesmo segmento é o melhor produto que você pode ter.</p>
+    </div>
+
+    <div class="callout tip">
+      <div class="callout-title">Por onde começar</div>
+      <p>Monte o bot primeiro para você mesmo ou para um amigo com um negócio. Teste o fluxo completo, encontre os problemas e documente o processo. Esse projeto piloto vira o caso de portfólio e a base técnica para os próximos clientes.</p>
+    </div>
+
+  </main>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <h2>System prompts prontos para chatbots</h2>
+    <p>Acesse a biblioteca com prompts de sistema para bots de atendimento, qualificação de leads e FAQ por segmento.</p>
+    <a href="../biblioteca-de-prompts.html" class="cta-btn">Acessar biblioteca de prompts</a>
+  </section>
+
+  <!-- FOOTER -->
+  
+  <section class="related-articles">
+    <div class="related-inner">
+      <h2 class="related-title">Artigos Relacionados</h2>
+      <div class="related-grid">
+      <a href="gemini-google-drive-docs.html" class="related-card">
+        <span class="related-badge">Tutoriais</span>
+        <h3 class="related-card-title">Como usar o Gemini no Google Drive e Docs</h3>
+        <span class="related-arrow">→</span>
+      </a>
+      <a href="como-gerar-legendas-automaticas-com-ia.html" class="related-card">
+        <span class="related-badge">Tutoriais</span>
+        <h3 class="related-card-title">Como gerar legendas automáticas com IA</h3>
+        <span class="related-arrow">→</span>
+      </a>
+      <a href="como-usar-ia-para-propostas-comerciais.html" class="related-card">
+        <span class="related-badge">Negócios</span>
+        <h3 class="related-card-title">Como usar IA para criar propostas comerciais</h3>
+        <span class="related-arrow">→</span>
+      </a>
+      </div>
+    </div>
+  </section>
+<footer class="footer">
+    <p>Aprenda com AI &mdash; <a href="../index.html">Inicio</a> &middot; <a href="../artigos.html">Artigos</a> &middot; <a href="../catalogo-ferramentas.html">Ferramentas</a> &middot; <a href="../sobre.html">Sobre</a> &middot; <a href="../contato.html">Contato</a> &middot; <a href="../politica-de-privacidade.html">Política de Privacidade</a> &middot; <a href="../termos-de-uso.html">Termos de Uso</a></p>
+  </footer>
+
+  <script src="../script.js"></script>
+<script src="../cookie-consent.js" defer></script>
+<script src="../site-menu.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="Estime o custo mensal de tarefas manuais na sua operação e explore o potencial de automação com inteligência artificial.">
+	<meta name="theme-color" content="#101310">
+	<title>Calculadora de Custo de Oportunidade da IA nos Negócios | Aprenda com AI</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="final-hero.css">
+	<script src="https://cdn.tailwindcss.com"></script>
+	<script>
+		tailwind.config = {
+			theme: {
+				extend: {
+					colors: {
+						ink: '#101310',
+						panel: '#171b17',
+						lime: '#d7ff3f',
+						tech: '#61d9f5',
+						paper: '#f1f3eb',
+						muted: '#a0a79b'
+					},
+					fontFamily: {
+						sans: ['Manrope', 'sans-serif'],
+						mono: ['DM Mono', 'monospace']
+					}
+				}
+			}
+		};
+	</script>
+	<style>
+		:root { color-scheme: dark; }
+		* { box-sizing: border-box; }
+		body { font-family: Manrope, sans-serif; }
+		.technical-grid { background-image: linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px); background-size: 36px 36px; mask-image: linear-gradient(to bottom, black, transparent 88%); }
+		.number-input { appearance: textfield; }
+		.number-input::-webkit-inner-spin-button, .number-input::-webkit-outer-spin-button { margin: 0; appearance: none; }
+		.result-reveal { animation: reveal .45s cubic-bezier(.2,.75,.25,1) both; }
+		@keyframes reveal { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+		@media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; } }
+	</style>
+	<script src="script.js" defer></script>
+  <link rel="icon" type="image/png" href="favicon.ico.png">
+<link rel="stylesheet" href="site-menu.css">
+</head>
+<body class="min-h-screen bg-ink text-paper antialiased">
+	<header>
+    <nav class="navbar">
+        <a href="index.html" class="logo">Aprenda com AI</a>
+        <ul class="nav-links">
+            <li><a href="index.html">Início</a></li>
+            <li><a href="comece-aqui.html">Comece Aqui</a></li>
+            <li><a href="artigos.html">Artigos</a></li>
+            <li><a href="biblioteca-de-prompts.html">Biblioteca de Prompts</a></li>
+            <li><a href="calculadora-ia.html">Calculadora de Impacto</a></li>
+            <li><a href="sobre.html">Sobre</a></li>
+            <li><a href="contato.html">Contato</a></li>
+        </ul>
+    </nav>
+</header>
+	<main class="relative flex min-h-screen flex-col overflow-hidden">
+		<div class="technical-grid pointer-events-none absolute inset-0" aria-hidden="true"></div>
+
+		
+
+		<section class="relative z-10 mx-auto flex w-full max-w-7xl flex-1 flex-col gap-10 px-5 pb-16 pt-8 sm:px-10 lg:gap-12 lg:px-12 lg:pb-20 lg:pt-10">
+			<div class="max-w-3xl">
+				<p class="mb-5 flex items-center gap-3 font-mono text-[11px] uppercase tracking-[.16em] text-tech"><span class="h-px w-8 bg-tech"></span>Calculadora de custo de oportunidade</p>
+				<h1 class="max-w-3xl text-4xl font-extrabold leading-[1.06] tracking-tight text-white sm:text-5xl lg:text-[3.55rem]">Calculadora de Custo de Oportunidade da IA nos Negócios</h1>
+				<p class="mt-5 max-w-2xl text-base leading-7 text-muted sm:text-lg sm:leading-8">Ajuste o tamanho da equipe, as horas manuais e o setor. O dashboard transforma essas premissas em um cenário operacional mensal.</p>
+			</div>
+
+			<div class="grid w-full gap-5 lg:grid-cols-[.9fr_1.1fr] lg:items-stretch">
+				<div class="grid content-start gap-5 rounded-lg border border-white/10 bg-panel/95 p-5 shadow-[0_28px_90px_rgba(0,0,0,.36)] sm:p-7">
+					<div class="mb-1 flex items-center justify-between gap-4 border-b border-white/10 pb-5 lg:col-span-2">
+						<h2 class="text-lg font-bold text-white sm:text-xl">Mapeie sua operação</h2>
+						<span class="font-mono text-[10px] uppercase tracking-widest text-tech">Cenário editável</span>
+					</div>
+
+					<form id="opportunity-calculator" class="space-y-5">
+					<div class="space-y-5">
+						<div>
+							<label for="employee-count" class="mb-2 block text-sm font-semibold leading-6 text-paper">Número de funcionários na operação</label>
+							<input id="employee-count" class="number-input min-h-14 w-full rounded-md border border-white/15 bg-ink px-4 text-lg font-semibold text-white outline-none transition placeholder:text-white/30 focus:border-tech focus:ring-2 focus:ring-tech/20" type="number" inputmode="numeric" min="1" max="100000" step="1" value="6" required aria-describedby="employee-hint">
+							<p id="employee-hint" class="mt-2 text-xs leading-5 text-muted">Pessoas que participam das tarefas avaliadas.</p>
+						</div>
+
+						<div>
+							<label for="manual-hours" class="mb-2 block text-sm font-semibold leading-6 text-paper">Horas em tarefas manuais por funcionário/semana</label>
+							<div class="relative">
+								<input id="manual-hours" class="number-input min-h-14 w-full rounded-md border border-white/15 bg-ink px-4 pr-20 text-lg font-semibold text-white outline-none transition placeholder:text-white/30 focus:border-tech focus:ring-2 focus:ring-tech/20" type="number" inputmode="decimal" min="0.1" max="168" step="0.1" value="4" required aria-describedby="hours-hint">
+								<span class="pointer-events-none absolute inset-y-0 right-4 flex items-center font-mono text-xs text-muted">h / semana</span>
+							</div>
+							<p id="hours-hint" class="mt-2 text-xs leading-5 text-muted">Informe uma média por pessoa. O total da equipe é calculado automaticamente.</p>
+						</div>
+
+						<div>
+							<label for="business-sector" class="mb-2 block text-sm font-semibold leading-6 text-paper">Setor da empresa</label>
+							<select id="business-sector" class="min-h-14 w-full rounded-md border border-white/15 bg-ink px-4 text-sm text-white outline-none transition focus:border-tech focus:ring-2 focus:ring-tech/20" required>
+								<option value="Logística" selected>Logística</option>
+								<option value="Atendimento/Vendas">Atendimento/Vendas</option>
+								<option value="Administrativo/Processos">Administrativo/Processos</option>
+								<option value="Outro">Outro</option>
+							</select>
+						</div>
+
+						<div>
+							<div class="mb-2 flex items-baseline justify-between gap-3">
+								<label for="hourly-cost" class="text-sm font-semibold leading-6 text-paper">Custo médio de uma hora de trabalho</label>
+								<span class="shrink-0 font-mono text-xs text-muted">R$ / h</span>
+							</div>
+							<input id="hourly-cost" class="number-input min-h-14 w-full rounded-md border border-white/15 bg-ink px-4 text-lg font-semibold text-white outline-none transition placeholder:text-white/30 focus:border-tech focus:ring-2 focus:ring-tech/20" type="number" inputmode="decimal" min="0.01" step="0.01" value="35" required aria-describedby="hourly-hint">
+							<p id="hourly-hint" class="mt-2 text-xs leading-5 text-muted">Valor inicial de exemplo. Ajuste para refletir o custo interno aproximado, incluindo encargos e estrutura.</p>
+						</div>
+
+						<div>
+							<div class="mb-2 flex items-center justify-between gap-4">
+								<label for="automation-share" class="text-sm font-semibold text-paper">Parcela do trabalho manual a avaliar como automatizável</label>
+								<output id="automation-share-value" class="min-w-12 text-right font-mono text-sm text-lime" for="automation-share">30%</output>
+							</div>
+							<input id="automation-share" class="h-2 w-full cursor-pointer accent-lime" type="range" min="0" max="100" step="5" value="30" aria-describedby="automation-hint">
+							<p id="automation-hint" class="mt-2 text-xs leading-5 text-muted">Premissa ajustável do seu cenário, não um benchmark de mercado.</p>
+						</div>
+					</div>
+
+					<p id="calculation-error" class="mt-4 min-h-5 text-sm text-rose-300" role="alert" aria-live="polite"></p>
+					<button class="mt-2 inline-flex min-h-14 w-full items-center justify-center gap-3 rounded-md bg-lime px-5 py-4 text-sm font-extrabold text-ink transition hover:bg-[#e4ff83] focus:outline-none focus:ring-2 focus:ring-lime focus:ring-offset-2 focus:ring-offset-panel active:translate-y-px" type="submit">Atualizar dashboard <span aria-hidden="true">↗</span></button>
+					  </form>
+
+				</div>
+
+				<aside id="opportunity-result" class="rounded-lg border border-white/10 bg-[#131713] p-5 shadow-[0_28px_90px_rgba(0,0,0,.3)] sm:p-7" aria-live="polite" aria-atomic="true" aria-labelledby="result-heading">
+					<div class="flex items-start justify-between gap-4 border-b border-white/10 pb-5">
+						<div><p class="font-mono text-[10px] uppercase tracking-[.16em] text-tech">Painel executivo</p><h2 id="result-heading" class="mt-2 text-xl font-bold text-white">Impacto da IA nas Operações</h2><p class="mt-1 text-xs text-muted">Cenário mensal · <span id="result-sector" class="text-paper">Logística</span></p></div>
+						<span class="inline-flex shrink-0 items-center gap-2 border border-lime/25 bg-lime/[.06] px-2.5 py-1.5 font-mono text-[9px] uppercase tracking-wider text-lime"><span class="h-1.5 w-1.5 rounded-full bg-lime"></span>simulação</span>
+					</div>
+					<div class="mt-5 grid gap-3 sm:grid-cols-3">
+						<div class="min-w-0 border border-white/10 bg-ink/70 p-4"><p class="font-mono text-[9px] uppercase leading-4 tracking-widest text-muted">Horas Perdidas/Mês</p><p id="monthly-hours-result" class="metric-value mt-3 text-2xl font-extrabold tracking-tight text-tech sm:text-[1.7rem]">0 h</p><p class="mt-1 text-[10px] text-muted">em tarefas manuais</p></div>
+						<div class="min-w-0 border border-white/10 bg-ink/70 p-4"><p class="font-mono text-[9px] uppercase leading-4 tracking-widest text-muted">Custo Operacional Ocioso</p><p id="monthly-cost-result" class="metric-value mt-3 break-words text-xl font-extrabold tracking-tight text-rose-300 sm:text-2xl">R$ 0</p><p class="mt-1 text-[10px] text-muted">custo do tempo manual</p></div>
+						<div class="min-w-0 border border-lime/20 bg-lime/[.045] p-4"><p class="font-mono text-[9px] uppercase leading-4 tracking-widest text-muted">Potencial de Economia com IA</p><p id="monthly-savings-result" class="metric-value mt-3 break-words text-xl font-extrabold tracking-tight text-lime sm:text-2xl">R$ 0</p><p class="mt-1 text-[10px] text-muted">no cenário selecionado</p></div>
+					</div>
+
+					<div class="mt-6 border border-white/10 bg-ink/55 p-4 sm:p-5">
+						<div class="flex items-center justify-between gap-4"><h3 class="text-sm font-bold text-white">Índice de tarefas manuais</h3><span class="font-mono text-[9px] uppercase tracking-widest text-muted">atual = 100%</span></div>
+						<div class="mt-5 space-y-5">
+							<div><div class="mb-2 flex items-center justify-between gap-3 text-xs"><span class="text-paper">Operação tradicional</span><span class="font-mono text-muted">100%</span></div><div class="h-2.5 overflow-hidden bg-white/10"><div class="h-full w-full bg-rose-400/80"></div></div></div>
+							<div><div class="mb-2 flex items-center justify-between gap-3 text-xs"><span class="text-paper">Cenário impulsionado por IA</span><span id="ai-load-value" class="font-mono text-lime">70%</span></div><div class="h-2.5 overflow-hidden bg-white/10"><div id="ai-load-bar" class="h-full bg-gradient-to-r from-tech to-lime transition-[width] duration-500 ease-out" style="width:70%"></div></div></div>
+						</div>
+						<p class="mt-4 text-[10px] leading-5 text-muted">Comparação ilustrativa baseada apenas na parcela automatizável escolhida; não é benchmark de desempenho.</p>
+					</div>
+
+					<div class="mt-4 flex flex-wrap items-center justify-between gap-3 border-t border-white/10 pt-4 text-[10px] leading-5 text-muted"><span>Equipe considerada: <strong id="result-employees" class="font-mono text-paper">6</strong> pessoas</span><span>Horas manuais/semana: <strong id="result-weekly-hours" class="font-mono text-paper">24</strong></span></div>
+					<p class="mt-4 text-[10px] leading-5 text-muted">Estimativas baseadas nas premissas informadas. Nem todas as tarefas podem ser automatizadas; não representa economia garantida e não inclui custo de implementação.</p>
+				</div>
+
+			</div>
+
+			<section class="border border-tech/20 bg-tech/[.035] p-5 sm:flex sm:items-center sm:justify-between sm:gap-8 sm:p-7" aria-labelledby="signup-title">
+				<div class="max-w-xl"><p class="font-mono text-[10px] uppercase tracking-[.16em] text-tech">Próximo passo</p><h2 id="signup-title" class="mt-2 text-xl font-bold leading-7 text-white sm:text-2xl">Aprenda a levar a IA da estimativa para a operação.</h2><p class="mt-2 text-sm leading-6 text-muted">Receba conteúdos e métodos práticos para identificar processos e aplicar automação com critério.</p></div>
+				<form id="signup-form" class="mt-5 w-full max-w-xl sm:mt-0" action="https://formsubmit.co/aprendacomai@gmail.com" method="POST">
+					<input type="hidden" name="_subject" value="Inscrição — Calculadora de Custo de Oportunidade da IA">
+					<input type="hidden" name="_template" value="table">
+					<input type="hidden" name="_captcha" value="false">
+					<input type="hidden" name="_next" value="https://aprendacomai.com/obrigado.html">
+					<input type="hidden" name="funcionarios" id="signup-employees">
+					<input type="hidden" name="setor" id="signup-sector">
+					<input type="hidden" name="horas_manuais_semana" id="signup-hours">
+					<input type="hidden" name="parcela_automatizavel" id="signup-share">
+					<input type="hidden" name="custo_hora_estimado" id="signup-hourly-cost">
+					<input type="hidden" name="horas_potenciais_mes" id="signup-monthly-hours">
+					<input type="hidden" name="custo_oportunidade_mensal" id="signup-monthly-cost">
+					<input type="hidden" name="custo_manual_mensal" id="signup-manual-cost">
+					<input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" class="absolute -left-[9999px] h-0 w-0 opacity-0">
+					<label for="signup-email" class="mb-2 block text-sm font-semibold text-paper">Seu e-mail</label>
+					<div class="flex flex-col gap-3 sm:flex-row"><input id="signup-email" class="min-h-12 min-w-0 flex-1 rounded-md border border-white/15 bg-ink px-4 text-sm text-white outline-none transition placeholder:text-white/35 focus:border-tech focus:ring-2 focus:ring-tech/20" type="email" name="email" autocomplete="email" placeholder="voce@empresa.com" required><button class="inline-flex min-h-12 items-center justify-center gap-2 rounded-md border border-tech/70 bg-tech px-5 py-3 text-sm font-extrabold text-ink transition hover:bg-[#a2edff] focus:outline-none focus:ring-2 focus:ring-tech focus:ring-offset-2 focus:ring-offset-ink" type="submit">Quero receber o método <span aria-hidden="true">↗</span></button></div>
+					<p class="mt-3 text-xs leading-5 text-muted">Ao enviar, seu e-mail será encaminhado para receber informações do Aprenda com AI. Consulte a <a class="text-tech underline underline-offset-2 hover:text-white" href="politica-de-privacidade.html">Política de Privacidade</a>.</p>
+				</form>
+			</section>
+			</div>
+		</section>
+
+		<footer class="relative z-10 flex flex-col gap-2 border-t border-white/10 px-5 py-5 font-mono text-[10px] text-muted sm:flex-row sm:items-center sm:justify-between sm:px-10 lg:px-16">
+			<span>© 2026 Aprenda com AI</span>
+			<a class="transition hover:text-tech" href="index.html">Voltar ao site <span aria-hidden="true">↗</span></a>
+		</footer>
+	</main>
+
+	<script>
+		const calculator = document.querySelector('#opportunity-calculator');
+		const employeeCountInput = document.querySelector('#employee-count');
+		const manualHoursInput = document.querySelector('#manual-hours');
+		const sectorSelect = document.querySelector('#business-sector');
+		const hourlyCostInput = document.querySelector('#hourly-cost');
+		const automationShareInput = document.querySelector('#automation-share');
+		const automationShareValue = document.querySelector('#automation-share-value');
+		const resultPanel = document.querySelector('#opportunity-result');
+		const errorMessage = document.querySelector('#calculation-error');
+		const currencyFormatter = new Intl.NumberFormat('pt-BR', {
+			style: 'currency',
+			currency: 'BRL',
+			maximumFractionDigits: 2
+		});
+		const hoursFormatter = new Intl.NumberFormat('pt-BR', {
+			maximumFractionDigits: 1
+		});
+		const updateMetric = (selector, value) => {
+			const element = document.querySelector(selector);
+			if (element.textContent === value) return;
+			element.textContent = value;
+			if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+				element.animate([{ opacity: .45, transform: 'translateY(5px)' }, { opacity: 1, transform: 'translateY(0)' }], { duration: 260, easing: 'ease-out' });
+			}
+		};
+
+		const calculateOpportunity = () => {
+			const employeeCount = Number(employeeCountInput.value);
+			const weeklyHoursPerEmployee = Number(manualHoursInput.value);
+			const weeklyHours = employeeCount * weeklyHoursPerEmployee;
+			const hourlyCost = Number(hourlyCostInput.value);
+			const automationShare = Number(automationShareInput.value) / 100;
+			const monthlyManualHours = weeklyHours * 52 / 12;
+			const monthlyRecoverableHours = monthlyManualHours * automationShare;
+			const monthlyManualCost = monthlyManualHours * hourlyCost;
+			const monthlyPotentialSavings = monthlyManualCost * automationShare;
+			const traditionalWorkIndex = 100;
+			const aiWorkIndex = Math.round(traditionalWorkIndex * (1 - automationShare));
+
+			updateMetric('#result-sector', sectorSelect.value);
+			updateMetric('#result-employees', String(employeeCount));
+			updateMetric('#result-weekly-hours', hoursFormatter.format(weeklyHours));
+			updateMetric('#monthly-hours-result', `${hoursFormatter.format(monthlyManualHours)} h`);
+			updateMetric('#monthly-cost-result', currencyFormatter.format(monthlyManualCost));
+			updateMetric('#monthly-savings-result', currencyFormatter.format(monthlyPotentialSavings));
+			updateMetric('#ai-load-value', `${aiWorkIndex}%`);
+			document.querySelector('#ai-load-bar').style.width = `${aiWorkIndex}%`;
+			document.querySelector('#signup-employees').value = employeeCount;
+			document.querySelector('#signup-sector').value = sectorSelect.value;
+			document.querySelector('#signup-hours').value = weeklyHours;
+			document.querySelector('#signup-share').value = `${automationShare * 100}%`;
+			document.querySelector('#signup-hourly-cost').value = currencyFormatter.format(hourlyCost);
+			document.querySelector('#signup-monthly-hours').value = `${hoursFormatter.format(monthlyRecoverableHours)} h`;
+			document.querySelector('#signup-monthly-cost').value = currencyFormatter.format(monthlyPotentialSavings);
+			document.querySelector('#signup-manual-cost').value = currencyFormatter.format(monthlyManualCost);
+		};
+
+		automationShareInput.addEventListener('input', () => {
+			automationShareValue.value = `${automationShareInput.value}%`;
+			automationShareValue.textContent = `${automationShareInput.value}%`;
+			if (calculator.checkValidity()) calculateOpportunity();
+		});
+
+		calculator.addEventListener('submit', (event) => {
+			event.preventDefault();
+			errorMessage.textContent = '';
+			if (!calculator.reportValidity()) return;
+			calculateOpportunity();
+		});
+
+		[employeeCountInput, manualHoursInput, sectorSelect, hourlyCostInput].forEach((input) => {
+			input.addEventListener('input', () => {
+				if (calculator.checkValidity()) calculateOpportunity();
+			});
+			input.addEventListener('change', () => {
+				if (calculator.checkValidity()) calculateOpportunity();
+			});
+		});
+
+		calculateOpportunity();
+	</script>
+<script src="cookie-consent.js" defer></script>
+<script src="site-menu.js" defer></script>
+</body>
+</html>

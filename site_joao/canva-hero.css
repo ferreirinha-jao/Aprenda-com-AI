@@ -1,0 +1,249 @@
+/* Isolamento e conteúdo acessível da seção hero. */
+.hero-container,
+.hero-container * {
+  box-sizing: border-box;
+}
+
+.hero-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 620px;
+  background-color: #121316;
+  color: #fff;
+  font-family: Inter, sans-serif;
+}
+
+/* Título limitado à coluna esquerda, sem invadir o card do carrossel. */
+.hero-container .hero-bg-title,
+.hero-container .hero-title-wrapper .bg-title {
+  position: absolute;
+  top: 50%;
+  left: 4rem;
+  z-index: 1;
+  max-width: 40%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  user-select: none;
+}
+
+.hero-container .hero-bg-title h1,
+.hero-container .bg-title {
+  color: rgba(255, 255, 255, 0.25);
+  font-size: clamp(2rem, 5vw, 5.5rem) !important;
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -1px;
+  text-align: left !important;
+  white-space: normal !important;
+}
+
+/* Espaçamento vertical do hero e CTA inteiramente dentro da viewport. */
+.hero-container {
+  min-height: 100vh;
+  padding-bottom: 6rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.hero-container .navbar {
+  height: auto;
+  padding: 2.5rem 4rem;
+}
+
+.hero-container .btn-explore {
+  position: relative;
+  bottom: auto;
+  left: 50%;
+  width: 120px;
+  height: 120px;
+  margin: 2rem 0 1rem;
+  transform: translateX(-50%);
+  background-color: #c4f135;
+  color: #000;
+  box-shadow: 0 10px 30px rgba(196, 241, 53, 0.25);
+}
+
+@media (max-width: 720px) {
+  .hero-container {
+    overflow-x: hidden;
+  }
+
+  .hero-container .nav-links {
+    display: none;
+  }
+
+  .hero-container .navbar {
+    padding: 1.5rem 1.25rem;
+  }
+
+  .hero-container .hero-bg-title,
+  .hero-container .hero-title-wrapper .bg-title {
+    left: 1.25rem;
+    max-width: 70%;
+  }
+}
+
+/* Composição final da dobra: legenda e CTA ocupam a coluna esquerda. */
+.hero-container .navbar {
+  padding: .75rem 4rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.hero-container .nav-links {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin-left: auto;
+}
+
+.hero-container .hero-left-content {
+  position: absolute;
+  top: 50%;
+  left: 4rem;
+  z-index: 4;
+  width: min(40%, 34rem);
+  transform: translateY(-50%);
+}
+
+.hero-container .hero-left-content .hero-bg-title {
+  position: static;
+  max-width: none;
+  transform: none;
+}
+
+.hero-container .tagline-carousel {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  margin-top: 1rem;
+  color: rgba(255, 255, 255, .85);
+  font: 1.1rem/1.6 'DM Mono', monospace;
+  padding-top: .5rem;
+  opacity: .85;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-container .tagline-badge {
+  flex: 0 0 6px;
+  width: 6px;
+  height: 6px;
+  margin-top: .45em;
+  border-radius: 50%;
+  background: #c4f135;
+}
+
+.hero-container .tagline-slides { position: relative; flex: 1 1 auto; min-width: 0; min-height: 3em; }
+.hero-container .tagline-item { display: none; transition: opacity .4s ease-in-out, transform .4s ease-in-out; }
+.hero-container .tagline-item.active { display: inline-block; animation: fadeInTagline .5s ease forwards; }
+
+.hero-container .hero-left-content .hero-bg-title h1 {
+  font-size: clamp(2.4rem, 5.8vw, 6.3rem) !important;
+  margin-bottom: 2.75rem;
+}
+
+@keyframes fadeInTagline {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 720px) {
+  .hero-container .hero-left-content { left: 1.25rem; width: min(70%, 28rem); }
+}
+
+.hero-container .btn-explore {
+  position: absolute;
+  bottom: 3rem;
+  left: 4rem;
+  margin: 0;
+  transform: none;
+}
+
+@media (max-width: 720px) {
+  .hero-container .navbar {
+    padding: .75rem 1.25rem;
+  }
+
+  .hero-container .btn-explore {
+    bottom: 1.25rem;
+    left: 1.25rem;
+  }
+}
+
+/* CTA e legenda em uma única linha, na coluna esquerda. */
+.hero-container .hero-explore-group {
+  position: absolute;
+  right: auto;
+  bottom: 3rem;
+  left: 4rem;
+  z-index: 6;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  max-width: min(38rem, calc(100% - 8rem));
+  overflow: visible;
+}
+
+.hero-container .hero-explore-group .btn-explore {
+  position: relative;
+  flex: 0 0 120px;
+  margin-top: 1.5rem;
+  transform: none;
+  z-index: 10;
+}
+
+/* Nenhum deslocamento físico ao passar o cursor ou receber foco. */
+.hero-container .hero-explore-group .btn-explore:hover,
+.hero-container .hero-explore-group .btn-explore:focus,
+.hero-container .hero-explore-group .btn-explore:focus-visible {
+  position: relative;
+  margin-top: 1.5rem;
+  transform: none;
+  filter: brightness(1.1);
+  cursor: pointer;
+}
+
+/* Mídia e controles ocupam áreas separadas dentro do card. */
+.hero-container .carousel-card {
+  display: flex;
+  flex-direction: column;
+  overflow: visible;
+  border-radius: 0;
+}
+
+.hero-container .carousel-slides {
+  flex: 1 1 auto;
+  height: auto;
+  overflow: hidden;
+  border-radius: 16px 16px 0 0;
+}
+
+.hero-container .carousel-slides .carousel-slide img {
+  object-fit: cover;
+}
+
+.hero-container .carousel-controls {
+  position: static;
+  flex: 0 0 64px;
+  height: 64px;
+  overflow: visible;
+  border-radius: 0 0 16px 16px;
+}
+
+@media (max-width: 720px) {
+  .hero-container .hero-explore-group {
+    right: 1.25rem;
+    bottom: 1.25rem;
+    left: 1.25rem;
+    max-width: none;
+  }
+
+  .hero-container .carousel-controls {
+    flex-basis: 55px;
+    height: 55px;
+  }
+}

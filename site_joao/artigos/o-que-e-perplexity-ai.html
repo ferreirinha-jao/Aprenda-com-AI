@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>O que é o Perplexity AI e como usar | Aprenda com AI</title>
+  <meta name="description" content="Entenda o que é o Perplexity AI, como ele funciona, para que ele é melhor que o Google e o ChatGPT, e como usar na prática para pesquisa e trabalho." />
+  <meta name="keywords" content="Perplexity AI, o que é Perplexity, como usar Perplexity, Perplexity vs Google, buscador com IA" />
+  <meta name="author" content="Aprenda com AI" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="O que é o Perplexity AI e como usar" />
+  <meta property="og:description" content="Entenda como o Perplexity funciona, para que ele é melhor que o Google e o ChatGPT, e como usar na prática." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://aprendacomai.com/artigos/o-que-e-perplexity-ai.html" />
+  <meta property="og:site_name" content="Aprenda com AI" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Manrope:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="../style.css" />
+  <link rel="stylesheet" href="../final-hero.css" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #0b0c0e;
+      --surface:   #13151a;
+      --border:    #1e2028;
+      --accent:    #d7ff3f;
+      --accent2:   #a8cc28;
+      --text:      #e5e7eb;
+      --muted:     #c7c9c5;
+      --dim:       #6b7280;
+      --font-head: 'Space Grotesk', sans-serif;
+      --font-body: 'Manrope', sans-serif;
+      --font-mono: 'DM Mono', monospace;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: 1rem;
+      line-height: 1.75;
+      min-height: 100vh;
+    }
+
+    /* NAV */
+    .site-nav { position: sticky; top: 0; z-index: 100; background: rgba(11,12,14,.85); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); padding: 0 1.5rem; }
+    .nav-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 60px; gap: 2rem; }
+    .nav-logo { font-family: var(--font-head); font-weight: 700; font-size: 1.1rem; color: var(--text); text-decoration: none; white-space: nowrap; }
+    .nav-logo span { color: var(--accent); }
+    .nav-links { display: flex; align-items: center; gap: 1.5rem; list-style: none; flex-wrap: wrap; }
+    .nav-links a { color: var(--muted); text-decoration: none; font-size: .875rem; font-family: var(--font-head); font-weight: 500; transition: color .2s; }
+    .nav-links a:hover { color: var(--accent); }
+
+    /* HERO */
+    .article-hero { background: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(215,255,63,.13) 0%, transparent 65%); border-bottom: 1px solid var(--border); padding: 4rem 1.5rem 3rem; text-align: center; }
+    .article-hero .badge { display: inline-block; background: rgba(215,255,63,.12); color: var(--accent); border: 1px solid rgba(215,255,63,.25); border-radius: 999px; padding: .25rem .9rem; font-family: var(--font-mono); font-size: .75rem; letter-spacing: .05em; text-transform: uppercase; margin-bottom: 1.25rem; }
+    .article-hero h1 { font-family: var(--font-head); font-size: clamp(1.75rem, 4vw, 2.75rem); font-weight: 700; line-height: 1.2; max-width: 780px; margin: 0 auto 1rem; }
+    .article-hero h1 em { font-style: normal; color: var(--accent); }
+    .article-meta { display: flex; align-items: center; justify-content: center; gap: 1.25rem; flex-wrap: wrap; font-size: .8rem; color: var(--dim); font-family: var(--font-mono); margin-top: 1.25rem; }
+
+    /* LAYOUT */
+    .article-wrap { max-width: 760px; margin: 0 auto; padding: 3.5rem 1.5rem 5rem; }
+
+    /* BREADCRUMB */
+    .breadcrumb { max-width: 760px; margin: 0 auto; padding: 1rem 1.5rem 0; display: flex; align-items: center; gap: .5rem; font-size: .78rem; color: var(--dim); font-family: var(--font-mono); }
+    .breadcrumb a { color: var(--dim); text-decoration: none; transition: color .2s; }
+    .breadcrumb a:hover { color: var(--accent); }
+    .breadcrumb span { color: var(--accent); }
+
+    /* TIPOGRAFIA */
+    .article-body h2 { font-family: var(--font-head); font-size: 1.4rem; font-weight: 700; color: var(--text); margin: 2.5rem 0 .75rem; padding-bottom: .5rem; border-bottom: 1px solid var(--border); }
+    .article-body h3 { font-family: var(--font-head); font-size: 1.1rem; font-weight: 600; color: var(--accent); margin: 2rem 0 .5rem; }
+    .article-body p { color: var(--muted); margin-bottom: 1.25rem; }
+    .article-body strong { color: var(--text); font-weight: 600; }
+    .article-body a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+    .article-body a:hover { color: var(--accent2); }
+    .article-body ul, .article-body ol { color: var(--muted); margin: 0 0 1.25rem 1.5rem; }
+    .article-body li { margin-bottom: .5rem; }
+    .article-body li strong { color: var(--text); }
+
+    /* CALLOUT */
+    .callout { border-radius: 10px; padding: 1.1rem 1.25rem; margin: 1.75rem 0; border-left: 3px solid; }
+    .callout-tip  { background: rgba(215,255,63,.07); border-color: var(--accent); }
+    .callout-info { background: rgba(99,179,237,.07);  border-color: #63b3ed; }
+    .callout-warn { background: rgba(251,191,36,.07);  border-color: #fbbf24; }
+    .callout-title { font-family: var(--font-mono); font-size: .75rem; font-weight: 500; text-transform: uppercase; letter-spacing: .07em; margin-bottom: .4rem; }
+    .callout-tip  .callout-title { color: var(--accent); }
+    .callout-info .callout-title { color: #63b3ed; }
+    .callout-warn .callout-title { color: #fbbf24; }
+    .callout p { color: var(--muted); margin: 0; font-size: .95rem; }
+
+    /* STEPS */
+    .steps { display: flex; flex-direction: column; gap: 1rem; margin: 1.5rem 0; }
+    .step { display: flex; gap: 1rem; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 1.1rem 1.25rem; align-items: flex-start; }
+    .step-num { flex-shrink: 0; width: 2rem; height: 2rem; background: var(--accent); color: #0b0c0e; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: var(--font-head); font-weight: 700; font-size: .85rem; }
+    .step-content h4 { font-family: var(--font-head); font-weight: 600; font-size: .95rem; color: var(--text); margin-bottom: .25rem; }
+    .step-content p { font-size: .9rem; color: var(--muted); margin: 0; }
+
+    /* COMPARE TABLE */
+    .table-wrap { overflow-x: auto; margin: 1.5rem 0; }
+    table { width: 100%; border-collapse: collapse; font-size: .875rem; }
+    th { background: var(--surface); color: var(--text); font-family: var(--font-head); font-weight: 600; padding: .65rem 1rem; text-align: left; border-bottom: 2px solid var(--border); }
+    td { color: var(--muted); padding: .6rem 1rem; border-bottom: 1px solid var(--border); vertical-align: top; }
+    tr:hover td { background: rgba(255,255,255,.02); }
+    .td-good { color: #34d399; font-weight: 600; }
+    .td-bad  { color: #f87171; }
+    .td-mid  { color: #fbbf24; }
+
+    /* USECASE GRID */
+    .usecase-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
+    .usecase-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 1.25rem; }
+    .usecase-card h4 { font-family: var(--font-head); font-weight: 700; font-size: .9rem; color: var(--text); margin-bottom: .35rem; }
+    .usecase-card p { font-size: .82rem; color: var(--dim); margin: 0; }
+
+    /* FOCUS MODE CARDS */
+    .focus-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
+    .focus-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 1.1rem; }
+    .focus-card .focus-name { font-family: var(--font-head); font-weight: 700; font-size: .9rem; color: var(--accent); margin-bottom: .3rem; }
+    .focus-card p { font-size: .82rem; color: var(--dim); margin: 0; }
+
+    /* HIGHLIGHT */
+    .highlight-box { background: rgba(215,255,63,.06); border: 1px solid rgba(215,255,63,.18); border-radius: 12px; padding: 1.5rem 1.75rem; margin: 2rem 0; }
+    .highlight-box p { color: var(--muted); margin: 0; font-size: .95rem; }
+    .highlight-box p + p { margin-top: .75rem; }
+
+    /* CTA */
+    .article-cta { background: radial-gradient(ellipse 80% 80% at 50% 50%, rgba(215,255,63,.1) 0%, transparent 70%); border: 1px solid rgba(215,255,63,.2); border-radius: 16px; padding: 2.5rem; text-align: center; margin-top: 3rem; }
+    .article-cta h3 { font-family: var(--font-head); font-size: 1.3rem; font-weight: 700; color: var(--text); margin-bottom: .6rem; }
+    .article-cta p { color: var(--muted); font-size: .95rem; margin-bottom: 1.5rem; }
+    .btn-accent { display: inline-flex; align-items: center; gap: .5rem; background: var(--accent); color: #0b0c0e; font-family: var(--font-head); font-weight: 700; font-size: .9rem; padding: .65rem 1.5rem; border-radius: 8px; text-decoration: none; transition: background .2s, transform .15s; }
+    .btn-accent:hover { background: var(--accent2); transform: translateY(-1px); }
+    .btn-ghost { display: inline-flex; align-items: center; gap: .5rem; border: 1px solid var(--border); color: var(--muted); font-family: var(--font-head); font-weight: 500; font-size: .9rem; padding: .65rem 1.5rem; border-radius: 8px; text-decoration: none; margin-left: .75rem; transition: border-color .2s, color .2s; }
+    .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* FOOTER */
+    .site-footer { background: var(--surface); border-top: 1px solid var(--border); padding: 2.5rem 1.5rem; text-align: center; }
+    .footer-inner { max-width: 1100px; margin: 0 auto; }
+    .footer-logo { font-family: var(--font-head); font-weight: 700; font-size: 1rem; color: var(--text); text-decoration: none; display: inline-block; margin-bottom: 1rem; }
+    .footer-logo span { color: var(--accent); }
+    .footer-links { display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; margin-bottom: 1.25rem; list-style: none; }
+    .footer-links a { color: var(--dim); text-decoration: none; font-size: .8rem; transition: color .2s; }
+    .footer-links a:hover { color: var(--accent); }
+    .footer-copy { font-size: .75rem; color: var(--dim); font-family: var(--font-mono); }
+
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+      .article-hero { padding: 2.5rem 1rem 2rem; }
+      .article-wrap { padding: 2rem 1rem 3rem; }
+      .btn-ghost { margin-left: 0; margin-top: .5rem; }
+    }
+  </style>
+  <link rel="icon" type="image/png" href="../favicon.ico.png">
+  <link rel="canonical" href="https://aprendacomai.com/artigos/o-que-e-perplexity-ai.html">
+<link rel="stylesheet" href="../site-menu.css">
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="site-nav">
+    <div class="nav-inner">
+      <a class="nav-logo" href="../index.html">Aprenda com <span>AI</span></a>
+      <ul class="nav-links">
+        <li><a href="../index.html">Início</a></li>
+        <li><a href="../comece-aqui.html">Comece Aqui</a></li>
+        <li><a href="../artigos.html">Artigos</a></li>
+        <li><a href="../biblioteca-de-prompts.html">Biblioteca de Prompts</a></li>
+        <li><a href="../calculadora-ia.html">Calculadora de Impacto</a></li>
+        <li><a href="../sobre.html">Sobre</a></li>
+        <li><a href="../contato.html">Contato</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- BREADCRUMB -->
+  <div class="breadcrumb">
+    <a href="../index.html">Início</a>
+    <span>›</span>
+    <a href="../artigos.html">Artigos</a>
+    <span>›</span>
+    O que é o Perplexity AI e como usar
+  </div>
+
+  <!-- HERO -->
+  <header class="article-hero">
+    <div class="badge">Guias</div>
+    <h1>O que é o <em>Perplexity AI</em> e como usar</h1>
+    <div class="article-meta">
+      <span>Ferramenta: Perplexity AI</span>
+    </div>
+  </header>
+
+  <!-- ARTIGO -->
+  <main class="article-wrap">
+    <article class="article-body">
+
+      <p>
+        Se você ainda usa o Google para pesquisar qualquer coisa, e o ChatGPT para qualquer coisa que o Google não resolve, provavelmente não conhece o Perplexity — que é exatamente a ferramenta que fica no meio dessas duas.
+      </p>
+      <p>
+        O Perplexity AI é um buscador com inteligência artificial. Ele pesquisa a internet em tempo real, sintetiza as respostas em texto corrido e cita as fontes. É como ter o Google e o ChatGPT fundidos num produto só — mas com um foco muito específico: <strong>responder perguntas com fontes verificáveis</strong>.
+      </p>
+
+      <!-- O que é -->
+      <h2>O que é o Perplexity AI</h2>
+
+      <p>
+        O Perplexity é uma ferramenta de busca conversacional. Você faz uma pergunta em linguagem natural — como faria para um humano — e ele:
+      </p>
+
+      <ol>
+        <li>Pesquisa a internet em tempo real</li>
+        <li>Lê e sintetiza os resultados mais relevantes</li>
+        <li>Responde em texto corrido, com a informação organizada</li>
+        <li>Cita as fontes no final, com links clicáveis</li>
+      </ol>
+
+      <p>
+        A diferença principal para o ChatGPT é que o Perplexity <strong>sempre busca na internet</strong>. O ChatGPT responde com base no treinamento — que tem uma data de corte e pode estar desatualizado. O Perplexity acessa a web agora, então as respostas refletem o estado atual das informações.
+      </p>
+      <p>
+        A diferença para o Google é que o Perplexity <strong>já processa os resultados por você</strong>. O Google te dá dez links para você abrir, ler e sintetizar. O Perplexity faz essa síntese e te entrega a resposta pronta — com as fontes ali para você verificar se quiser.
+      </p>
+
+      <div class="callout callout-info">
+        <div class="callout-title">Plano gratuito</div>
+        <p>
+          O Perplexity tem um plano gratuito bastante generoso — sem limite de perguntas básicas. O plano Pro (cerca de US$ 20/mês) desbloqueia modelos mais avançados como GPT-4o e Claude 3.5, uploads de arquivos e mais buscas aprofundadas por dia.
+        </p>
+      </div>
+
+      <!-- Como funciona por dentro -->
+      <h2>Como funciona por dentro</h2>
+
+      <p>
+        Quando você faz uma pergunta no Perplexity, acontece o seguinte em segundo plano:
+      </p>
+
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <h4>Interpretacao da pergunta</h4>
+            <p>Um modelo de linguagem entende o que você quer dizer, identifica o contexto e decide quais termos de busca usar.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <h4>Busca em tempo real</h4>
+            <p>O sistema consulta a web com os termos gerados — como um Google por baixo dos panos.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <h4>Leitura e selecao de fontes</h4>
+            <p>O modelo lê os conteúdos dos resultados mais relevantes e filtra as informações úteis.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <div class="step-content">
+            <h4>Sintese e resposta</h4>
+            <p>Gera uma resposta coerente com base no que foi lido, numerando as citações para que você saiba de onde vem cada informação.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Perplexity vs Google vs ChatGPT -->
+      <h2>Perplexity vs Google vs ChatGPT</h2>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Critério</th>
+              <th>Google</th>
+              <th>ChatGPT</th>
+              <th>Perplexity</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Informacoes atualizadas</td>
+              <td class="td-good">Sim</td>
+              <td class="td-bad">Depende do plano</td>
+              <td class="td-good">Sim, sempre</td>
+            </tr>
+            <tr>
+              <td>Cita fontes com links</td>
+              <td class="td-mid">Mostra links, você sintetiza</td>
+              <td class="td-bad">Raramente</td>
+              <td class="td-good">Sim, automaticamente</td>
+            </tr>
+            <tr>
+              <td>Resposta sintetizada</td>
+              <td class="td-bad">Voce faz o trabalho</td>
+              <td class="td-good">Sim</td>
+              <td class="td-good">Sim</td>
+            </tr>
+            <tr>
+              <td>Conversa multi-turno</td>
+              <td class="td-bad">Nao</td>
+              <td class="td-good">Sim</td>
+              <td class="td-good">Sim</td>
+            </tr>
+            <tr>
+              <td>Pesquisa acadêmica / técnica</td>
+              <td class="td-mid">Razoavel</td>
+              <td class="td-bad">Dados podem ser inventados</td>
+              <td class="td-good">Bom, com fontes reais</td>
+            </tr>
+            <tr>
+              <td>Criacao de conteúdo longo</td>
+              <td class="td-bad">Nao</td>
+              <td class="td-good">Excelente</td>
+              <td class="td-mid">Básico</td>
+            </tr>
+            <tr>
+              <td>Gratuito</td>
+              <td class="td-good">Sim</td>
+              <td class="td-mid">Parcialmente</td>
+              <td class="td-good">Sim (versao basica)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>
+        A conclusão prática: <strong>o Perplexity não substitui nem o Google nem o ChatGPT</strong>. Ele ocupa um espaço diferente — é melhor que o Google quando você quer uma resposta direta sem precisar ler dez sites, e melhor que o ChatGPT quando você precisa de informações atuais com fontes rastreáveis.
+      </p>
+
+      <!-- Modos de busca -->
+      <h2>Os Focus Modes — buscas especializadas</h2>
+
+      <p>
+        Um dos recursos mais úteis do Perplexity é o <strong>Focus Mode</strong>: você escolhe de onde a IA vai buscar as informações antes de fazer a pergunta. Isso muda completamente a qualidade das respostas para casos específicos.
+      </p>
+
+      <div class="focus-grid">
+        <div class="focus-card">
+          <div class="focus-name">Web</div>
+          <p>Busca padrão em toda a internet. Bom para perguntas gerais e notícias recentes.</p>
+        </div>
+        <div class="focus-card">
+          <div class="focus-name">Academic</div>
+          <p>Busca em bases de artigos científicos como PubMed, Semantic Scholar e arXiv. Ideal para pesquisa técnica com fontes confiáveis.</p>
+        </div>
+        <div class="focus-card">
+          <div class="focus-name">YouTube</div>
+          <p>Retorna vídeos relevantes sobre o tema. Útil para encontrar tutoriais ou conteúdo em formato de vídeo.</p>
+        </div>
+        <div class="focus-card">
+          <div class="focus-name">Reddit</div>
+          <p>Busca em discussões do Reddit. Excelente para opiniões reais, experiências de usuários e recomendações.</p>
+        </div>
+        <div class="focus-card">
+          <div class="focus-name">Writing</div>
+          <p>Modo sem busca na internet — usa o conhecimento do modelo diretamente. Para geração de texto sem precisar de fontes.</p>
+        </div>
+        <div class="focus-card">
+          <div class="focus-name">Wolfram Alpha</div>
+          <p>Para cálculos, matemática, física e dados quantitativos com alta precisão. Melhor que qualquer IA para esse tipo de consulta.</p>
+        </div>
+      </div>
+
+      <div class="callout callout-tip">
+        <div class="callout-title">Dica de uso</div>
+        <p>
+          Quer saber a opinião real de usuários sobre um produto, app ou serviço? Use o Focus Mode <strong>Reddit</strong>. As respostas vêm de discussões reais, não de sites de marketing ou reviews patrocinados.
+        </p>
+      </div>
+
+      <!-- Para que usar -->
+      <h2>Para que o Perplexity é realmente bom</h2>
+
+      <div class="usecase-grid">
+        <div class="usecase-card">
+          <h4>Pesquisa rapida com fontes</h4>
+          <p>Quando você precisa de uma informação factual e quer saber de onde ela vem. Notícias, dados de mercado, preços, eventos recentes.</p>
+        </div>
+        <div class="usecase-card">
+          <h4>Comparar opcoes</h4>
+          <p>"Qual a diferença entre X e Y?" com fontes reais. Ferramentas, produtos, conceitos técnicos.</p>
+        </div>
+        <div class="usecase-card">
+          <h4>Pesquisa academica inicial</h4>
+          <p>Levantamento de fontes e artigos sobre um tema. O modo Academic retorna papers reais com DOI e links.</p>
+        </div>
+        <div class="usecase-card">
+          <h4>Monitoramento de mercado</h4>
+          <p>Perguntas sobre tendências, novidades de um setor, lançamentos recentes. O acesso em tempo real é o diferencial.</p>
+        </div>
+        <div class="usecase-card">
+          <h4>Duvidas técnicas rápidas</h4>
+          <p>Como funciona determinada API, qual biblioteca usar, qual versão de um software está disponível hoje.</p>
+        </div>
+        <div class="usecase-card">
+          <h4>Verificar informacoes</h4>
+          <p>Checar se algo que você leu em outro lugar é verdadeiro — com fontes para confirmar ou contestar.</p>
+        </div>
+      </div>
+
+      <!-- Como usar bem -->
+      <h2>Como fazer boas perguntas no Perplexity</h2>
+
+      <p>
+        O Perplexity responde bem a perguntas específicas. Quanto mais contexto você der, melhor a síntese. Veja a diferença:
+      </p>
+
+      <div class="highlight-box">
+        <p><strong>Pergunta fraca:</strong> "automação de marketing"</p>
+        <p><strong>Pergunta forte:</strong> "Quais são as melhores ferramentas de automação de marketing para pequenas empresas em 2025, com planos gratuitos ou até R$ 200/mês?"</p>
+      </div>
+
+      <p>
+        Além disso, o Perplexity suporta <strong>conversas em sequência</strong>. Você pode fazer uma pergunta inicial e ir refinando com perguntas de acompanhamento — ele mantém o contexto da conversa, como o ChatGPT.
+      </p>
+
+      <h3>Exemplos de perguntas que funcionam bem</h3>
+
+      <ul>
+        <li><strong>Comparativos atuais:</strong> "Qual a diferença entre o plano gratuito do Notion e do Obsidian em 2025?"</li>
+        <li><strong>Novidades de mercado:</strong> "Quais IAs foram lançadas nos últimos 3 meses para criação de imagens?"</li>
+        <li><strong>Pesquisa com fontes:</strong> "Quais estudos mostram o impacto da IA na produtividade de trabalhadores do conhecimento?"</li>
+        <li><strong>Verificação de fatos:</strong> "É verdade que o Brasil tem o maior número de usuários de WhatsApp per capita? Qual a fonte?"</li>
+        <li><strong>Opinioes de usuários (Reddit):</strong> "O que usuários reais acham do aplicativo Notion para gestão de projetos?"</li>
+      </ul>
+
+      <!-- Limitacoes -->
+      <h2>Limitações que você precisa conhecer</h2>
+
+      <div class="callout callout-warn">
+        <div class="callout-title">Cuidado com esses cenários</div>
+        <p>
+          O Perplexity ainda pode errar — especialmente em informações muito específicas, locais ou em português. Sempre abra as fontes citadas para confirmar informações críticas antes de usar em algo importante.
+        </p>
+      </div>
+
+      <ul>
+        <li><strong>Conteúdo em português:</strong> a maioria das fontes que ele encontra é em inglês. Para assuntos muito brasileiros ou regionais, o Google ainda pode ser mais útil.</li>
+        <li><strong>Raciocínio complexo:</strong> para análise profunda, argumentação e escrita longa, o ChatGPT ou Claude são superiores.</li>
+        <li><strong>Sites com paywall:</strong> se as melhores fontes sobre um tema estão atrás de assinatura, o Perplexity não consegue acessá-las.</li>
+        <li><strong>Dados muito recentes:</strong> eventos das últimas horas podem não estar indexados ainda.</li>
+      </ul>
+
+      <!-- Por onde comecar -->
+      <h2>Por onde começar agora</h2>
+
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <h4>Acesse perplexity.ai</h4>
+            <p>Crie uma conta gratuita com seu email ou Google. O plano gratuito já é suficiente para experimentar todos os recursos principais.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <h4>Escolha o Focus Mode antes de pesquisar</h4>
+            <p>Clique no ícone de foco antes de digitar a pergunta. Para começar, experimente o modo <strong>Web</strong> para perguntas gerais e <strong>Reddit</strong> para opiniões.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <h4>Faca uma pergunta específica</h4>
+            <p>Teste com algo que você precisaria pesquisar hoje — uma comparação de ferramentas, uma dúvida técnica, uma notícia recente.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <div class="step-content">
+            <h4>Abra as fontes citadas</h4>
+            <p>Veja de onde a resposta veio. Clicar nas citações é o hábito mais importante para usar o Perplexity com responsabilidade.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">5</div>
+          <div class="step-content">
+            <h4>Continue com perguntas de acompanhamento</h4>
+            <p>Não feche a conversa. Pergunte mais: "Aprofunde no ponto X", "Como isso se compara com Y?", "Qual a fonte mais confiável sobre isso?".</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <div class="article-cta">
+        <h3>Explore mais ferramentas de IA</h3>
+        <p>Veja os outros artigos do site sobre ferramentas práticas — ChatGPT, Claude, Gemini, e como integrá-las no seu trabalho do dia a dia.</p>
+        <a href="../artigos.html" class="btn-accent">Ver todos os artigos</a>
+        <a href="../comece-aqui.html" class="btn-ghost">Comece por aqui</a>
+      </div>
+
+    </article>
+  </main>
+
+  <!-- FOOTER -->
+  
+  <section class="related-articles">
+    <div class="related-inner">
+      <h2 class="related-title">Artigos Relacionados</h2>
+      <div class="related-grid">
+      <a href="chatgpt-vs-gemini-vs-claude.html" class="related-card">
+        <span class="related-badge">Guias</span>
+        <h3 class="related-card-title">ChatGPT vs Gemini vs Claude: qual IA usar em 2025</h3>
+        <span class="related-arrow">→</span>
+      </a>
+      <a href="o-que-sao-agentes-de-ia.html" class="related-card">
+        <span class="related-badge">Guias</span>
+        <h3 class="related-card-title">O que são agentes de IA e como funcionam</h3>
+        <span class="related-arrow">→</span>
+      </a>
+      <a href="como-gerar-legendas-automaticas-com-ia.html" class="related-card">
+        <span class="related-badge">Tutoriais</span>
+        <h3 class="related-card-title">Como gerar legendas automáticas com IA</h3>
+        <span class="related-arrow">→</span>
+      </a>
+      </div>
+    </div>
+  </section>
+<footer class="site-footer">
+    <div class="footer-inner">
+      <a class="footer-logo" href="../index.html">Aprenda com <span>AI</span></a>
+      <ul class="footer-links">
+        <li><a href="../sobre.html">Sobre</a></li>
+        <li><a href="../contato.html">Contato</a></li>
+        <li><a href="../politica-de-privacidade.html">Política de Privacidade</a></li>
+        <li><a href="../termos-de-uso.html">Termos de Uso</a></li>
+      </ul>
+      <p class="footer-copy">© 2026 Aprenda com AI · Feito com muita IA</p>
+    </div>
+  </footer>
+
+  <script src="../script.js"></script>
+<script src="../cookie-consent.js" defer></script>
+<script src="../site-menu.js" defer></script>
+</body>
+</html>

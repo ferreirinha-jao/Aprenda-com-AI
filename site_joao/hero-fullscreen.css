@@ -1,0 +1,130 @@
+/* Hero em tela cheia com o carrossel como imagem de fundo. */
+.hero-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 680px;
+  overflow: hidden;
+  background-color: #0d0f12;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 clamp(22px, 5vw, 78px);
+}
+
+.navbar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 2rem clamp(22px, 4vw, 4rem);
+  z-index: 10;
+}
+
+.hero-container .hero-content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-container .bg-title {
+  z-index: 2;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+  margin: 0;
+  padding: 0 2rem;
+  color: rgba(255, 255, 255, 0.25);
+  font-family: Montserrat, Manrope, sans-serif;
+  font-size: clamp(4rem, 13vw, 15rem);
+  font-weight: 900;
+  line-height: .85;
+  letter-spacing: -3px;
+  text-align: center;
+  text-transform: uppercase;
+  white-space: normal;
+  user-select: none;
+  pointer-events: none;
+}
+
+.hero-container .carousel-container {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+}
+
+.hero-container .carousel-slide,
+.hero-container .carousel-slide.active {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: transparent;
+  opacity: 0;
+  transform: none;
+  transition: opacity 1.2s ease-in-out;
+}
+
+.hero-container .carousel-slide.active {
+  opacity: 1;
+}
+
+.hero-container .carousel-img {
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  max-height: none;
+  border-radius: 0;
+  object-fit: cover;
+  filter: brightness(.6) contrast(1.1);
+}
+
+.hero-container .slide-meta {
+  position: static;
+  display: block;
+  height: auto;
+  padding: 0;
+  background: none;
+}
+
+.hero-container .ia-name {
+  position: absolute;
+  right: clamp(22px, 4vw, 4rem);
+  bottom: 3rem;
+  z-index: 5;
+  padding: .6rem 1.5rem;
+  border-radius: 30px;
+  background: rgba(0, 0, 0, .5);
+  backdrop-filter: blur(10px);
+  color: #fff;
+  font-family: Montserrat, Manrope, sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.hero-container .slide-number {
+  position: absolute;
+  left: clamp(22px, 4vw, 4rem);
+  bottom: 3.7rem;
+  z-index: 5;
+}
+
+.hero-container .carousel-controls { right: clamp(22px, 4vw, 4rem); bottom: 8.2rem; z-index: 5; }
+.hero-container .hero-topline { position: absolute; top: 8.2rem; left: clamp(22px, 5vw, 78px); z-index: 5; }
+.hero-container .hero-bottom { z-index: 5; }
+
+@media (max-width: 720px) {
+  .hero-container { min-height: 600px; }
+  .hero-container .bg-title { padding: 0 1rem; font-size: clamp(3.5rem, 17vw, 7rem); }
+  .hero-container .ia-name { right: 22px; bottom: 2rem; font-size: 1rem; padding: .5rem 1rem; }
+  .hero-container .slide-number { left: 22px; bottom: 2.7rem; }
+  .hero-container .carousel-controls { right: 22px; bottom: 6rem; }
+}

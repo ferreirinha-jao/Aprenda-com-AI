@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Tudo que você precisa saber sobre o ChatGPT: como funciona, versões, casos de uso, dicas de prompts e limitações.">
+  <title>Guia Completo do ChatGPT — Aprenda com AI</title>
+  <link rel="canonical" href="https://aprendacomai.com/artigos/guia-completo-chatgpt.html">
+  <meta property="og:title" content="Guia Completo do ChatGPT — Aprenda com AI">
+  <meta property="og:description" content="Tudo que você precisa saber sobre o ChatGPT: como funciona, versões, casos de uso, dicas de prompts e limitações.">
+  <meta property="og:type" content="article">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="../final-hero.css">
+  <style>
+    :root {
+      --bg: #0b0c0e; --surface: #13151a; --border: #1e2028;
+      --accent: #d7ff3f; --accent2: #a8cc28;
+      --text: #e5e7eb; --muted: #c7c9c5; --dim: #6b7280;
+      --font-head: 'Space Grotesk', sans-serif;
+      --font-body: 'Manrope', sans-serif;
+      --font-mono: 'DM Mono', monospace;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: var(--bg); color: var(--text); font-family: var(--font-body); line-height: 1.7; }
+    .breadcrumb { max-width: 780px; margin: 0 auto; padding: 1.5rem 1.5rem 0; font-size: .82rem; color: var(--dim); }
+    .breadcrumb a { color: var(--dim); text-decoration: none; }
+    .breadcrumb a:hover { color: var(--accent); }
+    .breadcrumb span { margin: 0 .4rem; }
+    .article-hero { max-width: 780px; margin: 0 auto; padding: 2.5rem 1.5rem 2rem; }
+    .article-badge { display: inline-block; padding: .3rem .7rem; border-radius: 6px; background: rgba(215,255,63,.12); color: var(--accent); font: 500 .72rem var(--font-mono); letter-spacing: .08em; text-transform: uppercase; margin-bottom: 1.2rem; }
+    .article-hero h1 { font: 800 clamp(2rem, 5vw, 3rem)/1.1 var(--font-head); letter-spacing: -.04em; color: #fff; margin-bottom: 1rem; }
+    .article-hero h1 em { font-style: normal; color: var(--accent); }
+    .article-meta { display: flex; gap: 1rem; flex-wrap: wrap; font-size: .82rem; color: var(--dim); font-family: var(--font-mono); border-top: 1px solid var(--border); padding-top: 1rem; margin-top: 1rem; }
+    .article-body { max-width: 780px; margin: 0 auto; padding: 2rem 1.5rem 3rem; }
+    .article-body h2 { font: 700 1.4rem var(--font-head); letter-spacing: -.03em; color: #fff; margin: 2.5rem 0 .8rem; padding-top: 2rem; border-top: 1px solid var(--border); }
+    .article-body h2:first-of-type { border-top: none; padding-top: 0; margin-top: 0; }
+    .article-body h3 { font: 600 1.1rem var(--font-head); color: var(--text); margin: 1.8rem 0 .6rem; }
+    .article-body p { color: var(--muted); margin-bottom: 1rem; font-size: .97rem; line-height: 1.75; }
+    .article-body strong { color: var(--text); font-weight: 600; }
+    .article-body ul, .article-body ol { margin: .5rem 0 1.2rem 1.5rem; color: var(--muted); font-size: .97rem; }
+    .article-body li { margin-bottom: .5rem; line-height: 1.65; }
+    .info-box { background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--accent); border-radius: 10px; padding: 1.1rem 1.25rem; margin: 1.25rem 0; }
+    .info-box p { margin: 0; font-size: .92rem; }
+    .versions-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: .85rem; margin: 1.25rem 0 1.75rem; }
+    .version-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 1rem 1.15rem; }
+    .version-card h4 { font: 600 .95rem var(--font-head); color: var(--accent); margin-bottom: .4rem; }
+    .version-card p { font-size: .85rem; color: var(--muted); margin: 0; }
+    .cta-section { max-width: 780px; margin: 0 auto 4rem; padding: 2rem 1.5rem; }
+    .cta-box { background: var(--surface); border: 1px solid rgba(215,255,63,.25); border-radius: 16px; padding: 2rem; text-align: center; }
+    .cta-box h2 { font: 700 1.4rem var(--font-head); color: #fff; margin-bottom: .6rem; }
+    .cta-box p { color: var(--muted); font-size: .95rem; margin-bottom: 1.4rem; }
+    .cta-btn { display: inline-block; padding: .85rem 1.6rem; background: var(--accent); color: #11110f; font: 700 .9rem var(--font-body); border-radius: 10px; text-decoration: none; transition: opacity .2s; }
+    .cta-btn:hover { opacity: .88; }
+    footer { text-align: center; padding: 2rem 1.5rem; color: var(--dim); font-size: .85rem; border-top: 1px solid var(--border); }
+    footer a { color: var(--dim); text-decoration: none; margin: 0 .6rem; }
+    footer a:hover { color: var(--accent); }
+  </style>
+</head>
+<body>
+<header>
+  <nav class="navbar">
+    <a href="../index.html" class="logo">Aprenda com AI</a>
+    <ul class="nav-links">
+      <li><a href="../index.html">Início</a></li>
+      <li><a href="../artigos.html">Artigos</a></li>
+      <li><a href="../biblioteca-de-prompts.html">Biblioteca de Prompts</a></li>
+      <li><a href="../calculadora-ia.html">Calculadora de Impacto</a></li>
+    </ul>
+  </nav>
+</header>
+
+<nav class="breadcrumb" aria-label="Navegação estrutural">
+  <a href="../index.html">Início</a><span>›</span>
+  <a href="../artigos.html">Artigos</a><span>›</span>
+  Guia Completo do ChatGPT
+</nav>
+
+<section class="article-hero">
+  <span class="article-badge">Guias</span>
+  <h1>Guia completo do <em>ChatGPT</em>: do zero ao uso profissional</h1>
+  <p class="article-meta">
+    <span>Ferramentas: ChatGPT</span>
+  </p>
+</section>
+
+<article class="article-body">
+
+  <h2>O que é o ChatGPT e por que ele mudou tudo</h2>
+  <p>O ChatGPT é um assistente de inteligência artificial criado pela OpenAI que conversa em linguagem natural — você escreve uma pergunta ou instrução como se estivesse mandando uma mensagem, e ele responde com texto coerente, detalhado e adaptado ao contexto que você deu.</p>
+  <p>Quando foi lançado em novembro de 2022, o ChatGPT atingiu um milhão de usuários em cinco dias — mais rápido do que qualquer produto na história da tecnologia. O motivo é simples: foi a primeira vez que uma IA poderosa ficou acessível para qualquer pessoa, sem precisar saber programar ou ter formação técnica.</p>
+  <p>Por trás do ChatGPT está uma família de modelos chamados GPT (Generative Pre-trained Transformer). Esses modelos foram treinados em enormes volumes de texto da internet, livros e outras fontes, o que lhes permite gerar texto que soa natural, raciocinar sobre problemas e seguir instruções complexas.</p>
+
+  <h2>Como criar uma conta e começar a usar</h2>
+  <p>Acesse <strong>chat.openai.com</strong> e crie uma conta gratuita com e-mail, Google ou Apple. O plano gratuito já dá acesso ao modelo GPT-4o, que é suficiente para a maioria dos usos do dia a dia.</p>
+  <p>Na primeira vez, você vai ver uma caixa de texto no centro da tela — é ali que você escreve seus prompts. Não existe uma forma errada de começar. Digite qualquer coisa e veja o que acontece. A curva de aprendizado é muito mais rápida do que parece.</p>
+  <div class="info-box"><p><strong>Dica:</strong> O plano gratuito tem limites de uso por hora. Se você bater o limite, basta esperar alguns minutos ou considerar o plano Plus para uso profissional intenso.</p></div>
+
+  <h2>As versões do ChatGPT: qual a diferença</h2>
+  <p>A OpenAI lança novas versões com frequência. Entender a diferença evita frustração — e ajuda a saber quando vale pagar pelo plano mais caro.</p>
+  <div class="versions-grid">
+    <div class="version-card">
+      <h4>GPT-4o</h4>
+      <p>Versão principal. Rápido, capaz e disponível gratuitamente. Lida bem com texto, imagens e raciocínio geral.</p>
+    </div>
+    <div class="version-card">
+      <h4>GPT-4o mini</h4>
+      <p>Versão mais leve e econômica. Ideal para tarefas simples e aplicações via API onde custo importa.</p>
+    </div>
+    <div class="version-card">
+      <h4>o1 / o3</h4>
+      <p>Modelos de raciocínio profundo. Pensam antes de responder. Excelentes para matemática, código e análise complexa.</p>
+    </div>
+    <div class="version-card">
+      <h4>GPT-4.5</h4>
+      <p>Versão mais recente da família GPT-4. Melhor para conversas longas e contextos que exigem nuance.</p>
+    </div>
+  </div>
+
+  <h2>O que o ChatGPT faz bem</h2>
+
+  <h3>Escrita e edição de texto</h3>
+  <p>Esta é a função mais usada — e com razão. O ChatGPT escreve e-mails, posts, relatórios, roteiros, descrições de produtos e praticamente qualquer tipo de texto. Mais importante: ele edita o que você já escreveu, melhora o tom, corrige a gramática e adapta para diferentes públicos.</p>
+
+  <h3>Resumo e síntese de informações</h3>
+  <p>Cole um texto longo — um artigo, um contrato, uma ata de reunião — e peça para o ChatGPT resumir. Ele identifica os pontos principais e apresenta de forma clara. Para quem lida com muita informação no trabalho, isso sozinho já justifica o uso.</p>
+
+  <h3>Código e automação</h3>
+  <p>O ChatGPT escreve, explica e corrige código em praticamente todas as linguagens de programação. Para quem não é programador, ele consegue criar scripts simples, fórmulas para Excel e Google Sheets, e até automatizações básicas a partir de uma descrição em português.</p>
+
+  <h3>Brainstorming e geração de ideias</h3>
+  <p>Quando você está travado, o ChatGPT funciona como um parceiro de ideias disponível a qualquer hora. Descreva o problema e peça opções, ângulos diferentes, nomes, slogans — o que precisar. A qualidade das sugestões depende da qualidade do contexto que você fornece.</p>
+
+  <h3>Aprendizado e explicação de conceitos</h3>
+  <p>Peça para o ChatGPT explicar um conceito técnico como se você fosse um iniciante, ou aprofundar um tema específico. Ele adapta a linguagem e usa analogias para facilitar a compreensão — algo que um livro técnico raramente faz.</p>
+
+  <h2>Como escrever bons prompts</h2>
+  <p>A qualidade da resposta é diretamente proporcional à qualidade da pergunta. Três princípios que fazem diferença imediata:</p>
+  <ul>
+    <li><strong>Dê um papel para a IA:</strong> Comece com "Atue como um especialista em X" ou "Você é um redator com experiência em Y". Isso define o tom e o nível de profundidade da resposta.</li>
+    <li><strong>Seja específico sobre o formato:</strong> Diga exatamente o que você quer — uma lista, um parágrafo, três opções, um e-mail formal. Sem instrução de formato, a IA escolhe um padrão genérico.</li>
+    <li><strong>Forneça contexto real:</strong> Quanto mais você explica a situação, mais útil é a resposta. "Me ajuda a escrever um e-mail" gera algo genérico. "Me ajuda a escrever um e-mail de cobrança para um cliente que está há 30 dias em atraso, com tom profissional mas firme" gera algo que você pode usar.</li>
+  </ul>
+
+  <h2>Limitações que você precisa conhecer</h2>
+  <p>Usar o ChatGPT de forma inteligente significa entender onde ele erra — não só onde ele acerta.</p>
+  <ul>
+    <li><strong>Corte de conhecimento:</strong> O modelo foi treinado até uma data específica. Ele não sabe de eventos recentes e pode dar informações desatualizadas sobre preços, leis, cargos ou estatísticas.</li>
+    <li><strong>Alucinações:</strong> Em certos casos, o ChatGPT inventa fatos com confiança — cita fontes que não existem, menciona estudos fictícios, apresenta números errados. Sempre verifique informações críticas em fontes primárias.</li>
+    <li><strong>Sem memória entre sessões:</strong> Cada conversa começa do zero. Ele não lembra do que você discutiu ontem, a menos que você cole o contexto novamente.</li>
+    <li><strong>Não é um buscador:</strong> Ele não acessa a internet em tempo real por padrão (existe um modo com busca, mas é opcional). Para informações atuais, use o modo de pesquisa ou ferramentas como Perplexity.</li>
+  </ul>
+
+  <h2>Plano gratuito ou Plus: quando vale pagar</h2>
+  <p>O plano gratuito é suficiente para experimentar e para usos casuais. O plano Plus (pago mensalmente) faz sentido se você usa diariamente para trabalho e precisa de acesso prioritário, limites mais generosos e os modelos mais avançados sem restrições.</p>
+  <p>Uma forma simples de decidir: se você já chegou ao limite do plano gratuito mais de uma vez na mesma semana, provavelmente o retorno do Plus vai cobrir o custo com facilidade.</p>
+
+  <h2>Por onde começar na prática</h2>
+  <p>A melhor forma de aprender a usar o ChatGPT é escolher uma tarefa que você já faz hoje e tentar fazê-la com a ajuda da IA. Não precisa ser uma tarefa importante — pode ser um e-mail rotineiro, um resumo rápido ou a organização de uma lista.</p>
+  <p>O objetivo não é substituir seu trabalho, mas entender onde a IA cria alavancagem real para você. Com o tempo, você vai naturalmente encontrar os casos de uso onde ela multiplica sua capacidade.</p>
+
+</article>
+
+<section class="cta-section">
+  <div class="cta-box">
+    <h2>Quer prompts prontos para usar no ChatGPT?</h2>
+    <p>A Biblioteca de Prompts tem modelos testados para trabalho, estudos, atendimento e muito mais.</p>
+    <a href="../biblioteca-de-prompts.html" class="cta-btn">Ver a Biblioteca de Prompts</a>
+  </div>
+</section>
+
+<footer>
+  <div>
+    <a href="../sobre.html">Sobre</a>
+    <a href="../contato.html">Contato</a>
+    <a href="../politica-de-privacidade.html">Política de Privacidade</a>
+    <a href="../termos-de-uso.html">Termos de Uso</a>
+  </div>
+  <p style="margin-top:.75rem">© 2026 Aprenda com AI</p>
+</footer>
+</body>
+</html>

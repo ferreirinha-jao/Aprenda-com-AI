@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>O que são agentes de IA e como funcionam — Aprenda com AI</title>
+  <meta name="description" content="Entenda o que são agentes de IA, como eles diferem de chatbots simples, quais são os casos de uso mais práticos e como construir ou contratar o seu." />
+  <meta property="og:title" content="O que são agentes de IA e como funcionam — Aprenda com AI" />
+  <meta property="og:description" content="Entenda o que são agentes de IA, como diferem de chatbots simples e quais são os casos de uso mais práticos." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://aprendacomai.com/artigos/o-que-sao-agentes-de-ia.html" />
+  <link rel="canonical" href="https://aprendacomai.com/artigos/o-que-sao-agentes-de-ia.html" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Manrope:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../style.css" />
+  <link rel="stylesheet" href="../final-hero.css" />
+
+  <style>
+    :root {
+      --bg:        #0b0c0e;
+      --surface:   #13151a;
+      --border:    #1e2028;
+      --accent:    #d7ff3f;
+      --accent2:   #a8cc28;
+      --text:      #e5e7eb;
+      --muted:     #c7c9c5;
+      --dim:       #6b7280;
+      --font-head: 'Space Grotesk', sans-serif;
+      --font-body: 'Manrope', sans-serif;
+      --font-mono: 'DM Mono', monospace;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: var(--bg); color: var(--text); font-family: var(--font-body); font-size: 1rem; line-height: 1.7; }
+
+    .nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(11,12,14,.85); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: .85rem 1.5rem; display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo { font-family: var(--font-head); font-weight: 700; font-size: 1.1rem; color: var(--accent); text-decoration: none; }
+    .nav-links { display: flex; gap: 1.5rem; }
+    .nav-links a { color: var(--muted); text-decoration: none; font-size: .9rem; transition: color .2s; }
+    .nav-links a:hover { color: var(--accent); }
+
+    .breadcrumb {
+      max-width: 780px; margin: 0 auto; padding: 1.2rem 1.5rem .4rem;
+      display: flex; align-items: center; gap: .5rem;
+      font-size: .82rem; color: var(--dim); flex-wrap: wrap;
+    }
+    .breadcrumb a { color: var(--dim); text-decoration: none; }
+    .breadcrumb a:hover { color: var(--accent); }
+    .breadcrumb span { color: var(--dim); }
+
+    .article-hero { max-width: 780px; margin: 0 auto; padding: 2.5rem 1.5rem 2rem; }
+    .article-badge {
+      display: inline-block; font-family: var(--font-mono); font-size: .75rem; font-weight: 500;
+      color: var(--bg); background: var(--accent); padding: .25rem .75rem; border-radius: 999px;
+      margin-bottom: 1.1rem; letter-spacing: .04em; text-transform: uppercase;
+    }
+    .article-hero h1 {
+      font-family: var(--font-head); font-size: clamp(1.9rem, 4vw, 2.7rem);
+      font-weight: 700; line-height: 1.2; color: #fff; margin-bottom: 1rem;
+    }
+    .article-hero h1 em { font-style: normal; color: var(--accent); }
+    .article-meta {
+      display: flex; flex-wrap: wrap; gap: .75rem; font-size: .82rem; color: var(--dim);
+      padding-top: 1rem; border-top: 1px solid var(--border);
+    }
+
+    .article-body { max-width: 780px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+    .article-body h2 { font-family: var(--font-head); font-size: 1.45rem; font-weight: 700; color: #fff; margin: 2.8rem 0 1rem; }
+    .article-body h3 { font-family: var(--font-head); font-size: 1.1rem; font-weight: 600; color: var(--text); margin: 2rem 0 .6rem; }
+    .article-body p { color: var(--muted); margin-bottom: 1.1rem; }
+    .article-body ul, .article-body ol { color: var(--muted); padding-left: 1.4rem; margin-bottom: 1.1rem; }
+    .article-body li { margin-bottom: .4rem; }
+    .article-body strong { color: var(--text); font-weight: 600; }
+    .article-body a { color: var(--accent); text-decoration: none; }
+    .article-body a:hover { text-decoration: underline; }
+
+    .callout {
+      border-left: 3px solid var(--accent); background: var(--surface);
+      border-radius: 0 8px 8px 0; padding: 1rem 1.25rem; margin: 1.5rem 0;
+    }
+    .callout.tip  { border-color: var(--accent); }
+    .callout.warn { border-color: #f59e0b; }
+    .callout.info { border-color: #60a5fa; }
+    .callout-title { font-family: var(--font-mono); font-size: .78rem; font-weight: 500; text-transform: uppercase; letter-spacing: .06em; margin-bottom: .4rem; }
+    .callout.tip  .callout-title { color: var(--accent); }
+    .callout.warn .callout-title { color: #f59e0b; }
+    .callout.info .callout-title { color: #60a5fa; }
+    .callout p { margin: 0; font-size: .93rem; }
+
+    /* COMPARACAO CHATBOT vs AGENTE */
+    .compare-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.5rem 0;
+    }
+    .compare-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 10px; padding: 1.2rem;
+    }
+    .compare-card.old { border-top: 3px solid #f87171; }
+    .compare-card.new { border-top: 3px solid var(--accent); }
+    .compare-card .compare-label {
+      font-family: var(--font-mono); font-size: .72rem; text-transform: uppercase;
+      letter-spacing: .05em; margin-bottom: .6rem; display: block;
+    }
+    .compare-card.old .compare-label { color: #f87171; }
+    .compare-card.new .compare-label { color: var(--accent); }
+    .compare-card h4 { font-family: var(--font-head); font-weight: 700; color: #fff; font-size: .95rem; margin-bottom: .6rem; }
+    .compare-card ul { padding-left: 1.1rem; margin: 0; }
+    .compare-card li { font-size: .87rem; color: var(--muted); margin-bottom: .35rem; }
+
+    /* COMPONENTES DE AGENTE */
+    .component-grid { display: flex; flex-direction: column; gap: .85rem; margin: 1.5rem 0; }
+    .component-card {
+      display: flex; gap: 1rem; background: var(--surface); border: 1px solid var(--border);
+      border-radius: 10px; padding: 1.1rem 1.2rem; align-items: flex-start;
+    }
+    .component-tag {
+      flex-shrink: 0; font-family: var(--font-mono); font-size: .72rem; font-weight: 700;
+      background: rgba(215,255,63,.1); color: var(--accent); border: 1px solid rgba(215,255,63,.25);
+      border-radius: 6px; padding: .3rem .7rem; white-space: nowrap; margin-top: .15rem;
+    }
+    .component-card h4 { font-family: var(--font-head); font-weight: 600; color: #fff; font-size: .95rem; margin-bottom: .3rem; }
+    .component-card p { margin: 0; font-size: .87rem; color: var(--muted); }
+
+    .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: .85rem; margin: 1.5rem 0; }
+    .feature-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 1.1rem 1.2rem; }
+    .feature-card h4 { font-family: var(--font-head); font-weight: 600; color: #fff; font-size: .95rem; margin-bottom: .4rem; }
+    .feature-card p { margin: 0; font-size: .88rem; color: var(--muted); }
+
+    /* TOOL CARDS */
+    .tool-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: .85rem; margin: 1.5rem 0; }
+    .tool-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 1.15rem 1.25rem; }
+    .tool-card .tool-name { font-family: var(--font-head); font-weight: 700; color: #fff; font-size: 1rem; margin-bottom: .25rem; }
+    .tool-card .tool-tags { display: flex; gap: .4rem; margin-bottom: .6rem; flex-wrap: wrap; }
+    .tool-tag { font-family: var(--font-mono); font-size: .68rem; font-weight: 500; padding: .15rem .55rem; border-radius: 999px; }
+    .tool-tag.free   { background: rgba(116,208,102,.15); color: #74d066; border: 1px solid rgba(116,208,102,.3); }
+    .tool-tag.paid   { background: rgba(245,158,11,.15);  color: #f59e0b; border: 1px solid rgba(245,158,11,.3); }
+    .tool-tag.open   { background: rgba(96,165,250,.15);  color: #60a5fa; border: 1px solid rgba(96,165,250,.3); }
+    .tool-card p { margin: 0; font-size: .87rem; color: var(--muted); }
+
+    /* CICLO DO AGENTE */
+    .cycle-box {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 10px; padding: 1.5rem; margin: 1.5rem 0;
+    }
+    .cycle-box h4 { font-family: var(--font-head); font-weight: 700; color: #fff; font-size: .95rem; margin-bottom: 1.2rem; text-align: center; }
+    .cycle-steps { display: flex; flex-direction: column; gap: .5rem; }
+    .cycle-step { display: flex; align-items: center; gap: .85rem; }
+    .cycle-num {
+      flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%;
+      background: rgba(215,255,63,.15); border: 1px solid rgba(215,255,63,.3);
+      color: var(--accent); font-family: var(--font-mono); font-size: .78rem; font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .cycle-text { font-size: .88rem; color: var(--muted); }
+    .cycle-text strong { color: var(--text); }
+    .cycle-connector { width: 28px; height: 16px; display: flex; justify-content: center; align-items: center; color: var(--dim); font-size: .75rem; flex-shrink: 0; margin-left: 0; }
+
+    .highlight-box {
+      border: 1px solid rgba(215,255,63,.25); background: rgba(215,255,63,.05);
+      border-radius: 10px; padding: 1.4rem 1.5rem; margin: 1.8rem 0;
+    }
+    .highlight-box h4 { font-family: var(--font-head); font-size: 1rem; font-weight: 700; color: var(--accent); margin-bottom: .7rem; }
+    .highlight-box p { color: var(--muted); font-size: .92rem; margin-bottom: .5rem; }
+    .highlight-box p:last-child { margin-bottom: 0; }
+
+    .cta-section {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 14px; padding: 2.2rem 2rem; text-align: center;
+      max-width: 780px; margin: 0 auto 4rem;
+    }
+    .cta-section h2 { font-family: var(--font-head); font-size: 1.5rem; font-weight: 700; color: #fff; margin-bottom: .6rem; }
+    .cta-section p { color: var(--muted); font-size: .95rem; margin-bottom: 1.4rem; }
+    .cta-btn {
+      display: inline-block; background: var(--accent); color: var(--bg);
+      font-family: var(--font-head); font-weight: 700; font-size: .95rem;
+      padding: .8rem 2rem; border-radius: 8px; text-decoration: none;
+      transition: background .2s, transform .15s;
+    }
+    .cta-btn:hover { background: var(--accent2); transform: translateY(-2px); }
+
+    .footer {
+      border-top: 1px solid var(--border); text-align: center; padding: 2rem 1.5rem;
+      font-size: .82rem; color: var(--dim); margin-top: 4rem;
+    }
+    .footer a { color: var(--dim); text-decoration: none; }
+    .footer a:hover { color: var(--accent); }
+
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+      .article-hero h1 { font-size: 1.65rem; }
+      .compare-grid { grid-template-columns: 1fr; }
+      .component-card { flex-direction: column; gap: .5rem; }
+    }
+  </style>
+  <link rel="icon" type="image/png" href="../favicon.ico.png">
+<link rel="stylesheet" href="../site-menu.css">
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="../index.html" class="nav-logo">Aprenda com AI</a>
+  <div class="nav-links">
+    <a href="../index.html">Início</a>
+    <a href="../comece-aqui.html">Comece Aqui</a>
+    <a href="../artigos.html">Artigos</a>
+    <a href="../biblioteca-de-prompts.html">Biblioteca de Prompts</a>
+    <a href="../calculadora-ia.html">Calculadora de Impacto</a>
+    <a href="../sobre.html">Sobre</a>
+    <a href="../contato.html">Contato</a>
+  </div>
+</nav>
+
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="../index.html">Inicio</a>
+    <span>/</span>
+    <a href="../artigos.html">Artigos</a>
+    <span>/</span>
+    <span>O que são agentes de IA</span>
+  </nav>
+
+  <header class="article-hero">
+    <span class="article-badge">Guias</span>
+    <h1>O que são <em>agentes de IA</em> e como eles funcionam</h1>
+    <div class="article-meta">
+      <span>Conceito: IA agêntica, LLMs, automação inteligente</span>
+    </div>
+  </header>
+
+  <main class="article-body">
+
+    <p>"Agente de IA" virou um dos termos mais usados — e mais mal compreendidos — do mundo tech. Todo mundo fala, poucos explicam direito o que significa na prática. Este artigo resolve isso: o que é, como funciona por dentro, e o que você pode fazer com agentes hoje.</p>
+
+    <h2>A diferença entre chatbot e agente</h2>
+
+    <p>Um chatbot tradicional responde perguntas. Você manda uma mensagem, ele responde, acabou. Um agente de IA faz algo a mais: ele <strong>toma decisões e executa ações</strong> para completar um objetivo, muitas vezes sem precisar de uma pessoa confirmando cada passo.</p>
+
+    <div class="compare-grid">
+      <div class="compare-card old">
+        <span class="compare-label">Chatbot simples</span>
+        <h4>Responde e para</h4>
+        <ul>
+          <li>Recebe uma pergunta</li>
+          <li>Gera uma resposta de texto</li>
+          <li>Encerra a interacao</li>
+          <li>Nao acessa sistemas externos</li>
+          <li>Nao executa acoes no mundo</li>
+          <li>Nao tem memoria entre sessoes</li>
+        </ul>
+      </div>
+      <div class="compare-card new">
+        <span class="compare-label">Agente de IA</span>
+        <h4>Planeja e executa</h4>
+        <ul>
+          <li>Recebe um objetivo</li>
+          <li>Planeja as etapas necessárias</li>
+          <li>Usa ferramentas para agir</li>
+          <li>Acessa sistemas, APIs, bancos de dados</li>
+          <li>Avalia resultados e ajusta o plano</li>
+          <li>Pode ter memória persistente</li>
+        </ul>
+      </div>
+    </div>
+
+    <p>O exemplo clássico: você pede para um chatbot "pesquisar voos baratos para o Rio" — ele te diz como pesquisar. Você pede para um agente a mesma coisa — ele abre o site de passagens, filtra pelos critérios que você definiu, encontra as melhores opções e te envia o resumo.</p>
+
+    <h2>Como um agente funciona por dentro</h2>
+
+    <p>Todo agente de IA é construído sobre quatro componentes principais:</p>
+
+    <div class="component-grid">
+      <div class="component-card">
+        <span class="component-tag">LLM</span>
+        <div>
+          <h4>O cérebro — modelo de linguagem</h4>
+          <p>O ChatGPT, Claude ou Gemini no núcleo. Ele lê o objetivo, raciocina sobre o que fazer e decide qual ferramenta usar em cada etapa. Sem o LLM, não há inteligência.</p>
+        </div>
+      </div>
+      <div class="component-card">
+        <span class="component-tag">Ferramentas</span>
+        <div>
+          <h4>Os bracos — o que o agente pode fazer</h4>
+          <p>Pesquisa na web, leitura de arquivos, envio de e-mail, acesso a banco de dados, execução de código. Cada ferramenta é uma ação que o LLM pode decidir usar.</p>
+        </div>
+      </div>
+      <div class="component-card">
+        <span class="component-tag">Memória</span>
+        <div>
+          <h4>O contexto — o que o agente lembra</h4>
+          <p>Memória de curto prazo (a conversa atual) e longo prazo (banco de dados externo). Permite que o agente use informações de interações anteriores para tomar decisões melhores.</p>
+        </div>
+      </div>
+      <div class="component-card">
+        <span class="component-tag">Loop</span>
+        <div>
+          <h4>O ciclo — pensar, agir, avaliar</h4>
+          <p>O agente não executa tudo de uma vez. Ele age em ciclos: pensa sobre o que fazer, executa uma ação, avalia o resultado, decide o próximo passo. Repete até completar o objetivo.</p>
+        </div>
+      </div>
+    </div>
+
+    <h2>O ciclo de raciocínio do agente</h2>
+
+    <div class="cycle-box">
+      <h4>Como o agente pensa antes de agir</h4>
+      <div class="cycle-steps">
+        <div class="cycle-step">
+          <div class="cycle-num">1</div>
+          <div class="cycle-text"><strong>Objetivo recebido:</strong> "Pesquise os 3 concorrentes principais da empresa X e me mande um resumo"</div>
+        </div>
+        <div class="cycle-step">
+          <div class="cycle-num">2</div>
+          <div class="cycle-text"><strong>Planejamento:</strong> preciso buscar informações na web, identificar concorrentes, comparar</div>
+        </div>
+        <div class="cycle-step">
+          <div class="cycle-num">3</div>
+          <div class="cycle-text"><strong>Acao:</strong> usa a ferramenta de busca web com "concorrentes da empresa X"</div>
+        </div>
+        <div class="cycle-step">
+          <div class="cycle-num">4</div>
+          <div class="cycle-text"><strong>Observacao:</strong> recebe os resultados, avalia se são suficientes</div>
+        </div>
+        <div class="cycle-step">
+          <div class="cycle-num">5</div>
+          <div class="cycle-text"><strong>Novo ciclo:</strong> se precisar de mais dados, faz outra busca. Se tiver o suficiente, continua</div>
+        </div>
+        <div class="cycle-step">
+          <div class="cycle-num">6</div>
+          <div class="cycle-text"><strong>Resposta final:</strong> monta o resumo com o que encontrou e entrega ao usuário</div>
+        </div>
+      </div>
+    </div>
+
+    <h2>Casos de uso reais hoje</h2>
+
+    <p>Agentes de IA já estão sendo usados em produção por empresas e freelancers. Esses são os casos mais comuns e acessíveis de implementar.</p>
+
+    <div class="feature-grid">
+      <div class="feature-card">
+        <h4>Agente de pesquisa</h4>
+        <p>Recebe um tema, pesquisa em múltiplas fontes na web, organiza as informações e entrega um relatório estruturado.</p>
+      </div>
+      <div class="feature-card">
+        <h4>Agente de suporte</h4>
+        <p>Responde perguntas de clientes consultando uma base de conhecimento, cria tickets e escalona para humano quando necessário.</p>
+      </div>
+      <div class="feature-card">
+        <h4>Agente de vendas</h4>
+        <p>Qualifica leads via WhatsApp, consulta CRM para ver histórico, envia proposta personalizada e agenda reunião no calendário.</p>
+      </div>
+      <div class="feature-card">
+        <h4>Agente de monitoramento</h4>
+        <p>Monitora menções à marca nas redes, identifica comentários negativos e notifica o time ou responde automaticamente.</p>
+      </div>
+      <div class="feature-card">
+        <h4>Agente de conteúdo</h4>
+        <p>Pesquisa tópicos em alta, escreve rascunhos de posts, adapta para diferentes formatos e agenda nas plataformas.</p>
+      </div>
+      <div class="feature-card">
+        <h4>Agente financeiro</h4>
+        <p>Categoriza transações, identifica gastos fora do padrão, gera relatórios mensais e alerta sobre desvios de orçamento.</p>
+      </div>
+    </div>
+
+    <h2>Ferramentas para criar agentes</h2>
+
+    <div class="tool-grid">
+      <div class="tool-card">
+        <div class="tool-name">n8n</div>
+        <div class="tool-tags"><span class="tool-tag open">Open source</span></div>
+        <p>Tem nós de AI Agent nativos. Você conecta um LLM a ferramentas (HTTP, planilhas, e-mail) e cria agentes visuais sem código. A escolha mais popular para automadores brasileiros.</p>
+      </div>
+      <div class="tool-card">
+        <div class="tool-name">Flowise</div>
+        <div class="tool-tags"><span class="tool-tag open">Open source</span><span class="tool-tag free">Gratuito</span></div>
+        <p>Builder visual especializado em agentes e RAG (busca em base de conhecimento). Interface de blocos, self-hosted, ótimo para agentes com acesso a documentos.</p>
+      </div>
+      <div class="tool-card">
+        <div class="tool-name">LangChain / LangGraph</div>
+        <div class="tool-tags"><span class="tool-tag open">Open source</span></div>
+        <p>Framework de código (Python/JS) para construir agentes avançados. Máxima flexibilidade, mas requer programação. Base de boa parte dos agentes em produção hoje.</p>
+      </div>
+      <div class="tool-card">
+        <div class="tool-name">OpenAI Assistants</div>
+        <div class="tool-tags"><span class="tool-tag paid">API paga</span></div>
+        <p>API da OpenAI com memória persistente, acesso a arquivos e execução de código nativa. Fácil de usar, mas caro para volumes altos e preso ao ecossistema OpenAI.</p>
+      </div>
+    </div>
+
+    <h2>Agentes simples vs agentes complexos</h2>
+
+    <p>Nem todo agente precisa ser sofisticado. A complexidade deve ser proporcional ao problema que você quer resolver.</p>
+
+    <div class="callout info">
+      <div class="callout-title">Comece simples</div>
+      <p>Um agente que consulta uma base de conhecimento e responde perguntas via WhatsApp já é um agente funcional. Não precisa de raciocínio multi-etapa nem de memória complexa para agregar valor real. Adicione complexidade conforme os limites do sistema simples aparecem.</p>
+    </div>
+
+    <div class="highlight-box">
+      <h4>O que torna um agente bom</h4>
+      <p><strong>Ferramentas certas:</strong> o agente só é tão bom quanto as ações que ele pode executar. Um agente com acesso às informações e sistemas certos resolve mais do que um modelo poderoso sem ferramentas.</p>
+      <p><strong>Prompt bem construído:</strong> o system prompt define o comportamento, o escopo e os limites do agente. Um prompt ruim resulta em um agente que faz coisas que não deveria ou não faz o que deveria.</p>
+      <p><strong>Supervisão humana:</strong> os melhores sistemas agênticos têm checkpoints onde um humano pode revisar antes de o agente executar ações irreversíveis. Autonomia total ainda não é o padrão — e provavelmente não deveria ser.</p>
+    </div>
+
+    <h2>O que esperar nos próximos anos</h2>
+
+    <p>Agentes de IA estão evoluindo rápido. Algumas tendências que já estão acontecendo:</p>
+
+    <ul>
+      <li><strong>Multi-agentes:</strong> sistemas onde vários agentes colaboram entre si, cada um com uma especialidade. Um agente pesquisa, outro escreve, outro revisa.</li>
+      <li><strong>Memória de longo prazo:</strong> agentes que lembram de interações passadas e constroem um perfil do usuário ao longo do tempo.</li>
+      <li><strong>Agentes com acesso ao computador:</strong> modelos capazes de usar interfaces gráficas, clicar em botões e navegar em sites como um humano faria.</li>
+      <li><strong>Agentes especializados por setor:</strong> soluções prontas para médicos, advogados, contadores — com conhecimento específico do domínio embutido.</li>
+    </ul>
+
+    <div class="callout tip">
+      <div class="callout-title">Por onde começar</div>
+      <p>O melhor caminho é aprender n8n e construir um agente simples: um chatbot que responde perguntas sobre um negócio consultando uma base de conhecimento. Esse projeto ensina todos os conceitos fundamentais — LLM, ferramentas, prompt engineering — e já tem valor comercial real.</p>
+    </div>
+
+  </main>
+
+  <section class="cta-section">
+    <h2>Pronto para construir seu primeiro agente?</h2>
+    <p>Acesse a biblioteca de prompts com system prompts e templates prontos para agentes de atendimento, pesquisa e vendas.</p>
+    <a href="../biblioteca-de-prompts.html" class="cta-btn">Acessar biblioteca de prompts</a>
+  </section>
+
+  
+  <section class="related-articles">
+    <div class="related-inner">
+      <h2 class="related-title">Artigos Relacionados</h2>
+      <div class="related-grid">
+      <a href="o-que-e-n8n.html" class="related-card">
+        <span class="related-badge">Guias</span>
+        <h3 class="related-card-title">O que é o n8n e como usar para automatizar tarefas</h3>
+        <span class="related-arrow">→</span>
+      </a>
+      <a href="chatgpt-vs-gemini-vs-claude.html" class="related-card">
+        <span class="related-badge">Guias</span>
+        <h3 class="related-card-title">ChatGPT vs Gemini vs Claude: qual IA usar em 2025</h3>
+        <span class="related-arrow">→</span>
+      </a>
+      <a href="como-usar-ia-para-propostas-comerciais.html" class="related-card">
+        <span class="related-badge">Negócios</span>
+        <h3 class="related-card-title">Como usar IA para criar propostas comerciais</h3>
+        <span class="related-arrow">→</span>
+      </a>
+      </div>
+    </div>
+  </section>
+<footer class="footer">
+    <p>Aprenda com AI &mdash; <a href="../index.html">Inicio</a> &middot; <a href="../artigos.html">Artigos</a> &middot; <a href="../catalogo-ferramentas.html">Ferramentas</a> &middot; <a href="../sobre.html">Sobre</a> &middot; <a href="../contato.html">Contato</a> &middot; <a href="../politica-de-privacidade.html">Política de Privacidade</a> &middot; <a href="../termos-de-uso.html">Termos de Uso</a></p>
+  </footer>
+
+  <script src="../script.js"></script>
+<script src="../cookie-consent.js" defer></script>
+<script src="../site-menu.js" defer></script>
+</body>
+</html>

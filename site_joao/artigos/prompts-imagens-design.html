@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Como escrever prompts para gerar imagens com IA: guia prático para Midjourney, DALL-E e Stable Diffusion com exemplos prontos.">
+  <title>Prompts para Imagens e Design com IA — Aprenda com AI</title>
+  <link rel="icon" href="../favicon.ico.png" type="image/png">
+  <link rel="apple-touch-icon" href="../favicon.svg">
+  <link rel="canonical" href="https://aprendacomai.com/artigos/prompts-imagens-design.html">
+  <meta property="og:site_name" content="Aprenda com AI">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Prompts para Imagens e Design com IA — Aprenda com AI">
+  <meta property="og:description" content="Como escrever prompts para gerar imagens com IA: guia prático para Midjourney, DALL-E e Stable Diffusion com exemplos prontos.">
+  <meta property="og:url" content="https://aprendacomai.com/artigos/prompts-imagens-design.html">
+  <meta property="og:image" content="https://aprendacomai.com/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Prompts para Imagens e Design com IA — Aprenda com AI">
+  <meta name="twitter:description" content="Como escrever prompts para gerar imagens com IA: guia prático para Midjourney, DALL-E e Stable Diffusion com exemplos prontos.">
+  <meta name="twitter:image" content="https://aprendacomai.com/og-image.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="../final-hero.css">
+  <style>
+    :root {
+      --bg: #0b0c0e; --surface: #13151a; --border: #1e2028;
+      --accent: #d7ff3f; --accent2: #a8cc28;
+      --text: #e5e7eb; --muted: #c7c9c5; --dim: #6b7280;
+      --font-head: 'Space Grotesk', sans-serif;
+      --font-body: 'Manrope', sans-serif;
+      --font-mono: 'DM Mono', monospace;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: var(--bg); color: var(--text); font-family: var(--font-body); line-height: 1.7; }
+    .breadcrumb { max-width: 780px; margin: 0 auto; padding: 1.5rem 1.5rem 0; font-size: .82rem; color: var(--dim); }
+    .breadcrumb a { color: var(--dim); text-decoration: none; }
+    .breadcrumb a:hover { color: var(--accent); }
+    .breadcrumb span { margin: 0 .4rem; }
+    .article-hero { max-width: 780px; margin: 0 auto; padding: 2.5rem 1.5rem 2rem; }
+    .article-badge { display: inline-block; padding: .3rem .7rem; border-radius: 6px; background: rgba(215,255,63,.12); color: var(--accent); font: 500 .72rem var(--font-mono); letter-spacing: .08em; text-transform: uppercase; margin-bottom: 1.2rem; }
+    .article-hero h1 { font: 800 clamp(2rem, 5vw, 3rem)/1.1 var(--font-head); letter-spacing: -.04em; color: #fff; margin-bottom: 1rem; }
+    .article-hero h1 em { font-style: normal; color: var(--accent); }
+    .article-hero .article-tools { display: flex; gap: 1rem; flex-wrap: wrap; font-size: .82rem; color: var(--dim); font-family: var(--font-mono); border-top: 1px solid var(--border); padding-top: 1rem; margin-top: 1rem; }
+    .article-body { max-width: 780px; margin: 0 auto; padding: 2rem 1.5rem 3rem; }
+    .article-body h2 { font: 700 1.4rem var(--font-head); letter-spacing: -.03em; color: #fff; margin: 2.5rem 0 .8rem; padding-top: 2rem; border-top: 1px solid var(--border); }
+    .article-body h2:first-of-type { border-top: none; padding-top: 0; margin-top: 0; }
+    .article-body h3 { font: 600 1.1rem var(--font-head); color: var(--text); margin: 1.8rem 0 .6rem; }
+    .article-body p { color: var(--muted); margin-bottom: 1rem; font-size: .97rem; line-height: 1.75; }
+    .article-body strong { color: var(--text); font-weight: 600; }
+    .article-body ul { margin: .5rem 0 1.2rem 1.5rem; color: var(--muted); font-size: .97rem; }
+    .article-body li { margin-bottom: .5rem; line-height: 1.65; }
+    .prompt-block { background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--accent); border-radius: 10px; padding: 1.25rem 1.4rem; margin: 1.25rem 0 1.75rem; font: .86rem/1.7 var(--font-mono); color: var(--text); white-space: pre-wrap; overflow-x: auto; }
+    .prompt-label { display: block; font: 500 .68rem var(--font-mono); color: var(--accent); letter-spacing: .1em; text-transform: uppercase; margin-bottom: .75rem; }
+    .info-box { background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--accent); border-radius: 10px; padding: 1.1rem 1.25rem; margin: 1.25rem 0; }
+    .info-box p { margin: 0; font-size: .92rem; }
+    .cta-section { max-width: 780px; margin: 0 auto 4rem; padding: 2rem 1.5rem; }
+    .cta-box { background: var(--surface); border: 1px solid rgba(215,255,63,.25); border-radius: 16px; padding: 2rem; text-align: center; }
+    .cta-box h2 { font: 700 1.4rem var(--font-head); color: #fff; margin-bottom: .6rem; }
+    .cta-box p { color: var(--muted); font-size: .95rem; margin-bottom: 1.4rem; }
+    .cta-btn { display: inline-block; padding: .85rem 1.6rem; background: var(--accent); color: #11110f; font: 700 .9rem var(--font-body); border-radius: 10px; text-decoration: none; transition: opacity .2s; }
+    .cta-btn:hover { opacity: .88; }
+    footer { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .75rem; text-align: center; padding: 2rem 1.5rem; color: var(--dim); font-size: .85rem; border-top: 1px solid var(--border); background: var(--bg); }
+    footer div { display: flex; flex-wrap: wrap; justify-content: center; gap: 1.2rem; }
+    footer a { color: var(--dim); text-decoration: none; margin: 0; }
+    footer a:hover { color: var(--accent); }
+    footer p { margin: 0; font-size: .85rem; }
+  </style>
+  <script src="../script.js" defer></script>
+<link rel="stylesheet" href="../site-menu.css">
+</head>
+<body>
+<header>
+  <nav class="navbar">
+    <a href="../index.html" class="logo">Aprenda com AI</a>
+    <ul class="nav-links">
+      <li><a href="../index.html">Início</a></li>
+      <li><a href="../artigos.html">Artigos</a></li>
+      <li><a href="../biblioteca-de-prompts.html">Biblioteca de Prompts</a></li>
+      <li><a href="../calculadora-ia.html">Calculadora de Impacto</a></li>
+    </ul>
+  </nav>
+</header>
+
+<nav class="breadcrumb" aria-label="Navegação estrutural">
+  <a href="../index.html">Início</a><span>›</span>
+  <a href="../artigos.html">Artigos</a><span>›</span>
+  Prompts para Imagens e Design
+</nav>
+
+<section class="article-hero">
+  <span class="article-badge">Tutoriais</span>
+  <h1>Prompts para <em>imagens</em> e design com IA</h1>
+  <p class="article-tools">
+    <span>Ferramentas: Midjourney, DALL-E, Stable Diffusion, Canva IA</span>
+  </p>
+</section>
+
+<article class="article-body">
+
+  <h2>Por que seu prompt de imagem não está funcionando</h2>
+  <p>Você digita uma ideia, a IA gera algo completamente diferente do que imaginou, e você tenta de novo com palavras diferentes — e o resultado continua genérico. Esse ciclo frustrante acontece porque gerar imagens com IA exige uma lógica diferente da escrita comum.</p>
+  <p>Ferramentas como Midjourney, DALL-E e Stable Diffusion não interpretam intenção — elas interpretam descrição. Quanto mais específico e estruturado for o seu prompt, mais próximo o resultado vai chegar do que você quer. Este guia ensina a estrutura que funciona, com exemplos prontos para usar.</p>
+
+  <h2>A anatomia de um bom prompt de imagem</h2>
+  <p>Todo prompt de imagem eficiente tem os mesmos blocos de construção, mesmo que você não os use todos em todas as situações. Entender cada um muda completamente o controle que você tem sobre o resultado.</p>
+
+  <h3>Sujeito</h3>
+  <p>O que está na imagem. Seja específico: não "um cachorro" mas "um golden retriever com orelhas molhadas". Não "uma cidade" mas "uma cidade costeira com casas coloridas no pôr do sol". Detalhes no sujeito são onde a maioria das pessoas é vaga demais.</p>
+
+  <h3>Estilo visual</h3>
+  <p>O estilo define o como a imagem parece. Você pode referenciar movimentos artísticos (realismo, impressionismo, cyberpunk), estilos de mídia (fotografia, aquarela, escultura em argila, render 3D) ou artistas específicos (no estilo de Gregory Crewdson, no estilo de Monet). Sem essa instrução, a IA escolhe um padrão mediano.</p>
+
+  <h3>Iluminação e atmosfera</h3>
+  <p>Iluminação é um dos maiores diferenciais entre imagens comuns e imagens impressionantes. "Luz dourada de final de tarde", "iluminação dramática de estúdio com sombras fortes", "luz difusa de dia nublado" — cada um desses cria uma sensação completamente diferente.</p>
+
+  <h3>Composição e câmera</h3>
+  <p>Para imagens que precisam de uma perspectiva específica: "plano aberto", "close no rosto", "vista aérea", "foto grande angular", "lente 85mm com bokeh". Esses termos fotográficos funcionam muito bem nas ferramentas modernas.</p>
+
+  <h3>Qualidade e resolução</h3>
+  <p>Termos como "altamente detalhado", "8K", "qualidade profissional", "hiperealista" instruem a IA a priorizar detalhes. No Midjourney especificamente, parâmetros como <strong>--ar 16:9</strong> (proporção) e <strong>--q 2</strong> (qualidade) são adicionados no final do prompt.</p>
+
+  <h2>Prompts prontos por categoria</h2>
+
+  <h3>Conteúdo para redes sociais</h3>
+  <div class="prompt-block"><span class="prompt-label">Prompt</span>
+Flat lay de mesa de trabalho minimalista com notebook, caderno aberto, planta pequena e xícara de café. Paleta de cores neutra com tons de bege e branco. Luz natural lateral suave. Vista de cima. Estilo fotografia editorial de lifestyle. Alta qualidade, detalhado.</div>
+
+  <div class="prompt-block"><span class="prompt-label">Prompt</span>
+Retrato profissional de mulher jovem sorrindo, look casual elegante, fundo desfocado de escritório moderno com plantas. Iluminação de estúdio natural, sombras suaves. Lente 85mm, bokeh. Estilo fotografia corporativa contemporânea. Hiperealista.</div>
+
+  <h3>Ilustrações e arte conceitual</h3>
+  <div class="prompt-block"><span class="prompt-label">Prompt</span>
+Cidade futurista flutuante entre nuvens ao amanhecer, arquitetura orgânica com jardins verticais, pontes de luz conectando as torres, atmosfera esperançosa. Arte conceitual detalhada, paleta de cores azul e dourado, estilo sci-fi otimista. Render digital, altamente detalhado.</div>
+
+  <div class="prompt-block"><span class="prompt-label">Prompt</span>
+Ilustração de personagem: mago idoso com barba longa examinando um cristal brilhante em biblioteca antiga, luz mágica azul saindo do cristal iluminando o rosto. Estilo ilustração de livro fantasia, traços detalhados, aquarela digital com linhas bem definidas.</div>
+
+  <h3>Identidade visual e branding</h3>
+  <div class="prompt-block"><span class="prompt-label">Prompt</span>
+Logo minimalista para marca de café artesanal. Símbolo: grão de café estilizado combinado com folha. Estilo: linha limpa, moderno, sem degradê. Preto sobre fundo branco. Formato vetorial, simples o suficiente para funcionar pequeno.</div>
+
+  <div class="prompt-block"><span class="prompt-label">Prompt</span>
+Paleta de cores para marca de bem-estar e saúde mental. Tons: verde-sálvia, azul-petróleo, off-white creme, nude rosado. Apresentados como swatches organizados com os códigos hex. Estilo apresentação de identidade visual profissional.</div>
+
+  <h3>Imagens para produtos e e-commerce</h3>
+  <div class="prompt-block"><span class="prompt-label">Prompt</span>
+Frasco de perfume de vidro âmbar com tampa dourada sobre fundo de mármore branco com pétalas de rosa secas ao redor. Iluminação de produto profissional, reflexos controlados, sem sombras duras. Fotografia publicitária de luxo. Fundo branco limpo.</div>
+
+  <h2>Diferenças entre as principais ferramentas</h2>
+
+  <h3>Midjourney</h3>
+  <p>O melhor resultado geral para arte, ilustração e imagens com qualidade estética alta. Funciona no Discord e usa parâmetros adicionados no final do prompt com "--". Mais sensível ao estilo artístico — referenciar artistas funciona muito bem aqui.</p>
+
+  <h3>DALL-E (via ChatGPT)</h3>
+  <p>O mais fácil de usar — você descreve em linguagem natural e ele interpreta bem a intenção. Ótimo para iterar rapidamente e para quem não quer aprender sintaxe de prompts. Melhor para imagens realistas e conteúdo fotográfico do que para arte estilizada.</p>
+
+  <h3>Stable Diffusion</h3>
+  <p>Open source e altamente customizável. Requer mais configuração, mas oferece controle total — incluindo treinamento com suas próprias imagens e uso de modelos especializados para estilos específicos. A escolha de quem quer profundidade técnica.</p>
+
+  <h3>Canva IA</h3>
+  <p>Integrado direto no editor do Canva, ideal para quem já usa a ferramenta no dia a dia. Menos poderoso que as alternativas dedicadas, mas perfeito para gerar elementos visuais rapidamente dentro de um projeto de design já existente.</p>
+
+  <h2>Técnicas para refinar resultados</h2>
+
+  <h3>Prompts negativos</h3>
+  <p>A maioria das ferramentas aceita um "negative prompt" — uma lista do que você não quer na imagem. Use para eliminar elementos indesejados: "sem texto, sem marca d'água, sem distorção de mãos, sem fundo bagunçado". No Midjourney, o parâmetro é <strong>--no</strong> seguido do que quer evitar.</p>
+
+  <h3>Iteração progressiva</h3>
+  <p>Comece com um prompt simples, veja o que a IA interpreta, e adicione especificidade nas próximas tentativas. É mais eficiente do que tentar acertar tudo de uma vez na primeira geração. Guarde os prompts que funcionam para reusar e adaptar.</p>
+
+  <h3>Referência de estilo com seeds</h3>
+  <p>No Midjourney e Stable Diffusion, você pode usar uma imagem como referência de estilo. Isso permite "travar" a estética de uma imagem que funcionou e aplicar em novas composições. Útil para criar consistência visual em séries de imagens.</p>
+
+  <div class="info-box"><p><strong>Dica prática:</strong> Antes de criar do zero, experimente descrever uma imagem que você já gosta. Analise o que faz ela funcionar visualmente — iluminação, composição, paleta — e use esses elementos no seu prompt. É a forma mais rápida de calibrar seu vocabulário visual.</p></div>
+
+</article>
+
+<section class="cta-section">
+  <div class="cta-box">
+    <h2>Quer mais prompts prontos para design?</h2>
+    <p>A Biblioteca de Prompts tem modelos testados para imagens, posts, identidade visual e muito mais.</p>
+    <a href="../biblioteca-de-prompts.html" class="cta-btn">Ver a Biblioteca de Prompts</a>
+  </div>
+</section>
+
+<footer>
+  <div>
+    <a href="../sobre.html">Sobre</a>
+    <a href="../contato.html">Contato</a>
+    <a href="../politica-de-privacidade.html">Política de Privacidade</a>
+    <a href="../termos-de-uso.html">Termos de Uso</a>
+  </div>
+  <p>© 2026 Aprenda com AI</p>
+</footer>
+<script src="../cookie-consent.js" defer></script>
+<script src="../site-menu.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="Explore casos práticos de inteligência artificial em logística, vendas, manufatura e rotinas administrativas.">
+	<meta name="theme-color" content="#0d1110">
+	<title>Simulador de IA por Setor de Negócio | Aprenda com AI</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+	<script src="https://cdn.tailwindcss.com"></script>
+	<script>
+		tailwind.config = {
+			theme: {
+				extend: {
+					colors: {
+						void: '#0d1110',
+						surface: '#171c1a',
+						acid: '#d7ff3f',
+						signal: '#62d8f2',
+						chalk: '#f1f3eb',
+						quiet: '#9ca69d'
+					},
+					fontFamily: {
+						sans: ['Manrope', 'sans-serif'],
+						mono: ['DM Mono', 'monospace']
+					}
+				}
+			}
+		};
+	</script>
+	<link rel="stylesheet" href="style.css">
+	<style>
+		:root { color-scheme: dark; }
+		* { box-sizing: border-box; }
+		body { font-family: Manrope, sans-serif; }
+		.sector-grid { background-image: linear-gradient(rgba(255,255,255,.02) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.02) 1px, transparent 1px); background-size: 42px 42px; mask-image: linear-gradient(to bottom, black, transparent 88%); }
+		.sector-button[aria-pressed="true"] { border-color: rgba(98,216,242,.62); background: rgba(98,216,242,.09); color: #fff; box-shadow: inset 0 0 0 1px rgba(98,216,242,.12); }
+		.case-content { animation: case-enter .3s ease-out both; }
+		@keyframes case-enter { from { opacity: .4; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+		@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; } }
+	</style>
+  <link rel="icon" type="image/png" href="favicon.ico.png">
+<link rel="stylesheet" href="site-menu.css">
+</head>
+<body class="min-h-screen bg-void text-chalk antialiased">
+	<main class="relative min-h-screen overflow-hidden">
+		<div class="sector-grid pointer-events-none absolute inset-0" aria-hidden="true"></div>
+		<header>
+    <nav class="navbar">
+        <a href="index.html" class="logo">Aprenda com AI</a>
+        <ul class="nav-links">
+            <li><a href="index.html">Início</a></li>
+            <li><a href="comece-aqui.html">Comece Aqui</a></li>
+            <li><a href="artigos.html">Artigos</a></li>
+            <li><a href="biblioteca-de-prompts.html">Biblioteca de Prompts</a></li>
+            <li><a href="calculadora-ia.html">Calculadora de Impacto</a></li>
+            <li><a href="sobre.html">Sobre</a></li>
+            <li><a href="contato.html">Contato</a></li>
+        </ul>
+    </nav>
+</header>
+
+		<section class="relative z-10 mx-auto max-w-7xl px-5 pb-16 pt-10 sm:px-9 sm:pb-20 sm:pt-14 lg:px-14 lg:pt-16">
+			<div class="max-w-3xl">
+				<p class="mb-4 flex items-center gap-3 font-mono text-[10px] uppercase tracking-[.17em] text-signal"><span class="h-px w-8 bg-signal"></span>Simulador de IA por Setor de Negócio</p>
+				<h1 class="text-4xl font-extrabold leading-[1.05] tracking-tight text-white sm:text-5xl lg:text-6xl">Encontre um ponto de partida para aplicar IA.</h1>
+				<p class="mt-5 max-w-2xl text-sm leading-7 text-quiet sm:text-base sm:leading-8">Escolha uma área e veja um cenário prático: o gargalo tradicional, uma forma de usar IA e os passos iniciais para testar a ideia na sua operação.</p>
+			</div>
+
+			<section class="mt-9" aria-label="Selecionar setor do negócio">
+				<div class="grid grid-cols-1 gap-2 sm:grid-cols-2 xl:grid-cols-4" role="group" aria-label="Setores de negócio">
+					<button class="sector-button flex min-h-16 items-center gap-3 border border-white/10 bg-surface/70 px-4 py-3 text-left text-sm font-semibold text-quiet transition hover:border-signal/40 hover:text-white focus:outline-none focus:ring-2 focus:ring-signal" type="button" data-sector="logistics" aria-pressed="true"><span class="font-mono text-[10px] text-signal">01</span>Logística e Estoque</button>
+					<button class="sector-button flex min-h-16 items-center gap-3 border border-white/10 bg-surface/70 px-4 py-3 text-left text-sm font-semibold text-quiet transition hover:border-signal/40 hover:text-white focus:outline-none focus:ring-2 focus:ring-signal" type="button" data-sector="sales" aria-pressed="false"><span class="font-mono text-[10px] text-signal">02</span>Vendas e Atendimento</button>
+					<button class="sector-button flex min-h-16 items-center gap-3 border border-white/10 bg-surface/70 px-4 py-3 text-left text-sm font-semibold text-quiet transition hover:border-signal/40 hover:text-white focus:outline-none focus:ring-2 focus:ring-signal" type="button" data-sector="manufacturing" aria-pressed="false"><span class="font-mono text-[10px] text-signal">03</span>Manufatura e Produção</button>
+					<button class="sector-button flex min-h-16 items-center gap-3 border border-white/10 bg-surface/70 px-4 py-3 text-left text-sm font-semibold text-quiet transition hover:border-signal/40 hover:text-white focus:outline-none focus:ring-2 focus:ring-signal" type="button" data-sector="admin" aria-pressed="false"><span class="font-mono text-[10px] text-signal">04</span>Administrativo</button>
+				</div>
+			</section>
+
+			<section id="case-panel" class="case-content mt-5 border border-white/10 bg-surface/80 p-5 sm:p-7 lg:p-9" aria-live="polite" aria-atomic="true" aria-labelledby="case-title">
+				<div class="flex flex-col justify-between gap-4 border-b border-white/10 pb-5 sm:flex-row sm:items-end">
+					<div><p class="font-mono text-[9px] uppercase tracking-[.16em] text-signal">Caso prático selecionado</p><h2 id="case-title" class="mt-2 text-2xl font-bold leading-tight text-white sm:text-3xl">Roteirização e reposição orientadas por dados</h2></div>
+					<span class="w-fit border border-white/10 px-3 py-1.5 font-mono text-[9px] uppercase tracking-wider text-quiet">Logística e Estoque</span>
+				</div>
+
+				<div class="mt-6 grid gap-3 lg:grid-cols-2">
+					<article class="border border-rose-300/20 bg-rose-400/[.055] p-5 sm:p-6">
+						<p class="flex items-center gap-2 font-mono text-[9px] uppercase tracking-[.16em] text-rose-200"><span class="h-2 w-2 bg-rose-300"></span>Problema Tradicional</p>
+						<h3 id="problem-title" class="mt-4 text-lg font-bold text-white">Decisões reativas sobre estoque e entregas</h3>
+						<p id="problem-copy" class="mt-3 text-sm leading-7 text-quiet">A equipe cruza planilhas manualmente para prever reposição e organizar rotas. Mudanças de demanda, atrasos e dados desatualizados podem gerar retrabalho, falta de itens ou deslocamentos pouco eficientes.</p>
+					</article>
+
+					<article class="border border-emerald-300/20 bg-emerald-400/[.055] p-5 sm:p-6">
+						<p class="flex items-center gap-2 font-mono text-[9px] uppercase tracking-[.16em] text-emerald-200"><span class="h-2 w-2 bg-emerald-300"></span>Solução com IA</p>
+						<h3 id="solution-title" class="mt-4 text-lg font-bold text-white">Priorize reposição e sugira rotas</h3>
+						<p id="solution-copy" class="mt-3 text-sm leading-7 text-quiet">Um modelo pode combinar histórico de pedidos, níveis de estoque, prazos e restrições de entrega para sinalizar itens que merecem atenção e sugerir sequências de rota. A equipe valida exceções e aprova as decisões antes de executar.</p>
+					</article>
+				</div>
+
+				<div class="mt-5 grid gap-3 border border-white/[.08] bg-void/65 p-5 sm:grid-cols-[1fr_auto] sm:items-center sm:p-6">
+					<div><p class="font-mono text-[9px] uppercase tracking-[.16em] text-signal">Primeiro experimento</p><p id="first-step" class="mt-2 max-w-3xl text-sm leading-6 text-quiet">Comece com uma planilha limpa de pedidos, estoque e prazos. Compare a recomendação com o processo atual em um grupo pequeno de itens; registre divergências e mantenha aprovação humana.</p></div>
+					<a id="case-cta" class="inline-flex min-h-12 items-center justify-center gap-3 border border-acid/65 px-5 py-3 text-center text-xs font-extrabold text-acid transition hover:bg-acid hover:text-void focus:outline-none focus:ring-2 focus:ring-acid" href="artigos/automacao-atendimento-cliente-ia.html">Aprender o passo a passo <span aria-hidden="true">↗</span></a>
+				</div>
+				<p class="mt-4 text-[10px] leading-5 text-quiet">Exemplo educativo: valide a qualidade dos dados, as regras do processo e o impacto operacional antes de automatizar decisões.</p>
+			</section>
+		</section>
+
+		<footer class="relative z-10 flex items-center justify-between border-t border-white/[.07] px-5 py-5 font-mono text-[9px] text-quiet sm:px-9 lg:px-14"><span>© 2026 Aprenda com AI</span><span class="flex gap-4"><a href="politica-de-privacidade.html" class="transition hover:text-acid">Privacidade</a><a href="termos-de-uso.html" class="transition hover:text-acid">Termos</a></span><a href="index.html" class="transition hover:text-acid">Voltar ao site <span aria-hidden="true">↗</span></a></footer>
+	</main>
+
+	<script>
+		const casesBySector = {
+			logistics: {
+				label: 'Logística e Estoque',
+				title: 'Roteirização e reposição orientadas por dados',
+				problemTitle: 'Decisões reativas sobre estoque e entregas',
+				problem: 'A equipe cruza planilhas manualmente para prever reposição e organizar rotas. Mudanças de demanda, atrasos e dados desatualizados podem gerar retrabalho, falta de itens ou deslocamentos pouco eficientes.',
+				solutionTitle: 'Priorize reposição e sugira rotas',
+				solution: 'Um modelo pode combinar histórico de pedidos, níveis de estoque, prazos e restrições de entrega para sinalizar itens que merecem atenção e sugerir sequências de rota. A equipe valida exceções e aprova as decisões antes de executar.',
+				firstStep: 'Comece com uma planilha limpa de pedidos, estoque e prazos. Compare a recomendação com o processo atual em um grupo pequeno de itens; registre divergências e mantenha aprovação humana.',
+				href: 'artigos/automacao-atendimento-cliente-ia.html'
+			},
+			sales: {
+				label: 'Vendas e Atendimento',
+				title: 'Triagem de solicitações e respostas assistidas',
+				problemTitle: 'Mensagens acumuladas e contexto espalhado',
+				problem: 'Pedidos chegam por canais diferentes e a equipe precisa identificar assunto, urgência e histórico antes de responder. A triagem manual pode atrasar retornos e tornar o atendimento inconsistente.',
+				solutionTitle: 'Classifique, resuma e prepare rascunhos',
+				solution: 'IA pode categorizar mensagens, resumir o contexto disponível e sugerir uma resposta baseada em informações aprovadas da empresa. Casos sensíveis, exceções e decisões comerciais continuam sob revisão da equipe.',
+				firstStep: 'Separe exemplos anonimizados de perguntas frequentes, defina categorias e escreva respostas oficiais. Teste a classificação em modo de revisão antes de conectar qualquer envio automático.',
+				href: 'artigos/respostas-automaticas-ia.html'
+			},
+			manufacturing: {
+				label: 'Manufatura e Produção',
+				title: 'Detecção antecipada de desvios na produção',
+				problemTitle: 'Problemas percebidos somente após a inspeção',
+				problem: 'Registros de paradas, inspeções e manutenção ficam em sistemas separados. Padrões que antecedem falhas ou retrabalho podem passar despercebidos quando a análise depende de conferências manuais ocasionais.',
+				solutionTitle: 'Sinalize padrões para revisão técnica',
+				solution: 'Com dados consistentes de sensores e ordens de produção, modelos analíticos podem apontar combinações fora do padrão e ajudar a priorizar inspeções. A equipe técnica confirma a causa antes de alterar parâmetros ou interromper a linha.',
+				firstStep: 'Escolha uma máquina ou etapa, organize registros com horário, condição e ocorrência e avalie se os dados permitem comparar situações semelhantes. Faça um piloto somente de alerta, sem controle automático do equipamento.',
+				href: 'playground-prompts.html'
+			},
+			admin: {
+				label: 'Administrativo',
+				title: 'Triagem automática de documentos e planilhas',
+				problemTitle: 'Informações repetidas conferidas linha por linha',
+				problem: 'Faturas, solicitações e planilhas chegam em formatos variados. Pessoas copiam campos, procuram inconsistências e encaminham cada item manualmente, tornando difícil acompanhar pendências e exceções.',
+				solutionTitle: 'Extraia campos e destaque exceções',
+				solution: 'Ferramentas de IA podem classificar documentos, extrair campos definidos e comparar valores com regras explícitas para gerar uma fila de revisão. A aprovação humana é mantida para dados divergentes, incompletos ou de maior risco.',
+				firstStep: 'Mapeie um tipo de documento recorrente e defina os campos necessários e as regras de validação. Teste a extração em cópias sem dados sensíveis e compare cada resultado com a conferência manual.',
+				href: 'artigos/prompts-produtividade.html'
+			}
+		};
+
+		const sectorButtons = [...document.querySelectorAll('.sector-button')];
+		const casePanel = document.querySelector('#case-panel');
+		const setText = (selector, value) => { document.querySelector(selector).textContent = value; };
+
+		const selectSector = (sectorKey) => {
+			const sectorCase = casesBySector[sectorKey];
+			setText('#case-title', sectorCase.title);
+			setText('#problem-title', sectorCase.problemTitle);
+			setText('#problem-copy', sectorCase.problem);
+			setText('#solution-title', sectorCase.solutionTitle);
+			setText('#solution-copy', sectorCase.solution);
+			setText('#first-step', sectorCase.firstStep);
+			document.querySelector('#case-panel > div:first-of-type > span').textContent = sectorCase.label;
+			document.querySelector('#case-cta').href = sectorCase.href;
+
+			sectorButtons.forEach((button) => button.setAttribute('aria-pressed', String(button.dataset.sector === sectorKey)));
+			casePanel.classList.remove('case-content');
+			requestAnimationFrame(() => casePanel.classList.add('case-content'));
+		};
+
+		sectorButtons.forEach((button) => button.addEventListener('click', () => selectSector(button.dataset.sector)));
+	</script>
+<script src="cookie-consent.js" defer></script>
+<script src="site-menu.js" defer></script>
+</body>
+</html>

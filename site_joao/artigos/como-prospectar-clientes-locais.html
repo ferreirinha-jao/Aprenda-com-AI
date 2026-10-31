@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Como prospectar clientes locais para automações — Aprenda com AI</title>
+  <meta name="description" content="Aprenda a encontrar e abordar pequenas empresas locais que precisam de automação. Scripts de mensagem, como qualificar leads e fechar os primeiros contratos." />
+  <meta property="og:title" content="Como prospectar clientes locais para automações — Aprenda com AI" />
+  <meta property="og:description" content="Aprenda a encontrar e abordar pequenas empresas locais que precisam de automação. Scripts de mensagem, qualificação de leads e primeiros contratos." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://aprendacomai.com/artigos/como-prospectar-clientes-locais.html" />
+  <link rel="canonical" href="https://aprendacomai.com/artigos/como-prospectar-clientes-locais.html" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Manrope:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../style.css" />
+  <link rel="stylesheet" href="../final-hero.css" />
+
+  <style>
+    :root {
+      --bg:        #0b0c0e;
+      --surface:   #13151a;
+      --border:    #1e2028;
+      --accent:    #d7ff3f;
+      --accent2:   #a8cc28;
+      --text:      #e5e7eb;
+      --muted:     #c7c9c5;
+      --dim:       #6b7280;
+      --font-head: 'Space Grotesk', sans-serif;
+      --font-body: 'Manrope', sans-serif;
+      --font-mono: 'DM Mono', monospace;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: 1rem;
+      line-height: 1.7;
+    }
+
+    /* NAV */
+    .nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(11,12,14,.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: .85rem 1.5rem;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo { font-family: var(--font-head); font-weight: 700; font-size: 1.1rem; color: var(--accent); text-decoration: none; }
+    .nav-links { display: flex; gap: 1.5rem; }
+    .nav-links a { color: var(--muted); text-decoration: none; font-size: .9rem; transition: color .2s; }
+    .nav-links a:hover { color: var(--accent); }
+
+    /* BREADCRUMB */
+    .breadcrumb {
+      max-width: 780px; margin: 0 auto; padding: 1.2rem 1.5rem .4rem;
+      display: flex; align-items: center; gap: .5rem;
+      font-size: .82rem; color: var(--dim); flex-wrap: wrap;
+    }
+    .breadcrumb a { color: var(--dim); text-decoration: none; }
+    .breadcrumb a:hover { color: var(--accent); }
+    .breadcrumb span { color: var(--dim); }
+
+    /* HERO */
+    .article-hero {
+      max-width: 780px; margin: 0 auto;
+      padding: 2.5rem 1.5rem 2rem;
+    }
+    .article-badge {
+      display: inline-block;
+      font-family: var(--font-mono); font-size: .75rem; font-weight: 500;
+      color: var(--bg); background: var(--accent);
+      padding: .25rem .75rem; border-radius: 999px;
+      margin-bottom: 1.1rem; letter-spacing: .04em; text-transform: uppercase;
+    }
+    .article-hero h1 {
+      font-family: var(--font-head); font-size: clamp(1.9rem, 4vw, 2.7rem);
+      font-weight: 700; line-height: 1.2; color: #fff;
+      margin-bottom: 1rem;
+    }
+    .article-hero h1 em { font-style: normal; color: var(--accent); }
+    .article-meta {
+      display: flex; flex-wrap: wrap; gap: .75rem;
+      font-size: .82rem; color: var(--dim);
+      padding-top: 1rem; border-top: 1px solid var(--border);
+    }
+
+    /* BODY */
+    .article-body {
+      max-width: 780px; margin: 0 auto;
+      padding: 2rem 1.5rem 4rem;
+    }
+    .article-body h2 {
+      font-family: var(--font-head); font-size: 1.45rem; font-weight: 700;
+      color: #fff; margin: 2.8rem 0 1rem;
+    }
+    .article-body h3 {
+      font-family: var(--font-head); font-size: 1.1rem; font-weight: 600;
+      color: var(--text); margin: 2rem 0 .6rem;
+    }
+    .article-body p { color: var(--muted); margin-bottom: 1.1rem; }
+    .article-body ul, .article-body ol {
+      color: var(--muted); padding-left: 1.4rem; margin-bottom: 1.1rem;
+    }
+    .article-body li { margin-bottom: .4rem; }
+    .article-body strong { color: var(--text); font-weight: 600; }
+    .article-body a { color: var(--accent); text-decoration: none; }
+    .article-body a:hover { text-decoration: underline; }
+
+    /* CALLOUT */
+    .callout {
+      border-left: 3px solid var(--accent);
+      background: var(--surface);
+      border-radius: 0 8px 8px 0;
+      padding: 1rem 1.25rem;
+      margin: 1.5rem 0;
+    }
+    .callout.tip  { border-color: var(--accent); }
+    .callout.warn { border-color: #f59e0b; }
+    .callout.info { border-color: #60a5fa; }
+    .callout-title {
+      font-family: var(--font-mono); font-size: .78rem; font-weight: 500;
+      text-transform: uppercase; letter-spacing: .06em;
+      margin-bottom: .4rem;
+    }
+    .callout.tip  .callout-title { color: var(--accent); }
+    .callout.warn .callout-title { color: #f59e0b; }
+    .callout.info .callout-title { color: #60a5fa; }
+    .callout p { margin: 0; font-size: .93rem; }
+
+    /* STEP CARDS */
+    .steps { display: flex; flex-direction: column; gap: 1rem; margin: 1.5rem 0; }
+    .step-card {
+      display: flex; gap: 1.1rem;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 10px; padding: 1.1rem 1.2rem;
+    }
+    .step-num {
+      flex-shrink: 0; width: 32px; height: 32px;
+      border-radius: 50%; background: var(--accent);
+      color: var(--bg); font-family: var(--font-head);
+      font-weight: 700; font-size: .9rem;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .step-content h4 {
+      font-family: var(--font-head); font-weight: 600; color: #fff;
+      font-size: 1rem; margin-bottom: .3rem;
+    }
+    .step-content p { margin: 0; font-size: .9rem; color: var(--muted); }
+
+    /* FEATURE GRID */
+    .feature-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: .85rem; margin: 1.5rem 0;
+    }
+    .feature-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 10px; padding: 1.1rem 1.2rem;
+    }
+    .feature-card h4 {
+      font-family: var(--font-head); font-weight: 600; color: #fff;
+      font-size: .95rem; margin-bottom: .4rem;
+    }
+    .feature-card p { margin: 0; font-size: .88rem; color: var(--muted); }
+
+    /* PROMPT BOX */
+    .prompt-box {
+      background: #0d0f13; border: 1px solid var(--border);
+      border-radius: 10px; margin: 1.5rem 0; overflow: hidden;
+    }
+    .prompt-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: .65rem 1rem;
+      background: var(--surface); border-bottom: 1px solid var(--border);
+    }
+    .prompt-label { font-family: var(--font-mono); font-size: .75rem; color: var(--dim); }
+    .copy-btn {
+      font-family: var(--font-mono); font-size: .72rem; color: var(--accent);
+      background: transparent; border: 1px solid rgba(215,255,63,.3);
+      border-radius: 5px; padding: .2rem .6rem; cursor: pointer; transition: background .2s;
+    }
+    .copy-btn:hover { background: rgba(215,255,63,.1); }
+    .prompt-body {
+      padding: 1.1rem 1.2rem;
+      font-family: var(--font-mono); font-size: .83rem;
+      color: var(--muted); line-height: 1.7; white-space: pre-wrap;
+    }
+
+    /* SEGMENT CARDS */
+    .segment-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: .85rem; margin: 1.5rem 0;
+    }
+    .segment-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 10px; padding: 1.1rem 1.25rem;
+    }
+    .segment-card .seg-label {
+      font-family: var(--font-mono); font-size: .72rem;
+      color: var(--accent); text-transform: uppercase; letter-spacing: .05em;
+      margin-bottom: .5rem; display: block;
+    }
+    .segment-card h4 {
+      font-family: var(--font-head); font-weight: 700; color: #fff;
+      font-size: .95rem; margin-bottom: .35rem;
+    }
+    .segment-card p { margin: 0; font-size: .85rem; color: var(--muted); }
+
+    /* SCRIPT BOX */
+    .script-box {
+      background: var(--surface); border: 1px solid var(--border);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 10px 10px 0; padding: 1.3rem 1.4rem; margin: 1.5rem 0;
+    }
+    .script-box .script-label {
+      font-family: var(--font-mono); font-size: .72rem;
+      color: var(--accent); text-transform: uppercase; letter-spacing: .05em;
+      margin-bottom: .75rem; display: block;
+    }
+    .script-box p {
+      font-size: .9rem; color: var(--muted); margin-bottom: .6rem; font-style: italic;
+    }
+    .script-box p:last-child { margin-bottom: 0; }
+    .script-box strong { color: var(--text); font-style: normal; }
+
+    /* COMPARISON TABLE */
+    .table-wrap { overflow-x: auto; margin: 1.5rem 0; border-radius: 10px; border: 1px solid var(--border); }
+    table { width: 100%; border-collapse: collapse; }
+    thead th {
+      background: var(--surface); font-family: var(--font-head);
+      font-size: .85rem; font-weight: 600; color: var(--accent);
+      padding: .85rem 1rem; text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+    tbody tr { border-bottom: 1px solid var(--border); }
+    tbody tr:last-child { border-bottom: none; }
+    tbody tr:hover { background: rgba(255,255,255,.02); }
+    tbody td { padding: .8rem 1rem; font-size: .88rem; color: var(--muted); }
+    tbody td:first-child { color: var(--text); font-weight: 500; }
+    .td-good { color: #74d066; font-weight: 600; }
+    .td-mid  { color: #f59e0b; font-weight: 600; }
+    .td-bad  { color: #f87171; font-weight: 600; }
+
+    /* ERRO GRID */
+    .erro-grid { display: flex; flex-direction: column; gap: .85rem; margin: 1.5rem 0; }
+    .erro-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-left: 3px solid #f87171; border-radius: 0 8px 8px 0;
+      padding: 1rem 1.2rem;
+    }
+    .erro-card h4 {
+      font-family: var(--font-head); font-weight: 600; color: #f87171;
+      font-size: .95rem; margin-bottom: .3rem;
+    }
+    .erro-card p { margin: 0; font-size: .88rem; color: var(--muted); }
+
+    /* HIGHLIGHT BOX */
+    .highlight-box {
+      border: 1px solid rgba(215,255,63,.25);
+      background: rgba(215,255,63,.05);
+      border-radius: 10px; padding: 1.4rem 1.5rem; margin: 1.8rem 0;
+    }
+    .highlight-box h4 {
+      font-family: var(--font-head); font-size: 1rem; font-weight: 700;
+      color: var(--accent); margin-bottom: .7rem;
+    }
+    .highlight-box p { color: var(--muted); font-size: .92rem; margin-bottom: .5rem; }
+    .highlight-box p:last-child { margin-bottom: 0; }
+
+    /* CTA */
+    .cta-section {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 14px; padding: 2.2rem 2rem;
+      text-align: center;
+    }
+    .cta-section h2 {
+      font-family: var(--font-head); font-size: 1.5rem; font-weight: 700;
+      color: #fff; margin-bottom: .6rem;
+    }
+    .cta-section p { color: var(--muted); font-size: .95rem; margin-bottom: 1.4rem; }
+    .cta-btn {
+      display: inline-block; background: var(--accent); color: var(--bg);
+      font-family: var(--font-head); font-weight: 700; font-size: .95rem;
+      padding: .8rem 2rem; border-radius: 8px; text-decoration: none;
+      transition: background .2s, transform .15s;
+    }
+    .cta-btn:hover { background: var(--accent2); transform: translateY(-2px); }
+
+    /* FOOTER */
+    .footer {
+      border-top: 1px solid var(--border);
+      text-align: center; padding: 2rem 1.5rem;
+      font-size: .82rem; color: var(--dim); margin-top: 4rem;
+    }
+    .footer a { color: var(--dim); text-decoration: none; }
+    .footer a:hover { color: var(--accent); }
+
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+      .article-hero h1 { font-size: 1.65rem; }
+      .step-card { flex-direction: column; gap: .6rem; }
+    }
+  </style>
+  <link rel="icon" type="image/png" href="../favicon.ico.png">
+<link rel="stylesheet" href="../site-menu.css">
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="../index.html" class="nav-logo">Aprenda com AI</a>
+  <div class="nav-links">
+    <a href="../index.html">Início</a>
+    <a href="../comece-aqui.html">Comece Aqui</a>
+    <a href="../artigos.html">Artigos</a>
+    <a href="../biblioteca-de-prompts.html">Biblioteca de Prompts</a>
+    <a href="../calculadora-ia.html">Calculadora de Impacto</a>
+    <a href="../sobre.html">Sobre</a>
+    <a href="../contato.html">Contato</a>
+  </div>
+</nav>
+
+  <!-- BREADCRUMB -->
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="../index.html">Inicio</a>
+    <span>/</span>
+    <a href="../artigos.html">Artigos</a>
+    <span>/</span>
+    <span>Como prospectar clientes locais</span>
+  </nav>
+
+  <!-- HERO -->
+  <header class="article-hero">
+    <span class="article-badge">Negócios</span>
+    <h1>Como <em>prospectar clientes locais</em> para o seu serviço de automação</h1>
+    <div class="article-meta">
+      <span>Ferramentas: ChatGPT, Google Maps, WhatsApp</span>
+    </div>
+  </header>
+
+  <!-- BODY -->
+  <main class="article-body">
+
+    <p>Pequenas empresas locais são o mercado mais acessível para quem vende automações. Elas têm dores claras, processos manuais visíveis e, diferente de grandes corporações, o dono decide rápido. O problema é que a maioria das pessoas não sabe como chegar até elas de forma natural e sem parecer spam.</p>
+
+    <p>Neste artigo você vai ver como identificar os melhores segmentos, como abordar sem ser ignorado e como usar IA para criar mensagens personalizadas em escala.</p>
+
+    <h2>Por que clientes locais são o melhor começo</h2>
+
+    <div class="feature-grid">
+      <div class="feature-card">
+        <h4>Decisão mais rápida</h4>
+        <p>O dono da clínica é o mesmo que responde o WhatsApp. Sem comitê, sem processo de compras. Uma conversa boa pode virar contrato na semana.</p>
+      </div>
+      <div class="feature-card">
+        <h4>Dores óbvias e visíveis</h4>
+        <p>É fácil imaginar o que um salão de beleza ou uma oficina mecânica faz de forma manual. Você chega com a solução antes mesmo de perguntar.</p>
+      </div>
+      <div class="feature-card">
+        <h4>Concorrência muito menor</h4>
+        <p>Grandes agências de automação não ligam para uma clínica com 3 funcionários. Você tem o campo praticamente livre.</p>
+      </div>
+      <div class="feature-card">
+        <h4>Relacionamento de longo prazo</h4>
+        <p>Um cliente local satisfeito vira recorrente, indica amigos e ainda te dá depoimento. O valor de cada contrato vai muito além do projeto inicial.</p>
+      </div>
+    </div>
+
+    <h2>Segmentos com maior potencial</h2>
+
+    <p>Não tente vender para todo mundo. Escolha um ou dois segmentos para começar, aprenda as dores específicas e construa cases naquele nicho.</p>
+
+    <div class="segment-grid">
+      <div class="segment-card">
+        <span class="seg-label">Alto potencial</span>
+        <h4>Clínicas e consultórios</h4>
+        <p>Agendamentos, confirmação de consulta, lembrete de retorno, cobrança de particulares. Dores claras, ticket bom.</p>
+      </div>
+      <div class="segment-card">
+        <span class="seg-label">Alto potencial</span>
+        <h4>Imobiliárias</h4>
+        <p>Follow-up de leads, qualificação automática, envio de imóveis por perfil. Alta geração de leads, processo manual ainda.</p>
+      </div>
+      <div class="segment-card">
+        <span class="seg-label">Alto potencial</span>
+        <h4>Academias e estúdios</h4>
+        <p>Renovação de mensalidade, lembrete de aula, reativação de aluno inativo. Base de contatos grande para trabalhar.</p>
+      </div>
+      <div class="segment-card">
+        <span class="seg-label">Alto potencial</span>
+        <h4>Contabilidades</h4>
+        <p>Cobrança de documentos, lembrete de obrigações fiscais, onboarding de novos clientes. Processo muito padronizado.</p>
+      </div>
+      <div class="segment-card">
+        <span class="seg-label">Bom potencial</span>
+        <h4>Restaurantes e delivery</h4>
+        <p>Gestão de pedidos, resposta a avaliações, programa de fidelidade automatizado. Muito volume, pouca automação.</p>
+      </div>
+      <div class="segment-card">
+        <span class="seg-label">Bom potencial</span>
+        <h4>Pet shops e veterinários</h4>
+        <p>Lembrete de vacina, agendamento de banho e tosa, follow-up pós-consulta. Relacionamento emocional facilita a venda.</p>
+      </div>
+    </div>
+
+    <h2>Como encontrar os prospects certos</h2>
+
+    <p>Antes de mandar qualquer mensagem, você precisa de uma lista de empresas para abordar. Aqui estão os melhores métodos.</p>
+
+    <div class="steps">
+      <div class="step-card">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <h4>Google Maps + segmento</h4>
+          <p>Pesquise "[segmento] + [sua cidade]" no Google Maps. Você vai ter nome, telefone, site e às vezes WhatsApp de dezenas de empresas em minutos. Exporte para uma planilha.</p>
+        </div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <h4>Instagram local</h4>
+          <p>Busque por hashtags locais ou localizações no Instagram. Empresas que postam regularmente já têm presença digital — são mais abertas a soluções tecnológicas.</p>
+        </div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <h4>LinkedIn de donos de negócio</h4>
+          <p>Filtre por cargo (dono, sócio, diretor) e cidade. Donos de pequenas empresas locais são muito mais acessíveis no LinkedIn do que executivos de grandes corporações.</p>
+        </div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">4</div>
+        <div class="step-content">
+          <h4>Indicações da sua rede</h4>
+          <p>Diga para 10 pessoas próximas o que você faz e para quem. Indicação quente fecha muito mais fácil do que abordagem fria. Não subestime esse canal.</p>
+        </div>
+      </div>
+    </div>
+
+    <h2>A abordagem que funciona no WhatsApp</h2>
+
+    <p>A maioria das mensagens de prospecção falha porque fala sobre a ferramenta, não sobre o problema do cliente. A fórmula que funciona é: <strong>reconhecer o contexto + nomear a dor + fazer uma pergunta simples</strong>.</p>
+
+    <div class="script-box">
+      <span class="script-label">Modelo de primeira mensagem — WhatsApp</span>
+      <p><strong>Oi [Nome], tudo bem?</strong></p>
+      <p>Vi que vocês têm uma [clínica/academia/imobiliária] em [cidade]. Trabalho ajudando empresas do segmento a automatizar [agendamentos / follow-up de leads / cobranças] — coisas que costumam tomar bastante tempo da equipe no dia a dia.</p>
+      <p>Faz sentido te mostrar como funciona numa conversa rápida de 15 minutos?</p>
+    </div>
+
+    <div class="callout info">
+      <div class="callout-title">Por que esse modelo funciona</div>
+      <p>Você mostrou que pesquisou sobre a empresa deles (contexto), nomeou uma dor específica do segmento (não "automação em geral") e fez uma pergunta com baixo comprometimento. Não pediu hora de reunião longa, não mandou apresentação, não falou de preço.</p>
+    </div>
+
+    <h2>Use IA para personalizar em escala</h2>
+
+    <p>Com uma lista de 30 prospects, você não precisa escrever cada mensagem do zero. Use o ChatGPT para gerar versões personalizadas a partir de um template.</p>
+
+    <div class="prompt-box">
+      <div class="prompt-header">
+        <span class="prompt-label">Prompt — Gerar mensagem de prospecção personalizada</span>
+        <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.prompt-box').querySelector('.prompt-body').textContent.trim())">Copiar</button>
+      </div>
+      <div class="prompt-body">Preciso de uma mensagem de prospecção para enviar via WhatsApp para donos de pequenas empresas.
+
+Informações do prospect:
+- Nome: [nome do dono]
+- Tipo de negócio: [ex: clínica de estética, academia, imobiliária]
+- Cidade: [cidade]
+- Observação: [qualquer detalhe que você encontrou: post recente, produto especial, evento, etc.]
+
+Meu serviço: automações que eliminam tarefas manuais repetitivas usando ferramentas como n8n, Make e WhatsApp Business API.
+
+Escreva uma mensagem de prospecção com:
+- Tom natural, como quem conhece o segmento
+- Referência a uma dor específica desse tipo de negócio
+- Uma pergunta de baixo comprometimento no final
+- Máximo de 5 linhas
+- Sem jargão técnico, sem falar de ferramentas</div>
+    </div>
+
+    <div class="prompt-box">
+      <div class="prompt-header">
+        <span class="prompt-label">Prompt — Gerar lista de dores por segmento</span>
+        <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.prompt-box').querySelector('.prompt-body').textContent.trim())">Copiar</button>
+      </div>
+      <div class="prompt-body">Quero prospectar [segmento — ex: clínicas odontológicas] com serviços de automação.
+
+Me dê:
+1. As 5 maiores dores operacionais desse segmento (tarefas manuais, gargalos, erros recorrentes)
+2. Para cada dor, uma automação possível com resultado esperado
+3. A linguagem que o dono desse negócio usa para descrever esses problemas (não linguagem técnica)
+4. Dois gatilhos de entrada na conversa — frases que abrem bem uma abordagem fria
+
+Escreva na perspectiva de quem vende automação para esse segmento.</div>
+    </div>
+
+    <h2>Como qualificar o lead antes de entrar em reunião</h2>
+
+    <p>Não agende reunião com todo mundo que responde. Algumas perguntas rápidas ajudam a filtrar quem tem real potencial de fechar.</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Pergunta</th>
+            <th>O que revela</th>
+            <th>Sinal positivo</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>"Vocês já usam alguma ferramenta de gestão hoje?"</td>
+            <td>Maturidade digital da empresa</td>
+            <td class="td-good">Usam algo, mas ainda manual em partes</td>
+          </tr>
+          <tr>
+            <td>"Qual parte do processo consome mais tempo da equipe?"</td>
+            <td>Dor principal e urgência</td>
+            <td class="td-good">Nomeia uma tarefa específica com clareza</td>
+          </tr>
+          <tr>
+            <td>"Vocês têm quanto de equipe envolvida nisso?"</td>
+            <td>Escala do problema e ticket possível</td>
+            <td class="td-good">2 ou mais pessoas no processo manual</td>
+          </tr>
+          <tr>
+            <td>"Já tentaram resolver isso antes de alguma forma?"</td>
+            <td>Consciência do problema e histórico</td>
+            <td class="td-good">Tentaram, mas não resolveu — já investiu antes</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>O que fazer na primeira reunião</h2>
+
+    <div class="steps">
+      <div class="step-card">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <h4>Faça perguntas, não apresentacao</h4>
+          <p>Os primeiros 10 minutos são para entender o negócio deles, não para mostrar o que você faz. Quanto mais eles falam, mais você entende o que vender.</p>
+        </div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <h4>Calcule o custo da dor</h4>
+          <p>"Você disse que gasta 3 horas por semana nisso. São 12 horas por mês. Se você cobrar R$ 80 por hora do seu tempo, isso é quase R$ 1.000 por mês em trabalho manual." Isso justifica o investimento na automação.</p>
+        </div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <h4>Mostre um exemplo concreto</h4>
+          <p>Se tiver um caso de portfólio no mesmo segmento, mostre. Se não tiver, descreva como seria a automação para o problema específico deles. Torne concreto.</p>
+        </div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">4</div>
+        <div class="step-content">
+          <h4>Proposta simples no final</h4>
+          <p>Não mande proposta de 10 páginas. Envie um WhatsApp ou e-mail curto com: o que será feito, o resultado esperado e o valor. Decisão simples = fechamento mais rápido.</p>
+        </div>
+      </div>
+    </div>
+
+    <h2>Erros que sabotam a prospecção</h2>
+
+    <div class="erro-grid">
+      <div class="erro-card">
+        <h4>Falar de ferramenta na primeira mensagem</h4>
+        <p>"Trabalho com n8n e Make para automatizar seus processos" — isso não significa nada para o dono de uma clínica. Fale de resultado, não de tecnologia.</p>
+      </div>
+      <div class="erro-card">
+        <h4>Mensagem longa demais</h4>
+        <p>Primeira mensagem no WhatsApp com mais de 6 linhas raramente é lida por completo. Seja direto. Você terá espaço para detalhar depois que a pessoa responder.</p>
+      </div>
+      <div class="erro-card">
+        <h4>Pedir reunião de 1 hora logo de cara</h4>
+        <p>"Posso agendar 1 hora com você?" é um compromisso grande para alguém que nem sabe quem você é. Peça 15 minutos. É muito mais fácil dizer sim.</p>
+      </div>
+      <div class="erro-card">
+        <h4>Desistir depois de uma não resposta</h4>
+        <p>A maioria das vendas acontece entre o 3o e o 5o contato. Quem manda uma mensagem e some está deixando dinheiro na mesa. Faça follow-up com valor, não cobrança.</p>
+      </div>
+      <div class="erro-card">
+        <h4>Prospectar todos os segmentos ao mesmo tempo</h4>
+        <p>Sem especialização, você não acumula cases nem linguagem específica. Escolha um nicho por 60 dias. Você vai aprender mais e fechar mais.</p>
+      </div>
+    </div>
+
+    <div class="highlight-box">
+      <h4>A meta realista para os primeiros 30 dias</h4>
+      <p>Aborde 5 empresas por dia, 5 dias por semana = 100 abordagens no mês. Com taxa de resposta de 10%, você terá 10 conversas. Com taxa de reunião de 50%, serão 5 reuniões. Com taxa de fechamento de 30%, você fecha 1 a 2 clientes no primeiro mês.</p>
+      <p>Um cliente recorrente de R$ 800 por mês já paga as contas. Dois ou três e você tem uma base sólida para crescer.</p>
+    </div>
+
+    <div class="prompt-box">
+      <div class="prompt-header">
+        <span class="prompt-label">Prompt — Criar sequencia de follow-up</span>
+        <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.prompt-box').querySelector('.prompt-body').textContent.trim())">Copiar</button>
+      </div>
+      <div class="prompt-body">Preciso de uma sequência de 3 mensagens de follow-up para um prospect que não respondeu minha primeira abordagem.
+
+Contexto:
+- Segmento: [tipo de negócio]
+- Dor que abordei na primeira mensagem: [descreva]
+- Quanto tempo passou desde a primeira mensagem: [ex: 3 dias]
+
+Crie 3 mensagens para enviar em intervalos de 3 a 5 dias cada, com:
+- Mensagem 1: lembrete leve, sem cobrança
+- Mensagem 2: trazer valor (uma dica, um número, um insight do segmento)
+- Mensagem 3: encerramento — deixar a porta aberta sem pressão
+
+Tom: natural, humano, sem parecer script de vendas.</div>
+    </div>
+
+    <div class="callout tip">
+      <div class="callout-title">Dica de ouro</div>
+      <p>Antes de prospectar frio, fale com as pessoas que você já conhece. Amigos, familiares, ex-colegas de trabalho. Alguém no seu círculo tem um negócio ou conhece alguém que tem. O primeiro cliente quase sempre vem por indicação — e esse caso vira o portfólio que abre os próximos.</p>
+    </div>
+
+  </main>
+
+  <!-- CTA -->
+  <section class="cta-section" style="max-width: 780px; margin: 0 auto 4rem; margin-left: auto; margin-right: auto; padding: 2.2rem 2rem;">
+    <h2>Prompts prontos para prospecção e vendas</h2>
+    <p>Acesse a biblioteca com scripts de mensagem, perguntas de qualificação e prompts de follow-up para usar agora mesmo.</p>
+    <a href="../biblioteca-de-prompts.html" class="cta-btn">Acessar biblioteca de prompts</a>
+  </section>
+
+  <!-- FOOTER -->
+  
+  <section class="related-articles">
+    <div class="related-inner">
+      <h2 class="related-title">Artigos Relacionados</h2>
+      <div class="related-grid">
+      <a href="como-usar-ia-para-propostas-comerciais.html" class="related-card">
+        <span class="related-badge">Negócios</span>
+        <h3 class="related-card-title">Como usar IA para criar propostas comerciais</h3>
+        <span class="related-arrow">→</span>
+      </a>
+      <a href="como-montar-portfolio-de-automacoes.html" class="related-card">
+        <span class="related-badge">Negócios</span>
+        <h3 class="related-card-title">Como montar um portfólio de automações</h3>
+        <span class="related-arrow">→</span>
+      </a>
+      <a href="o-que-sao-agentes-de-ia.html" class="related-card">
+        <span class="related-badge">Guias</span>
+        <h3 class="related-card-title">O que são agentes de IA e como funcionam</h3>
+        <span class="related-arrow">→</span>
+      </a>
+      </div>
+    </div>
+  </section>
+<footer class="footer">
+    <p>Aprenda com AI &mdash; <a href="../index.html">Inicio</a> &middot; <a href="../artigos.html">Artigos</a> &middot; <a href="../catalogo-ferramentas.html">Ferramentas</a> &middot; <a href="../sobre.html">Sobre</a> &middot; <a href="../contato.html">Contato</a> &middot; <a href="../politica-de-privacidade.html">Política de Privacidade</a> &middot; <a href="../termos-de-uso.html">Termos de Uso</a></p>
+  </footer>
+
+  <script src="../script.js"></script>
+<script src="../cookie-consent.js" defer></script>
+<script src="../site-menu.js" defer></script>
+</body>
+</html>

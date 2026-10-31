@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="Explore ferramentas de inteligência artificial para automação, criação de conteúdo, análise de dados e produtividade.">
+	<meta name="theme-color" content="#0d1110">
+	<title>Diretório de Ferramentas de IA | Aprenda com AI</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+	<script src="https://cdn.tailwindcss.com"></script>
+	<script>
+		tailwind.config = {
+			theme: {
+				extend: {
+					colors: {
+						void: '#0d1110',
+						surface: '#171c1a',
+						acid: '#d7ff3f',
+						signal: '#62d8f2',
+						chalk: '#f1f3eb',
+						quiet: '#9ca69d'
+					},
+					fontFamily: {
+						sans: ['Manrope', 'sans-serif'],
+						mono: ['DM Mono', 'monospace']
+					}
+				}
+			}
+		};
+	</script>
+	<link rel="stylesheet" href="style.css">
+	<style>
+		:root { color-scheme: dark; }
+		* { box-sizing: border-box; }
+		body { font-family: Manrope, sans-serif; }
+		.catalog-grid { background-image: linear-gradient(rgba(255,255,255,.02) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.02) 1px, transparent 1px); background-size: 42px 42px; mask-image: linear-gradient(to bottom, black, transparent 84%); }
+		.tool-card { animation: enter .35s ease-out both; }
+		.tool-card[hidden] { display: none; }
+		@keyframes enter { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+		@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; } }
+	</style>
+  <link rel="icon" type="image/png" href="favicon.ico.png">
+<link rel="stylesheet" href="site-menu.css">
+</head>
+<body class="min-h-screen bg-void text-chalk antialiased">
+	<main class="relative min-h-screen overflow-hidden">
+		<div class="catalog-grid pointer-events-none absolute inset-0" aria-hidden="true"></div>
+		<header>
+    <nav class="navbar">
+        <a href="index.html" class="logo">Aprenda com AI</a>
+        <ul class="nav-links">
+            <li><a href="index.html">Início</a></li>
+            <li><a href="comece-aqui.html">Comece Aqui</a></li>
+            <li><a href="artigos.html">Artigos</a></li>
+            <li><a href="biblioteca-de-prompts.html">Biblioteca de Prompts</a></li>
+            <li><a href="calculadora-ia.html">Calculadora de Impacto</a></li>
+            <li><a href="sobre.html">Sobre</a></li>
+            <li><a href="contato.html">Contato</a></li>
+        </ul>
+    </nav>
+</header>
+
+		<section class="relative z-10 mx-auto max-w-7xl px-5 pb-16 pt-10 sm:px-9 sm:pb-20 sm:pt-14 lg:px-14 lg:pt-16">
+			<div class="max-w-3xl">
+				<p class="mb-4 flex items-center gap-3 font-mono text-[10px] uppercase tracking-[.17em] text-signal"><span class="h-px w-8 bg-signal"></span>Diretório e guia de ferramentas de IA</p>
+				<h1 class="text-4xl font-extrabold leading-[1.05] tracking-tight text-white sm:text-5xl lg:text-6xl">Ferramentas para transformar intenção em trabalho.</h1>
+				<p class="mt-5 max-w-2xl text-sm leading-7 text-quiet sm:text-base sm:leading-8">Um ponto de partida para estudantes e profissionais explorarem ferramentas de IA por tarefa, com uma indicação inicial de dificuldade para orientar os próximos passos.</p>
+			</div>
+
+			<section class="mt-10 border-y border-white/10 py-5" aria-label="Filtrar ferramentas por categoria">
+				<div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+					<div class="flex flex-wrap gap-2" role="group" aria-label="Categorias">
+						<button class="category-filter active" type="button" data-filter="all" aria-pressed="true">Todas</button>
+						<button class="category-filter" type="button" data-filter="automation" aria-pressed="false">Automação</button>
+						<button class="category-filter" type="button" data-filter="content" aria-pressed="false">Criação de Conteúdo</button>
+						<button class="category-filter" type="button" data-filter="data" aria-pressed="false">Análise de Dados</button>
+						<button class="category-filter" type="button" data-filter="productivity" aria-pressed="false">Produtividade</button>
+					</div>
+					<p id="tool-count" class="shrink-0 font-mono text-[10px] uppercase tracking-wider text-quiet" aria-live="polite">8 ferramentas</p>
+				</div>
+			</section>
+
+			<section class="mt-6" aria-label="Ferramentas de inteligência artificial">
+				<div id="tool-grid" class="grid grid-cols-1 gap-3 sm:grid-cols-2 xl:grid-cols-4">
+					<article class="tool-card group flex min-h-[300px] flex-col border border-white/[.09] bg-surface/90 p-5 transition duration-200 hover:-translate-y-1 hover:border-signal/35 hover:bg-[#1a211e]" data-category="automation">
+						<div class="flex items-start justify-between gap-3"><span class="grid h-11 w-11 place-items-center border border-signal/25 bg-signal/[.07] font-mono text-sm font-medium text-signal" aria-hidden="true">n8</span><span class="difficulty difficulty-advanced">Avançado</span></div>
+						<p class="mt-6 font-mono text-[9px] uppercase tracking-[.15em] text-signal">Automação</p>
+						<h2 class="mt-2 text-xl font-bold text-white">n8n</h2>
+						<p class="mt-3 text-sm leading-6 text-quiet">Conecta aplicativos e organiza fluxos automatizados com controle visual e opções de hospedagem próprias.</p>
+						<a class="tool-action mt-auto flex items-center justify-between gap-3 border-t border-white/10 pt-4 text-xs font-bold text-chalk transition hover:text-acid" href="artigos/automacao-atendimento-ia.html">Ver caso de uso <span aria-hidden="true">↗</span></a>
+					</article>
+
+					<article class="tool-card group flex min-h-[300px] flex-col border border-white/[.09] bg-surface/90 p-5 transition duration-200 hover:-translate-y-1 hover:border-signal/35 hover:bg-[#1a211e]" data-category="automation">
+						<div class="flex items-start justify-between gap-3"><span class="grid h-11 w-11 place-items-center border border-acid/25 bg-acid/[.07] font-mono text-sm font-medium text-acid" aria-hidden="true">M</span><span class="difficulty difficulty-intermediate">Intermediário</span></div>
+						<p class="mt-6 font-mono text-[9px] uppercase tracking-[.15em] text-signal">Automação</p>
+						<h2 class="mt-2 text-xl font-bold text-white">Make</h2>
+						<p class="mt-3 text-sm leading-6 text-quiet">Permite desenhar automações entre serviços digitais usando cenários visuais e etapas conectadas.</p>
+						<a class="tool-action mt-auto flex items-center justify-between gap-3 border-t border-white/10 pt-4 text-xs font-bold text-chalk transition hover:text-acid" href="artigos/automacao-atendimento-cliente-ia.html">Ver caso de uso <span aria-hidden="true">↗</span></a>
+					</article>
+
+					<article class="tool-card group flex min-h-[300px] flex-col border border-white/[.09] bg-surface/90 p-5 transition duration-200 hover:-translate-y-1 hover:border-signal/35 hover:bg-[#1a211e]" data-category="content">
+						<div class="flex items-start justify-between gap-3"><span class="grid h-11 w-11 place-items-center border border-rose-300/25 bg-rose-300/[.07] font-mono text-sm font-medium text-rose-200" aria-hidden="true">G</span><span class="difficulty difficulty-beginner">Iniciante</span></div>
+						<p class="mt-6 font-mono text-[9px] uppercase tracking-[.15em] text-signal">Criação de Conteúdo</p>
+						<h2 class="mt-2 text-xl font-bold text-white">ChatGPT</h2>
+						<p class="mt-3 text-sm leading-6 text-quiet">Ajuda a estruturar ideias, criar rascunhos e revisar textos com instruções adaptadas ao contexto.</p>
+						<a class="tool-action mt-auto flex items-center justify-between gap-3 border-t border-white/10 pt-4 text-xs font-bold text-chalk transition hover:text-acid" href="artigos/guia-completo-chatgpt.html">Aprender a usar <span aria-hidden="true">↗</span></a>
+					</article>
+
+					<article class="tool-card group flex min-h-[300px] flex-col border border-white/[.09] bg-surface/90 p-5 transition duration-200 hover:-translate-y-1 hover:border-signal/35 hover:bg-[#1a211e]" data-category="content">
+						<div class="flex items-start justify-between gap-3"><span class="grid h-11 w-11 place-items-center border border-violet-300/25 bg-violet-300/[.07] font-mono text-sm font-medium text-violet-200" aria-hidden="true">C</span><span class="difficulty difficulty-intermediate">Intermediário</span></div>
+						<p class="mt-6 font-mono text-[9px] uppercase tracking-[.15em] text-signal">Criação de Conteúdo</p>
+						<h2 class="mt-2 text-xl font-bold text-white">Claude</h2>
+						<p class="mt-3 text-sm leading-6 text-quiet">Apoia leitura, escrita e análise de materiais, com espaço para trabalhar instruções e contexto extensos.</p>
+						<a class="tool-action mt-auto flex items-center justify-between gap-3 border-t border-white/10 pt-4 text-xs font-bold text-chalk transition hover:text-acid" href="artigos/guia-claude-ia.html">Aprender a usar <span aria-hidden="true">↗</span></a>
+					</article>
+
+					<article class="tool-card group flex min-h-[300px] flex-col border border-white/[.09] bg-surface/90 p-5 transition duration-200 hover:-translate-y-1 hover:border-signal/35 hover:bg-[#1a211e]" data-category="data">
+						<div class="flex items-start justify-between gap-3"><span class="grid h-11 w-11 place-items-center border border-amber-200/25 bg-amber-200/[.07] font-mono text-sm font-medium text-amber-100" aria-hidden="true">NB</span><span class="difficulty difficulty-intermediate">Intermediário</span></div>
+						<p class="mt-6 font-mono text-[9px] uppercase tracking-[.15em] text-signal">Análise de Dados</p>
+						<h2 class="mt-2 text-xl font-bold text-white">Google Colab</h2>
+						<p class="mt-3 text-sm leading-6 text-quiet">Ambiente de notebooks no navegador para explorar dados e executar código sem configurar tudo localmente.</p>
+						<a class="tool-action mt-auto flex items-center justify-between gap-3 border-t border-white/10 pt-4 text-xs font-bold text-chalk transition hover:text-acid" href="playground-prompts.html">Aprender a usar <span aria-hidden="true">↗</span></a>
+					</article>
+
+					<article class="tool-card group flex min-h-[300px] flex-col border border-white/[.09] bg-surface/90 p-5 transition duration-200 hover:-translate-y-1 hover:border-signal/35 hover:bg-[#1a211e]" data-category="data">
+						<div class="flex items-start justify-between gap-3"><span class="grid h-11 w-11 place-items-center border border-blue-300/25 bg-blue-300/[.07] font-mono text-sm font-medium text-blue-200" aria-hidden="true">P</span><span class="difficulty difficulty-advanced">Avançado</span></div>
+						<p class="mt-6 font-mono text-[9px] uppercase tracking-[.15em] text-signal">Análise de Dados</p>
+						<h2 class="mt-2 text-xl font-bold text-white">Power BI</h2>
+						<p class="mt-3 text-sm leading-6 text-quiet">Transforma fontes de dados em relatórios e painéis interativos para acompanhar indicadores de negócio.</p>
+						<a class="tool-action mt-auto flex items-center justify-between gap-3 border-t border-white/10 pt-4 text-xs font-bold text-chalk transition hover:text-acid" href="playground-prompts.html">Aprender a usar <span aria-hidden="true">↗</span></a>
+					</article>
+
+					<article class="tool-card group flex min-h-[300px] flex-col border border-white/[.09] bg-surface/90 p-5 transition duration-200 hover:-translate-y-1 hover:border-signal/35 hover:bg-[#1a211e]" data-category="productivity">
+						<div class="flex items-start justify-between gap-3"><span class="grid h-11 w-11 place-items-center border border-emerald-300/25 bg-emerald-300/[.07] font-mono text-sm font-medium text-emerald-200" aria-hidden="true">N</span><span class="difficulty difficulty-beginner">Iniciante</span></div>
+						<p class="mt-6 font-mono text-[9px] uppercase tracking-[.15em] text-signal">Produtividade</p>
+						<h2 class="mt-2 text-xl font-bold text-white">Notion AI</h2>
+						<p class="mt-3 text-sm leading-6 text-quiet">Ajuda a resumir notas, organizar documentos e transformar informações de trabalho em próximos passos.</p>
+						<a class="tool-action mt-auto flex items-center justify-between gap-3 border-t border-white/10 pt-4 text-xs font-bold text-chalk transition hover:text-acid" href="artigos/prompts-produtividade.html">Ver caso de uso <span aria-hidden="true">↗</span></a>
+					</article>
+
+					<article class="tool-card group flex min-h-[300px] flex-col border border-white/[.09] bg-surface/90 p-5 transition duration-200 hover:-translate-y-1 hover:border-signal/35 hover:bg-[#1a211e]" data-category="productivity">
+						<div class="flex items-start justify-between gap-3"><span class="grid h-11 w-11 place-items-center border border-orange-300/25 bg-orange-300/[.07] font-mono text-sm font-medium text-orange-200" aria-hidden="true">G</span><span class="difficulty difficulty-beginner">Iniciante</span></div>
+						<p class="mt-6 font-mono text-[9px] uppercase tracking-[.15em] text-signal">Produtividade</p>
+						<h2 class="mt-2 text-xl font-bold text-white">Gemini</h2>
+						<p class="mt-3 text-sm leading-6 text-quiet">Assistente de IA para explorar ideias, sintetizar informações e apoiar tarefas cotidianas de estudo e trabalho.</p>
+						<a class="tool-action mt-auto flex items-center justify-between gap-3 border-t border-white/10 pt-4 text-xs font-bold text-chalk transition hover:text-acid" href="artigos/chatgpt-rotina.html">Aprender a usar <span aria-hidden="true">↗</span></a>
+					</article>
+				</div>
+
+				<div id="empty-state" class="mt-4 hidden border border-dashed border-white/15 p-8 text-center" role="status" aria-live="polite"><p class="text-sm text-quiet">Nenhuma ferramenta encontrada nesta categoria.</p></div>
+			</section>
+		</section>
+
+		<footer class="relative z-10 flex items-center justify-between border-t border-white/[.07] px-5 py-5 font-mono text-[9px] text-quiet sm:px-9 lg:px-14"><span>© 2026 Aprenda com AI</span><span class="flex gap-4"><a href="politica-de-privacidade.html" class="transition hover:text-acid">Privacidade</a><a href="termos-de-uso.html" class="transition hover:text-acid">Termos</a></span><a href="index.html" class="transition hover:text-acid">Voltar ao site <span aria-hidden="true">↗</span></a></footer>
+	</main>
+
+	<script>
+		const filterButtons = [...document.querySelectorAll('.category-filter')];
+		const toolCards = [...document.querySelectorAll('.tool-card')];
+		const resultCount = document.querySelector('#tool-count');
+		const emptyState = document.querySelector('#empty-state');
+		const categoryNames = {
+			all: 'ferramentas',
+			automation: 'ferramentas de automação',
+			content: 'ferramentas de criação de conteúdo',
+			data: 'ferramentas de análise de dados',
+			productivity: 'ferramentas de produtividade'
+		};
+
+		const filterTools = (category) => {
+			let visibleCount = 0;
+			toolCards.forEach((card) => {
+				const visible = category === 'all' || card.dataset.category === category;
+				card.hidden = !visible;
+				if (visible) visibleCount += 1;
+			});
+
+			resultCount.textContent = `${visibleCount} ${categoryNames[category]}`;
+			emptyState.classList.toggle('hidden', visibleCount !== 0);
+		};
+
+		filterButtons.forEach((button) => {
+			button.addEventListener('click', () => {
+				filterButtons.forEach((item) => {
+					const active = item === button;
+					item.classList.toggle('active', active);
+					item.setAttribute('aria-pressed', String(active));
+				});
+				filterTools(button.dataset.filter);
+			});
+		});
+	</script>
+<script src="cookie-consent.js" defer></script>
+<script src="site-menu.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Como usar IA para resumir textos com qualidade: prompts práticos para artigos, livros, PDFs e documentos técnicos.">
+  <title>Como Resumir Textos com IA — Aprenda com AI</title>
+  <link rel="canonical" href="https://aprendacomai.com/artigos/resumir-textos-ia.html">
+  <meta property="og:title" content="Como Resumir Textos com IA — Aprenda com AI">
+  <meta property="og:description" content="Como usar IA para resumir textos com qualidade: prompts práticos para artigos, livros, PDFs e documentos técnicos.">
+  <meta property="og:type" content="article">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="../final-hero.css">
+  <style>
+    :root {
+      --bg: #0b0c0e; --surface: #13151a; --border: #1e2028;
+      --accent: #d7ff3f; --accent2: #a8cc28;
+      --text: #e5e7eb; --muted: #c7c9c5; --dim: #6b7280;
+      --font-head: 'Space Grotesk', sans-serif;
+      --font-body: 'Manrope', sans-serif;
+      --font-mono: 'DM Mono', monospace;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: var(--bg); color: var(--text); font-family: var(--font-body); line-height: 1.7; }
+    .breadcrumb { max-width: 780px; margin: 0 auto; padding: 1.5rem 1.5rem 0; font-size: .82rem; color: var(--dim); }
+    .breadcrumb a { color: var(--dim); text-decoration: none; }
+    .breadcrumb a:hover { color: var(--accent); }
+    .breadcrumb span { margin: 0 .4rem; }
+    .article-hero { max-width: 780px; margin: 0 auto; padding: 2.5rem 1.5rem 2rem; }
+    .article-badge { display: inline-block; padding: .3rem .7rem; border-radius: 6px; background: rgba(215,255,63,.12); color: var(--accent); font: 500 .72rem var(--font-mono); letter-spacing: .08em; text-transform: uppercase; margin-bottom: 1.2rem; }
+    .article-hero h1 { font: 800 clamp(2rem, 5vw, 3rem)/1.1 var(--font-head); letter-spacing: -.04em; color: #fff; margin-bottom: 1rem; }
+    .article-hero h1 em { font-style: normal; color: var(--accent); }
+    .article-meta { display: flex; gap: 1rem; flex-wrap: wrap; font-size: .82rem; color: var(--dim); font-family: var(--font-mono); border-top: 1px solid var(--border); padding-top: 1rem; margin-top: 1rem; }
+    .article-body { max-width: 780px; margin: 0 auto; padding: 2rem 1.5rem 3rem; }
+    .article-body h2 { font: 700 1.4rem var(--font-head); letter-spacing: -.03em; color: #fff; margin: 2.5rem 0 .8rem; padding-top: 2rem; border-top: 1px solid var(--border); }
+    .article-body h2:first-of-type { border-top: none; padding-top: 0; margin-top: 0; }
+    .article-body h3 { font: 600 1.1rem var(--font-head); color: var(--text); margin: 1.8rem 0 .6rem; }
+    .article-body p { color: var(--muted); margin-bottom: 1rem; font-size: .97rem; line-height: 1.75; }
+    .article-body strong { color: var(--text); font-weight: 600; }
+    .article-body ul { margin: .5rem 0 1.2rem 1.5rem; color: var(--muted); font-size: .97rem; }
+    .article-body li { margin-bottom: .5rem; line-height: 1.65; }
+    .prompt-block { background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--accent); border-radius: 10px; padding: 1.25rem 1.4rem; margin: 1.25rem 0 1.75rem; font: .86rem/1.7 var(--font-mono); color: var(--text); white-space: pre-wrap; overflow-x: auto; }
+    .prompt-label { display: block; font: 500 .68rem var(--font-mono); color: var(--accent); letter-spacing: .1em; text-transform: uppercase; margin-bottom: .75rem; }
+    .warning-box { background: rgba(215,255,63,.06); border: 1px solid rgba(215,255,63,.2); border-radius: 10px; padding: 1.1rem 1.25rem; margin: 1.25rem 0; }
+    .warning-box p { margin: 0; font-size: .92rem; color: var(--muted); }
+    .cta-section { max-width: 780px; margin: 0 auto 4rem; padding: 2rem 1.5rem; }
+    .cta-box { background: var(--surface); border: 1px solid rgba(215,255,63,.25); border-radius: 16px; padding: 2rem; text-align: center; }
+    .cta-box h2 { font: 700 1.4rem var(--font-head); color: #fff; margin-bottom: .6rem; }
+    .cta-box p { color: var(--muted); font-size: .95rem; margin-bottom: 1.4rem; }
+    .cta-btn { display: inline-block; padding: .85rem 1.6rem; background: var(--accent); color: #11110f; font: 700 .9rem var(--font-body); border-radius: 10px; text-decoration: none; transition: opacity .2s; }
+    .cta-btn:hover { opacity: .88; }
+    footer { text-align: center; padding: 2rem 1.5rem; color: var(--dim); font-size: .85rem; border-top: 1px solid var(--border); }
+    footer a { color: var(--dim); text-decoration: none; margin: 0 .6rem; }
+    footer a:hover { color: var(--accent); }
+  </style>
+  <link rel="icon" type="image/png" href="../favicon.ico.png">
+<link rel="stylesheet" href="../site-menu.css">
+</head>
+<body>
+<header>
+  <nav class="navbar">
+    <a href="../index.html" class="logo">Aprenda com AI</a>
+    <ul class="nav-links">
+      <li><a href="../index.html">Início</a></li>
+      <li><a href="../artigos.html">Artigos</a></li>
+      <li><a href="../biblioteca-de-prompts.html">Biblioteca de Prompts</a></li>
+      <li><a href="../calculadora-ia.html">Calculadora de Impacto</a></li>
+    </ul>
+  </nav>
+</header>
+
+<nav class="breadcrumb" aria-label="Navegação estrutural">
+  <a href="../index.html">Início</a><span>›</span>
+  <a href="../artigos.html">Artigos</a><span>›</span>
+  Como Resumir Textos com IA
+</nav>
+
+<section class="article-hero">
+  <span class="article-badge">Tutoriais</span>
+  <h1>Como <em>resumir textos</em> com IA e transformar leitura em aprendizado</h1>
+  <p class="article-meta">
+    <span>Ferramentas: ChatGPT, Claude, Perplexity</span>
+  </p>
+</section>
+
+<article class="article-body">
+
+  <h2>Por que resumir textos com IA muda sua relação com o conhecimento</h2>
+  <p>Todo mundo que estuda ou trabalha com informação sente isso em algum momento: pilhas de artigos para ler, capítulos de livros acumulando, relatórios que precisam ser digeridos antes de uma reunião. O volume de informação relevante cresceu mais rápido do que nossa capacidade de processá-la.</p>
+  <p>A IA não vai ler por você — mas pode transformar um texto de 40 minutos em um resumo que você processa em 5, sem perder o que importa. Mais do que economizar tempo, o certo uso da IA para resumos ajuda a identificar conexões, formular perguntas e fixar o conteúdo de forma mais eficiente do que a leitura passiva.</p>
+  <p>O problema é que pedir "resuma esse texto" para qualquer IA gera um resultado genérico. O que faz diferença é como você instrui a ferramenta — e é isso que este guia ensina.</p>
+
+  <h2>Resumo simples vs. resumo inteligente</h2>
+  <p>Um resumo simples comprime o texto original. Um resumo inteligente transforma o conteúdo em algo mais útil para quem vai usar esse conhecimento.</p>
+  <p>A diferença prática: um resumo simples de um artigo científico vai te dizer o que o estudo fez. Um resumo inteligente vai te dizer o que o estudo significa para a sua área, quais são as limitações metodológicas e que perguntas ele abre para pesquisa futura.</p>
+  <p>Para chegar no segundo tipo, você precisa dar contexto à IA: quem você é, para que vai usar essa informação e o que importa especificamente para você.</p>
+
+  <h2>Prompts práticos para diferentes situações</h2>
+
+  <h3>Resumir artigos e textos gerais</h3>
+  <div class="prompt-block"><span class="prompt-label">Prompt</span>
+Atue como um tutor especializado em síntese de conhecimento.
+
+Analise o texto abaixo e crie um resumo estruturado seguindo este formato:
+
+1. IDEIA CENTRAL: A tese ou argumento principal em 2-3 frases.
+2. PONTOS DE APOIO: Os 3-5 argumentos ou evidências mais importantes.
+3. CONCLUSÃO: O que o autor quer que o leitor faça ou pense diferente após ler.
+4. PERGUNTAS QUE FICAM: 2 questões que o texto levanta mas não responde completamente.
+
+Meu objetivo ao ler esse texto: [ex: escrever um trabalho / entender o tema para uma reunião / decidir se devo aprofundar o estudo]
+
+Texto:
+[cole o texto aqui]</div>
+
+  <h3>Resumir capítulos de livro para estudo</h3>
+  <div class="prompt-block"><span class="prompt-label">Prompt</span>
+Atue como um professor especializado em aprendizado ativo e retenção de conhecimento.
+
+Analise o capítulo abaixo e construa um material de revisão completo:
+
+1. CONCEITOS-CHAVE: Liste os 5-8 conceitos mais importantes com definição em linguagem simples.
+2. MAPA DE RELAÇÕES: Descreva como os conceitos se conectam entre si (pode usar "A leva a B porque..." ).
+3. EXEMPLOS PRÁTICOS: Para cada conceito principal, crie um exemplo do mundo real.
+4. FLASHCARDS: Gere 5 pares pergunta-resposta para eu revisar depois.
+5. O QUE NÃO PODE ESQUECER: A informação mais crítica do capítulo em uma frase.
+
+Meu nível: [iniciante / intermediário / avançado no assunto]
+Capítulo:
+[cole o conteúdo aqui]</div>
+
+  <h3>Resumir documentos técnicos e relatórios</h3>
+  <div class="prompt-block"><span class="prompt-label">Prompt</span>
+Atue como um analista sênior especializado em síntese de documentos técnicos.
+
+Analise o documento abaixo com foco nas seguintes necessidades:
+- Meu cargo/função: [ex: gerente de projetos / estudante de engenharia / empreendedor]
+- O que preciso decidir ou fazer com essa informação: [descreva]
+- Prazo: [quanto tempo tenho para agir com base nisso]
+
+Entregue:
+1. RESUMO EXECUTIVO: 1 parágrafo com o essencial para alguém que tem 2 minutos.
+2. DETALHES IMPORTANTES: Dados, prazos, requisitos ou números que não posso ignorar.
+3. RISCOS OU ALERTAS: O que pode dar errado se eu não agir ou agir errado.
+4. PRÓXIMOS PASSOS: O que eu deveria fazer primeiro.
+
+Documento:
+[cole o documento aqui]</div>
+
+  <h3>Resumir para compartilhar com outras pessoas</h3>
+  <div class="prompt-block"><span class="prompt-label">Prompt</span>
+Atue como um comunicador especializado em transformar informação complexa em mensagens claras.
+
+Preciso resumir o texto abaixo para compartilhar com [descreva o público: equipe não-técnica / cliente / gestor / grupo de estudo].
+
+Esse público: [o que eles sabem ou não sabem sobre o tema]
+Canal de envio: [e-mail / mensagem no WhatsApp / apresentação verbal / post]
+Tamanho desejado: [um parágrafo / até 5 bullets / até 10 linhas]
+
+Crie o resumo no formato ideal para esse público e canal. Evite jargão que eles não vão entender e destaque o que é mais relevante para a realidade deles.
+
+Texto original:
+[cole o texto aqui]</div>
+
+  <h2>Usando Claude para textos muito longos</h2>
+  <p>O Claude tem uma janela de contexto especialmente grande, o que o torna ideal para resumir documentos extensos — contratos, teses, livros inteiros, transcrições longas. Se você tentar colar um documento de 50 páginas no ChatGPT gratuito, vai atingir o limite. No Claude, documentos longos são tratados de uma vez.</p>
+  <p>Para textos muito extensos, divida o trabalho em duas etapas: primeiro peça um resumo de cada seção individualmente, depois peça uma síntese de todos os resumos. Isso garante que nada importante se perca na compressão.</p>
+
+  <h2>Armadilhas: quando a IA omite o que importa</h2>
+  <p>A IA resume bem o que está explícito no texto — mas pode perder nuances, subtexto e o que está implícito nas entrelinhas. Para textos onde isso importa (análise política, argumentos filosóficos, contratos com cláusulas ambíguas), não confie cegamente no resumo da IA.</p>
+  <div class="warning-box"><p><strong>Atenção:</strong> Para documentos legais, médicos ou financeiros, o resumo da IA é um ponto de partida, não uma conclusão. Sempre verifique as partes críticas no texto original.</p></div>
+  <p>Outro ponto importante: a IA pode resumir com confiança mesmo quando o texto original contém erros ou informações imprecisas. Ela não vai questionar a premissa — vai apenas comprimir o que está lá. Por isso, a qualidade do resumo depende da qualidade do texto de entrada.</p>
+
+  <h2>Combinando resumo com outros métodos de estudo</h2>
+  <p>O resumo é mais eficaz quando combinado com outras técnicas. Após gerar um resumo com IA, peça que ela crie flashcards para revisão espaçada, ou que reformule os pontos principais como perguntas para você responder de memória antes de verificar.</p>
+  <p>Essa combinação — resumo como compressão e perguntas como recuperação ativa — é o que transforma a leitura passiva em aprendizado que fica.</p>
+
+</article>
+
+<section class="cta-section">
+  <div class="cta-box">
+    <h2>Quer um prompt de resumo pronto para usar?</h2>
+    <p>Na Biblioteca de Prompts você encontra o prompt "Resumo que vira revisão" com estrutura completa para estudo.</p>
+    <a href="../biblioteca-de-prompts.html" class="cta-btn">Acessar a Biblioteca de Prompts</a>
+  </div>
+</section>
+
+<footer>
+  <div>
+    <a href="../sobre.html">Sobre</a>
+    <a href="../contato.html">Contato</a>
+    <a href="../politica-de-privacidade.html">Política de Privacidade</a>
+    <a href="../termos-de-uso.html">Termos de Uso</a>
+  </div>
+  <p style="margin-top:.75rem">© 2026 Aprenda com AI</p>
+</footer>
+<script src="../cookie-consent.js" defer></script>
+<script src="../site-menu.js" defer></script>
+</body>
+</html>

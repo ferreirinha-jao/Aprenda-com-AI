@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Guia completo do Claude IA: o que é, como usar, versões disponíveis, onde se destaca e como extrair o máximo da ferramenta.">
+  <title>Guia Completo do Claude IA — Aprenda com AI</title>
+  <link rel="canonical" href="https://aprendacomai.com/artigos/guia-claude-ia.html">
+  <meta property="og:title" content="Guia Completo do Claude IA — Aprenda com AI">
+  <meta property="og:description" content="Guia completo do Claude IA: o que é, como usar, versões disponíveis, onde se destaca e como extrair o máximo da ferramenta.">
+  <meta property="og:type" content="article">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="../final-hero.css">
+  <style>
+    :root {
+      --bg: #0b0c0e; --surface: #13151a; --border: #1e2028;
+      --accent: #d7ff3f; --accent2: #a8cc28;
+      --text: #e5e7eb; --muted: #c7c9c5; --dim: #6b7280;
+      --font-head: 'Space Grotesk', sans-serif;
+      --font-body: 'Manrope', sans-serif;
+      --font-mono: 'DM Mono', monospace;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: var(--bg); color: var(--text); font-family: var(--font-body); line-height: 1.7; }
+    .breadcrumb { max-width: 780px; margin: 0 auto; padding: 1.5rem 1.5rem 0; font-size: .82rem; color: var(--dim); }
+    .breadcrumb a { color: var(--dim); text-decoration: none; }
+    .breadcrumb a:hover { color: var(--accent); }
+    .breadcrumb span { margin: 0 .4rem; }
+    .article-hero { max-width: 780px; margin: 0 auto; padding: 2.5rem 1.5rem 2rem; }
+    .article-badge { display: inline-block; padding: .3rem .7rem; border-radius: 6px; background: rgba(215,255,63,.12); color: var(--accent); font: 500 .72rem var(--font-mono); letter-spacing: .08em; text-transform: uppercase; margin-bottom: 1.2rem; }
+    .article-hero h1 { font: 800 clamp(2rem, 5vw, 3rem)/1.1 var(--font-head); letter-spacing: -.04em; color: #fff; margin-bottom: 1rem; }
+    .article-hero h1 em { font-style: normal; color: var(--accent); }
+    .article-meta { display: flex; gap: 1rem; flex-wrap: wrap; font-size: .82rem; color: var(--dim); font-family: var(--font-mono); border-top: 1px solid var(--border); padding-top: 1rem; margin-top: 1rem; }
+    .article-body { max-width: 780px; margin: 0 auto; padding: 2rem 1.5rem 3rem; }
+    .article-body h2 { font: 700 1.4rem var(--font-head); letter-spacing: -.03em; color: #fff; margin: 2.5rem 0 .8rem; padding-top: 2rem; border-top: 1px solid var(--border); }
+    .article-body h2:first-of-type { border-top: none; padding-top: 0; margin-top: 0; }
+    .article-body h3 { font: 600 1.1rem var(--font-head); color: var(--text); margin: 1.8rem 0 .6rem; }
+    .article-body p { color: var(--muted); margin-bottom: 1rem; font-size: .97rem; line-height: 1.75; }
+    .article-body strong { color: var(--text); font-weight: 600; }
+    .article-body ul { margin: .5rem 0 1.2rem 1.5rem; color: var(--muted); font-size: .97rem; }
+    .article-body li { margin-bottom: .5rem; line-height: 1.65; }
+    .info-box { background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--accent); border-radius: 10px; padding: 1.1rem 1.25rem; margin: 1.25rem 0; }
+    .info-box p { margin: 0; font-size: .92rem; }
+    .versions-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: .85rem; margin: 1.25rem 0 1.75rem; }
+    .version-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 1rem 1.15rem; }
+    .version-card h4 { font: 600 .95rem var(--font-head); color: var(--accent); margin-bottom: .4rem; }
+    .version-card p { font-size: .85rem; color: var(--muted); margin: 0; }
+    .cta-section { max-width: 780px; margin: 0 auto 4rem; padding: 2rem 1.5rem; }
+    .cta-box { background: var(--surface); border: 1px solid rgba(215,255,63,.25); border-radius: 16px; padding: 2rem; text-align: center; }
+    .cta-box h2 { font: 700 1.4rem var(--font-head); color: #fff; margin-bottom: .6rem; }
+    .cta-box p { color: var(--muted); font-size: .95rem; margin-bottom: 1.4rem; }
+    .cta-btn { display: inline-block; padding: .85rem 1.6rem; background: var(--accent); color: #11110f; font: 700 .9rem var(--font-body); border-radius: 10px; text-decoration: none; transition: opacity .2s; }
+    .cta-btn:hover { opacity: .88; }
+    footer { text-align: center; padding: 2rem 1.5rem; color: var(--dim); font-size: .85rem; border-top: 1px solid var(--border); }
+    footer a { color: var(--dim); text-decoration: none; margin: 0 .6rem; }
+    footer a:hover { color: var(--accent); }
+  </style>
+  <link rel="icon" type="image/png" href="../favicon.ico.png">
+<link rel="stylesheet" href="../site-menu.css">
+</head>
+<body>
+<header>
+  <nav class="navbar">
+    <a href="../index.html" class="logo">Aprenda com AI</a>
+    <ul class="nav-links">
+      <li><a href="../index.html">Início</a></li>
+      <li><a href="../artigos.html">Artigos</a></li>
+      <li><a href="../biblioteca-de-prompts.html">Biblioteca de Prompts</a></li>
+      <li><a href="../calculadora-ia.html">Calculadora de Impacto</a></li>
+    </ul>
+  </nav>
+</header>
+
+<nav class="breadcrumb" aria-label="Navegação estrutural">
+  <a href="../index.html">Início</a><span>›</span>
+  <a href="../artigos.html">Artigos</a><span>›</span>
+  Guia Completo do Claude IA
+</nav>
+
+<section class="article-hero">
+  <span class="article-badge">Guias</span>
+  <h1>Guia completo do <em>Claude</em>: o assistente de IA da Anthropic</h1>
+  <p class="article-meta">
+    <span>Ferramentas: Claude</span>
+  </p>
+</section>
+
+<article class="article-body">
+
+  <h2>O que é o Claude e quem está por trás dele</h2>
+  <p>O Claude é um assistente de inteligência artificial criado pela Anthropic, uma empresa fundada em 2021 por ex-pesquisadores da OpenAI. A proposta central da Anthropic é desenvolver IA que seja não apenas capaz, mas também confiável e segura — o que se reflete diretamente no comportamento do Claude nas conversas.</p>
+  <p>Diferente de muitos concorrentes, o Claude foi desenvolvido com um foco explícito em entender a intenção do usuário, ser honesto sobre limitações e evitar respostas prejudiciais sem precisar bloquear perguntas legítimas. Na prática, isso significa que ele tende a ser mais cuidadoso na formulação das respostas e mais transparente quando não sabe algo.</p>
+  <p>O nome "Claude" é uma referência ao matemático Claude Shannon, considerado o pai da teoria da informação — a base teórica que sustenta toda a computação moderna.</p>
+
+  <h2>Como acessar o Claude</h2>
+  <p>A forma mais direta é pelo site <strong>claude.ai</strong>, onde você cria uma conta gratuita e começa a conversar imediatamente. O plano gratuito já dá acesso ao Claude Sonnet, um modelo equilibrado entre velocidade e capacidade.</p>
+  <p>Para desenvolvedores e empresas que querem integrar o Claude em seus sistemas, a Anthropic oferece acesso via API — a mesma tecnologia que alimenta produtos de terceiros que usam o Claude nos bastidores.</p>
+  <div class="info-box"><p><strong>Vale saber:</strong> O Claude também está disponível dentro de ferramentas como Amazon Bedrock e Google Cloud Vertex AI, o que o torna acessível para equipes que já trabalham nesses ambientes.</p></div>
+
+  <h2>As versões do Claude: qual usar em cada situação</h2>
+  <p>A Anthropic organiza seus modelos em famílias, cada uma com um papel diferente. Os nomes e as versões mudam com frequência, então confira a lista atual no site da Anthropic. As três mais conhecidas são:</p>
+  <div class="versions-grid">
+    <div class="version-card">
+      <h4>Haiku</h4>
+      <p>O mais rápido e econômico. Ideal para tarefas simples, respostas rápidas e aplicações com alto volume de mensagens.</p>
+    </div>
+    <div class="version-card">
+      <h4>Sonnet</h4>
+      <p>O equilíbrio entre velocidade e inteligência. É a escolha equilibrada para uso geral.</p>
+    </div>
+    <div class="version-card">
+      <h4>Opus</h4>
+      <p>O mais poderoso da família. Melhor para análises complexas, raciocínio extenso e tarefas que exigem profundidade.</p>
+    </div>
+  </div>
+  <p>No dia a dia (escrita, análise, resumo, código), um modelo intermediário como o Sonnet costuma dar conta do recado. Já o Opus compensa quando você lida com documentos longos e complexos, raciocínio em várias etapas ou análises que exigem muita consistência.</p>
+
+  <h2>Onde o Claude se destaca</h2>
+
+  <h3>Documentos longos e contexto extenso</h3>
+  <p>Uma das vantagens técnicas mais relevantes do Claude é a janela de contexto — a quantidade de texto que ele consegue processar de uma vez. Isso significa que você pode colar um contrato de 50 páginas, um livro inteiro ou uma base de dados de conversas e pedir análises que consideram todo esse material de uma vez, sem precisar dividir em partes.</p>
+
+  <h3>Escrita com nuance e tom consistente</h3>
+  <p>O Claude é frequentemente citado como a melhor opção para tarefas que exigem qualidade de escrita — textos que precisam soar naturais, ter voz consistente ou lidar com temas delicados. Ele tende a produzir respostas mais elaboradas e com menos jargão vazio do que outros modelos em situações de escrita criativa ou comunicação profissional.</p>
+
+  <h3>Código e análise técnica</h3>
+  <p>Em benchmarks de programação, o Claude consistentemente performa bem em linguagens populares como Python, JavaScript e TypeScript. Para quem trabalha com automações, scripts e desenvolvimento, ele é uma alternativa sólida que às vezes supera o ChatGPT em raciocínio sobre código existente.</p>
+
+  <h3>Seguir instruções complexas</h3>
+  <p>Se você tem um prompt longo e detalhado com várias condições e restrições, o Claude tende a seguir cada uma delas com mais fidelidade. Isso é especialmente útil para automações, fluxos de trabalho e situações onde o formato da resposta é tão importante quanto o conteúdo.</p>
+
+  <h2>Dicas para extrair o máximo do Claude</h2>
+  <ul>
+    <li><strong>Seja direto sobre o que você quer:</strong> O Claude responde bem a instruções explícitas. Diga o tom, o formato e o objetivo antes de fazer a pergunta principal.</li>
+    <li><strong>Dê feedback na mesma conversa:</strong> Se a resposta não ficou certa, corrija com precisão — "a parte X está boa, mas na Y preciso que..." — em vez de começar do zero.</li>
+    <li><strong>Use para análise de documentos:</strong> Cole PDFs, transcrições, planilhas exportadas como texto. O Claude processa volumes grandes com consistência.</li>
+    <li><strong>Peça que ele pense em voz alta:</strong> Para tarefas de raciocínio, peça "antes de responder, liste os fatores que você está considerando". Isso melhora a qualidade final.</li>
+    <li><strong>Itere:</strong> A primeira resposta raramente é a melhor. Peça variações, ajustes e versões alternativas até chegar no que você precisa.</li>
+  </ul>
+
+  <h2>Claude vs. ChatGPT: dois bons caminhos</h2>
+  <p>É natural perguntar qual é "melhor" — mas essa comparação depende muito do que você quer fazer. Ambos são modelos de linguagem poderosos e, para a maioria das tarefas, qualquer um dos dois vai entregar resultados úteis.</p>
+  <p>Em linhas gerais: o ChatGPT tem um ecossistema mais amplo de plugins e integrações, e é mais familiar para quem está começando. O Claude tende a se sair melhor em tarefas que exigem leitura de documentos longos, seguir instruções detalhadas e produzir escrita com tom mais refinado.</p>
+  <p>A recomendação prática é experimentar os dois para a sua tarefa específica e ficar com o que funciona melhor para você — não existe resposta certa aqui.</p>
+
+  <h2>Como começar agora</h2>
+  <p>Acesse <strong>claude.ai</strong>, crie uma conta gratuita e tente uma tarefa concreta que você já faz no trabalho ou nos estudos. Não precisa ser nada complexo — um resumo de um texto que você leu, um e-mail que está adiando escrever, uma dúvida sobre um conceito que você não entendeu bem.</p>
+  <p>A melhor forma de aprender qualquer ferramenta de IA é usá-la para algo real. A teoria ajuda, mas o entendimento vem com a prática.</p>
+
+</article>
+
+<section class="cta-section">
+  <div class="cta-box">
+    <h2>Pronto para usar o Claude com prompts melhores?</h2>
+    <p>Acesse a Biblioteca de Prompts e encontre modelos prontos para trabalho, estudos, atendimento e automações.</p>
+    <a href="../biblioteca-de-prompts.html" class="cta-btn">Ver a Biblioteca de Prompts</a>
+  </div>
+</section>
+
+<footer>
+  <div>
+    <a href="../sobre.html">Sobre</a>
+    <a href="../contato.html">Contato</a>
+    <a href="../politica-de-privacidade.html">Política de Privacidade</a>
+    <a href="../termos-de-uso.html">Termos de Uso</a>
+  </div>
+  <p style="margin-top:.75rem">© 2026 Aprenda com AI</p>
+</footer>
+<script src="../cookie-consent.js" defer></script>
+<script src="../site-menu.js" defer></script>
+</body>
+</html>

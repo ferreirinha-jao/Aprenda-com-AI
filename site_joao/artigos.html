@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Guias e tutoriais práticos sobre inteligência artificial sem código para estudos, trabalho e negócios.">
+  <title>Artigos | Aprenda com AI</title>
+  <link rel="icon" href="favicon.ico.png" type="image/png">
+  <link rel="apple-touch-icon" href="favicon.svg">
+  <link rel="canonical" href="https://aprendacomai.com/artigos.html">
+  <meta property="og:site_name" content="Aprenda com AI">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Artigos | Aprenda com AI">
+  <meta property="og:description" content="Guias e tutoriais práticos sobre inteligência artificial sem código para estudos, trabalho e negócios.">
+  <meta property="og:url" content="https://aprendacomai.com/artigos.html">
+  <meta property="og:image" content="https://aprendacomai.com/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Artigos | Aprenda com AI">
+  <meta name="twitter:description" content="Guias e tutoriais práticos sobre inteligência artificial sem código para estudos, trabalho e negócios.">
+  <meta name="twitter:image" content="https://aprendacomai.com/og-image.png">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="final-hero.css">
+  <style>
+    body.articles-page { margin: 0; min-height: 100vh; background: radial-gradient(circle at 17% 4%, rgba(215, 255, 63, .15), transparent 31%), #0b0c0e; color: #e5e7eb; font-family: Manrope, sans-serif; }
+    .articles-main { max-width: 1200px; margin: auto; padding: 5rem clamp(1.25rem, 5vw, 4.8rem) 6rem; }
+    .articles-kicker { display: inline-block; margin: 0; color: #d7ff3f; font: 500 .75rem 'DM Mono', monospace; letter-spacing: .12em; text-shadow: 0 0 14px rgba(215,255,63,.45); }
+    .articles-intro { max-width: 760px; }
+    .articles-intro h1 { margin: 1rem 0 0; color: #fff; font: 800 clamp(2.6rem, 6vw, 5.1rem)/.98 'Space Grotesk', sans-serif; letter-spacing: -.07em; }
+    .articles-intro > p { max-width: 650px; margin: 1.4rem 0 0; color: #c7c9c5; font-size: 1.06rem; line-height: 1.7; }
+    .articles-tools { display: flex; align-items: center; justify-content: space-between; gap: 1.25rem; margin-top: 3.2rem; padding-top: 1.8rem; border-top: 1px solid rgba(255,255,255,.12); }
+    .search-wrap { position: relative; width: min(100%, 380px); }
+    .search-wrap input { width: 100%; box-sizing: border-box; padding: .86rem 1rem .86rem 2.7rem; border: 1px solid rgba(255,255,255,.15); border-radius: 999px; outline: none; background: rgba(255,255,255,.04); color: #fff; font: .9rem Manrope, sans-serif; }
+    .search-wrap input:focus { border-color: #d7ff3f; box-shadow: 0 0 0 3px rgba(215,255,63,.13); }
+    .search-wrap span { position: absolute; top: 50%; left: 1rem; transform: translateY(-50%); color: #aeb2aa; }
+    .pills { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: .55rem; }
+    .filter-pill { padding: .65rem .9rem; border: 1px solid rgba(255,255,255,.15); border-radius: 999px; background: rgba(255,255,255,.03); color: #c7c9c5; font: 600 .74rem Manrope, sans-serif; cursor: pointer; transition: color .2s, background .2s, border-color .2s; }
+    .filter-pill:hover, .filter-pill.active { border-color: #d7ff3f; background: #d7ff3f; color: #11110f; }
+    .articles-heading { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin: 4rem 0 1.4rem; padding-bottom: 1rem; border-bottom: 1px solid rgba(255,255,255,.12); }
+    .articles-heading h2 { margin: 0; color: #fff; font: 700 1.65rem 'Space Grotesk', sans-serif; letter-spacing: -.04em; }
+    #count { padding: .4rem .7rem; border: 1px solid rgba(255,255,255,.14); border-radius: 999px; color: #c7c9c5; font: 500 .7rem 'DM Mono', monospace; white-space: nowrap; }
+    .articles-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 1rem; }
+    .article-card { display: flex; min-height: 270px; flex-direction: column; justify-content: space-between; padding: 1.45rem; border: 1px solid rgba(255,255,255,.1); border-radius: 16px; background: rgba(255,255,255,.035); box-shadow: inset 0 1px rgba(255,255,255,.05); transition: transform .2s, border-color .2s, box-shadow .2s; }
+    .article-card[hidden] { display: none; }
+    .article-card:hover { transform: translateY(-4px); border-color: rgba(215,255,63,.65); box-shadow: 0 14px 35px rgba(0,0,0,.25), 0 0 0 1px rgba(215,255,63,.12); }
+    .article-top, .article-bottom { display: flex; align-items: center; justify-content: space-between; gap: .8rem; }
+    .category { padding: .35rem .55rem; border-radius: 6px; background: rgba(215,255,63,.13); color: #d7ff3f; font: 600 .66rem 'DM Mono', monospace; letter-spacing: .06em; text-transform: uppercase; }
+    .reading-time, .article-date { color: #9da197; font-size: .72rem; }
+    .article-card h3 { margin: 1.2rem 0 0; color: #fff; font: 700 1.25rem/1.2 'Space Grotesk', sans-serif; letter-spacing: -.035em; }
+    .article-card p { margin: .8rem 0 0; color: #c7c9c5; font-size: .88rem; line-height: 1.62; }
+    .article-bottom { margin-top: 1.4rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,.09); }
+    .article-bottom a { color: #d7ff3f; font-size: .8rem; font-weight: 700; text-decoration: none; }
+    .article-bottom a:hover { text-decoration: underline; }
+    #empty { display: none; padding: 2rem; color: var(--dim); font-family: var(--font-body); text-align: center; }
+    #empty:not([hidden]) { display: block; }
+    .articles-footer { background: #121316; }
+    @media (max-width: 900px) { .articles-grid { grid-template-columns: repeat(2, minmax(0,1fr)); } .articles-tools { flex-direction: column; align-items: stretch; } .pills { justify-content: flex-start; } }
+    @media (max-width: 600px) { .articles-main { padding: 3.5rem 1rem 4rem; } .articles-grid { grid-template-columns: repeat(2, minmax(0,1fr)); gap: .75rem; } .articles-heading { margin-top: 2.7rem; } .article-card { min-height: 200px; padding: 1rem; } .article-card h3 { font-size: 1rem; } .article-card p { font-size: .8rem; } }
+  </style>
+  <script src="script.js" defer></script>
+<link rel="stylesheet" href="site-menu.css">
+</head>
+<body class="articles-page">
+  <header>
+    <nav class="navbar">
+        <a href="index.html" class="logo">Aprenda com AI</a>
+        <ul class="nav-links">
+            <li><a href="index.html">Início</a></li>
+            <li><a href="comece-aqui.html">Comece Aqui</a></li>
+            <li><a href="artigos.html">Artigos</a></li>
+            <li><a href="biblioteca-de-prompts.html">Biblioteca de Prompts</a></li>
+            <li><a href="calculadora-ia.html">Calculadora de Impacto</a></li>
+            <li><a href="sobre.html">Sobre</a></li>
+            <li><a href="contato.html">Contato</a></li>
+        </ul>
+    </nav>
+</header>
+  <main class="articles-main">
+    <section class="articles-intro">
+      <p class="articles-kicker">REVISTA DIGITAL</p>
+      <h1>Ideias para usar IA melhor.</h1>
+      <p>Conteúdo claro e prático para aplicar inteligência artificial nos seus estudos, na rotina e no crescimento dos seus negócios.</p>
+    </section>
+    <section class="articles-tools" aria-label="Busca e filtros">
+      <label class="search-wrap"><span aria-hidden="true">⌕</span><input id="search" type="search" placeholder="Buscar artigos por palavra-chave..." aria-label="Buscar artigos por palavra-chave"></label>
+      <div class="pills" id="category-pills">
+        <button data-value="" class="filter-pill active" type="button">Todas</button>
+        <button data-value="tutoriais" class="filter-pill" type="button">Tutoriais</button>
+        <button data-value="negocios" class="filter-pill" type="button">Negócios</button>
+        <button data-value="guias" class="filter-pill" type="button">Guias</button>
+        <button data-value="prompts" class="filter-pill" type="button">Prompts</button>
+      </div>
+    </section>
+    <section aria-labelledby="articles-title">
+      <div class="articles-heading"><h2 id="articles-title">Artigos &amp; Guia Prático</h2><span id="count" aria-live="polite">18 artigos</span></div>
+      <div id="articles" class="articles-grid">
+        <article class="article-card" data-category="tutoriais" data-search="história ia inteligência artificial chatgpt turing deep blue"><div><div class="article-top"><span class="category">Tutoriais</span><span class="reading-time">5 min de leitura</span></div><h3>A História da Inteligência Artificial: Ela Não Nasceu com o ChatGPT</h3><p>Entenda os marcos que vão do Teste de Turing aos modelos generativos atuais.</p></div><div class="article-bottom"><span class="article-date">Por Redação Aprenda com IA · 10 set 2026</span><a href="artigos/historia-da-ia.html">Ler artigo →</a></div></article>
+        <article class="article-card" data-category="tutoriais" data-search="gemini google drive docs workspace resumir documentos reescrever textos buscar arquivos linguagem natural"><div><div class="article-top"><span class="category">Tutoriais</span><span class="reading-time">10 min de leitura</span></div><h3>Como usar o Gemini no Google Drive e Docs</h3><p>Guia completo para usar o Gemini integrado ao Google Workspace: como resumir documentos, reescrever textos e buscar arquivos com linguagem natural.</p></div><div class="article-bottom"><span class="article-date">Por Redação Aprenda com IA · 10 out 2026</span><a href="artigos/gemini-google-drive-docs.html">Ler artigo →</a></div></article>
+        <article class="article-card" data-category="tutoriais" data-search="chatgpt organizar rotina tarefas cronograma produtividade"><div><div class="article-top"><span class="category">Tutoriais</span><span class="reading-time">4 min de leitura</span></div><h3>Como Usar o ChatGPT para Organizar Sua Rotina Sem Complicação</h3><p>Transforme uma lista confusa de tarefas em um cronograma semanal mais realista.</p></div><div class="article-bottom"><span class="article-date">Por Redação Aprenda com IA · 12 set 2026</span><a href="artigos/chatgpt-rotina.html">Ler artigo →</a></div></article>
+        <article class="article-card" data-category="tutoriais" data-search="resumir textos ia leitura aprendizado artigos livros pdf documentos técnicos prompts"><div class="article-top"><span class="badge">Tutoriais</span></div><h3><a href="artigos/resumir-textos-ia.html">Como Resumir Textos com IA e Transformar Leitura em Aprendizado</a></h3><p>Como usar IA para resumir textos com qualidade: prompts práticos para artigos, livros, PDFs e documentos técnicos.</p><div class="article-bottom"><span class="author">Por Redação Aprenda com AI</span></div></article>
+        <article class="article-card" data-category="negocios" data-search="respostas automáticas clientes whatsapp instagram atendimento"><div><div class="article-top"><span class="category">Negócios</span><span class="reading-time">4 min de leitura</span></div><h3>Respostas Automáticas para Clientes Usando IA (Sem Programar)</h3><p>Crie mensagens profissionais para WhatsApp e Instagram e agilize o atendimento inicial.</p></div><div class="article-bottom"><span class="article-date">Por Redação Aprenda com IA · 18 set 2026</span><a href="artigos/respostas-automaticas-ia.html">Ler artigo →</a></div></article>
+        <article class="article-card" data-category="negocios" data-search="atendimento 24 7 ia estratégia sem código automação clientes"><div><div class="article-top"><span class="category">Negócios</span><span class="reading-time">11 min de leitura</span></div><h3>Atendimento 24/7 com IA: Estratégia Sem Código</h3><p>Estratégias, arquitetura no-code e prompts para atender clientes em todos os horários.</p></div><div class="article-bottom"><span class="article-date">Por Redação Aprenda com IA · 21 set 2026</span><a href="artigos/automacao-atendimento-cliente-ia.html">Ler artigo →</a></div></article>
+        <article class="article-card" data-category="negocios" data-search="primeiro fluxo atendimento ia no-code automação n8n make"><div><div class="article-top"><span class="category">Negócios</span><span class="reading-time">6 min de leitura</span></div><h3>Como Montar o Primeiro Fluxo de Atendimento com IA</h3><p>Estruture, teste e publique um fluxo de atendimento com ferramentas no-code.</p></div><div class="article-bottom"><span class="article-date">Por Redação Aprenda com IA · 24 set 2026</span><a href="artigos/automacao-atendimento-ia.html">Ler artigo →</a></div></article>
+        <article class="article-card" data-category="guias" data-search="guia completo chatgpt zero uso profissional funcionamento versões casos de uso dicas limitações"><div class="article-top"><span class="badge">Guias</span></div><h3><a href="artigos/guia-completo-chatgpt.html">Guia Completo do ChatGPT: Do Zero ao Uso Profissional</a></h3><p>Tudo o que você precisa saber sobre o ChatGPT: como funciona, versões, casos de uso, dicas e limitações.</p><div class="article-bottom"><span class="author">Por Redação Aprenda com AI</span></div></article>
+        <article class="article-card" data-category="guias" data-search="guia completo claude ia assistente anthropic versões uso destaques ferramenta"><div class="article-top"><span class="badge">Guias</span></div><h3><a href="artigos/guia-claude-ia.html">Guia Completo do Claude: O Assistente de IA da Anthropic</a></h3><p>O que é o Claude, como usar, versões disponíveis, onde se destaca e como extrair o máximo da ferramenta.</p><div class="article-bottom"><span class="author">Por Redação Aprenda com AI</span></div></article>
+        <article class="article-card" data-category="guias" data-search="claude chat cowork code skills automação projetos ia vibe coding micro saas"><div><div class="article-top"><span class="category">Guias</span><span class="reading-time">12 min de leitura</span></div><h3>Como Usar a Tríade do Claude para Automatizar Projetos e Criar Soluções de IA</h3><p>Combine Chat, Cowork e Claude Code para planejar projetos, produzir entregáveis e construir automações úteis.</p></div><div class="article-bottom"><span class="article-date">Por Redação Aprenda com IA · 1 out 2026</span><a href="artigos/triade-claude-projetos-ia.html">Ler artigo →</a></div></article>
+        <article class="article-card" data-category="guias" data-search="agentes ia skills módulos modular ferramentas gmail google sheets agenda fluxos agentic feedback automação"><div><div class="article-top"><span class="category">Guias</span><span class="reading-time">10 min de leitura</span></div><h3>Os Agentes de IA Vão Morrer? Como as Skills Estão Mudando a Automação</h3><p>Entenda Skills modulares, acesso a ferramentas reais e ciclos de feedback para criar agentes mais úteis.</p></div><div class="article-bottom"><span class="article-date">Por Redação Aprenda com IA · 2 out 2026</span><a href="artigos/agentes-ia-skills.html">Ler artigo →</a></div></article>
+        <article class="article-card" data-category="guias" data-search="chatgpt claude comparação produtividade artefatos office excel word powerpoint skills cowork dispatch voice brainstorm memória"><div><div class="article-top"><span class="category">Guias</span><span class="reading-time">11 min de leitura</span></div><h3>Por que eu Troquei o ChatGPT pelo Claude (e você também deveria)</h3><p>Compare escrita, artefatos, integrações e agentes para descobrir qual assistente se encaixa melhor no seu trabalho.</p></div><div class="article-bottom"><span class="article-date">Por Redação Aprenda com IA · 3 out 2026</span><a href="artigos/troquei-chatgpt-pelo-claude.html">Ler artigo →</a></div></article>
+        <article class="article-card" data-category="negocios" data-search="n8n vibe coding lovable google antigravity claude code saas dashboard crm kanban sistema gestão ia método era ecossistema recorrência autoridade"><div><div class="article-top"><span class="category">Negócios</span><span class="reading-time">12 min de leitura</span></div><h3>Pare de Vender Automações Soltas: Use n8n para Criar Sistemas com IA em 2026</h3><p>Combine vibe coding e automação de bastidores para criar sistemas especializados e uma oferta com valor contínuo.</p></div><div class="article-bottom"><span class="article-date">Por Redação Aprenda com IA · 4 out 2026</span><a href="artigos/n8n-sistemas-ia-vibe-coding.html">Ler artigo →</a></div></article>
+        <article class="article-card" data-category="negocios" data-search="claude code crm vertical nichado clínicas estética micro saas banco dados autenticação agenda anamnese lgpd b2b monetização setup recorrência agentes whatsapp"><div><div class="article-top"><span class="category">Negócios</span><span class="reading-time">13 min de leitura</span></div><h3>Como Criar e Vender um CRM Nichado com Claude Code</h3><p>Um roteiro para validar um CRM vertical para clínicas, desenvolver com segurança e estruturar setup, mensalidade e upsells com IA.</p></div><div class="article-bottom"><span class="article-date">Por Redação Aprenda com IA · 5 out 2026</span><a href="artigos/crm-clinica-estetica-claude-code.html">Ler artigo →</a></div></article>
+        <article class="article-card" data-category="negocios" data-search="claude ganhar dinheiro monetização agência criativos micro saas software no-code prospecção b2b implementação ia conteúdo criadores marcas atendimento vendas"><div><div class="article-top"><span class="category">Negócios</span><span class="reading-time">14 min de leitura</span></div><h3>7 Formas de Ganhar Dinheiro com o Claude: Serviços de IA para Empresas</h3><p>Conheça sete modelos de serviço e um plano prático para validar uma oferta de IA sem prometer resultados garantidos.</p></div><div class="article-bottom"><span class="article-date">Por Redação Aprenda com IA · 6 out 2026</span><a href="artigos/7-formas-ganhar-dinheiro-claude.html">Ler artigo →</a></div></article>
+        <article class="article-card" data-category="negocios" data-search="negócios digitais ia 2026 automação make n8n voiceflow youtube adsense afiliados produtora conteúdo micro saas consultoria pmEs implementação"><div><div class="article-top"><span class="category">Negócios</span><span class="reading-time">15 min de leitura</span></div><h3>5 Negócios Digitais Emergentes para Criar e Monetizar com IA em 2026</h3><p>Compare cinco modelos de negócio com IA e veja como testar a demanda, estruturar uma oferta e acompanhar os números.</p></div><div class="article-bottom"><span class="article-date">Por Redação Aprenda com IA · 7 out 2026</span><a href="artigos/5-negocios-digitais-ia-2026.html">Ler artigo →</a></div></article>
+        <article class="article-card" data-category="prompts" data-search="prompts imagens design criação visual midjourney dalle stable diffusion canva"><div><div class="article-top"><span class="category">Prompts</span><span class="reading-time">8 min de leitura</span></div><h3><a href="artigos/prompts-imagens-design.html">Prompts para Imagens e Design com IA</a></h3><p>Guia prático para Midjourney, DALL-E, Stable Diffusion e Canva IA com exemplos prontos.</p></div><div class="article-bottom"><span class="article-date">Por Redação Aprenda com IA · 8 out 2026</span><a href="artigos/prompts-imagens-design.html">Ler artigo →</a></div></article>
+        <article class="article-card" data-category="tutoriais" data-search="prompts produtividade trabalho chatgpt claude gemini aumentar produtividade"><div class="article-top"><span class="badge">Tutoriais</span></div><h3><a href="artigos/prompts-produtividade.html">Prompts de Produtividade e Trabalho que Realmente Funcionam</a></h3><p>Prompts prontos e testados para aumentar sua produtividade no trabalho com ChatGPT, Claude e Gemini.</p><div class="article-bottom"><span class="author">Por Redação Aprenda com AI</span></div></article>
+        <article class="article-card" data-category="tutoriais" data-search="apresentações ia slides criar apresentações"><div><div class="article-top"><span class="category">Tutoriais</span><span class="reading-time">8 min de leitura</span></div><h3><a href="artigos/criar-apresentacoes-com-ia.html">Como Criar Apresentações com IA</a></h3><p>Aprenda a planejar slides, organizar ideias e criar apresentações com ferramentas de inteligência artificial.</p></div><div class="article-bottom"><span class="article-date">Por Redação Aprenda com IA · 10 out 2026</span><a href="artigos/criar-apresentacoes-com-ia.html">Ler artigo →</a></div></article>
+        <article class="article-card" data-category="tutoriais" data-search="aprender inglês ia idiomas conversação vocabulário"><div><div class="article-top"><span class="category">Tutoriais</span><span class="reading-time">7 min de leitura</span></div><h3><a href="artigos/usar-ia-para-aprender-ingles.html">Como Aprender Inglês com IA</a></h3><p>Use ferramentas de IA para praticar conversação, ampliar o vocabulário e criar uma rotina de estudos.</p></div><div class="article-bottom"><span class="article-date">Por Redação Aprenda com IA · 9 out 2026</span><a href="artigos/usar-ia-para-aprender-ingles.html">Ler artigo →</a></div></article>
+        <article class="article-card" data-category="tutoriais" data-search="legendas ia vídeos transcrição"><div><div class="article-top"><span class="category">Tutoriais</span><span class="reading-time">6 min de leitura</span></div><h3><a href="artigos/como-gerar-legendas-automaticas-com-ia.html">Como Criar Legendas com IA</a></h3><p>Veja como transcrever vídeos e revisar legendas com ferramentas de inteligência artificial.</p></div><div class="article-bottom"><span class="article-date">Por Redação Aprenda com IA · 8 out 2026</span><a href="artigos/como-gerar-legendas-automaticas-com-ia.html">Ler artigo →</a></div></article>
+        <article class="article-card" data-category="guias" data-search="perplexity ai pesquisa fontes respostas"><div><div class="article-top"><span class="category">Guias</span><span class="reading-time">8 min de leitura</span></div><h3><a href="artigos/o-que-e-perplexity-ai.html">Perplexity AI: Guia para Pesquisar com Inteligência Artificial</a></h3><p>Conheça os recursos do Perplexity AI e aprenda a pesquisar, conferir fontes e explorar respostas.</p></div><div class="article-bottom"><span class="article-date">Por Redação Aprenda com IA · 7 out 2026</span><a href="artigos/o-que-e-perplexity-ai.html">Ler artigo →</a></div></article>
+        <article class="article-card" data-category="negocios" data-search="propostas comerciais ia clientes negócios vendas"><div><div class="article-top"><span class="category">Negócios</span><span class="reading-time">7 min de leitura</span></div><h3><a href="artigos/como-usar-ia-para-propostas-comerciais.html">Como Criar Propostas Comerciais com IA</a></h3><p>Estruture propostas claras e personalizadas com apoio de IA, mantendo a revisão e o contexto do negócio.</p></div><div class="article-bottom"><span class="article-date">Por Redação Aprenda com IA · 6 out 2026</span><a href="artigos/como-usar-ia-para-propostas-comerciais.html">Ler artigo →</a></div></article>
+        <article class="article-card" data-category="negocios" data-search="portfólio automações ia no-code projetos clientes"><div><div class="article-top"><span class="category">Negócios</span><span class="reading-time">6 min de leitura</span></div><h3><a href="artigos/como-montar-portfolio-de-automacoes.html">Como Montar um Portfólio de Automações com IA</a></h3><p>Organize projetos e demonstre suas soluções de automação para potenciais clientes e parceiros.</p></div><div class="article-bottom"><span class="article-date">Por Redação Aprenda com IA · 5 out 2026</span><a href="artigos/como-montar-portfolio-de-automacoes.html">Ler artigo →</a></div></article>
+      <article class="article-card" data-category="tutoriais" data-search="criar chatbot whatsapp ia n8n evolution api chatgpt atendimento automacao">
+  <div class="article-top">
+    <span class="badge">Tutoriais</span>
+  </div>
+  <h3><a href="artigos/criar-chatbot-whatsapp.html">Como criar um chatbot para WhatsApp com IA</a></h3>
+  <p>Aprenda a criar um chatbot para WhatsApp usando n8n, Evolution API e ChatGPT para automatizar o atendimento.</p>
+  <div class="article-bottom">
+    <span class="author">Por Redação Aprenda com AI</span>
+  </div>
+</article>
+
+<article class="article-card" data-category="negocios" data-search="prospectar clientes locais automacao servico pequenas empresas vendas">
+  <div class="article-top">
+    <span class="badge">Negócios</span>
+  </div>
+  <h3><a href="artigos/como-prospectar-clientes-locais.html">Como prospectar clientes locais para automações</a></h3>
+  <p>Estratégias práticas, scripts de mensagem e como usar IA para abordar pequenas empresas.</p>
+  <div class="article-bottom">
+    <span class="author">Por Redação Aprenda com AI</span>
+  </div>
+</article>
+
+<article class="article-card" data-category="guias" data-search="chatgpt gemini claude comparacao modelos ia 2025">
+  <div class="article-top">
+    <span class="badge">Guias</span>
+  </div>
+  <h3><a href="artigos/chatgpt-vs-gemini-vs-claude.html">ChatGPT vs Gemini vs Claude: qual usar em 2025?</a></h3>
+  <p>Comparação prática entre os principais modelos de IA do mercado para te ajudar a escolher o ideal.</p>
+  <div class="article-bottom">
+    <span class="author">Por Redação Aprenda com AI</span>
+  </div>
+</article>
+
+<article class="article-card" data-category="guias" data-search="n8n o que e automacao workflows open source">
+  <div class="article-top">
+    <span class="badge">Guias</span>
+  </div>
+  <h3><a href="artigos/o-que-e-n8n.html">O que é o n8n e por que todo automador usa</a></h3>
+  <p>Entenda por que a ferramenta open source virou a queridinha dos criadores de automação no Brasil.</p>
+  <div class="article-bottom">
+    <span class="author">Por Redação Aprenda com AI</span>
+  </div>
+</article>
+
+<article class="article-card" data-category="guias" data-search="agentes de ia o que sao funcionamento llm automacao">
+  <div class="article-top">
+    <span class="badge">Guias</span>
+  </div>
+  <h3><a href="artigos/o-que-sao-agentes-de-ia.html">O que são agentes de IA e como funcionam</a></h3>
+  <p>Descubra o conceito de IA agêntica, a diferença para chatbots e como eles planejam e executam tarefas.</p>
+  <div class="article-bottom">
+    <span class="author">Por Redação Aprenda com AI</span>
+  </div>
+</article>
+      </div>
+      <div id="empty" role="status" aria-live="polite" hidden>Nenhum resultado encontrado</div>
+    </section>
+  </main>
+  <footer class="articles-footer inner-footer"><a class="logo" href="index.html">aprendacom<span>AI.</span></a><p>© 2026 Aprenda com AI</p><div><a href="sobre.html">Sobre</a><a href="contato.html">Contato</a><a href="politica-de-privacidade.html">Política de Privacidade</a><a href="termos-de-uso.html">Termos de Uso</a></div></footer>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const search = document.querySelector('#search');
+      const pills = [...document.querySelectorAll('.filter-pill')];
+      const cards = [...document.querySelectorAll('.article-card')];
+      const count = document.querySelector('#count');
+      const empty = document.querySelector('#empty');
+      let category = '';
+      const filter = () => {
+        const query = search.value.trim().toLowerCase();
+        let total = 0;
+        cards.forEach((card) => {
+          const matchCategory = !category || card.dataset.category === category;
+          const title = card.querySelector('h2, h3, .article-title')?.textContent.toLowerCase() || '';
+          const badge = card.querySelector('.category, .article-category, .badge')?.textContent.toLowerCase() || '';
+          const searchableText = `${title} ${badge} ${card.dataset.search || ''} ${card.textContent}`.toLowerCase();
+          const matchQuery = !query || searchableText.includes(query);
+          const visible = matchCategory && matchQuery;
+          card.hidden = !visible;
+          if (visible) total += 1;
+        });
+        count.textContent = total + ' artigo' + (total === 1 ? '' : 's');
+        empty.hidden = total !== 0;
+      };
+      search.addEventListener('input', filter);
+      pills.forEach((pill) => pill.addEventListener('click', () => {
+        category = pill.dataset.value;
+        pills.forEach((item) => item.classList.toggle('active', item === pill));
+        filter();
+      }));
+    });
+  </script>
+<script src="cookie-consent.js" defer></script>
+<script src="site-menu.js" defer></script>
+</body>
+</html>

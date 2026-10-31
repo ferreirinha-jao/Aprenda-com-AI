@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Como usar o Gemini no Google Drive e Docs | Aprenda com AI</title>
+  <meta name="description" content="Guia completo para usar o Gemini integrado ao Google Workspace: como resumir documentos, reescrever textos, buscar arquivos com linguagem natural e muito mais." />
+  <meta name="keywords" content="Gemini Google Drive, Gemini Docs, Google Workspace AI, como usar Gemini, IA no Google" />
+  <meta name="author" content="Aprenda com AI" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Como usar o Gemini no Google Drive e Docs" />
+  <meta property="og:description" content="Guia completo para usar o Gemini integrado ao Google Workspace: resumir documentos, reescrever textos e buscar arquivos com IA." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://aprendacomai.com/artigos/gemini-google-drive-docs.html" />
+  <meta property="og:site_name" content="Aprenda com AI" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Manrope:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <!-- Site CSS -->
+  <link rel="stylesheet" href="../style.css" />
+  <link rel="stylesheet" href="../final-hero.css" />
+
+  <style>
+    /* ── Base ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:       #0b0c0e;
+      --surface:  #13151a;
+      --border:   #1e2028;
+      --accent:   #d7ff3f;
+      --accent2:  #a8cc28;
+      --text:     #e5e7eb;
+      --muted:    #c7c9c5;
+      --dim:      #6b7280;
+      --font-head: 'Space Grotesk', sans-serif;
+      --font-body: 'Manrope', sans-serif;
+      --font-mono: 'DM Mono', monospace;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: 1rem;
+      line-height: 1.75;
+      min-height: 100vh;
+    }
+
+    /* ── NAV ── */
+    .site-nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(11,12,14,.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 1.5rem;
+    }
+    .nav-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 60px;
+      gap: 2rem;
+    }
+    .nav-logo {
+      font-family: var(--font-head);
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--text);
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .nav-logo span { color: var(--accent); }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      list-style: none;
+      flex-wrap: wrap;
+    }
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: .875rem;
+      font-family: var(--font-head);
+      font-weight: 500;
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+
+    /* ── HERO ARTIGO ── */
+    .article-hero {
+      background: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(215,255,63,.13) 0%, transparent 65%);
+      border-bottom: 1px solid var(--border);
+      padding: 4rem 1.5rem 3rem;
+      text-align: center;
+    }
+    .article-hero .badge {
+      display: inline-block;
+      background: rgba(215,255,63,.12);
+      color: var(--accent);
+      border: 1px solid rgba(215,255,63,.25);
+      border-radius: 999px;
+      padding: .25rem .9rem;
+      font-family: var(--font-mono);
+      font-size: .75rem;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+      margin-bottom: 1.25rem;
+    }
+    .article-hero h1 {
+      font-family: var(--font-head);
+      font-size: clamp(1.75rem, 4vw, 2.75rem);
+      font-weight: 700;
+      line-height: 1.2;
+      max-width: 780px;
+      margin: 0 auto 1rem;
+    }
+    .article-hero h1 em {
+      font-style: normal;
+      color: var(--accent);
+    }
+    .article-meta {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.25rem;
+      flex-wrap: wrap;
+      font-size: .8rem;
+      color: var(--dim);
+      font-family: var(--font-mono);
+      margin-top: 1.25rem;
+    }
+    .article-meta span { display: flex; align-items: center; gap: .35rem; }
+
+    /* ── LAYOUT ── */
+    .article-wrap {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 3.5rem 1.5rem 5rem;
+    }
+
+    /* ── TIPOGRAFIA DO ARTIGO ── */
+    .article-body h2 {
+      font-family: var(--font-head);
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--text);
+      margin: 2.5rem 0 .75rem;
+      padding-bottom: .5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .article-body h3 {
+      font-family: var(--font-head);
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--accent);
+      margin: 2rem 0 .5rem;
+    }
+    .article-body p {
+      color: var(--muted);
+      margin-bottom: 1.25rem;
+    }
+    .article-body strong { color: var(--text); font-weight: 600; }
+    .article-body a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+    .article-body a:hover { color: var(--accent2); }
+
+    .article-body ul,
+    .article-body ol {
+      color: var(--muted);
+      margin: 0 0 1.25rem 1.5rem;
+    }
+    .article-body li { margin-bottom: .5rem; }
+    .article-body li strong { color: var(--text); }
+
+    /* ── CALLOUT BOXES ── */
+    .callout {
+      border-radius: 10px;
+      padding: 1.1rem 1.25rem;
+      margin: 1.75rem 0;
+      border-left: 3px solid;
+    }
+    .callout-tip {
+      background: rgba(215,255,63,.07);
+      border-color: var(--accent);
+    }
+    .callout-info {
+      background: rgba(99,179,237,.07);
+      border-color: #63b3ed;
+    }
+    .callout-warn {
+      background: rgba(251,191,36,.07);
+      border-color: #fbbf24;
+    }
+    .callout-title {
+      font-family: var(--font-mono);
+      font-size: .75rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: .07em;
+      margin-bottom: .4rem;
+    }
+    .callout-tip  .callout-title { color: var(--accent); }
+    .callout-info .callout-title { color: #63b3ed; }
+    .callout-warn .callout-title { color: #fbbf24; }
+    .callout p { color: var(--muted); margin: 0; font-size: .95rem; }
+
+    /* ── STEP CARDS ── */
+    .steps { display: flex; flex-direction: column; gap: 1rem; margin: 1.5rem 0; }
+    .step {
+      display: flex;
+      gap: 1rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.1rem 1.25rem;
+      align-items: flex-start;
+    }
+    .step-num {
+      flex-shrink: 0;
+      width: 2rem;
+      height: 2rem;
+      background: var(--accent);
+      color: #0b0c0e;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-head);
+      font-weight: 700;
+      font-size: .85rem;
+    }
+    .step-content h4 {
+      font-family: var(--font-head);
+      font-weight: 600;
+      font-size: .95rem;
+      color: var(--text);
+      margin-bottom: .25rem;
+    }
+    .step-content p {
+      font-size: .9rem;
+      color: var(--muted);
+      margin: 0;
+    }
+
+    /* ── FEATURE GRID ── */
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+    .feature-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.1rem;
+    }
+    .feature-card .icon {
+      font-size: 1.4rem;
+      margin-bottom: .5rem;
+    }
+    .feature-card h4 {
+      font-family: var(--font-head);
+      font-weight: 600;
+      font-size: .9rem;
+      color: var(--text);
+      margin-bottom: .35rem;
+    }
+    .feature-card p {
+      font-size: .82rem;
+      color: var(--dim);
+      margin: 0;
+    }
+
+    /* ── CODE BLOCK ── */
+    .code-block {
+      background: #0d0f13;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.1rem 1.25rem;
+      margin: 1.25rem 0;
+      overflow-x: auto;
+    }
+    .code-block pre {
+      font-family: var(--font-mono);
+      font-size: .82rem;
+      color: #a3e635;
+      line-height: 1.7;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+    .code-label {
+      font-family: var(--font-mono);
+      font-size: .7rem;
+      color: var(--dim);
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      margin-bottom: .5rem;
+    }
+
+    /* ── TABLE ── */
+    .table-wrap { overflow-x: auto; margin: 1.5rem 0; }
+    table { width: 100%; border-collapse: collapse; font-size: .875rem; }
+    th {
+      background: var(--surface);
+      color: var(--text);
+      font-family: var(--font-head);
+      font-weight: 600;
+      padding: .65rem 1rem;
+      text-align: left;
+      border-bottom: 2px solid var(--border);
+    }
+    td {
+      color: var(--muted);
+      padding: .6rem 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+    tr:hover td { background: rgba(255,255,255,.02); }
+
+    /* ── CTA FINAL ── */
+    .article-cta {
+      background: radial-gradient(ellipse 80% 80% at 50% 50%, rgba(215,255,63,.1) 0%, transparent 70%);
+      border: 1px solid rgba(215,255,63,.2);
+      border-radius: 16px;
+      padding: 2.5rem;
+      text-align: center;
+      margin-top: 3rem;
+    }
+    .article-cta h3 {
+      font-family: var(--font-head);
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: .6rem;
+    }
+    .article-cta p { color: var(--muted); font-size: .95rem; margin-bottom: 1.5rem; }
+    .btn-accent {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      background: var(--accent);
+      color: #0b0c0e;
+      font-family: var(--font-head);
+      font-weight: 700;
+      font-size: .9rem;
+      padding: .65rem 1.5rem;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: background .2s, transform .15s;
+    }
+    .btn-accent:hover { background: var(--accent2); transform: translateY(-1px); }
+    /* Botão do CTA: evita que a cor de link do artigo apague o texto */
+    .article-body a.btn-accent, .article-body a.btn-accent:hover { color: #0b0c0e; text-decoration: none; }
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      font-family: var(--font-head);
+      font-weight: 500;
+      font-size: .9rem;
+      padding: .65rem 1.5rem;
+      border-radius: 8px;
+      text-decoration: none;
+      margin-left: .75rem;
+      transition: border-color .2s, color .2s;
+    }
+    .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* ── FOOTER ── */
+    .site-footer {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      padding: 2.5rem 1.5rem;
+      text-align: center;
+    }
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .footer-logo {
+      font-family: var(--font-head);
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--text);
+      text-decoration: none;
+      display: inline-block;
+      margin-bottom: 1rem;
+    }
+    .footer-logo span { color: var(--accent); }
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.25rem;
+      list-style: none;
+    }
+    .footer-links a {
+      color: var(--dim);
+      text-decoration: none;
+      font-size: .8rem;
+      transition: color .2s;
+    }
+    .footer-links a:hover { color: var(--accent); }
+    .footer-copy {
+      font-size: .75rem;
+      color: var(--dim);
+      font-family: var(--font-mono);
+    }
+
+    /* ── BREADCRUMB ── */
+    .breadcrumb {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 1rem 1.5rem 0;
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+      font-size: .78rem;
+      color: var(--dim);
+      font-family: var(--font-mono);
+    }
+    .breadcrumb a { color: var(--dim); text-decoration: none; transition: color .2s; }
+    .breadcrumb a:hover { color: var(--accent); }
+    .breadcrumb span { color: var(--accent); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+      .article-hero { padding: 2.5rem 1rem 2rem; }
+      .article-wrap { padding: 2rem 1rem 3rem; }
+      .btn-ghost { margin-left: 0; margin-top: .5rem; }
+    }
+  </style>
+  <link rel="icon" type="image/png" href="../favicon.ico.png">
+  <link rel="canonical" href="https://aprendacomai.com/artigos/gemini-google-drive-docs.html">
+<link rel="stylesheet" href="../site-menu.css">
+</head>
+<body>
+
+  <!-- ══════════════════════ NAV ══════════════════════ -->
+  <nav class="site-nav">
+    <div class="nav-inner">
+      <a class="nav-logo" href="../index.html">Aprenda com <span>AI</span></a>
+      <ul class="nav-links">
+        <li><a href="../index.html">Início</a></li>
+        <li><a href="../comece-aqui.html">Comece Aqui</a></li>
+        <li><a href="../artigos.html">Artigos</a></li>
+        <li><a href="../biblioteca-de-prompts.html">Biblioteca de Prompts</a></li>
+        <li><a href="../calculadora-ia.html">Calculadora de Impacto</a></li>
+        <li><a href="../sobre.html">Sobre</a></li>
+        <li><a href="../contato.html">Contato</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ══════════════════════ BREADCRUMB ══════════════════════ -->
+  <div class="breadcrumb">
+    <a href="../index.html">Início</a>
+    <span>›</span>
+    <a href="../artigos.html">Artigos</a>
+    <span>›</span>
+    Como usar o Gemini no Google Drive e Docs
+  </div>
+
+  <!-- ══════════════════════ HERO ══════════════════════ -->
+  <header class="article-hero">
+    <div class="badge">Tutoriais</div>
+    <h1>Como usar o <em>Gemini</em> no Google Drive e Docs</h1>
+    <div class="article-meta">
+      <span>Ferramentas: Google Workspace + Gemini</span>
+    </div>
+  </header>
+
+  <!-- ══════════════════════ ARTIGO ══════════════════════ -->
+  <main class="article-wrap">
+    <article class="article-body">
+
+      <p>
+        O Google silenciosamente colocou uma IA poderosa dentro das ferramentas que você já usa todo dia. O Gemini está integrado ao Google Docs, Drive, Gmail, Planilhas e Apresentações — e a maioria das pessoas ainda não sabe aproveitar nem 10% do que ele faz.
+      </p>
+      <p>
+        Neste guia você vai ver o que o Gemini consegue fazer dentro do ecossistema Google, como ativar e acessar ele, e os casos de uso mais práticos que você pode começar a usar hoje.
+      </p>
+
+      <!-- ────── O que é o Gemini no Workspace ────── -->
+      <h2>O que é o Gemini no Google Workspace</h2>
+      <p>
+        O Gemini é o modelo de IA do Google. Ele existe em duas versões principais: o <strong>Gemini.google.com</strong> (o site avulso, parecido com o ChatGPT) e o <strong>Gemini dentro do Google Workspace</strong> — que é o que interessa aqui.
+      </p>
+      <p>
+        Quando o Gemini está integrado ao Workspace, ele consegue ler e editar os seus arquivos diretamente, sem você precisar copiar e colar nada. Você abre um documento, clica em um botão e pede para ele resumir, reescrever, ou continuar o texto.
+      </p>
+
+      <div class="callout callout-info">
+        <div class="callout-title">Versão gratuita vs paga</div>
+        <p>
+          O Gemini no Workspace está disponível gratuitamente para contas Google pessoais (@gmail.com) com funcionalidades básicas. O plano <strong>Google One AI Premium</strong> (R$ 99/mês) ou o <strong>Google Workspace Business</strong> desbloqueiam mais recursos como o NotebookLM avançado e limites maiores. Neste artigo vamos focar no que funciona na conta gratuita.
+        </p>
+      </div>
+
+      <!-- ────── Como acessar ────── -->
+      <h2>Como acessar o Gemini no Drive e no Docs</h2>
+
+      <h3>No Google Drive</h3>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <h4>Acesse o Google Drive</h4>
+            <p>Vá para <strong>drive.google.com</strong> e faça login com sua conta Google. O Gemini aparece como um ícone de estrela no canto superior direito da tela.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <h4>Clique no ícone do Gemini</h4>
+            <p>No canto superior direito, procure o botão com o ícone de estrela colorida (✦). Clicar nele abre o painel lateral do Gemini.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <h4>Faça uma pergunta sobre seus arquivos</h4>
+            <p>Digite o que você quer saber. Você pode perguntar sobre um arquivo específico, pedir uma lista de arquivos sobre determinado assunto, ou pedir para ele encontrar algo nos seus documentos.</p>
+          </div>
+        </div>
+      </div>
+
+      <h3>No Google Docs</h3>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <h4>Abra um documento</h4>
+            <p>Acesse qualquer documento no Google Docs. O botão do Gemini fica no canto superior direito — uma estrela com gradiente colorido.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <h4>Abra o painel lateral</h4>
+            <p>Clique na estrela para abrir o Gemini como um painel ao lado do documento. Você escreve comandos ali e ele responde ou edita o texto diretamente.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <h4>Use o atalho "Ajude-me a escrever"</h4>
+            <p>Em um documento vazio, clique na linha e você verá o botão <strong>"Ajude-me a escrever"</strong> aparecer. Esse é o acesso rápido para gerar texto do zero.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ────── O que o Gemini faz no Docs ────── -->
+      <h2>O que o Gemini faz no Google Docs</h2>
+
+      <div class="feature-grid">
+        <div class="feature-card">
+
+          <h4>Resumir documentos</h4>
+          <p>Cola qualquer texto longo e pede um resumo em bullet points, em um parágrafo, ou em formato específico.</p>
+        </div>
+        <div class="feature-card">
+
+          <h4>Reescrever trechos</h4>
+          <p>Seleciona uma parte do texto e pede para tornar mais formal, mais simples, mais persuasivo ou mais curto.</p>
+        </div>
+        <div class="feature-card">
+
+          <h4>Gerar conteúdo</h4>
+          <p>A partir de um título ou briefing, gera rascunhos de artigos, relatórios, emails, propostas e muito mais.</p>
+        </div>
+        <div class="feature-card">
+
+          <h4>Traduzir textos</h4>
+          <p>Traduz trechos ou o documento inteiro para qualquer idioma com um único comando no painel.</p>
+        </div>
+        <div class="feature-card">
+
+          <h4>Responder perguntas</h4>
+          <p>Faz perguntas sobre o conteúdo do documento e o Gemini responde com base no que está escrito ali.</p>
+        </div>
+        <div class="feature-card">
+
+          <h4>Sugerir melhorias</h4>
+          <p>Pede sugestões de clareza, gramática, estrutura ou argumentação para melhorar o texto existente.</p>
+        </div>
+      </div>
+
+      <!-- ────── O que o Gemini faz no Drive ────── -->
+      <h2>O que o Gemini faz no Google Drive</h2>
+
+      <p>
+        A integração com o Drive é diferente do Docs. Aqui o Gemini tem acesso a <strong>todos os seus arquivos armazenados</strong> — documentos, planilhas, apresentações, PDFs — e você consegue interagir com eles sem abrir um por um.
+      </p>
+
+      <h3>Busca por linguagem natural</h3>
+      <p>
+        Em vez de ficar procurando arquivo por nome, você pergunta coisas como:
+      </p>
+
+      <div class="code-block">
+        <div class="code-label">Exemplos de perguntas para o Gemini no Drive</div>
+        <pre>
+"Qual documento tem as informações do contrato com o cliente X?"
+
+"Me mostra os arquivos que eu editei na semana passada sobre projeto Y"
+
+"Tem alguma planilha com dados de vendas do mês de setembro?"
+
+"Qual foi o último email que recebi sobre orçamento?"
+        </pre>
+      </div>
+
+      <h3>Resumo de múltiplos arquivos</h3>
+      <p>
+        Você pode pedir para o Gemini juntar informações de vários documentos diferentes. Por exemplo: <em>"Me dá um resumo dos três últimos relatórios de reunião que eu salvei no Drive."</em>
+      </p>
+
+      <div class="callout callout-tip">
+        <div class="callout-title">💡 Dica prática</div>
+        <p>
+          Organize seus arquivos em pastas bem nomeadas. O Gemini usa os nomes dos arquivos e das pastas como contexto na hora de buscar. Um arquivo chamado "proposta-cliente-padaria-joao-2025.docx" vai ser encontrado muito mais fácil do que "doc1_final_v3.docx".
+        </p>
+      </div>
+
+      <!-- ────── Exemplos práticos ────── -->
+      <h2>Exemplos práticos para usar agora</h2>
+
+      <h3>1. Gerar uma proposta comercial completa</h3>
+      <p>Abra um documento novo no Google Docs e use o botão <strong>"Ajude-me a escrever"</strong>. Cole este prompt:</p>
+
+      <div class="code-block">
+        <div class="code-label">Prompt → Proposta comercial</div>
+        <pre>
+Crie uma proposta comercial para uma empresa de serviços de limpeza
+chamada "LimpaTudo" que quer oferecer seus serviços para condomínios
+residenciais em São Paulo.
+
+Inclua: apresentação da empresa, serviços oferecidos (limpeza semanal,
+mensal e emergencial), diferenciais, tabela de preços (deixe espaço
+para preencher) e dados de contato. Tom profissional mas acessível.
+        </pre>
+      </div>
+
+      <h3>2. Resumir uma ata de reunião</h3>
+      <p>Cole o conteúdo da ata no documento e abra o painel do Gemini. Digite:</p>
+
+      <div class="code-block">
+        <div class="code-label">Prompt → Resumo de ata</div>
+        <pre>
+Resuma este documento em formato de bullet points com:
+- Decisões tomadas
+- Tarefas definidas (quem faz o quê)
+- Próximos passos
+- Prazo de cada ação
+
+Seja objetivo e use no máximo 2 linhas por ponto.
+        </pre>
+      </div>
+
+      <h3>3. Reescrever para tom mais profissional</h3>
+      <p>Selecione um trecho de texto, abra o Gemini e peça:</p>
+
+      <div class="code-block">
+        <div class="code-label">Prompt → Ajuste de tom</div>
+        <pre>
+Reescreva o texto selecionado com um tom mais formal e profissional,
+mantendo o mesmo significado. Use linguagem clara e direta,
+sem jargões desnecessários.
+        </pre>
+      </div>
+
+      <!-- ────── Comparativo ────── -->
+      <h2>Gemini no Workspace vs Gemini avulso: qual usar?</h2>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Situação</th>
+              <th>Use o Gemini no Workspace</th>
+              <th>Use o Gemini.google.com</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Editar um documento aberto</td>
+              <td>✅ Sim — edita direto</td>
+              <td>❌ Precisa copiar/colar</td>
+            </tr>
+            <tr>
+              <td>Buscar em seus arquivos do Drive</td>
+              <td>✅ Sim — acessa os arquivos</td>
+              <td>❌ Não tem acesso</td>
+            </tr>
+            <tr>
+              <td>Pesquisar informações na web</td>
+              <td>❌ Limitado</td>
+              <td>✅ Sim — tem busca integrada</td>
+            </tr>
+            <tr>
+              <td>Criar imagens</td>
+              <td>❌ Não disponível no Docs</td>
+              <td>✅ Sim — Imagen integrado</td>
+            </tr>
+            <tr>
+              <td>Gerar texto longo a partir do zero</td>
+              <td>✅ Funciona bem</td>
+              <td>✅ Funciona bem</td>
+            </tr>
+            <tr>
+              <td>Resumir email ou thread</td>
+              <td>✅ Via Gmail integrado</td>
+              <td>❌ Não tem acesso ao Gmail</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>
+        A regra é simples: <strong>se o trabalho envolve arquivos que já estão no Google</strong>, use o Gemini integrado. Se você quer pesquisar algo na internet, criar imagens ou ter uma conversa mais livre, use o Gemini.google.com.
+      </p>
+
+      <!-- ────── Limitações ────── -->
+      <h2>Limitações que você precisa saber</h2>
+
+      <div class="callout callout-warn">
+        <div class="callout-title">⚠️ Fique de olho nessas limitações</div>
+        <p>
+          O Gemini no Workspace <strong>não lembra de conversas anteriores</strong> — cada sessão começa do zero. Além disso, arquivos muito grandes (acima de ~50 páginas) podem não ser processados completamente. Para PDFs, o Gemini consegue ler o conteúdo mas pode perder detalhes de tabelas complexas e imagens.
+        </p>
+      </div>
+
+      <ul>
+        <li><strong>Limite de contexto:</strong> documentos muito longos podem ser cortados — prefira trabalhar por seções.</li>
+        <li><strong>Precisão em dados numéricos:</strong> sempre revise cálculos feitos pelo Gemini em planilhas.</li>
+        <li><strong>Disponibilidade por região:</strong> alguns recursos ainda não estão disponíveis em todos os países.</li>
+        <li><strong>Conta Google necessária:</strong> você precisa estar logado em uma conta Google para usar qualquer integração do Workspace.</li>
+      </ul>
+
+      <!-- ────── Próximos passos ────── -->
+      <h2>Por onde começar hoje</h2>
+
+      <p>
+        Se você nunca usou o Gemini no Workspace, comece simples. Não tente aprender tudo de uma vez. Siga esses três passos:
+      </p>
+
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <h4>Abra um documento que você já tem</h4>
+            <p>Pode ser uma ata, um relatório, uma proposta — qualquer coisa. Não precisa ser um documento novo.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <h4>Clique na estrela e peça um resumo</h4>
+            <p>Tipo: "Resuma este documento em 5 bullet points com as informações mais importantes." Só isso já mostra o valor da ferramenta.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <h4>Experimente reescrever um trecho</h4>
+            <p>Selecione um parágrafo, abra o Gemini e peça para tornar mais claro ou mais profissional. Veja a diferença.</p>
+          </div>
+        </div>
+      </div>
+
+      <p>
+        Depois que você pegar o jeito, vai começar a ver oportunidades de usar em tudo: criar templates, padronizar emails, gerar relatórios automáticos, traduzir documentos para clientes internacionais. É uma daquelas ferramentas que quanto mais você usa, mais você descobre para quê ela serve.
+      </p>
+
+      <!-- ────── CTA ────── -->
+      <div class="article-cta">
+        <h3>Quer ir mais fundo com IA no trabalho?</h3>
+        <p>Acesse a Biblioteca de Prompts com comandos prontos para usar no Google Docs, criação de conteúdo, atendimento ao cliente e muito mais.</p>
+        <a href="../biblioteca-de-prompts.html" class="btn-accent">Ver Biblioteca de Prompts →</a>
+        <a href="../artigos.html" class="btn-ghost">Mais artigos</a>
+      </div>
+
+    </article>
+  </main>
+
+  <!-- ══════════════════════ FOOTER ══════════════════════ -->
+  
+  <section class="related-articles">
+    <div class="related-inner">
+      <h2 class="related-title">Artigos Relacionados</h2>
+      <div class="related-grid">
+      <a href="criar-apresentacoes-com-ia.html" class="related-card">
+        <span class="related-badge">Tutoriais</span>
+        <h3 class="related-card-title">Como criar apresentações com IA do zero</h3>
+        <span class="related-arrow">→</span>
+      </a>
+      <a href="como-gerar-legendas-automaticas-com-ia.html" class="related-card">
+        <span class="related-badge">Tutoriais</span>
+        <h3 class="related-card-title">Como gerar legendas automáticas com IA</h3>
+        <span class="related-arrow">→</span>
+      </a>
+      <a href="o-que-e-n8n.html" class="related-card">
+        <span class="related-badge">Guias</span>
+        <h3 class="related-card-title">O que é o n8n e como usar para automatizar tarefas</h3>
+        <span class="related-arrow">→</span>
+      </a>
+      </div>
+    </div>
+  </section>
+<footer class="site-footer">
+    <div class="footer-inner">
+      <a class="footer-logo" href="../index.html">Aprenda com <span>AI</span></a>
+      <ul class="footer-links">
+        <li><a href="../sobre.html">Sobre</a></li>
+        <li><a href="../contato.html">Contato</a></li>
+        <li><a href="../politica-de-privacidade.html">Política de Privacidade</a></li>
+        <li><a href="../termos-de-uso.html">Termos de Uso</a></li>
+      </ul>
+      <p class="footer-copy">© 2026 Aprenda com AI · Feito com ☕ e muita IA</p>
+    </div>
+  </footer>
+
+  <script src="../script.js"></script>
+<script src="../cookie-consent.js" defer></script>
+<script src="../site-menu.js" defer></script>
+</body>
+</html>

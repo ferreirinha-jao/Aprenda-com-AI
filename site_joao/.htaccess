@@ -1,0 +1,6 @@
+ErrorDocument 404 /404.html
+
+# Páginas duplicadas unificadas (redirecionamento permanente)
+Redirect 301 /artigos/prompts-produtividade-trabalho.html /artigos/prompts-produtividade.html
+Redirect 301 /artigos/como-resumir-textos-com-ia.html /artigos/resumir-textos-ia.html
+Redirect 301 /artigos/o-assistente-de-ia-da-anthropic.html /artigos/guia-claude-ia.html

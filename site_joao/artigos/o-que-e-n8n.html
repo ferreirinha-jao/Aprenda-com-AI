@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>O que é o n8n e como usar — Aprenda com AI</title>
+  <meta name="description" content="Entenda o que é o n8n, como funciona, por que é a ferramenta favorita de automadores brasileiros e como começar a criar seus primeiros workflows." />
+  <meta property="og:title" content="O que é o n8n e como usar — Aprenda com AI" />
+  <meta property="og:description" content="Entenda o que é o n8n, como funciona e como criar seus primeiros workflows de automação." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://aprendacomai.com/artigos/o-que-e-n8n.html" />
+  <link rel="canonical" href="https://aprendacomai.com/artigos/o-que-e-n8n.html" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Manrope:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../style.css" />
+  <link rel="stylesheet" href="../final-hero.css" />
+
+  <style>
+    :root {
+      --bg:        #0b0c0e;
+      --surface:   #13151a;
+      --border:    #1e2028;
+      --accent:    #d7ff3f;
+      --accent2:   #a8cc28;
+      --text:      #e5e7eb;
+      --muted:     #c7c9c5;
+      --dim:       #6b7280;
+      --font-head: 'Space Grotesk', sans-serif;
+      --font-body: 'Manrope', sans-serif;
+      --font-mono: 'DM Mono', monospace;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: var(--bg); color: var(--text); font-family: var(--font-body); font-size: 1rem; line-height: 1.7; }
+
+    .nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(11,12,14,.85); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: .85rem 1.5rem; display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo { font-family: var(--font-head); font-weight: 700; font-size: 1.1rem; color: var(--accent); text-decoration: none; }
+    .nav-links { display: flex; gap: 1.5rem; }
+    .nav-links a { color: var(--muted); text-decoration: none; font-size: .9rem; transition: color .2s; }
+    .nav-links a:hover { color: var(--accent); }
+
+    .breadcrumb {
+      max-width: 780px; margin: 0 auto; padding: 1.2rem 1.5rem .4rem;
+      display: flex; align-items: center; gap: .5rem;
+      font-size: .82rem; color: var(--dim); flex-wrap: wrap;
+    }
+    .breadcrumb a { color: var(--dim); text-decoration: none; }
+    .breadcrumb a:hover { color: var(--accent); }
+    .breadcrumb span { color: var(--dim); }
+
+    .article-hero { max-width: 780px; margin: 0 auto; padding: 2.5rem 1.5rem 2rem; }
+    .article-badge {
+      display: inline-block; font-family: var(--font-mono); font-size: .75rem; font-weight: 500;
+      color: var(--bg); background: var(--accent); padding: .25rem .75rem; border-radius: 999px;
+      margin-bottom: 1.1rem; letter-spacing: .04em; text-transform: uppercase;
+    }
+    .article-hero h1 {
+      font-family: var(--font-head); font-size: clamp(1.9rem, 4vw, 2.7rem);
+      font-weight: 700; line-height: 1.2; color: #fff; margin-bottom: 1rem;
+    }
+    .article-hero h1 em { font-style: normal; color: var(--accent); }
+    .article-meta {
+      display: flex; flex-wrap: wrap; gap: .75rem; font-size: .82rem; color: var(--dim);
+      padding-top: 1rem; border-top: 1px solid var(--border);
+    }
+
+    .article-body { max-width: 780px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+    .article-body h2 { font-family: var(--font-head); font-size: 1.45rem; font-weight: 700; color: #fff; margin: 2.8rem 0 1rem; }
+    .article-body h3 { font-family: var(--font-head); font-size: 1.1rem; font-weight: 600; color: var(--text); margin: 2rem 0 .6rem; }
+    .article-body p { color: var(--muted); margin-bottom: 1.1rem; }
+    .article-body ul, .article-body ol { color: var(--muted); padding-left: 1.4rem; margin-bottom: 1.1rem; }
+    .article-body li { margin-bottom: .4rem; }
+    .article-body strong { color: var(--text); font-weight: 600; }
+    .article-body a { color: var(--accent); text-decoration: none; }
+    .article-body a:hover { text-decoration: underline; }
+
+    .callout {
+      border-left: 3px solid var(--accent); background: var(--surface);
+      border-radius: 0 8px 8px 0; padding: 1rem 1.25rem; margin: 1.5rem 0;
+    }
+    .callout.tip  { border-color: var(--accent); }
+    .callout.warn { border-color: #f59e0b; }
+    .callout.info { border-color: #60a5fa; }
+    .callout-title { font-family: var(--font-mono); font-size: .78rem; font-weight: 500; text-transform: uppercase; letter-spacing: .06em; margin-bottom: .4rem; }
+    .callout.tip  .callout-title { color: var(--accent); }
+    .callout.warn .callout-title { color: #f59e0b; }
+    .callout.info .callout-title { color: #60a5fa; }
+    .callout p { margin: 0; font-size: .93rem; }
+
+    .steps { display: flex; flex-direction: column; gap: 1rem; margin: 1.5rem 0; }
+    .step-card {
+      display: flex; gap: 1.1rem; background: var(--surface); border: 1px solid var(--border);
+      border-radius: 10px; padding: 1.1rem 1.2rem;
+    }
+    .step-num {
+      flex-shrink: 0; width: 32px; height: 32px; border-radius: 50%; background: var(--accent);
+      color: var(--bg); font-family: var(--font-head); font-weight: 700; font-size: .9rem;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .step-content h4 { font-family: var(--font-head); font-weight: 600; color: #fff; font-size: 1rem; margin-bottom: .3rem; }
+    .step-content p { margin: 0; font-size: .9rem; color: var(--muted); }
+
+    .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: .85rem; margin: 1.5rem 0; }
+    .feature-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 1.1rem 1.2rem; }
+    .feature-card h4 { font-family: var(--font-head); font-weight: 600; color: #fff; font-size: .95rem; margin-bottom: .4rem; }
+    .feature-card p { margin: 0; font-size: .88rem; color: var(--muted); }
+
+    .table-wrap { overflow-x: auto; margin: 1.5rem 0; border-radius: 10px; border: 1px solid var(--border); }
+    table { width: 100%; border-collapse: collapse; }
+    thead th {
+      background: var(--surface); font-family: var(--font-head); font-size: .85rem; font-weight: 600;
+      color: var(--accent); padding: .85rem 1rem; text-align: left; border-bottom: 1px solid var(--border);
+    }
+    tbody tr { border-bottom: 1px solid var(--border); }
+    tbody tr:last-child { border-bottom: none; }
+    tbody tr:hover { background: rgba(255,255,255,.02); }
+    tbody td { padding: .8rem 1rem; font-size: .88rem; color: var(--muted); }
+    tbody td:first-child { color: var(--text); font-weight: 500; }
+    .td-good { color: #74d066; font-weight: 600; }
+    .td-mid  { color: #f59e0b; font-weight: 600; }
+    .td-bad  { color: #f87171; font-weight: 600; }
+
+    /* WORKFLOW VISUAL */
+    .workflow-box {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 10px; padding: 1.5rem; margin: 1.5rem 0;
+    }
+    .workflow-box h4 { font-family: var(--font-head); font-weight: 700; color: #fff; font-size: .95rem; margin-bottom: 1.2rem; text-align: center; }
+    .workflow-row { display: flex; align-items: center; gap: .5rem; flex-wrap: wrap; justify-content: center; }
+    .wf-node {
+      background: rgba(215,255,63,.1); border: 1px solid rgba(215,255,63,.25);
+      border-radius: 8px; padding: .5rem 1rem;
+      font-family: var(--font-mono); font-size: .8rem; color: var(--accent); font-weight: 500;
+      white-space: nowrap;
+    }
+    .wf-arrow { color: var(--dim); font-size: .9rem; flex-shrink: 0; }
+
+    .highlight-box {
+      border: 1px solid rgba(215,255,63,.25); background: rgba(215,255,63,.05);
+      border-radius: 10px; padding: 1.4rem 1.5rem; margin: 1.8rem 0;
+    }
+    .highlight-box h4 { font-family: var(--font-head); font-size: 1rem; font-weight: 700; color: var(--accent); margin-bottom: .7rem; }
+    .highlight-box p { color: var(--muted); font-size: .92rem; margin-bottom: .5rem; }
+    .highlight-box p:last-child { margin-bottom: 0; }
+
+    .cta-section {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 14px; padding: 2.2rem 2rem; text-align: center;
+      max-width: 780px; margin: 0 auto 4rem;
+    }
+    .cta-section h2 { font-family: var(--font-head); font-size: 1.5rem; font-weight: 700; color: #fff; margin-bottom: .6rem; }
+    .cta-section p { color: var(--muted); font-size: .95rem; margin-bottom: 1.4rem; }
+    .cta-btn {
+      display: inline-block; background: var(--accent); color: var(--bg);
+      font-family: var(--font-head); font-weight: 700; font-size: .95rem;
+      padding: .8rem 2rem; border-radius: 8px; text-decoration: none;
+      transition: background .2s, transform .15s;
+    }
+    .cta-btn:hover { background: var(--accent2); transform: translateY(-2px); }
+
+    .footer {
+      border-top: 1px solid var(--border); text-align: center; padding: 2rem 1.5rem;
+      font-size: .82rem; color: var(--dim); margin-top: 4rem;
+    }
+    .footer a { color: var(--dim); text-decoration: none; }
+    .footer a:hover { color: var(--accent); }
+
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+      .article-hero h1 { font-size: 1.65rem; }
+      .step-card { flex-direction: column; gap: .6rem; }
+      .workflow-row { gap: .3rem; }
+      .wf-node { font-size: .72rem; padding: .4rem .7rem; }
+    }
+  </style>
+  <link rel="icon" type="image/png" href="../favicon.ico.png">
+<link rel="stylesheet" href="../site-menu.css">
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="../index.html" class="nav-logo">Aprenda com AI</a>
+  <div class="nav-links">
+    <a href="../index.html">Início</a>
+    <a href="../comece-aqui.html">Comece Aqui</a>
+    <a href="../artigos.html">Artigos</a>
+    <a href="../biblioteca-de-prompts.html">Biblioteca de Prompts</a>
+    <a href="../calculadora-ia.html">Calculadora de Impacto</a>
+    <a href="../sobre.html">Sobre</a>
+    <a href="../contato.html">Contato</a>
+  </div>
+</nav>
+
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="../index.html">Inicio</a>
+    <span>/</span>
+    <a href="../artigos.html">Artigos</a>
+    <span>/</span>
+    <span>O que é o n8n</span>
+  </nav>
+
+  <header class="article-hero">
+    <span class="article-badge">Guias</span>
+    <h1>O que é o <em>n8n</em> e por que todo automador usa</h1>
+    <div class="article-meta">
+      <span>Ferramenta: n8n</span>
+    </div>
+  </header>
+
+  <main class="article-body">
+
+    <p>Se você está entrando no mundo de automações, vai ouvir o nome n8n o tempo inteiro. É a ferramenta preferida de freelancers e consultores de automação no Brasil — e por boas razões. Mas o que exatamente é o n8n, e por que ele se destaca tanto num mercado que tem Zapier, Make e dezenas de outras opções?</p>
+
+    <h2>O que é o n8n</h2>
+
+    <p>n8n (pronuncia-se "n-eight-n" ou simplesmente "ene oito ene") é uma plataforma de automação de workflows com interface visual. Você conecta blocos — chamados de nós — que representam ações e lógicas, e o n8n executa tudo automaticamente.</p>
+
+    <p>O que torna o n8n diferente é que ele é <strong>open source e pode ser hospedado por você mesmo</strong>. Isso significa que você não paga por execução como no Zapier ou Make — você paga só pela infraestrutura (um servidor simples já basta), e pode criar workflows ilimitados.</p>
+
+    <div class="feature-grid">
+      <div class="feature-card">
+        <h4>Open source</h4>
+        <p>O código é aberto. Você pode hospedar no seu próprio servidor, personalizar e não fica preso a nenhuma empresa.</p>
+      </div>
+      <div class="feature-card">
+        <h4>Sem limite de execucoes</h4>
+        <p>Diferente do Zapier e Make, que cobram por tarefa executada, no n8n self-hosted você roda quantas automações quiser.</p>
+      </div>
+      <div class="feature-card">
+        <h4>400+ integrações nativas</h4>
+        <p>Google Sheets, WhatsApp, Notion, Airtable, Slack, OpenAI, bancos de dados, APIs REST — tudo já tem nó pronto.</p>
+      </div>
+      <div class="feature-card">
+        <h4>Codigo quando necessário</h4>
+        <p>Tem um nó de JavaScript e Python para quando a lógica visual não é suficiente. Você não fica limitado ao que a interface oferece.</p>
+      </div>
+      <div class="feature-card">
+        <h4>Comunidade ativa</h4>
+        <p>Fórum oficial, grupos no Discord e muita documentação. No Brasil especificamente, a comunidade de n8n está crescendo rápido.</p>
+      </div>
+      <div class="feature-card">
+        <h4>AI nativo</h4>
+        <p>Tem nós dedicados para OpenAI, Anthropic, Hugging Face e agentes de IA — sem precisar configurar integrações manuais.</p>
+      </div>
+    </div>
+
+    <h2>Como funciona na prática</h2>
+
+    <p>Tudo no n8n gira em torno de <strong>workflows</strong> — sequências de nós conectados por setas. Cada nó faz uma coisa: recebe dados, processa, transforma, envia para algum lugar.</p>
+
+    <div class="workflow-box">
+      <h4>Exemplo: notificação de novo lead</h4>
+      <div class="workflow-row">
+        <div class="wf-node">Webhook</div>
+        <span class="wf-arrow">→</span>
+        <div class="wf-node">Filtro</div>
+        <span class="wf-arrow">→</span>
+        <div class="wf-node">Google Sheets</div>
+        <span class="wf-arrow">→</span>
+        <div class="wf-node">ChatGPT</div>
+        <span class="wf-arrow">→</span>
+        <div class="wf-node">WhatsApp</div>
+      </div>
+    </div>
+
+    <p>Neste exemplo: um formulário envia dados via webhook → o n8n filtra leads qualificados → adiciona na planilha → gera uma mensagem personalizada com ChatGPT → envia pelo WhatsApp. Tudo automático, tudo sem código.</p>
+
+    <h2>n8n vs Zapier vs Make</h2>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Critério</th>
+            <th>n8n</th>
+            <th>Zapier</th>
+            <th>Make</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Modelo de preço</td>
+            <td class="td-good">Self-hosted gratuito</td>
+            <td class="td-bad">Por tarefa executada</td>
+            <td class="td-mid">Por operacao</td>
+          </tr>
+          <tr>
+            <td>Curva de aprendizado</td>
+            <td class="td-mid">Média</td>
+            <td class="td-good">Baixa</td>
+            <td class="td-mid">Média</td>
+          </tr>
+          <tr>
+            <td>Flexibilidade técnica</td>
+            <td class="td-good">Alta (tem código)</td>
+            <td class="td-bad">Baixa</td>
+            <td class="td-mid">Média</td>
+          </tr>
+          <tr>
+            <td>Integrações</td>
+            <td class="td-good">400+</td>
+            <td class="td-good">6.000+</td>
+            <td class="td-mid">1.500+</td>
+          </tr>
+          <tr>
+            <td>Suporte a IA</td>
+            <td class="td-good">Nativo e avançado</td>
+            <td class="td-mid">Basico</td>
+            <td class="td-mid">Basico</td>
+          </tr>
+          <tr>
+            <td>Ideal para</td>
+            <td>Freelancers e devs</td>
+            <td>Iniciantes e equipes</td>
+            <td>Uso intermediário</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout info">
+      <div class="callout-title">Quando usar Zapier ou Make</div>
+      <p>Se a ferramenta que você precisa integrar não tem nó no n8n mas tem no Zapier, ou se o cliente já paga pelo Zapier e quer usar, faz sentido usar o que está disponível. n8n não é a resposta para tudo — é a melhor para quem quer controle total e custo baixo.</p>
+    </div>
+
+    <h2>Como hospedar o n8n</h2>
+
+    <p>Existem três formas principais, cada uma com custo e complexidade diferentes:</p>
+
+    <div class="steps">
+      <div class="step-card">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <h4>n8n Cloud (oficial) — mais fácil</h4>
+          <p>A própria empresa oferece hosting gerenciado a partir de US$ 20/mês. Ideal para começar sem se preocupar com servidor. Tem limite de workflows e execuções por plano.</p>
+        </div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <h4>Railway ou Render — equilibrado</h4>
+          <p>Plataformas de deploy com plano gratuito para testar e planos pagos a partir de US$ 5/mês. Deploy em 1 clique com template oficial. Bom custo-benefício para freelancers.</p>
+        </div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <h4>VPS própria (DigitalOcean, Hetzner) — mais controle</h4>
+          <p>Um servidor dedicado a partir de US$ 6/mês. Instalação via Docker. Você tem controle total, sem limite de workflows. Preferido por quem gerencia n8n para vários clientes.</p>
+        </div>
+      </div>
+    </div>
+
+    <h2>Primeiros workflows para criar</h2>
+
+    <p>Se você nunca usou o n8n, esses são os melhores workflows para começar — simples o suficiente para aprender, úteis o suficiente para impressionar.</p>
+
+    <div class="feature-grid">
+      <div class="feature-card">
+        <h4>Notificacao de novo formulário</h4>
+        <p>Recebe dados de um formulário (Typeform, Google Forms) e envia uma mensagem no WhatsApp ou Telegram com as informações.</p>
+      </div>
+      <div class="feature-card">
+        <h4>Resumo diário de e-mails</h4>
+        <p>Lê os e-mails do Gmail, passa pelo ChatGPT para resumir e envia um briefing diário por WhatsApp toda manhã.</p>
+      </div>
+      <div class="feature-card">
+        <h4>Backup automático de planilha</h4>
+        <p>Toda semana, copia dados de uma planilha do Google Sheets para outra como backup. Simples, mas muito útil para clientes.</p>
+      </div>
+      <div class="feature-card">
+        <h4>Resposta automática de WhatsApp</h4>
+        <p>Recebe mensagens via Evolution API, passa pelo ChatGPT com um system prompt e envia a resposta de volta automaticamente.</p>
+      </div>
+    </div>
+
+    <h2>Por que freelancers preferem o n8n</h2>
+
+    <p>A lógica é simples: você cobra do cliente pelo seu serviço, não paga por execução para uma plataforma terceira. Um workflow que roda mil vezes por mês no Zapier pode custar R$ 200+ mensais. No n8n self-hosted, o custo é o mesmo seja 10 ou 100.000 execuções.</p>
+
+    <div class="highlight-box">
+      <h4>O modelo de negócio que funciona</h4>
+      <p>Muitos consultores montam um servidor de n8n e hospedam os workflows de vários clientes no mesmo servidor. O cliente paga uma mensalidade de manutenção (R$ 200 a R$ 500), e o custo do servidor (R$ 50 a R$ 150) é compartilhado entre todos. Margem alta, cliente satisfeito.</p>
+      <p>Conforme você cresce, migra clientes maiores para servidores dedicados — mas a lógica é a mesma.</p>
+    </div>
+
+    <h2>Por onde começar</h2>
+
+    <div class="steps">
+      <div class="step-card">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <h4>Crie uma conta no n8n Cloud</h4>
+          <p>Tem trial gratuito por 14 dias. É a forma mais rápida de explorar a interface sem configurar servidor. Acesse n8n.io e clique em "Start for free".</p>
+        </div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <h4>Explore os templates</h4>
+          <p>O n8n tem uma biblioteca de templates prontos. Abra um, veja como está estruturado e tente entender cada nó antes de modificar.</p>
+        </div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <h4>Crie seu primeiro workflow do zero</h4>
+          <p>Comece com o trigger Manual (disparo manual) para testar. Adicione um nó HTTP Request para buscar dados de uma API pública. Veja os dados chegando no painel.</p>
+        </div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">4</div>
+        <div class="step-content">
+          <h4>Conecte ao Google Sheets</h4>
+          <p>Leia e escreva dados em uma planilha. Essa integração é a base de boa parte dos workflows que você vai criar para clientes.</p>
+        </div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">5</div>
+        <div class="step-content">
+          <h4>Adicione um nó de IA</h4>
+          <p>Conecte ao ChatGPT usando o nó OpenAI. Passe um texto, receba uma resposta. Esse é o passo que abre o caminho para automações inteligentes.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout tip">
+      <div class="callout-title">Dica para aprender mais rápido</div>
+      <p>O melhor recurso para aprender n8n em português é o YouTube. Busque por "n8n tutorial português" e você vai encontrar canais inteiros dedicados. A documentação oficial em inglês também é muito boa e tem exemplos para cada nó.</p>
+    </div>
+
+  </main>
+
+  <section class="cta-section">
+    <h2>Pronto para automatizar com n8n?</h2>
+    <p>Acesse a biblioteca de prompts com templates e system prompts prontos para usar nos seus workflows com IA.</p>
+    <a href="../biblioteca-de-prompts.html" class="cta-btn">Acessar biblioteca de prompts</a>
+  </section>
+
+  
+  <section class="related-articles">
+    <div class="related-inner">
+      <h2 class="related-title">Artigos Relacionados</h2>
+      <div class="related-grid">
+      <a href="o-que-sao-agentes-de-ia.html" class="related-card">
+        <span class="related-badge">Guias</span>
+        <h3 class="related-card-title">O que são agentes de IA e como funcionam</h3>
+        <span class="related-arrow">→</span>
+      </a>
+      <a href="chatgpt-vs-gemini-vs-claude.html" class="related-card">
+        <span class="related-badge">Guias</span>
+        <h3 class="related-card-title">ChatGPT vs Gemini vs Claude: qual IA usar em 2025</h3>
+        <span class="related-arrow">→</span>
+      </a>
+      <a href="como-prospectar-clientes-locais.html" class="related-card">
+        <span class="related-badge">Negócios</span>
+        <h3 class="related-card-title">Como prospectar clientes locais com IA</h3>
+        <span class="related-arrow">→</span>
+      </a>
+      </div>
+    </div>
+  </section>
+<footer class="footer">
+    <p>Aprenda com AI &mdash; <a href="../index.html">Inicio</a> &middot; <a href="../artigos.html">Artigos</a> &middot; <a href="../catalogo-ferramentas.html">Ferramentas</a> &middot; <a href="../sobre.html">Sobre</a> &middot; <a href="../contato.html">Contato</a> &middot; <a href="../politica-de-privacidade.html">Política de Privacidade</a> &middot; <a href="../termos-de-uso.html">Termos de Uso</a></p>
+  </footer>
+
+  <script src="../script.js"></script>
+<script src="../cookie-consent.js" defer></script>
+<script src="../site-menu.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Prompts prontos e testados para aumentar sua produtividade no trabalho com ChatGPT, Claude e Gemini.">
+  <title>Prompts de Produtividade e Trabalho — Aprenda com AI</title>
+  <link rel="canonical" href="https://aprendacomai.com/artigos/prompts-produtividade.html">
+  <meta property="og:title" content="Prompts de Produtividade e Trabalho — Aprenda com AI">
+  <meta property="og:description" content="Prompts prontos e testados para aumentar sua produtividade no trabalho com ChatGPT, Claude e Gemini.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://aprendacomai.com/artigos/prompts-produtividade.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="../final-hero.css">
+  <style>
+    :root {
+      --bg: #0b0c0e; --surface: #13151a; --border: #1e2028;
+      --accent: #d7ff3f; --accent2: #a8cc28;
+      --text: #e5e7eb; --muted: #c7c9c5; --dim: #6b7280;
+      --font-head: 'Space Grotesk', sans-serif;
+      --font-body: 'Manrope', sans-serif;
+      --font-mono: 'DM Mono', monospace;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: var(--bg); color: var(--text); font-family: var(--font-body); line-height: 1.7; }
+
+    .breadcrumb { max-width: 780px; margin: 0 auto; padding: 1.5rem 1.5rem 0; font-size: .82rem; color: var(--dim); }
+    .breadcrumb a { color: var(--dim); text-decoration: none; }
+    .breadcrumb a:hover { color: var(--accent); }
+    .breadcrumb span { margin: 0 .4rem; }
+
+    .article-hero { max-width: 780px; margin: 0 auto; padding: 2.5rem 1.5rem 2rem; }
+    .article-badge { display: inline-block; padding: .3rem .7rem; border-radius: 6px; background: rgba(215,255,63,.12); color: var(--accent); font: 500 .72rem var(--font-mono); letter-spacing: .08em; text-transform: uppercase; margin-bottom: 1.2rem; }
+    .article-hero h1 { font: 800 clamp(2rem, 5vw, 3rem)/1.1 var(--font-head); letter-spacing: -.04em; color: #fff; margin-bottom: 1rem; }
+    .article-hero h1 em { font-style: normal; color: var(--accent); }
+    .article-meta { display: flex; gap: 1rem; flex-wrap: wrap; font-size: .82rem; color: var(--dim); font-family: var(--font-mono); border-top: 1px solid var(--border); padding-top: 1rem; margin-top: 1rem; }
+
+    .article-body { max-width: 780px; margin: 0 auto; padding: 2rem 1.5rem 3rem; }
+    .article-body h2 { font: 700 1.4rem var(--font-head); letter-spacing: -.03em; color: #fff; margin: 2.5rem 0 .8rem; padding-top: 2rem; border-top: 1px solid var(--border); }
+    .article-body h2:first-of-type { border-top: none; padding-top: 0; margin-top: 0; }
+    .article-body h3 { font: 600 1.1rem var(--font-head); color: var(--text); margin: 1.8rem 0 .6rem; }
+    .article-body p { color: var(--muted); margin-bottom: 1rem; font-size: .97rem; line-height: 1.75; }
+    .article-body strong { color: var(--text); font-weight: 600; }
+    .article-body ul, .article-body ol { margin: .5rem 0 1.2rem 1.5rem; color: var(--muted); font-size: .97rem; }
+    .article-body li { margin-bottom: .5rem; line-height: 1.65; }
+
+    .prompt-block { background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--accent); border-radius: 10px; padding: 1.25rem 1.4rem; margin: 1.25rem 0 1.75rem; font: .86rem/1.7 var(--font-mono); color: var(--text); white-space: pre-wrap; overflow-x: auto; }
+    .prompt-label { display: inline-block; font: 500 .68rem var(--font-mono); color: var(--accent); letter-spacing: .1em; text-transform: uppercase; margin-bottom: .75rem; }
+
+    .cta-section { max-width: 780px; margin: 0 auto 4rem; padding: 2rem 1.5rem; }
+    .cta-box { background: var(--surface); border: 1px solid rgba(215,255,63,.25); border-radius: 16px; padding: 2rem; text-align: center; }
+    .cta-box h2 { font: 700 1.4rem var(--font-head); color: #fff; margin-bottom: .6rem; }
+    .cta-box p { color: var(--muted); font-size: .95rem; margin-bottom: 1.4rem; }
+    .cta-btn { display: inline-block; padding: .85rem 1.6rem; background: var(--accent); color: #11110f; font: 700 .9rem var(--font-body); border-radius: 10px; text-decoration: none; transition: opacity .2s; }
+    .cta-btn:hover { opacity: .88; }
+
+    footer { text-align: center; padding: 2rem 1.5rem; color: var(--dim); font-size: .85rem; border-top: 1px solid var(--border); }
+    footer a { color: var(--dim); text-decoration: none; margin: 0 .6rem; }
+    footer a:hover { color: var(--accent); }
+  </style>
+  <link rel="icon" type="image/png" href="../favicon.ico.png">
+<link rel="stylesheet" href="../site-menu.css">
+</head>
+<body>
+<header>
+  <nav class="navbar">
+    <a href="../index.html" class="logo">Aprenda com AI</a>
+    <ul class="nav-links">
+      <li><a href="../index.html">Início</a></li>
+      <li><a href="../artigos.html">Artigos</a></li>
+      <li><a href="../biblioteca-de-prompts.html">Biblioteca de Prompts</a></li>
+      <li><a href="../calculadora-ia.html">Calculadora de Impacto</a></li>
+    </ul>
+  </nav>
+</header>
+
+<nav class="breadcrumb" aria-label="Navegação estrutural">
+  <a href="../index.html">Início</a><span>›</span>
+  <a href="../artigos.html">Artigos</a><span>›</span>
+  Prompts de Produtividade
+</nav>
+
+<section class="article-hero">
+  <span class="article-badge">Tutoriais</span>
+  <h1>Prompts de <em>produtividade</em> e trabalho que realmente funcionam</h1>
+  <p class="article-meta">
+    <span>Ferramentas: ChatGPT, Claude, Gemini</span>
+  </p>
+</section>
+
+<article class="article-body">
+
+  <h2>Por que a maioria das pessoas não aproveita a IA no trabalho</h2>
+  <p>Você abre o ChatGPT, digita algo vago como "me ajuda a ser mais produtivo" e recebe uma resposta genérica que não serve para nada. Fecha o computador na mesma situação de antes. Isso acontece porque a ferramenta é tão boa quanto a instrução que você dá a ela.</p>
+  <p>A diferença entre uma resposta inútil e uma resposta que salva duas horas do seu dia está na qualidade do prompt. Este guia traz prompts testados e prontos para copiar, organizados por situação de trabalho real.</p>
+
+  <h2>Antes de copiar: como adaptar qualquer prompt</h2>
+  <p>Todo prompt abaixo tem campos entre colchetes como <strong>[seu contexto]</strong>. Eles não são decoração — são o lugar onde você coloca a informação específica da sua situação. Quanto mais detalhe você colocar nesses campos, melhor a resposta.</p>
+  <p>Uma dica prática: antes de colar o prompt, escreva em uma linha o seu contexto completo. Isso evita respostas genéricas que poderiam servir para qualquer pessoa.</p>
+
+  <h2>Prompts para organização e planejamento</h2>
+
+  <h3>Planejar a semana de trabalho</h3>
+  <p>Use este prompt toda segunda-feira. Ele transforma uma lista bagunçada de tarefas em um cronograma com prioridades reais.</p>
+  <div class="prompt-block"><span class="prompt-label">Prompt</span>
+Atue como um gestor de produtividade experiente especialista nos métodos Eisenhower e GTD.
+
+Organize minha semana de trabalho a partir da lista de tarefas abaixo:
+
+1. PRIORIDADES: Classifique cada tarefa em (A) Urgente e Importante, (B) Importante mas não urgente, (C) Pode ser delegado ou eliminado.
+2. CRONOGRAMA SUGERIDO: Distribua as tarefas de segunda a sexta considerando blocos de foco de 90 minutos e tarefas rápidas de até 15 minutos.
+3. GARGALOS: Identifique tarefas grandes demais que precisam ser divididas em subtarefas.
+4. META DA SEMANA: Sugira uma única métrica para eu saber se a semana foi bem-sucedida.
+
+Minha meta principal desta semana: [descreva sua meta]
+Lista de tarefas:
+[liste todas as tarefas, uma por linha]</div>
+
+  <h3>Preparar para uma reunião importante</h3>
+  <p>Chegar numa reunião sem preparo é desperdício de tempo de todos. Este prompt ajuda a estruturar sua participação em minutos.</p>
+  <div class="prompt-block"><span class="prompt-label">Prompt</span>
+Atue como um consultor de comunicação corporativa especializado em reuniões eficientes.
+
+Preciso me preparar para uma reunião com [descreva com quem: cliente, equipe, gestor, etc.].
+
+Objetivo da reunião: [o que precisa ser decidido ou comunicado]
+Contexto: [breve histórico do projeto ou situação]
+Minha posição: [o que você vai defender ou propor]
+
+Crie para mim:
+1. Os 3 pontos principais que devo comunicar, em ordem de impacto.
+2. As objeções mais prováveis e como responder a cada uma.
+3. Perguntas estratégicas que posso fazer para guiar a conversa.
+4. Uma frase de abertura que define o tom certo.</div>
+
+  <h2>Prompts para escrita profissional</h2>
+
+  <h3>Escrever e-mails difíceis</h3>
+  <p>E-mails que cobram, recusam pedidos ou entregam notícias ruins precisam de tom certo. Este prompt gera três versões para você escolher.</p>
+  <div class="prompt-block"><span class="prompt-label">Prompt</span>
+Atue como um especialista em comunicação escrita corporativa.
+
+Preciso escrever um e-mail sobre a seguinte situação:
+[descreva a situação de forma direta]
+
+Destinatário: [cargo, relação com você: cliente, colega, gestor]
+Tom desejado: [profissional e direto / empático e cuidadoso / firme mas respeitoso]
+Resultado esperado: [o que você quer que o destinatário faça ou entenda]
+
+Gere 3 versões do e-mail:
+- Versão curta (até 5 linhas)
+- Versão intermediária (1 parágrafo + próximos passos)
+- Versão detalhada (contexto + argumentos + chamada para ação)
+
+Finalize cada versão com o assunto do e-mail.</div>
+
+  <h3>Transformar notas em documentos profissionais</h3>
+  <p>Você saiu de uma reunião com rascunhos no bloco de notas. Este prompt transforma esse material em um documento que pode ser enviado para o cliente ou equipe.</p>
+  <div class="prompt-block"><span class="prompt-label">Prompt</span>
+Atue como um redator técnico especializado em documentação corporativa.
+
+Transforme as anotações brutas abaixo em um documento profissional:
+
+Tipo de documento: [relatório de reunião / proposta / briefing / plano de ação]
+Público: [quem vai ler: equipe interna, cliente, diretoria]
+Tom: [formal / semiformal / direto]
+
+Anotações brutas:
+[cole suas anotações sem se preocupar com formatação]
+
+O documento final deve ter título, introdução de uma linha, seções organizadas e uma seção de "próximos passos" com responsáveis e prazos quando aplicável.</div>
+
+  <h2>Prompts para análise e tomada de decisão</h2>
+
+  <h3>Analisar opções antes de decidir</h3>
+  <p>Quando você está travado entre duas ou mais opções, este prompt estrutura os prós e contras de forma que a decisão fique óbvia.</p>
+  <div class="prompt-block"><span class="prompt-label">Prompt</span>
+Atue como um consultor estratégico especializado em análise de decisão.
+
+Preciso tomar uma decisão sobre: [descreva a situação]
+
+Opções que estou considerando:
+1. [primeira opção]
+2. [segunda opção]
+3. [terceira opção, se houver]
+
+Meus critérios mais importantes (em ordem de prioridade):
+- [critério 1, ex: custo]
+- [critério 2, ex: tempo de implementação]
+- [critério 3, ex: risco]
+
+Meu contexto:
+[descreva restrições, recursos disponíveis, prazo]
+
+Crie uma tabela comparativa com nota de 1 a 5 para cada critério, uma análise dos riscos de cada opção e uma recomendação final com justificativa.</div>
+
+  <h3>Extrair insights de dados e relatórios</h3>
+  <p>Jogar um relatório na IA e pedir para ela "resumir" gera respostas vazias. Este prompt extrai o que realmente importa.</p>
+  <div class="prompt-block"><span class="prompt-label">Prompt</span>
+Atue como um analista de negócios focado em insights acionáveis.
+
+Analise os dados ou relatório abaixo com foco nos seguintes objetivos:
+- Contexto do negócio: [descreva o que sua empresa ou projeto faz]
+- Decisão que precisa ser tomada: [qual é a decisão que esses dados devem informar]
+- O que me preocupa: [qual tendência ou número te deixa em alerta]
+
+Dados/relatório:
+[cole os dados, copie a tabela ou descreva os números]
+
+Entregue:
+1. Os 3 insights mais relevantes, explicados em linguagem simples.
+2. Um alerta: o que esses dados indicam que pode dar errado.
+3. Uma oportunidade: o que pode ser feito agora a partir disso.
+4. Uma pergunta que esses dados não respondem mas você deveria investigar.</div>
+
+  <h2>Prompts para aprendizado acelerado no trabalho</h2>
+
+  <h3>Dominar um assunto novo rapidamente</h3>
+  <p>Quando você precisa falar com autoridade sobre um tema que não conhece bem — para uma reunião, uma apresentação ou um projeto novo.</p>
+  <div class="prompt-block"><span class="prompt-label">Prompt</span>
+Atue como um professor especialista em [área do assunto] com experiência em ensinar profissionais ocupados.
+
+Preciso entender [tema ou conceito] em profundidade suficiente para [objetivo: apresentar para um cliente / tomar decisões / liderar um projeto / participar de uma reunião técnica].
+
+Meu nível atual: [iniciante / já ouvi falar mas não entendo bem / sei o básico]
+Tempo disponível para aprender: [30 minutos / 2 horas / esta semana]
+
+Estruture o aprendizado em:
+1. O conceito central em 3 frases, sem jargão.
+2. Os 5 termos técnicos que vão aparecer e o que cada um significa.
+3. Os erros mais comuns de quem está começando a usar esse conhecimento.
+4. Uma analogia com algo que já conheço bem.
+5. As 3 perguntas que um especialista faria sobre esse tema.</div>
+
+  <h2>Como usar esses prompts no dia a dia</h2>
+  <p>Salve os prompts que você usa com mais frequência em um arquivo de texto ou em uma ferramenta como Notion, Obsidian ou até uma pasta no Google Drive. Não precisa decorar nada — o hábito é abrir o arquivo, copiar o prompt certo e adaptar os campos antes de jogar na IA.</p>
+  <p>Com o tempo, você vai naturalmente personalizar esses prompts para o seu jeito de trabalhar. Isso é esperado. Um prompt que funciona bem para você vale mais do que dez prompts genéricos que nunca chegam a ser usados.</p>
+  <p>O mais importante é começar com um único prompt, usá-lo por uma semana e medir o impacto real no seu tempo. A produtividade com IA não vem de conhecer muitas ferramentas — vem de usar bem as que já tem.</p>
+
+</article>
+
+<section class="cta-section">
+  <div class="cta-box">
+    <h2>Quer mais prompts como estes?</h2>
+    <p>A Biblioteca de Prompts tem coleções completas por categoria — trabalho, estudos, atendimento, no-code e mais.</p>
+    <a href="../biblioteca-de-prompts.html" class="cta-btn">Acessar a Biblioteca de Prompts</a>
+  </div>
+</section>
+
+<footer>
+  <div>
+    <a href="../sobre.html">Sobre</a>
+    <a href="../contato.html">Contato</a>
+    <a href="../politica-de-privacidade.html">Política de Privacidade</a>
+    <a href="../termos-de-uso.html">Termos de Uso</a>
+  </div>
+  <p style="margin-top:.75rem">© 2026 Aprenda com AI</p>
+</footer>
+<script src="../cookie-consent.js" defer></script>
+<script src="../site-menu.js" defer></script>
+</body>
+</html>

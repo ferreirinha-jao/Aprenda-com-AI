@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Biblioteca de prompts práticos para trabalho, estudos, imagem, atendimento, no-code e estratégia.">
+  <title>Biblioteca de Prompts | Aprenda com AI</title>
+  <link rel="icon" href="favicon.ico.png" type="image/png">
+  <link rel="apple-touch-icon" href="favicon.svg">
+  <link rel="canonical" href="https://aprendacomai.com/biblioteca-de-prompts.html">
+  <meta property="og:site_name" content="Aprenda com AI">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Biblioteca de Prompts | Aprenda com AI">
+  <meta property="og:description" content="Biblioteca de prompts práticos para trabalho, estudos, imagem, atendimento, no-code e estratégia.">
+  <meta property="og:url" content="https://aprendacomai.com/biblioteca-de-prompts.html">
+  <meta property="og:image" content="https://aprendacomai.com/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Biblioteca de Prompts | Aprenda com AI">
+  <meta name="twitter:description" content="Biblioteca de prompts práticos para trabalho, estudos, imagem, atendimento, no-code e estratégia.">
+  <meta name="twitter:image" content="https://aprendacomai.com/og-image.png">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="final-hero.css">
+  <style>
+    body.prompts-page { margin: 0; min-height: 100vh; background: radial-gradient(circle at 18% 5%, rgba(215,255,63,.16), transparent 30%), #0b0c0e; color: #e5e7eb; font-family: Manrope, sans-serif; }
+    .prompts-main { max-width: 1200px; margin: auto; padding: 5rem clamp(1.25rem, 5vw, 4.8rem) 6rem; }
+    .prompt-kicker { margin: 0; color: #d7ff3f; font: 500 .75rem 'DM Mono', monospace; letter-spacing: .12em; text-shadow: 0 0 14px rgba(215,255,63,.45); }
+    .prompt-intro { max-width: 780px; }
+    .prompt-intro h1 { margin: 1rem 0 0; color: #fff; font: 800 clamp(2.6rem, 6vw, 5.1rem)/.98 'Space Grotesk', sans-serif; letter-spacing: -.07em; }
+    .prompt-intro > p { max-width: 670px; margin: 1.35rem 0 0; color: #c7c9c5; font-size: 1.06rem; line-height: 1.7; }
+    .how-to { display: flex; gap: .85rem; max-width: 760px; margin-top: 2rem; padding: 1rem 1.1rem; border: 1px solid rgba(215,255,63,.25); border-radius: 12px; background: rgba(215,255,63,.06); color: #d7dbcb; line-height: 1.6; }
+    .how-to strong { color: #d7ff3f; white-space: nowrap; }
+    .prompt-tools { display: grid; grid-template-columns: minmax(0,1fr) 190px auto; gap: .75rem; margin-top: 3rem; }
+    .prompt-tools input, .prompt-tools select { min-width: 0; padding: .86rem 1rem; border: 1px solid rgba(255,255,255,.15); border-radius: 10px; outline: none; background: rgba(255,255,255,.045); color: #fff; font: .86rem Manrope, sans-serif; }
+    .prompt-tools select option { background: #1a1c20; color: #fff; }
+    .prompt-tools input:focus, .prompt-tools select:focus { border-color: #d7ff3f; box-shadow: 0 0 0 3px rgba(215,255,63,.12); }
+    .saved-toggle, .copy-button, .details-button, .guide-link { border: 1px solid rgba(255,255,255,.15); border-radius: 10px; background: transparent; color: #fff; font: 700 .78rem Manrope, sans-serif; cursor: pointer; text-decoration: none; }
+    .saved-toggle { padding: .86rem 1rem; white-space: nowrap; }
+    .saved-toggle.active { border-color: #d7ff3f; background: #d7ff3f; color: #11110f; }
+    .section-title { display: flex; align-items: end; justify-content: space-between; gap: 1rem; margin: 4rem 0 1.25rem; padding-bottom: 1rem; border-bottom: 1px solid rgba(255,255,255,.12); }
+    .section-title h2 { margin: 0; color: #fff; font: 700 1.65rem 'Space Grotesk', sans-serif; letter-spacing: -.04em; }
+    .section-title p { margin: 0; color: #aeb2aa; font-size: .82rem; }
+    .prompt-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 1rem; }
+    .prompt-empty-state { grid-column: 1 / -1; padding: 3rem 1.5rem; border: 1px dashed rgba(215,255,63,.35); border-radius: 12px; background: rgba(255,255,255,.025); color: #c7c9c5; text-align: center; }
+    .prompt-empty-state[hidden] { display: none; }
+    .prompt-empty-state p { margin: 0 0 1.25rem; font-size: 1rem; line-height: 1.6; }
+    .clear-filters { padding: .75rem 1rem; border: 1px solid rgba(215,255,63,.65); border-radius: 6px; background: rgba(215,255,63,.08); color: #d7ff3f; font: 700 .82rem Manrope, sans-serif; cursor: pointer; transition: background .2s, box-shadow .2s; }
+    .clear-filters:hover, .clear-filters:focus-visible { background: rgba(215,255,63,.16); box-shadow: 0 0 18px rgba(215,255,63,.14); outline: none; }
+    .prompt-card { display: flex; min-height: 320px; flex-direction: column; padding: 1.4rem; border: 1px solid rgba(255,255,255,.1); border-radius: 16px; background: rgba(255,255,255,.035); box-shadow: inset 0 1px rgba(255,255,255,.05); transition: transform .2s, border-color .2s, box-shadow .2s; }
+    .prompt-card:hover { transform: translateY(-4px); border-color: rgba(215,255,63,.65); box-shadow: 0 14px 35px rgba(0,0,0,.24), 0 0 0 1px rgba(215,255,63,.1); }
+    .prompt-card[hidden] { display: none; }
+    .prompt-card.featured { border-color: rgba(215,255,63,.3); }
+    .card-top { display: flex; align-items: center; justify-content: space-between; gap: .8rem; }
+    .prompt-category { padding: .35rem .55rem; border-radius: 6px; background: rgba(215,255,63,.13); color: #d7ff3f; font: 500 .66rem 'DM Mono', monospace; letter-spacing: .06em; text-transform: uppercase; }
+    .save-button { width: 32px; height: 32px; border: 1px solid rgba(255,255,255,.16); border-radius: 50%; background: transparent; color: #c7c9c5; cursor: pointer; font-size: 1rem; }
+    .save-button.saved { border-color: #d7ff3f; background: #d7ff3f; color: #11110f; }
+    .prompt-card h3 { margin: 1.15rem 0 0; color: #fff; font: 700 1.25rem/1.2 'Space Grotesk', sans-serif; letter-spacing: -.035em; }
+    .prompt-card > p { margin: .75rem 0 1.2rem; color: #c7c9c5; font-size: .87rem; line-height: 1.6; }
+    .card-actions { display: grid; grid-template-columns: 1fr 1fr; gap: .55rem; margin-top: auto; }
+    .copy-button, .details-button { padding: .7rem .6rem; text-align: center; }
+    .copy-button { border-color: #d7ff3f; background: #d7ff3f; color: #11110f; }
+    .details-button:hover, .guide-link:hover { border-color: #d7ff3f; color: #d7ff3f; }
+    .guide-link { grid-column: 1 / -1; padding: .7rem .6rem; text-align: center; }
+    .collections { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: .85rem; }
+    .collection-card { padding: 1.2rem; border: 1px solid rgba(255,255,255,.1); border-radius: 14px; background: rgba(255,255,255,.025); color: #fff; text-align: left; cursor: pointer; transition: border-color .2s, background .2s; }
+    .collection-card:hover { border-color: #d7ff3f; background: rgba(215,255,63,.08); }
+    .collection-card span { display: block; color: #d7ff3f; font: 500 .68rem 'DM Mono', monospace; letter-spacing: .09em; }
+    .collection-card strong { display: block; margin-top: .45rem; font-size: 1.05rem; }
+    #empty { padding: 4rem 1rem; color: #c7c9c5; text-align: center; }
+    #empty[hidden] { display: none; }
+    .modal[hidden] { display: none; }
+    .modal { position: fixed; inset: 0; z-index: 50; display: grid; place-items: center; padding: 1.25rem; background: rgba(0,0,0,.7); }
+    .modal-dialog { width: min(100%, 720px); max-height: min(80vh, 720px); overflow: auto; padding: 1.5rem; border: 1px solid rgba(215,255,63,.3); border-radius: 16px; background: #171916; box-shadow: 0 24px 80px rgba(0,0,0,.55); }
+    .modal-header { display: flex; justify-content: space-between; gap: 1rem; }
+    .modal-header h2 { margin: 0; color: #fff; font: 700 1.6rem 'Space Grotesk', sans-serif; }
+    .modal-close { width: 34px; height: 34px; border: 1px solid rgba(255,255,255,.2); border-radius: 50%; background: transparent; color: #fff; cursor: pointer; font-size: 1.2rem; }
+    #modal-prompt { margin: 1.4rem 0; padding: 1rem; border: 1px solid rgba(255,255,255,.1); border-radius: 10px; background: #0b0c0e; color: #e5e7eb; font: .88rem/1.65 'DM Mono', monospace; white-space: pre-wrap; }
+    .modal-copy { width: 100%; padding: .85rem 1rem; border: 0; border-radius: 10px; background: #d7ff3f; color: #11110f; font-weight: 800; cursor: pointer; }
+    .prompts-footer { background: #121316; }
+    @media (max-width: 900px) { .prompt-grid { grid-template-columns: repeat(2, minmax(0,1fr)); } .collections { grid-template-columns: repeat(2, minmax(0,1fr)); } .prompt-tools { grid-template-columns: 1fr 180px; } .saved-toggle { grid-column: 1 / -1; justify-self: start; } }
+    @media (max-width: 600px) { .prompts-main { padding: 3.5rem 1.25rem 4rem; } .prompt-grid, .collections, .prompt-tools { grid-template-columns: 1fr; } .saved-toggle { justify-self: stretch; } .section-title { align-items: start; flex-direction: column; margin-top: 2.7rem; } .how-to { flex-direction: column; gap: .35rem; } }
+  </style>
+  <script src="script.js" defer></script>
+<link rel="stylesheet" href="site-menu.css">
+</head>
+<body class="prompts-page">
+  <header>
+    <nav class="navbar">
+        <a href="index.html" class="logo">Aprenda com AI</a>
+        <ul class="nav-links">
+            <li><a href="index.html">Início</a></li>
+            <li><a href="comece-aqui.html">Comece Aqui</a></li>
+            <li><a href="artigos.html">Artigos</a></li>
+            <li><a href="biblioteca-de-prompts.html">Biblioteca de Prompts</a></li>
+            <li><a href="calculadora-ia.html">Calculadora de Impacto</a></li>
+            <li><a href="sobre.html">Sobre</a></li>
+            <li><a href="contato.html">Contato</a></li>
+        </ul>
+    </nav>
+</header>
+  <main class="prompts-main">
+    <section class="prompt-intro">
+      <p class="prompt-kicker">BIBLIOTECA DE PROMPTS</p>
+      <h1>Comece com a pergunta certa.</h1>
+      <p>Prompts práticos para adaptar ao seu contexto e usar inteligência artificial com mais clareza, agilidade e intenção.</p>
+      <aside class="how-to"><strong>Como usar:</strong><span>Abra um prompt, substitua os campos entre colchetes pelo seu contexto e copie para a ferramenta de IA que preferir.</span></aside>
+    </section>
+    <section class="prompt-tools" aria-label="Pesquisar e filtrar prompts">
+      <input id="search" type="search" placeholder="Buscar por objetivo ou palavra-chave" aria-label="Buscar prompts">
+      <select id="category" aria-label="Filtrar por categoria"><option value="">Todas as categorias</option><option value="trabalho">Trabalho</option><option value="estudos">Estudos</option><option value="imagem">Imagem</option><option value="atendimento">Atendimento</option><option value="nocode">No-Code</option><option value="estrategia">Estratégia</option></select>
+      <button id="saved-toggle" class="saved-toggle" type="button" aria-pressed="false">Meus salvos</button>
+    </section>
+    <section aria-labelledby="featured-title">
+      <div class="section-title"><h2 id="featured-title">Comece com estes 3</h2><p>Favoritos para dar o primeiro passo</p></div>
+      <div id="prompt-grid" class="prompt-grid">
+        <article class="prompt-card featured" data-id="resumo-estudo" data-category="estudos" data-search="resumo estudar texto artigo revisão">
+          <div class="card-top"><span class="prompt-category">Estudos</span><button class="save-button" type="button" aria-label="Salvar prompt">♡</button></div><h3>Resumo que vira revisão</h3><p>Transforme um texto longo em ideias centrais, exemplos e perguntas para revisar.</p><template class="prompt-full">Atue como um tutor educacional especialista em metodologias de estudo ativo.
+
+Analise o texto fornecido abaixo e construa um material de estudo completo seguindo exatamente esta estrutura:
+
+1. RESUMO EXECUTIVO: Sintetize as ideias centrais em até 3 tópicos diretos.
+2. CONCEITOS-CHAVE &amp; EXEMPLOS: Liste os termos mais difíceis e explique cada um com uma analogia simples.
+3. QUIZ DE REVISÃO: Crie 5 perguntas de fixação (com gabarito oculto ao final).
+4. PLANO DE AÇÃO: Sugira 1 exercício prático para aplicar o conhecimento.
+
+Nível do aluno: [Iniciante / Intermediário / Avançado]
+Texto para análise:
+[Cole o texto aqui]</template><div class="card-actions"><button class="copy-button" type="button">Copiar prompt</button><button class="details-button" type="button">Ver detalhes</button><a class="guide-link" href="artigos/resumir-textos-ia.html">Ver guia de uso</a></div>
+        </article>
+        <article class="prompt-card featured" data-id="prioridades-trabalho" data-category="trabalho" data-search="trabalho produtividade prioridades tarefas rotina">
+          <div class="card-top"><span class="prompt-category">Trabalho</span><button class="save-button" type="button" aria-label="Salvar prompt">♡</button></div><h3>Prioridades da semana</h3><p>Organize tarefas, defina prioridades e monte um plano possível para a semana.</p><template class="prompt-full">Atue como um gestor de produtividade especialista nos métodos Eisenhower e GTD.
+
+Organize minha semana a partir da lista bruta de tarefas abaixo:
+
+1. MATRIZ DE PRIORIDADES: Classifique em (A) Urgente &amp; Importante, (B) Importante, mas não urgente, (C) Delegar/Simplificar.
+2. CRONOGRAMA SUGERIDO: Distribua de Segunda a Sexta considerando blocos de foco e tarefas rápidas.
+3. GARGALOS: Identifique se há tarefas grandes que precisam ser divididas.
+
+Minha meta principal da semana: [Sua meta]
+Lista de tarefas:
+[Cole sua lista aqui]</template><div class="card-actions"><button class="copy-button" type="button">Copiar prompt</button><button class="details-button" type="button">Ver detalhes</button><a class="guide-link" href="artigos/prompts-produtividade.html">Ver guia de uso</a></div>
+        </article>
+        <article class="prompt-card featured" data-id="resposta-cliente" data-category="atendimento" data-search="cliente atendimento resposta mensagem whatsapp">
+          <div class="card-top"><span class="prompt-category">Atendimento</span><button class="save-button" type="button" aria-label="Salvar prompt">♡</button></div><h3>Resposta clara ao cliente</h3><p>Crie mensagens acolhedoras e objetivas sem perder o tom da sua marca.</p><template class="prompt-full">Atue como especialista em experiência do cliente (CX) e comunicação assertiva.
+
+Crie 3 variações de resposta para a mensagem do cliente (curta, intermediária e detalhada):
+
+- Tom de voz: [Acolhedor / Profissional / Descontraído / Direto]
+- Mantenha empatia, confirme o entendimento do problema e apresente a solução.
+- Se faltar dados técnicos, faça perguntas diretas sem gerar confusão.
+- Use marcadores como [Nome], [Prazo] e [Link].
+
+Mensagem do cliente:
+[Cole a mensagem aqui]</template><div class="card-actions"><button class="copy-button" type="button">Copiar prompt</button><button class="details-button" type="button">Ver detalhes</button><a class="guide-link" href="artigos/respostas-automaticas-ia.html">Ver guia de uso</a></div>
+        </article>
+        <article class="prompt-card" data-id="briefing-imagem" data-category="imagem" data-search="imagem design visual briefing criação">
+          <div class="card-top"><span class="prompt-category">Imagem</span><button class="save-button" type="button" aria-label="Salvar prompt">♡</button></div><h3>Briefing visual completo</h3><p>Estruture uma descrição consistente para gerar imagens alinhadas à sua ideia.</p><template class="prompt-full">Atue como um diretor de arte e engenheiro de prompts especialista em Midjourney, DALL-E 3 e Stable Diffusion.
+
+Crie um prompt completo e altamente detalhado para geração de imagem com a seguinte estrutura:
+1. ASSUNTO PRINCIPAL: [Descrição detalhada do elemento central]
+2. ESTILO ARTÍSTICO &amp; MÍDIA: [Fotografia 35mm, Render 3D, Ilustração vetorial, Cyberpunk, etc.]
+3. COMPOSIÇÃO E ILUMINAÇÃO: [Enquadramento, ângulo de câmera, iluminação de estúdio/volumétrica]
+4. PALETA DE CORES E CLIMA: [Cores predominantes, tom emocional]
+5. RESTRIÇÕES (--no / negative prompt): [O que NÃO deve aparecer na imagem]
+
+Gere o prompt final em Português e uma versão traduzida e otimizada em Inglês.</template><div class="card-actions"><button class="copy-button" type="button">Copiar prompt</button><button class="details-button" type="button">Ver detalhes</button><a class="guide-link" href="artigos/prompts-imagens-design.html">Ver guia de uso</a></div>
+        </article>
+        <article class="prompt-card" data-id="fluxo-nocode" data-category="nocode" data-search="no-code automação fluxo n8n make processo">
+          <div class="card-top"><span class="prompt-category">No-Code</span><button class="save-button" type="button" aria-label="Salvar prompt">♡</button></div><h3>Mapa de automação</h3><p>Transforme um processo repetitivo em um fluxo simples de automação.</p><template class="prompt-full">Atue como um arquiteto de soluções no-code/low-code e automação de processos (especialista em n8n e Make).
+
+Analise o processo manual descrito abaixo e crie um mapa de automação completo:
+
+1. GATILHO (TRIGGER): Defina qual evento inicia o fluxo (Webhook, formulário, novo e-mail, etc.).
+2. FLUXO PASSO A PASSO: Mapeie as etapas de extração, tratamento de dados e integração de APIs.
+3. TRATAMENTO DE ERROS &amp; REVISÃO HUMANA: Indique onde deve haver validação manual ou alertas (ex: via Telegram/Slack).
+4. FERRAMENTAS RECOMENDADAS: Indique os módulos/n8n nodes adequados para a solução.
+
+Descrição do processo manual:
+[Descreva o processo atual aqui]</template><div class="card-actions"><button class="copy-button" type="button">Copiar prompt</button><button class="details-button" type="button">Ver detalhes</button><a class="guide-link" href="artigos/automacao-atendimento-ia.html">Ver guia de uso</a></div>
+        </article>
+        <article class="prompt-card" data-id="plano-estrategico" data-category="estrategia" data-search="estratégia planejamento objetivo negócio decisão">
+          <div class="card-top"><span class="prompt-category">Estratégia</span><button class="save-button" type="button" aria-label="Salvar prompt">♡</button></div><h3>Plano de ação enxuto</h3><p>Converta um objetivo amplo em prioridades, riscos e próximos passos.</p><template class="prompt-full">Atue como um consultor de estratégia de negócios e planejamento ágil (OKRs / Scrum).
+
+Converta o objetivo principal abaixo em um plano de execução prático de 30 dias:
+
+1. METAS DE CURTO PRAZO: Divida o objetivo em 3 marcos semanais claros.
+2. AÇÕES IMEDIATAS: Liste as 3 tarefas prioritárias para executar hoje.
+3. RECURSOS E RESTRICÕES: Identifique gargalos e o que é estritamente necessário para começar.
+4. MÉTRICAS DE SUCESSO (KPIs): Defina 2 indicadores simples para medir o progresso.
+
+Objetivo principal: [Seu objetivo]
+Contexto e recursos atuais: [Seu contexto]</template><div class="card-actions"><button class="copy-button" type="button">Copiar prompt</button><button class="details-button" type="button">Ver detalhes</button><a class="guide-link" href="comece-aqui.html">Ver guia de uso</a></div>
+        </article>
+        <div id="empty" class="prompt-empty-state" role="status" aria-live="polite" hidden><p>Nenhum prompt encontrado para essa busca.</p><button id="clear-filters" class="clear-filters" type="button">Limpar Filtros</button></div>
+      </div>
+    </section>
+    <section aria-labelledby="collections-title">
+      <div class="section-title"><h2 id="collections-title">Coleções</h2><p>Escolha pelo objetivo</p></div>
+      <div class="collections">
+        <button class="collection-card" type="button" data-collection="trabalho"><span>01</span><strong>Trabalho</strong></button>
+        <button class="collection-card" type="button" data-collection="estudos"><span>02</span><strong>Estudos</strong></button>
+        <button class="collection-card" type="button" data-collection="imagem"><span>03</span><strong>Imagem</strong></button>
+        <button class="collection-card" type="button" data-collection="atendimento"><span>04</span><strong>Atendimento</strong></button>
+        <button class="collection-card" type="button" data-collection="nocode"><span>05</span><strong>No-Code</strong></button>
+        <button class="collection-card" type="button" data-collection="estrategia"><span>06</span><strong>Estratégia</strong></button>
+      </div>
+    </section>
+  </main>
+  <footer class="prompts-footer inner-footer"><a class="logo" href="index.html">aprendacom<span>AI.</span></a><p>© 2026 Aprenda com AI</p><div><a href="sobre.html">Sobre</a><a href="contato.html">Contato</a><a href="politica-de-privacidade.html">Política de Privacidade</a><a href="termos-de-uso.html">Termos de Uso</a></div></footer>
+  <div id="prompt-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" hidden>
+    <div class="modal-dialog"><div class="modal-header"><h2 id="modal-title">Prompt</h2><button id="modal-close" class="modal-close" type="button" aria-label="Fechar">×</button></div><pre id="modal-prompt"></pre><button id="modal-copy" class="modal-copy" type="button">Copiar prompt</button></div>
+  </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const cards = [...document.querySelectorAll('.prompt-card')];
+      const search = document.querySelector('#search');
+      const category = document.querySelector('#category');
+      const savedToggle = document.querySelector('#saved-toggle');
+      const empty = document.querySelector('#empty');
+      const clearFilters = document.querySelector('#clear-filters');
+      const modal = document.querySelector('#prompt-modal');
+      const modalTitle = document.querySelector('#modal-title');
+      const modalPrompt = document.querySelector('#modal-prompt');
+      const closeModal = document.querySelector('#modal-close');
+      const modalCopy = document.querySelector('#modal-copy');
+      const storageKey = 'aprendacomai-saved-prompts';
+      let savedOnly = false;
+      let activePrompt = '';
+      const getSaved = () => { try { return JSON.parse(localStorage.getItem(storageKey) || '[]'); } catch { return []; } };
+      const setSaved = (saved) => localStorage.setItem(storageKey, JSON.stringify(saved));
+      const promptText = (card) => card.querySelector('.prompt-full').content.textContent.trim();
+      const updateSaveButtons = () => {
+        const saved = getSaved();
+        cards.forEach((card) => {
+          const button = card.querySelector('.save-button');
+          const isSaved = saved.includes(card.dataset.id);
+          button.classList.toggle('saved', isSaved);
+          button.textContent = isSaved ? '♥' : '♡';
+          button.setAttribute('aria-label', isSaved ? 'Remover prompt salvo' : 'Salvar prompt');
+        });
+      };
+      const filter = () => {
+        const query = search.value.trim().toLowerCase();
+        const selected = category.value;
+        const saved = getSaved();
+        let total = 0;
+        cards.forEach((card) => {
+          const title = card.querySelector('h3').textContent.toLowerCase();
+          const fullPrompt = promptText(card).toLowerCase();
+          const matchesSearch = !query || card.dataset.search.toLowerCase().includes(query) || title.includes(query) || card.textContent.toLowerCase().includes(query) || fullPrompt.includes(query);
+          const matchesCategory = !selected || card.dataset.category === selected;
+          const matchesSaved = !savedOnly || saved.includes(card.dataset.id);
+          const visible = matchesSearch && matchesCategory && matchesSaved;
+          card.hidden = !visible;
+          if (visible) total += 1;
+        });
+        empty.hidden = total !== 0;
+        const titleEl = document.querySelector('#featured-title');
+        const subtitleEl = titleEl.nextElementSibling;
+        if (!titleEl.dataset.defaultTitle) { titleEl.dataset.defaultTitle = titleEl.textContent; subtitleEl.dataset.defaultText = subtitleEl.textContent; }
+        if (query || selected || savedOnly) {
+          titleEl.textContent = total === 1 ? '1 prompt encontrado' : total + ' prompts encontrados';
+          subtitleEl.textContent = 'Resultado da sua busca ou filtro';
+        } else {
+          titleEl.textContent = titleEl.dataset.defaultTitle;
+          subtitleEl.textContent = subtitleEl.dataset.defaultText;
+        }
+      };
+      const copy = async (text, button) => {
+        try { await navigator.clipboard.writeText(text); } catch { const area = document.createElement('textarea'); area.value = text; document.body.append(area); area.select(); document.execCommand('copy'); area.remove(); }
+        if (button) { const label = button.textContent; button.textContent = 'Copiado!'; setTimeout(() => { button.textContent = label; }, 1400); }
+      };
+      cards.forEach((card) => {
+        card.querySelector('.save-button').addEventListener('click', () => {
+          const saved = getSaved(); const id = card.dataset.id; const next = saved.includes(id) ? saved.filter((item) => item !== id) : [...saved, id];
+          setSaved(next); updateSaveButtons(); filter();
+        });
+        card.querySelector('.copy-button').addEventListener('click', (event) => copy(promptText(card), event.currentTarget));
+        card.querySelector('.details-button').addEventListener('click', () => {
+          activePrompt = promptText(card); modalTitle.textContent = card.querySelector('h3').textContent; modalPrompt.textContent = activePrompt; modal.hidden = false; closeModal.focus();
+        });
+      });
+      savedToggle.addEventListener('click', () => { savedOnly = !savedOnly; savedToggle.classList.toggle('active', savedOnly); savedToggle.setAttribute('aria-pressed', String(savedOnly)); filter(); });
+      clearFilters.addEventListener('click', () => {
+        search.value = '';
+        category.value = '';
+        savedOnly = false;
+        savedToggle.classList.remove('active');
+        savedToggle.setAttribute('aria-pressed', 'false');
+        filter();
+        search.focus();
+      });
+      search.addEventListener('input', filter);
+      category.addEventListener('change', filter);
+      document.querySelectorAll('.collection-card').forEach((button) => button.addEventListener('click', () => { category.value = button.dataset.collection; savedOnly = false; savedToggle.classList.remove('active'); savedToggle.setAttribute('aria-pressed', 'false'); filter(); document.querySelector('#featured-title').scrollIntoView({ behavior: 'smooth', block: 'start' }); }));
+      closeModal.addEventListener('click', () => { modal.hidden = true; });
+      modal.addEventListener('click', (event) => { if (event.target === modal) modal.hidden = true; });
+      document.addEventListener('keydown', (event) => { if (event.key === 'Escape') modal.hidden = true; });
+      modalCopy.addEventListener('click', (event) => copy(activePrompt, event.currentTarget));
+      updateSaveButtons(); filter();
+    });
+  </script>
+<script src="cookie-consent.js" defer></script>
+<script src="site-menu.js" defer></script>
+</body>
+</html>

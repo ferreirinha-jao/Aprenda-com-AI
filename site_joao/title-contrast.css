@@ -1,0 +1,10 @@
+/* Contraste do título conforme a luminosidade do slide ativo. */
+.bg-title.text-light {
+  color: rgba(255, 255, 255, 0.65);
+  transition: color 0.5s ease;
+}
+
+.bg-title.text-dark {
+  color: rgba(18, 19, 22, 0.75);
+  transition: color 0.5s ease;
+}

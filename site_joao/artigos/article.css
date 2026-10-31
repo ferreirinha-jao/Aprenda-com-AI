@@ -1,0 +1,130 @@
+body.article-page {
+  margin: 0;
+  min-height: 100vh;
+  background:
+    radial-gradient(
+      circle at 18% 4%,
+      rgba(215, 255, 63, 0.14),
+      transparent 31%
+    ),
+    #0b0c0e;
+  color: #d1d5db;
+  font-family: Manrope, sans-serif;
+}
+.article-main {
+  max-width: 1100px;
+  margin: auto;
+  padding: 4.5rem 1.5rem 6rem;
+}
+.article-back {
+  display: inline-block;
+  margin-bottom: 2.6rem;
+  color: #d7ff3f;
+  font:
+    500 0.78rem "DM Mono",
+    monospace;
+  text-decoration: none;
+}
+.article-back:hover {
+  text-decoration: underline;
+}
+.article-kicker {
+  margin: 0;
+  color: #d7ff3f;
+  font:
+    500 0.74rem "DM Mono",
+    monospace;
+  letter-spacing: 0.12em;
+}
+.article-main h1 {
+  margin: 1rem 0 1.4rem;
+  color: #fff;
+  font:
+    800 clamp(2.4rem, 6vw, 4.7rem)/0.99 "Space Grotesk",
+    sans-serif;
+  letter-spacing: -0.07em;
+}
+.article-lead {
+  margin: 0 0 2.6rem;
+  color: #c7c9c5;
+  font-size: 1.1rem;
+  line-height: 1.75;
+}
+.article-main h2 {
+  margin: 2.8rem 0 0.8rem;
+  color: #fff;
+  font:
+    700 clamp(1.5rem, 3vw, 2rem)/1.1 "Space Grotesk",
+    sans-serif;
+  letter-spacing: -0.045em;
+}
+.article-main p,
+.article-main li {
+  color: #d1d5db;
+  font-size: 1rem;
+  line-height: 1.78;
+}
+.article-main ul,
+.article-main ol {
+  padding-left: 1.3rem;
+}
+.article-main li + li {
+  margin-top: 0.55rem;
+}
+.article-note {
+  margin: 2rem 0;
+  padding: 1.1rem 1.2rem;
+  border: 1px solid rgba(215, 255, 63, 0.25);
+  border-radius: 12px;
+  background: rgba(215, 255, 63, 0.06);
+  color: #e7eadf;
+}
+.article-note strong {
+  color: #d7ff3f;
+}
+.article-main .pillar {
+  margin: 2rem 0;
+  padding: 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  background: #1a1c20;
+}
+.article-main .pillar h2,
+.article-main .pillar h3 {
+  margin-top: 0;
+}
+.article-main .pillar p:last-child {
+  margin-bottom: 0;
+}
+.article-example {
+  margin: 1.6rem 0;
+  padding: 1.1rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  background: #151714;
+  color: #e5e7eb;
+  font:
+    0.88rem/1.7 "DM Mono",
+    monospace;
+  white-space: pre-wrap;
+}
+.article-footer {
+  background: #121316;
+}
+@media (max-width: 720px) {
+  .article-main {
+    padding: 3rem 1.25rem 4rem;
+  }
+  .article-main h1 {
+    font-size: clamp(2.3rem, 12vw, 3.7rem);
+  }
+}
+
+/* Botões de "Continue aprendendo" no final dos artigos */
+.article-actions { display: flex; flex-wrap: wrap; gap: .75rem; margin: 1rem 0 2rem; }
+.article-action-btn { display: inline-flex; align-items: center; gap: .5rem; padding: .65rem 1.4rem; border-radius: 8px; font-weight: 700; font-size: .9rem; line-height: 1.2; text-decoration: none; transition: background .2s, border-color .2s, transform .15s; }
+.article-action-btn:hover { transform: translateY(-1px); text-decoration: none; }
+.article-action-btn--primary { background: var(--accent, #d7ff3f); color: #0b0c0e; border: 1px solid var(--accent, #d7ff3f); }
+.article-action-btn--primary:hover { background: var(--accent2, #a8cc28); border-color: var(--accent2, #a8cc28); color: #0b0c0e; }
+.article-action-btn--ghost { background: transparent; color: var(--accent, #d7ff3f); border: 1px solid rgba(255,255,255,.18); }
+.article-action-btn--ghost:hover { border-color: var(--accent, #d7ff3f); color: var(--accent, #d7ff3f); }

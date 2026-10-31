@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Como montar um portfólio de automações — Aprenda com AI</title>
+  <meta name="description" content="Aprenda a criar um portfólio de automações com IA que atrai clientes, mostra resultados reais e diferencia você no mercado de freelancers e consultores." />
+  <meta property="og:title" content="Como montar um portfólio de automações — Aprenda com AI" />
+  <meta property="og:description" content="Aprenda a criar um portfólio de automações com IA que atrai clientes, mostra resultados reais e diferencia você no mercado." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://aprendacomai.com/artigos/como-montar-portfolio-de-automacoes.html" />
+  <link rel="canonical" href="https://aprendacomai.com/artigos/como-montar-portfolio-de-automacoes.html" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Manrope:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../style.css" />
+  <link rel="stylesheet" href="../final-hero.css" />
+
+  <style>
+    :root {
+      --bg:        #0b0c0e;
+      --surface:   #13151a;
+      --border:    #1e2028;
+      --accent:    #d7ff3f;
+      --accent2:   #a8cc28;
+      --text:      #e5e7eb;
+      --muted:     #c7c9c5;
+      --dim:       #6b7280;
+      --font-head: 'Space Grotesk', sans-serif;
+      --font-body: 'Manrope', sans-serif;
+      --font-mono: 'DM Mono', monospace;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: 1rem;
+      line-height: 1.7;
+    }
+
+    /* NAV */
+    .nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(11,12,14,.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: .85rem 1.5rem;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo { font-family: var(--font-head); font-weight: 700; font-size: 1.1rem; color: var(--accent); text-decoration: none; }
+    .nav-links { display: flex; gap: 1.5rem; }
+    .nav-links a { color: var(--muted); text-decoration: none; font-size: .9rem; transition: color .2s; }
+    .nav-links a:hover { color: var(--accent); }
+
+    /* BREADCRUMB */
+    .breadcrumb {
+      max-width: 780px; margin: 0 auto; padding: 1.2rem 1.5rem .4rem;
+      display: flex; align-items: center; gap: .5rem;
+      font-size: .82rem; color: var(--dim); flex-wrap: wrap;
+    }
+    .breadcrumb a { color: var(--dim); text-decoration: none; }
+    .breadcrumb a:hover { color: var(--accent); }
+    .breadcrumb span { color: var(--dim); }
+
+    /* HERO */
+    .article-hero {
+      max-width: 780px; margin: 0 auto;
+      padding: 2.5rem 1.5rem 2rem;
+    }
+    .article-badge {
+      display: inline-block;
+      font-family: var(--font-mono); font-size: .75rem; font-weight: 500;
+      color: var(--bg); background: var(--accent);
+      padding: .25rem .75rem; border-radius: 999px;
+      margin-bottom: 1.1rem; letter-spacing: .04em; text-transform: uppercase;
+    }
+    .article-hero h1 {
+      font-family: var(--font-head); font-size: clamp(1.9rem, 4vw, 2.7rem);
+      font-weight: 700; line-height: 1.2; color: #fff;
+      margin-bottom: 1rem;
+    }
+    .article-hero h1 em { font-style: normal; color: var(--accent); }
+    .article-meta {
+      display: flex; flex-wrap: wrap; gap: .75rem;
+      font-size: .82rem; color: var(--dim);
+      padding-top: 1rem; border-top: 1px solid var(--border);
+    }
+
+    /* BODY */
+    .article-body {
+      max-width: 780px; margin: 0 auto;
+      padding: 2rem 1.5rem 4rem;
+    }
+    .article-body h2 {
+      font-family: var(--font-head); font-size: 1.45rem; font-weight: 700;
+      color: #fff; margin: 2.8rem 0 1rem;
+    }
+    .article-body h3 {
+      font-family: var(--font-head); font-size: 1.1rem; font-weight: 600;
+      color: var(--text); margin: 2rem 0 .6rem;
+    }
+    .article-body p { color: var(--muted); margin-bottom: 1.1rem; }
+    .article-body ul, .article-body ol {
+      color: var(--muted); padding-left: 1.4rem; margin-bottom: 1.1rem;
+    }
+    .article-body li { margin-bottom: .4rem; }
+    .article-body strong { color: var(--text); font-weight: 600; }
+    .article-body a { color: var(--accent); text-decoration: none; }
+    .article-body a:hover { text-decoration: underline; }
+
+    /* CALLOUT */
+    .callout {
+      border-left: 3px solid var(--accent);
+      background: var(--surface);
+      border-radius: 0 8px 8px 0;
+      padding: 1rem 1.25rem;
+      margin: 1.5rem 0;
+    }
+    .callout.tip  { border-color: var(--accent); }
+    .callout.warn { border-color: #f59e0b; }
+    .callout.info { border-color: #60a5fa; }
+    .callout-title {
+      font-family: var(--font-mono); font-size: .78rem; font-weight: 500;
+      text-transform: uppercase; letter-spacing: .06em;
+      margin-bottom: .4rem;
+    }
+    .callout.tip  .callout-title { color: var(--accent); }
+    .callout.warn .callout-title { color: #f59e0b; }
+    .callout.info .callout-title { color: #60a5fa; }
+    .callout p { margin: 0; font-size: .93rem; }
+
+    /* STEP CARDS */
+    .steps { display: flex; flex-direction: column; gap: 1rem; margin: 1.5rem 0; }
+    .step-card {
+      display: flex; gap: 1.1rem;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 10px; padding: 1.1rem 1.2rem;
+    }
+    .step-num {
+      flex-shrink: 0; width: 32px; height: 32px;
+      border-radius: 50%; background: var(--accent);
+      color: var(--bg); font-family: var(--font-head);
+      font-weight: 700; font-size: .9rem;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .step-content h4 {
+      font-family: var(--font-head); font-weight: 600; color: #fff;
+      font-size: 1rem; margin-bottom: .3rem;
+    }
+    .step-content p { margin: 0; font-size: .9rem; color: var(--muted); }
+
+    /* FEATURE GRID */
+    .feature-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: .85rem; margin: 1.5rem 0;
+    }
+    .feature-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 10px; padding: 1.1rem 1.2rem;
+    }
+    .feature-card h4 {
+      font-family: var(--font-head); font-weight: 600; color: #fff;
+      font-size: .95rem; margin-bottom: .4rem;
+    }
+    .feature-card p { margin: 0; font-size: .88rem; color: var(--muted); }
+
+    /* CASE CARD — projeto do portfólio */
+    .case-grid { display: flex; flex-direction: column; gap: 1.1rem; margin: 1.5rem 0; }
+    .case-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 10px; padding: 1.3rem 1.4rem;
+    }
+    .case-header {
+      display: flex; align-items: flex-start; justify-content: space-between;
+      gap: 1rem; margin-bottom: .7rem; flex-wrap: wrap;
+    }
+    .case-title { font-family: var(--font-head); font-weight: 700; color: #fff; font-size: 1.05rem; }
+    .case-tag {
+      font-family: var(--font-mono); font-size: .72rem;
+      padding: .2rem .65rem; border-radius: 999px;
+      flex-shrink: 0; font-weight: 500;
+    }
+    .case-tag.n8n    { background: rgba(215,255,63,.15); color: var(--accent); border: 1px solid rgba(215,255,63,.3); }
+    .case-tag.zapier { background: rgba(248,100,36,.15); color: #f86424; border: 1px solid rgba(248,100,36,.3); }
+    .case-tag.make   { background: rgba(96,165,250,.15); color: #60a5fa; border: 1px solid rgba(96,165,250,.3); }
+    .case-tag.gpt    { background: rgba(116,208,102,.15); color: #74d066; border: 1px solid rgba(116,208,102,.3); }
+    .case-desc { font-size: .9rem; color: var(--muted); margin-bottom: .75rem; }
+    .case-result {
+      font-family: var(--font-mono); font-size: .82rem; color: var(--accent);
+      background: rgba(215,255,63,.08); border: 1px solid rgba(215,255,63,.2);
+      border-radius: 6px; padding: .45rem .8rem;
+      display: inline-block;
+    }
+
+    /* PROMPT BOX */
+    .prompt-box {
+      background: #0d0f13; border: 1px solid var(--border);
+      border-radius: 10px; margin: 1.5rem 0; overflow: hidden;
+    }
+    .prompt-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: .65rem 1rem;
+      background: var(--surface); border-bottom: 1px solid var(--border);
+    }
+    .prompt-label { font-family: var(--font-mono); font-size: .75rem; color: var(--dim); }
+    .copy-btn {
+      font-family: var(--font-mono); font-size: .72rem; color: var(--accent);
+      background: transparent; border: 1px solid rgba(215,255,63,.3);
+      border-radius: 5px; padding: .2rem .6rem; cursor: pointer; transition: background .2s;
+    }
+    .copy-btn:hover { background: rgba(215,255,63,.1); }
+    .prompt-body {
+      padding: 1.1rem 1.2rem;
+      font-family: var(--font-mono); font-size: .83rem;
+      color: var(--muted); line-height: 1.7; white-space: pre-wrap;
+    }
+
+    /* COMPARISON TABLE */
+    .table-wrap { overflow-x: auto; margin: 1.5rem 0; border-radius: 10px; border: 1px solid var(--border); }
+    table { width: 100%; border-collapse: collapse; }
+    thead th {
+      background: var(--surface); font-family: var(--font-head);
+      font-size: .85rem; font-weight: 600; color: var(--accent);
+      padding: .85rem 1rem; text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+    tbody tr { border-bottom: 1px solid var(--border); }
+    tbody tr:last-child { border-bottom: none; }
+    tbody tr:hover { background: rgba(255,255,255,.02); }
+    tbody td { padding: .8rem 1rem; font-size: .88rem; color: var(--muted); }
+    tbody td:first-child { color: var(--text); font-weight: 500; }
+    .td-good { color: #74d066; font-weight: 600; }
+    .td-mid  { color: #f59e0b; font-weight: 600; }
+    .td-bad  { color: #f87171; font-weight: 600; }
+
+    /* FORMAT GRID */
+    .format-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: .85rem; margin: 1.5rem 0;
+    }
+    .format-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 10px; padding: 1.1rem 1.2rem;
+    }
+    .format-card .format-label {
+      font-family: var(--font-mono); font-size: .72rem;
+      color: var(--accent); text-transform: uppercase; letter-spacing: .05em;
+      margin-bottom: .5rem; display: block;
+    }
+    .format-card h4 {
+      font-family: var(--font-head); font-weight: 600; color: #fff;
+      font-size: .95rem; margin-bottom: .35rem;
+    }
+    .format-card p { margin: 0; font-size: .85rem; color: var(--muted); }
+
+    /* HIGHLIGHT BOX */
+    .highlight-box {
+      border: 1px solid rgba(215,255,63,.25);
+      background: rgba(215,255,63,.05);
+      border-radius: 10px; padding: 1.4rem 1.5rem; margin: 1.8rem 0;
+    }
+    .highlight-box h4 {
+      font-family: var(--font-head); font-size: 1rem; font-weight: 700;
+      color: var(--accent); margin-bottom: .7rem;
+    }
+    .highlight-box p { color: var(--muted); font-size: .92rem; margin-bottom: .5rem; }
+    .highlight-box p:last-child { margin-bottom: 0; }
+
+    /* ERRO GRID */
+    .erro-grid { display: flex; flex-direction: column; gap: .85rem; margin: 1.5rem 0; }
+    .erro-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 3px solid #f87171;
+      border-radius: 0 8px 8px 0;
+      padding: 1rem 1.2rem;
+    }
+    .erro-card h4 {
+      font-family: var(--font-head); font-weight: 600; color: #f87171;
+      font-size: .95rem; margin-bottom: .3rem;
+    }
+    .erro-card p { margin: 0; font-size: .88rem; color: var(--muted); }
+
+    /* CTA */
+    .cta-section {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 14px; padding: 2.2rem 2rem;
+      text-align: center; margin: 3rem auto 0;
+      max-width: 780px; margin-left: auto; margin-right: auto;
+    }
+    .cta-section h2 {
+      font-family: var(--font-head); font-size: 1.5rem; font-weight: 700;
+      color: #fff; margin-bottom: .6rem;
+    }
+    .cta-section p { color: var(--muted); font-size: .95rem; margin-bottom: 1.4rem; }
+    .cta-btn {
+      display: inline-block; background: var(--accent); color: var(--bg);
+      font-family: var(--font-head); font-weight: 700; font-size: .95rem;
+      padding: .8rem 2rem; border-radius: 8px; text-decoration: none;
+      transition: background .2s, transform .15s;
+    }
+    .cta-btn:hover { background: var(--accent2); transform: translateY(-2px); }
+
+    /* FOOTER */
+    .footer {
+      border-top: 1px solid var(--border);
+      text-align: center; padding: 2rem 1.5rem;
+      font-size: .82rem; color: var(--dim); margin-top: 4rem;
+    }
+    .footer a { color: var(--dim); text-decoration: none; }
+    .footer a:hover { color: var(--accent); }
+
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+      .article-hero h1 { font-size: 1.65rem; }
+      .step-card { flex-direction: column; gap: .6rem; }
+      .case-header { flex-direction: column; gap: .4rem; }
+    }
+  </style>
+  <link rel="icon" type="image/png" href="../favicon.ico.png">
+<link rel="stylesheet" href="../site-menu.css">
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <a href="../index.html" class="nav-logo">Aprenda com AI</a>
+    <div class="nav-links">
+      <a href="../index.html">Inicio</a>
+      <a href="../artigos.html">Artigos</a>
+      <a href="../catalogo-ferramentas.html">Ferramentas</a>
+      <a href="../biblioteca-de-prompts.html">Prompts</a>
+    </div>
+  </nav>
+
+  <!-- BREADCRUMB -->
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="../index.html">Inicio</a>
+    <span>/</span>
+    <a href="../artigos.html">Artigos</a>
+    <span>/</span>
+    <span>Como montar um portfólio de automações</span>
+  </nav>
+
+  <!-- HERO -->
+  <header class="article-hero">
+    <span class="article-badge">Negócios</span>
+    <h1>Como montar um <em>portfólio de automações</em> que atrai clientes</h1>
+    <div class="article-meta">
+      <span>Ferramentas: n8n, Make, Zapier, Notion, ChatGPT</span>
+    </div>
+  </header>
+
+  <!-- BODY -->
+  <main class="article-body">
+
+    <p>Você já criou automações incríveis — workflows no n8n, integrações no Make, bots no Zapier. Mas quando chega a hora de mostrar para um cliente potencial, você não sabe como apresentar esse trabalho de forma profissional e convincente.</p>
+
+    <p>Um portfólio de automações bem montado não é só uma lista de projetos. É uma ferramenta de vendas que mostra o impacto real do seu trabalho e responde à pergunta que todo cliente faz: <strong>"isso vai funcionar para mim?"</strong></p>
+
+    <h2>Por que um portfólio de automações é diferente</h2>
+
+    <p>Diferente de um portfólio de design ou dev, automações são invisíveis por natureza — elas rodam em background, fazem coisas acontecerem sem que ninguém precise apertar um botão. O desafio é tornar esse trabalho invisível em algo concreto e impressionante.</p>
+
+    <div class="feature-grid">
+      <div class="feature-card">
+        <h4>Não basta mostrar o workflow</h4>
+        <p>Print de fluxograma não impressiona quem não entende a ferramenta. O cliente quer ver o resultado, não a tecnologia.</p>
+      </div>
+      <div class="feature-card">
+        <h4>Números são tudo</h4>
+        <p>Quanto tempo economizou? Quantos erros eliminou? Qual o impacto em receita? Sem métricas, é difícil justificar investimento.</p>
+      </div>
+      <div class="feature-card">
+        <h4>Contexto é o que vende</h4>
+        <p>O cliente precisa entender o problema antes da solução. Conte a história completa: antes, depois, por quê funcionou.</p>
+      </div>
+      <div class="feature-card">
+        <h4>Casos de uso por segmento</h4>
+        <p>Uma clínica não se identifica com casos de e-commerce. Organize projetos por setor ou tipo de problema resolvido.</p>
+      </div>
+    </div>
+
+    <h2>Estrutura de um projeto no portfólio</h2>
+
+    <p>Cada projeto no seu portfólio deve seguir o mesmo formato. Isso cria consistência e facilita a comparação por parte do cliente.</p>
+
+    <div class="steps">
+      <div class="step-card">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <h4>Titulo e contexto</h4>
+          <p>Um nome claro que descreve o problema resolvido, não a tecnologia usada. "Automação de follow-up de leads" em vez de "Workflow n8n com webhook".</p>
+        </div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <h4>O problema (antes)</h4>
+          <p>Descreva a situação antes da automação: quantas horas manuais, quantos erros, qual era a dor do cliente. Seja específico.</p>
+        </div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <h4>A solução (como funciona)</h4>
+          <p>Explique o que foi automatizado em linguagem simples. Uma frase ou duas. Adicione um diagrama visual se quiser aprofundar.</p>
+        </div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">4</div>
+        <div class="step-content">
+          <h4>Ferramentas utilizadas</h4>
+          <p>Liste as plataformas envolvidas: n8n, Make, Zapier, ChatGPT, Google Sheets, CRM, etc. Isso ajuda clientes que já usam essas ferramentas a te encontrar.</p>
+        </div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">5</div>
+        <div class="step-content">
+          <h4>Resultado (depois)</h4>
+          <p>O mais importante. Use números sempre que possível: "reduziu de 4 horas para 20 minutos por semana" ou "eliminou 100% dos erros de cadastro manual".</p>
+        </div>
+      </div>
+    </div>
+
+    <h2>Exemplos de projetos para incluir</h2>
+
+    <p>Se você ainda está no início e não tem projetos de clientes reais, pode criar casos fictícios ou projetos pessoais. O importante é mostrar raciocínio e resultado.</p>
+
+    <div class="case-grid">
+      <div class="case-card">
+        <div class="case-header">
+          <span class="case-title">Automação de onboarding de clientes</span>
+          <span class="case-tag n8n">n8n</span>
+        </div>
+        <p class="case-desc">Empresa de SaaS ativava clientes manualmente: e-mail de boas-vindas, criação de conta no sistema, adição em grupo do WhatsApp. Processo levava 40 minutos por cliente e dependia de uma pessoa específica.</p>
+        <span class="case-result">Resultado: 40 min → 2 min por cliente. Zero dependência humana.</span>
+      </div>
+      <div class="case-card">
+        <div class="case-header">
+          <span class="case-title">Pipeline de leads do Instagram</span>
+          <span class="case-tag make">Make</span>
+        </div>
+        <p class="case-desc">Clínica de estética recebia mensagens no Instagram DM e WhatsApp mas perdia leads por não responder rápido. Sem CRM, sem histórico, sem follow-up sistemático.</p>
+        <span class="case-result">Resultado: tempo de resposta de horas para 3 minutos. Taxa de conversão +35%.</span>
+      </div>
+      <div class="case-card">
+        <div class="case-header">
+          <span class="case-title">Relatório semanal automatizado</span>
+          <span class="case-tag gpt">ChatGPT + Sheets</span>
+        </div>
+        <p class="case-desc">Gestor de tráfego passava 3 horas toda segunda-feira montando relatórios de performance para 8 clientes. Dados espalhados em Google Ads, Meta Ads e planilhas separadas.</p>
+        <span class="case-result">Resultado: 3 horas → 5 minutos. Relatórios gerados automaticamente toda segunda às 7h.</span>
+      </div>
+      <div class="case-card">
+        <div class="case-header">
+          <span class="case-title">Triagem e resposta de e-mails</span>
+          <span class="case-tag zapier">Zapier</span>
+        </div>
+        <p class="case-desc">E-commerce com alto volume de e-mails de suporte. Equipe respondia manualmente perguntas repetitivas sobre rastreamento, troca e devolução — cerca de 150 e-mails por dia.</p>
+        <span class="case-result">Resultado: 70% dos e-mails resolvidos automaticamente. Equipe focou só em casos complexos.</span>
+      </div>
+    </div>
+
+    <h2>Onde publicar seu portfólio</h2>
+
+    <p>Você tem algumas opções, cada uma com vantagens diferentes. Não precisa escolher só uma — o ideal é combinar.</p>
+
+    <div class="format-grid">
+      <div class="format-card">
+        <span class="format-label">Mais Simples</span>
+        <h4>Notion publico</h4>
+        <p>Crie uma página no Notion e torne ela pública. Fácil de atualizar, aceita imagens e embeds, parece profissional sem precisar de site próprio.</p>
+      </div>
+      <div class="format-card">
+        <span class="format-label">Mais Profissional</span>
+        <h4>Site próprio</h4>
+        <p>Uma landing page simples com seus casos de uso. Pode ser feita com Framer, Webflow ou mesmo HTML. Passa mais credibilidade para clientes corporativos.</p>
+      </div>
+      <div class="format-card">
+        <span class="format-label">Mais Alcance</span>
+        <h4>LinkedIn + conteudo</h4>
+        <p>Escreva posts contando os bastidores de cada automação. O LinkedIn distribui conteúdo técnico-prático muito bem para decisores de empresas.</p>
+      </div>
+      <div class="format-card">
+        <span class="format-label">Mais Engajamento</span>
+        <h4>YouTube / Loom</h4>
+        <p>Grave um vídeo de 3 a 5 minutos mostrando a automação rodando. Nada convence mais do que ver funcionando. Use Loom para gravações rápidas.</p>
+      </div>
+    </div>
+
+    <h2>Como usar IA para escrever os casos</h2>
+
+    <p>A parte mais difícil de montar o portfólio costuma ser escrever os textos — transformar um projeto técnico em uma história convincente. O ChatGPT ou Claude ajudam muito nisso.</p>
+
+    <div class="prompt-box">
+      <div class="prompt-header">
+        <span class="prompt-label">Prompt — Escrever caso de portfólio</span>
+        <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.prompt-box').querySelector('.prompt-body').textContent.trim())">Copiar</button>
+      </div>
+      <div class="prompt-body">Preciso escrever um caso de portfólio para um projeto de automação que fiz.
+
+Detalhes do projeto:
+- Cliente: [descreva o tipo de empresa/segmento]
+- Problema: [descreva o que era feito manualmente antes]
+- O que automatizei: [descreva o workflow criado]
+- Ferramentas: [liste as ferramentas usadas]
+- Resultado: [descreva o impacto em tempo, erros ou receita]
+
+Escreva em 3 blocos:
+1. "O problema" — 2 parágrafos descrevendo a dor do cliente antes da automação
+2. "A solução" — 1 parágrafo explicando o que foi feito em linguagem não técnica
+3. "O resultado" — 1 parágrafo com os impactos, priorizando números
+
+Tom: profissional mas acessível. Sem jargão técnico. Foco no valor para o negócio.</div>
+    </div>
+
+    <div class="prompt-box">
+      <div class="prompt-header">
+        <span class="prompt-label">Prompt — Criar projeto fictício para portfólio</span>
+        <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.prompt-box').querySelector('.prompt-body').textContent.trim())">Copiar</button>
+      </div>
+      <div class="prompt-body">Quero criar um caso de portfólio fictício mas realista para mostrar minhas habilidades com automação.
+
+Segmento do cliente: [ex: clínica, e-commerce, agência de marketing, escritório de contabilidade]
+Ferramenta que quero destacar: [ex: n8n, Make, Zapier]
+
+Crie um caso de portfólio completo com:
+- Nome do projeto (descritivo, não técnico)
+- Contexto da empresa (porte, equipe, situação)
+- O problema que existia antes
+- A solução automatizada (com fluxo resumido)
+- Resultado com métricas realistas
+
+Torne o caso crível e específico. Use dados plausíveis para o segmento.</div>
+    </div>
+
+    <h2>Como organizar o portfólio por segmento</h2>
+
+    <p>À medida que você acumula projetos, organize-os de forma que o cliente certo se identifique rapidamente.</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Segmento</th>
+            <th>Dores comuns</th>
+            <th>Automações mais valorizadas</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Clínicas e saúde</td>
+            <td>Agendamentos manuais, confirmações por WhatsApp</td>
+            <td class="td-good">Agendamento automático, lembrete de consulta</td>
+          </tr>
+          <tr>
+            <td>E-commerce</td>
+            <td>Suporte repetitivo, atualizacao de estoque</td>
+            <td class="td-good">Triagem de e-mail, sincronizacao de pedidos</td>
+          </tr>
+          <tr>
+            <td>Agências de marketing</td>
+            <td>Relatórios manuais, onboarding de clientes</td>
+            <td class="td-good">Relatórios automáticos, pipeline de aprovação</td>
+          </tr>
+          <tr>
+            <td>Contabilidade</td>
+            <td>Coleta de documentos, lembretes de prazo</td>
+            <td class="td-good">Cobrança automática, organização de NFs</td>
+          </tr>
+          <tr>
+            <td>Imobiliárias</td>
+            <td>Follow-up de leads, qualificação manual</td>
+            <td class="td-good">CRM automático, sequencia de follow-up</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>Erros comuns que prejudicam o portfólio</h2>
+
+    <div class="erro-grid">
+      <div class="erro-card">
+        <h4>Focar na ferramenta, não no problema</h4>
+        <p>Ninguém paga por "automação no n8n". Pagam para economizar tempo, evitar erros ou vender mais. O portfólio deve falar a linguagem do cliente.</p>
+      </div>
+      <div class="erro-card">
+        <h4>Nenhuma métrica ou resultado concreto</h4>
+        <p>Dizer que "melhorou o processo" não convence. Estime os números se não tiver exatos: "economia estimada de X horas por semana".</p>
+      </div>
+      <div class="erro-card">
+        <h4>Casos muito genéricos</h4>
+        <p>"Automação para empresa de serviços" não diz nada. Seja específico: segmento, tamanho da equipe, problema concreto. A especificidade gera identificação.</p>
+      </div>
+      <div class="erro-card">
+        <h4>Portfólio desatualizado</h4>
+        <p>Um portfólio com projetos antigos e sem projetos novos passa a sensação de inatividade. Adicione novos casos pelo menos uma vez por trimestre.</p>
+      </div>
+      <div class="erro-card">
+        <h4>Sem prova de que funciona</h4>
+        <p>Texto é bom, vídeo é melhor. Se possível, grave um Loom de 2 minutos mostrando o workflow rodando. Uma prova visual vale mais que mil palavras.</p>
+      </div>
+    </div>
+
+    <h2>Fluxo completo: do projeto ao portfólio</h2>
+
+    <div class="steps">
+      <div class="step-card">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <h4>Documente durante o projeto</h4>
+          <p>Enquanto estiver criando a automação, anote o problema inicial, as decisões técnicas e os primeiros resultados. É muito mais fácil do que reconstruir depois.</p>
+        </div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <h4>Colete as métricas reais</h4>
+          <p>Após uma ou duas semanas rodando, peça feedback ao cliente. Quanto tempo está economizando? Quantos erros foram eliminados? Capture esses números.</p>
+        </div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <h4>Escreva o caso com IA</h4>
+          <p>Use o prompt acima para transformar as informações brutas em texto profissional. Revise para garantir que está no tom certo e sem jargão excessivo.</p>
+        </div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">4</div>
+        <div class="step-content">
+          <h4>Grave um vídeo curto</h4>
+          <p>Use Loom para gravar 2 a 3 minutos explicando o problema e mostrando o workflow funcionando. Não precisa ser perfeito — autenticidade converte mais.</p>
+        </div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">5</div>
+        <div class="step-content">
+          <h4>Publique e distribua</h4>
+          <p>Adicione ao seu Notion ou site. Escreva um post no LinkedIn contando a história. Compartilhe no grupo ou comunidade do segmento do cliente.</p>
+        </div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">6</div>
+        <div class="step-content">
+          <h4>Peça um depoimento</h4>
+          <p>Um parágrafo do cliente dizendo o impacto que teve é o elemento mais poderoso do portfólio. Facilite: mande uma mensagem com 3 perguntas simples para ele responder.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="highlight-box">
+      <h4>Dica: comece com 3 projetos fortes</h4>
+      <p>Você não precisa de 20 casos para ter um portfólio funcional. Três projetos bem documentados, com resultados claros e em segmentos diferentes valem mais do que dez casos vagos.</p>
+      <p>Se não tiver projetos reais ainda, crie automações para o seu próprio negócio ou para alguém próximo gratuitamente — em troca de poder documentar e usar no portfólio.</p>
+    </div>
+
+    <div class="prompt-box">
+      <div class="prompt-header">
+        <span class="prompt-label">Prompt — Criar pagina de portfólio no Notion</span>
+        <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.prompt-box').querySelector('.prompt-body').textContent.trim())">Copiar</button>
+      </div>
+      <div class="prompt-body">Vou montar meu portfólio de automações no Notion. Me ajude a estruturar.
+
+Sobre mim:
+- Especialidade: [ex: automações para pequenas empresas, n8n + Make]
+- Segmentos que já atendi: [liste os setores]
+- Ferramentas que domino: [liste]
+
+Crie:
+1. Uma frase de abertura que resume meu posicionamento
+2. A estrutura de seções para a página
+3. Um modelo de card para cada projeto com campos: titulo, segmento, ferramentas, problema, solução, resultado
+4. Uma seção de "próximos projetos" para mostrar iniciativa
+
+Escreva em português. Tom: profissional e direto ao ponto.</div>
+    </div>
+
+    <div class="callout tip">
+      <div class="callout-title">Dica bônus</div>
+      <p>Use o ChatGPT para adaptar o mesmo caso de portfólio para diferentes públicos. Um projeto de automação para clínica pode ser reescrito com foco no dono, no gestor ou no time de atendimento — cada versão ressoa com uma audiência diferente.</p>
+    </div>
+
+  </main>
+
+  <!-- CTA -->
+  <section class="cta-section" style="padding: 2.2rem 2rem; margin: 0 1.5rem 4rem;">
+    <h2>Quer prompts prontos para construir seu portfólio?</h2>
+    <p>Acesse a biblioteca de prompts com modelos para escrever casos, criar descrições de projeto e gerar depoimentos com IA.</p>
+    <a href="../biblioteca-de-prompts.html" class="cta-btn">Acessar biblioteca de prompts</a>
+  </section>
+
+  <!-- FOOTER -->
+  
+  <section class="related-articles">
+    <div class="related-inner">
+      <h2 class="related-title">Artigos Relacionados</h2>
+      <div class="related-grid">
+      <a href="como-usar-ia-para-propostas-comerciais.html" class="related-card">
+        <span class="related-badge">Negócios</span>
+        <h3 class="related-card-title">Como usar IA para criar propostas comerciais</h3>
+        <span class="related-arrow">→</span>
+      </a>
+      <a href="como-prospectar-clientes-locais.html" class="related-card">
+        <span class="related-badge">Negócios</span>
+        <h3 class="related-card-title">Como prospectar clientes locais com IA</h3>
+        <span class="related-arrow">→</span>
+      </a>
+      <a href="criar-apresentacoes-com-ia.html" class="related-card">
+        <span class="related-badge">Tutoriais</span>
+        <h3 class="related-card-title">Como criar apresentações com IA do zero</h3>
+        <span class="related-arrow">→</span>
+      </a>
+      </div>
+    </div>
+  </section>
+<footer class="footer">
+    <p>Aprenda com AI &mdash; <a href="../index.html">Inicio</a> &middot; <a href="../artigos.html">Artigos</a> &middot; <a href="../catalogo-ferramentas.html">Ferramentas</a> &middot; <a href="../sobre.html">Sobre</a> &middot; <a href="../contato.html">Contato</a> &middot; <a href="../politica-de-privacidade.html">Política de Privacidade</a> &middot; <a href="../termos-de-uso.html">Termos de Uso</a></p>
+  </footer>
+
+  <script src="../script.js"></script>
+<script src="../cookie-consent.js" defer></script>
+<script src="../site-menu.js" defer></script>
+</body>
+</html>

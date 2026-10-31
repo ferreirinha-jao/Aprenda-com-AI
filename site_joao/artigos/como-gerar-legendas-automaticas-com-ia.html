@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Como gerar legendas automáticas com IA | Aprenda com AI</title>
+  <meta name="description" content="Guia prático para transcrever e legendar vídeos automaticamente com IA: ferramentas gratuitas e pagas, fluxo de trabalho e dicas para melhorar a qualidade." />
+  <meta name="keywords" content="legendas automáticas IA, transcrição automática, legendar vídeo com IA, Whisper, CapCut legendas" />
+  <meta name="author" content="Aprenda com AI" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Como gerar legendas automáticas com IA" />
+  <meta property="og:description" content="Transcreva e legendas vídeos automaticamente com IA. Ferramentas, fluxo de trabalho e dicas para melhorar a qualidade." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://aprendacomai.com/artigos/gerar-legendas-automaticas-com-ia.html" />
+  <meta property="og:site_name" content="Aprenda com AI" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Manrope:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="../style.css" />
+  <link rel="stylesheet" href="../final-hero.css" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #0b0c0e;
+      --surface:   #13151a;
+      --border:    #1e2028;
+      --accent:    #d7ff3f;
+      --accent2:   #a8cc28;
+      --text:      #e5e7eb;
+      --muted:     #c7c9c5;
+      --dim:       #6b7280;
+      --font-head: 'Space Grotesk', sans-serif;
+      --font-body: 'Manrope', sans-serif;
+      --font-mono: 'DM Mono', monospace;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: 1rem;
+      line-height: 1.75;
+      min-height: 100vh;
+    }
+
+    /* NAV */
+    .site-nav { position: sticky; top: 0; z-index: 100; background: rgba(11,12,14,.85); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); padding: 0 1.5rem; }
+    .nav-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 60px; gap: 2rem; }
+    .nav-logo { font-family: var(--font-head); font-weight: 700; font-size: 1.1rem; color: var(--text); text-decoration: none; white-space: nowrap; }
+    .nav-logo span { color: var(--accent); }
+    .nav-links { display: flex; align-items: center; gap: 1.5rem; list-style: none; flex-wrap: wrap; }
+    .nav-links a { color: var(--muted); text-decoration: none; font-size: .875rem; font-family: var(--font-head); font-weight: 500; transition: color .2s; }
+    .nav-links a:hover { color: var(--accent); }
+
+    /* HERO */
+    .article-hero { background: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(215,255,63,.13) 0%, transparent 65%); border-bottom: 1px solid var(--border); padding: 4rem 1.5rem 3rem; text-align: center; }
+    .article-hero .badge { display: inline-block; background: rgba(215,255,63,.12); color: var(--accent); border: 1px solid rgba(215,255,63,.25); border-radius: 999px; padding: .25rem .9rem; font-family: var(--font-mono); font-size: .75rem; letter-spacing: .05em; text-transform: uppercase; margin-bottom: 1.25rem; }
+    .article-hero h1 { font-family: var(--font-head); font-size: clamp(1.75rem, 4vw, 2.75rem); font-weight: 700; line-height: 1.2; max-width: 780px; margin: 0 auto 1rem; }
+    .article-hero h1 em { font-style: normal; color: var(--accent); }
+    .article-meta { display: flex; align-items: center; justify-content: center; gap: 1.25rem; flex-wrap: wrap; font-size: .8rem; color: var(--dim); font-family: var(--font-mono); margin-top: 1.25rem; }
+
+    /* LAYOUT */
+    .article-wrap { max-width: 760px; margin: 0 auto; padding: 3.5rem 1.5rem 5rem; }
+
+    /* BREADCRUMB */
+    .breadcrumb { max-width: 760px; margin: 0 auto; padding: 1rem 1.5rem 0; display: flex; align-items: center; gap: .5rem; font-size: .78rem; color: var(--dim); font-family: var(--font-mono); }
+    .breadcrumb a { color: var(--dim); text-decoration: none; transition: color .2s; }
+    .breadcrumb a:hover { color: var(--accent); }
+    .breadcrumb span { color: var(--accent); }
+
+    /* TIPOGRAFIA */
+    .article-body h2 { font-family: var(--font-head); font-size: 1.4rem; font-weight: 700; color: var(--text); margin: 2.5rem 0 .75rem; padding-bottom: .5rem; border-bottom: 1px solid var(--border); }
+    .article-body h3 { font-family: var(--font-head); font-size: 1.1rem; font-weight: 600; color: var(--accent); margin: 2rem 0 .5rem; }
+    .article-body p { color: var(--muted); margin-bottom: 1.25rem; }
+    .article-body strong { color: var(--text); font-weight: 600; }
+    .article-body a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+    .article-body a:hover { color: var(--accent2); }
+    .article-body ul, .article-body ol { color: var(--muted); margin: 0 0 1.25rem 1.5rem; }
+    .article-body li { margin-bottom: .5rem; }
+    .article-body li strong { color: var(--text); }
+
+    /* CALLOUT */
+    .callout { border-radius: 10px; padding: 1.1rem 1.25rem; margin: 1.75rem 0; border-left: 3px solid; }
+    .callout-tip  { background: rgba(215,255,63,.07); border-color: var(--accent); }
+    .callout-info { background: rgba(99,179,237,.07);  border-color: #63b3ed; }
+    .callout-warn { background: rgba(251,191,36,.07);  border-color: #fbbf24; }
+    .callout-title { font-family: var(--font-mono); font-size: .75rem; font-weight: 500; text-transform: uppercase; letter-spacing: .07em; margin-bottom: .4rem; }
+    .callout-tip  .callout-title { color: var(--accent); }
+    .callout-info .callout-title { color: #63b3ed; }
+    .callout-warn .callout-title { color: #fbbf24; }
+    .callout p { color: var(--muted); margin: 0; font-size: .95rem; }
+
+    /* STEPS */
+    .steps { display: flex; flex-direction: column; gap: 1rem; margin: 1.5rem 0; }
+    .step { display: flex; gap: 1rem; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 1.1rem 1.25rem; align-items: flex-start; }
+    .step-num { flex-shrink: 0; width: 2rem; height: 2rem; background: var(--accent); color: #0b0c0e; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: var(--font-head); font-weight: 700; font-size: .85rem; }
+    .step-content h4 { font-family: var(--font-head); font-weight: 600; font-size: .95rem; color: var(--text); margin-bottom: .25rem; }
+    .step-content p { font-size: .9rem; color: var(--muted); margin: 0; }
+
+    /* TOOL CARDS */
+    .tool-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
+    .tool-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 1.25rem; display: flex; flex-direction: column; gap: .4rem; }
+    .tool-card .tool-name { font-family: var(--font-head); font-weight: 700; font-size: .95rem; color: var(--text); }
+    .tool-tag { display: inline-block; font-family: var(--font-mono); font-size: .7rem; background: rgba(215,255,63,.1); color: var(--accent); border: 1px solid rgba(215,255,63,.2); border-radius: 4px; padding: .1rem .45rem; width: fit-content; }
+    .tool-tag.free { background: rgba(52,211,153,.1); color: #34d399; border-color: rgba(52,211,153,.2); }
+    .tool-tag.paid { background: rgba(251,191,36,.1); color: #fbbf24; border-color: rgba(251,191,36,.2); }
+    .tool-card p { font-size: .82rem; color: var(--dim); margin: 0; }
+
+    /* TABLE */
+    .table-wrap { overflow-x: auto; margin: 1.5rem 0; }
+    table { width: 100%; border-collapse: collapse; font-size: .875rem; }
+    th { background: var(--surface); color: var(--text); font-family: var(--font-head); font-weight: 600; padding: .65rem 1rem; text-align: left; border-bottom: 2px solid var(--border); }
+    td { color: var(--muted); padding: .6rem 1rem; border-bottom: 1px solid var(--border); }
+    tr:hover td { background: rgba(255,255,255,.02); }
+
+    /* CODE BLOCK */
+    .code-block { background: #0d0f13; border: 1px solid var(--border); border-radius: 10px; padding: 1.1rem 1.25rem; margin: 1.25rem 0; overflow-x: auto; }
+    .code-block pre { font-family: var(--font-mono); font-size: .82rem; color: #a3e635; line-height: 1.7; white-space: pre-wrap; word-break: break-word; }
+    .code-label { font-family: var(--font-mono); font-size: .7rem; color: var(--dim); text-transform: uppercase; letter-spacing: .08em; margin-bottom: .5rem; }
+
+    /* HIGHLIGHT */
+    .highlight-box { background: rgba(215,255,63,.06); border: 1px solid rgba(215,255,63,.18); border-radius: 12px; padding: 1.5rem 1.75rem; margin: 2rem 0; }
+    .highlight-box p { color: var(--muted); margin: 0; font-size: .95rem; }
+    .highlight-box p + p { margin-top: .75rem; }
+
+    /* CTA */
+    .article-cta { background: radial-gradient(ellipse 80% 80% at 50% 50%, rgba(215,255,63,.1) 0%, transparent 70%); border: 1px solid rgba(215,255,63,.2); border-radius: 16px; padding: 2.5rem; text-align: center; margin-top: 3rem; }
+    .article-cta h3 { font-family: var(--font-head); font-size: 1.3rem; font-weight: 700; color: var(--text); margin-bottom: .6rem; }
+    .article-cta p { color: var(--muted); font-size: .95rem; margin-bottom: 1.5rem; }
+    .btn-accent { display: inline-flex; align-items: center; gap: .5rem; background: var(--accent); color: #0b0c0e; font-family: var(--font-head); font-weight: 700; font-size: .9rem; padding: .65rem 1.5rem; border-radius: 8px; text-decoration: none; transition: background .2s, transform .15s; }
+    .btn-accent:hover { background: var(--accent2); transform: translateY(-1px); }
+    /* Botão do CTA: evita que a cor de link do artigo apague o texto */
+    .article-body a.btn-accent, .article-body a.btn-accent:hover { color: #0b0c0e; text-decoration: none; }
+    .btn-ghost { display: inline-flex; align-items: center; gap: .5rem; border: 1px solid var(--border); color: var(--muted); font-family: var(--font-head); font-weight: 500; font-size: .9rem; padding: .65rem 1.5rem; border-radius: 8px; text-decoration: none; margin-left: .75rem; transition: border-color .2s, color .2s; }
+    .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* FOOTER */
+    .site-footer { background: var(--surface); border-top: 1px solid var(--border); padding: 2.5rem 1.5rem; text-align: center; }
+    .footer-inner { max-width: 1100px; margin: 0 auto; }
+    .footer-logo { font-family: var(--font-head); font-weight: 700; font-size: 1rem; color: var(--text); text-decoration: none; display: inline-block; margin-bottom: 1rem; }
+    .footer-logo span { color: var(--accent); }
+    .footer-links { display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; margin-bottom: 1.25rem; list-style: none; }
+    .footer-links a { color: var(--dim); text-decoration: none; font-size: .8rem; transition: color .2s; }
+    .footer-links a:hover { color: var(--accent); }
+    .footer-copy { font-size: .75rem; color: var(--dim); font-family: var(--font-mono); }
+
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+      .article-hero { padding: 2.5rem 1rem 2rem; }
+      .article-wrap { padding: 2rem 1rem 3rem; }
+      .btn-ghost { margin-left: 0; margin-top: .5rem; }
+    }
+  </style>
+  <link rel="icon" type="image/png" href="../favicon.ico.png">
+  <link rel="canonical" href="https://aprendacomai.com/artigos/como-gerar-legendas-automaticas-com-ia.html">
+<link rel="stylesheet" href="../site-menu.css">
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="site-nav">
+    <div class="nav-inner">
+      <a class="nav-logo" href="../index.html">Aprenda com <span>AI</span></a>
+      <ul class="nav-links">
+        <li><a href="../index.html">Início</a></li>
+        <li><a href="../comece-aqui.html">Comece Aqui</a></li>
+        <li><a href="../artigos.html">Artigos</a></li>
+        <li><a href="../biblioteca-de-prompts.html">Biblioteca de Prompts</a></li>
+        <li><a href="../calculadora-ia.html">Calculadora de Impacto</a></li>
+        <li><a href="../sobre.html">Sobre</a></li>
+        <li><a href="../contato.html">Contato</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- BREADCRUMB -->
+  <div class="breadcrumb">
+    <a href="../index.html">Início</a>
+    <span>›</span>
+    <a href="../artigos.html">Artigos</a>
+    <span>›</span>
+    Como gerar legendas automáticas com IA
+  </div>
+
+  <!-- HERO -->
+  <header class="article-hero">
+    <div class="badge">Tutoriais</div>
+    <h1>Como gerar <em>legendas automáticas</em> com IA</h1>
+    <div class="article-meta">
+      <span>Ferramentas: CapCut, Whisper, Clipe, Submagic</span>
+    </div>
+  </header>
+
+  <!-- ARTIGO -->
+  <main class="article-wrap">
+    <article class="article-body">
+
+      <p>
+        Legenda em vídeo não é mais opcional. A maioria das pessoas assiste conteúdo sem som — no ônibus, no trabalho, em ambiente público. Se o seu vídeo não tem legenda, você está perdendo uma parte significativa dos seus espectadores antes mesmo de eles ouvirem uma palavra.
+      </p>
+      <p>
+        A boa notícia é que hoje você não precisa transcrever nada manualmente. A IA faz isso em segundos, com precisão suficiente para o uso na maioria dos casos. Neste artigo você vai ver as melhores ferramentas, como usá-las e como melhorar a qualidade quando a transcrição automática erra.
+      </p>
+
+      <!-- Por que legendas importam -->
+      <h2>Por que legendas são essenciais em 2025</h2>
+
+      <p>
+        Além do hábito de assistir sem som, as legendas têm outros benefícios que a maioria das pessoas não considera:
+      </p>
+
+      <ul>
+        <li><strong>Acessibilidade</strong> — pessoas surdas ou com deficiência auditiva conseguem consumir seu conteúdo.</li>
+        <li><strong>SEO no YouTube</strong> — o algoritmo lê a legenda e usa o texto para entender sobre o que é o vídeo, melhorando o ranqueamento.</li>
+        <li><strong>Retenção</strong> — vídeos com legenda têm tempo de visualização maior, porque o espectador acompanha mesmo em momentos de distração.</li>
+        <li><strong>Tradução</strong> — com o arquivo de legenda gerado, você pode traduzir para outros idiomas com um clique.</li>
+      </ul>
+
+      <!-- Ferramentas -->
+      <h2>As principais ferramentas</h2>
+
+      <div class="tool-grid">
+        <div class="tool-card">
+          <div class="tool-name">CapCut</div>
+          <div class="tool-tag free">Gratuito</div>
+          <p>Gera legendas automáticas com bom suporte ao português. Permite editar estilo, fonte e posição diretamente no editor. Melhor opção para quem cria Reels e TikToks.</p>
+        </div>
+        <div class="tool-card">
+          <div class="tool-name">Clipe.app</div>
+          <div class="tool-tag free">Gratuito</div>
+          <p>Ferramenta brasileira focada em transcrição e legenda automática. Interface simples, exporta SRT e MP4 com legenda queimada. Boa precisão no português.</p>
+        </div>
+        <div class="tool-card">
+          <div class="tool-name">Submagic</div>
+          <div class="tool-tag paid">Pago</div>
+          <p>Especializado em short-form content com legendas animadas estilo reel viral. Templates prontos, destaque automático em palavras-chave. Plano a partir de US$ 20/mês.</p>
+        </div>
+        <div class="tool-card">
+          <div class="tool-name">Whisper (OpenAI)</div>
+          <div class="tool-tag free">Gratuito</div>
+          <p>Modelo de transcrição de código aberto da OpenAI. Alta precisão, suporta múltiplos idiomas. Requer conhecimento técnico para rodar localmente ou via API.</p>
+        </div>
+        <div class="tool-card">
+          <div class="tool-name">Adobe Premiere</div>
+          <div class="tool-tag paid">Pago</div>
+          <p>O recurso "Legenda de Transcrição" usa IA para transcrever e gerar legendas diretamente na linha do tempo. Integrado no fluxo de edição profissional.</p>
+        </div>
+        <div class="tool-card">
+          <div class="tool-name">YouTube Studio</div>
+          <div class="tool-tag free">Gratuito</div>
+          <p>Gera legendas automáticas para todo vídeo enviado ao YouTube. Você pode editar no próprio painel e baixar o arquivo SRT depois.</p>
+        </div>
+      </div>
+
+      <!-- Metodo 1: CapCut -->
+      <h2>Método 1 — CapCut para Reels e TikToks</h2>
+
+      <p>
+        O CapCut é a escolha mais prática para quem cria conteúdo de short-form. A geração de legenda é automática, o estilo é totalmente personalizável e você exporta com a legenda já incorporada no vídeo.
+      </p>
+
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <h4>Importe o vídeo</h4>
+            <p>Abra o CapCut (desktop ou mobile), crie um novo projeto e importe o clipe que você quer legendar.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <h4>Acesse "Legenda automatica"</h4>
+            <p>No menu inferior, toque em <strong>Texto</strong> e depois em <strong>Legenda automática</strong>. Selecione o idioma do áudio (Português) e clique em executar.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <h4>Revise a transcricao</h4>
+            <p>O CapCut mostra o texto gerado em blocos na linha do tempo. Corrija os erros clicando em cada bloco — preste atenção em nomes próprios e termos técnicos.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <div class="step-content">
+            <h4>Personalize o estilo</h4>
+            <p>Selecione todos os blocos de legenda e ajuste: fonte, tamanho, cor, contorno, posição e animação. Escolha um preset ou monte do zero.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">5</div>
+          <div class="step-content">
+            <h4>Exporte</h4>
+            <p>Clique em exportar. A legenda já vai queimada no vídeo. Para Instagram e TikTok, exporte em 1080x1920 (vertical).</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="callout callout-tip">
+        <div class="callout-title">Truque de estilo</div>
+        <p>
+          Para o estilo de legenda que você vê nos reels virais — palavra a palavra em destaque — ative a opção <strong>"Realce de palavras"</strong> dentro das configurações de legenda do CapCut. Ele destaca automaticamente cada palavra conforme ela é falada.
+        </p>
+      </div>
+
+      <!-- Metodo 2: YouTube Studio -->
+      <h2>Método 2 — YouTube Studio para vídeos longos</h2>
+
+      <p>
+        Para vídeos no YouTube, você não precisa de nenhuma ferramenta externa. O próprio YouTube gera a legenda automaticamente e você pode editar e baixar o arquivo depois.
+      </p>
+
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <h4>Envie o vídeo normalmente</h4>
+            <p>Faça o upload do vídeo no YouTube Studio. O processo de geração de legenda começa automaticamente depois que o vídeo é processado.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <h4>Acesse as legendas do video</h4>
+            <p>No YouTube Studio, vá em <strong>Subtítulos</strong> no menu lateral. Clique no vídeo e você vai ver as legendas automáticas geradas.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <h4>Edite os erros</h4>
+            <p>Clique em "Editar" para abrir o editor de legendas. Você pode corrigir texto e ajustar os tempos de entrada e saída de cada bloco.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <div class="step-content">
+            <h4>Baixe o arquivo SRT</h4>
+            <p>Clique nos três pontos ao lado da legenda e selecione <strong>Baixar</strong>. Você pode baixar como .srt para reutilizar em outras plataformas.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Metodo 3: Whisper via ChatGPT -->
+      <h2>Método 3 — Transcrição com o ChatGPT</h2>
+
+      <p>
+        O ChatGPT com plano pago aceita arquivos de áudio e faz transcrição usando o Whisper por baixo dos panos. É uma das formas mais rápidas de transcrever um áudio sem instalar nada.
+      </p>
+
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <h4>Extraia o audio do video</h4>
+            <p>Use qualquer conversor online (como o Online Audio Converter) para extrair o áudio do vídeo em formato MP3 ou M4A. Arquivos menores processam mais rápido.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <h4>Envie o audio no ChatGPT</h4>
+            <p>No ChatGPT Plus, clique no ícone de anexo e envie o arquivo de áudio. Em seguida, envie o prompt de transcrição.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <h4>Peça a transcricao formatada</h4>
+            <p>Use o prompt abaixo para receber o texto já organizado e pronto para revisar.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="code-block">
+        <div class="code-label">Prompt — Transcricao de audio</div>
+        <pre>
+Transcreva o áudio enviado com as seguintes instruções:
+
+1. Texto corrido com pontuação adequada
+2. Separe por parágrafos conforme as pausas e mudanças de assunto
+3. Corrija vícios de linguagem óbvios ("né", "tipo assim", repetições)
+   mas mantenha o estilo natural da fala
+4. Destaque entre colchetes qualquer trecho inaudível: [inaudível]
+5. Se houver mais de um locutor, identifique como [Locutor 1] e [Locutor 2]
+
+Ao final, me informe o tempo total aproximado de áudio transcrito.
+        </pre>
+      </div>
+
+      <div class="callout callout-info">
+        <div class="callout-title">Limite de tamanho</div>
+        <p>
+          O ChatGPT aceita arquivos de áudio de até 25 MB. Para vídeos longos, divida o áudio em partes antes de enviar — ou use o Whisper via API, que não tem esse limite prático.
+        </p>
+      </div>
+
+      <!-- Comparativo -->
+      <h2>Qual ferramenta usar em cada situação</h2>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Situação</th>
+              <th>Ferramenta indicada</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Reel ou TikTok com legenda animada</td>
+              <td>CapCut</td>
+            </tr>
+            <tr>
+              <td>Vídeo longo no YouTube</td>
+              <td>YouTube Studio</td>
+            </tr>
+            <tr>
+              <td>Só transcrição de texto, sem vídeo</td>
+              <td>ChatGPT (Whisper)</td>
+            </tr>
+            <tr>
+              <td>Legenda profissional estilo viral com templates</td>
+              <td>Submagic</td>
+            </tr>
+            <tr>
+              <td>Edição profissional com legenda na timeline</td>
+              <td>Adobe Premiere</td>
+            </tr>
+            <tr>
+              <td>Vídeo em português com legenda simples</td>
+              <td>Clipe.app</td>
+            </tr>
+            <tr>
+              <td>Volume alto, automação via código</td>
+              <td>Whisper API (OpenAI)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Melhorar qualidade -->
+      <h2>Como melhorar a qualidade da transcrição automática</h2>
+
+      <p>
+        A IA erra mais em: nomes próprios, termos técnicos, sotaques regionais fortes e áudio com ruído de fundo. Seguindo essas práticas, você reduz bastante os erros:
+      </p>
+
+      <h3>Antes de gravar</h3>
+      <ul>
+        <li><strong>Grave com microfone dedicado</strong> — mesmo um de lapela barato melhora muito a qualidade do áudio e reduz o retrabalho na transcrição.</li>
+        <li><strong>Evite ambientes com eco</strong> — quartos com muita superfície dura (paredes e vidros) causam reverberação que confunde a IA.</li>
+        <li><strong>Fale de forma clara e em ritmo consistente</strong> — engolio de sílabas e fala muito rápida aumentam os erros.</li>
+      </ul>
+
+      <h3>Depois da transcrição</h3>
+      <ul>
+        <li><strong>Revise nomes próprios primeiro</strong> — a IA costuma transcrever fonéticamente, então "João Ferreira" pode virar "Joãu Ferêra".</li>
+        <li><strong>Use o ChatGPT para revisar o texto</strong> — depois de transcrever, cole o texto e peça para corrigir erros óbvios de pontuação e coerência.</li>
+        <li><strong>Cheque os tempos nos trechos rápidos</strong> — falas rápidas podem ter legenda dessincronizada mesmo com o texto certo.</li>
+      </ul>
+
+      <div class="code-block">
+        <div class="code-label">Prompt — Revisao de transcricao</div>
+        <pre>
+Revise a transcrição abaixo e corrija:
+1. Erros de pontuação e paragrafação
+2. Palavras que claramente foram transcritas errado (ex: fonética incorreta)
+3. Fragmentos de frase que não fazem sentido no contexto
+4. Mantenha o texto fiel à fala original — não reescreva, só corrija erros
+
+Não altere o estilo de fala nem remova expressões coloquiais intencionais.
+
+TRANSCRIÇÃO:
+[cole a transcrição aqui]
+        </pre>
+      </div>
+
+      <!-- Workflow completo -->
+      <h2>Workflow completo para criadores de conteúdo</h2>
+
+      <div class="highlight-box">
+        <p><strong>Passo 1:</strong> Grave o vídeo com áudio de qualidade.</p>
+        <p><strong>Passo 2:</strong> Gere a legenda automática com CapCut (short-form) ou YouTube Studio (long-form).</p>
+        <p><strong>Passo 3:</strong> Revise rapidamente os erros — foque em nomes e termos técnicos.</p>
+        <p><strong>Passo 4:</strong> Exporte com a legenda queimada (para redes sociais) ou salve o arquivo .srt (para YouTube, onde a legenda fica separada).</p>
+        <p><strong>Passo 5:</strong> Reutilize a transcrição — use o texto para criar posts, threads ou artigos de blog a partir do conteúdo do vídeo.</p>
+      </div>
+
+      <div class="callout callout-tip">
+        <div class="callout-title">Reaproveitamento de conteudo</div>
+        <p>
+          A transcrição do seu vídeo é um ativo. Cole o texto no ChatGPT ou Claude e peça: <em>"Transforme essa transcrição em um post para o LinkedIn de 300 palavras."</em> Um vídeo vira cinco formatos diferentes sem esforço extra.
+        </p>
+      </div>
+
+      <!-- CTA -->
+      <div class="article-cta">
+        <h3>Automatize mais do seu fluxo de conteúdo</h3>
+        <p>Acesse a Biblioteca de Prompts com comandos prontos para criar posts, reescrever textos e reaproveitar conteúdo de vídeo em outros formatos.</p>
+        <a href="../biblioteca-de-prompts.html" class="btn-accent">Ver Biblioteca de Prompts</a>
+        <a href="../artigos.html" class="btn-ghost">Mais artigos</a>
+      </div>
+
+    </article>
+  </main>
+
+  <!-- FOOTER -->
+  
+  <section class="related-articles">
+    <div class="related-inner">
+      <h2 class="related-title">Artigos Relacionados</h2>
+      <div class="related-grid">
+      <a href="gemini-google-drive-docs.html" class="related-card">
+        <span class="related-badge">Tutoriais</span>
+        <h3 class="related-card-title">Como usar o Gemini no Google Drive e Docs</h3>
+        <span class="related-arrow">→</span>
+      </a>
+      <a href="criar-apresentacoes-com-ia.html" class="related-card">
+        <span class="related-badge">Tutoriais</span>
+        <h3 class="related-card-title">Como criar apresentações com IA do zero</h3>
+        <span class="related-arrow">→</span>
+      </a>
+      <a href="o-que-sao-agentes-de-ia.html" class="related-card">
+        <span class="related-badge">Guias</span>
+        <h3 class="related-card-title">O que são agentes de IA e como funcionam</h3>
+        <span class="related-arrow">→</span>
+      </a>
+      </div>
+    </div>
+  </section>
+<footer class="site-footer">
+    <div class="footer-inner">
+      <a class="footer-logo" href="../index.html">Aprenda com <span>AI</span></a>
+      <ul class="footer-links">
+        <li><a href="../sobre.html">Sobre</a></li>
+        <li><a href="../contato.html">Contato</a></li>
+        <li><a href="../politica-de-privacidade.html">Política de Privacidade</a></li>
+        <li><a href="../termos-de-uso.html">Termos de Uso</a></li>
+      </ul>
+      <p class="footer-copy">© 2026 Aprenda com AI · Feito com muita IA</p>
+    </div>
+  </footer>
+
+  <script src="../script.js"></script>
+<script src="../cookie-consent.js" defer></script>
+<script src="../site-menu.js" defer></script>
+</body>
+</html>

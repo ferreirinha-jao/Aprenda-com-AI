@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="Monte prompts estruturados para copywriting, resumo de textos, criação de código e análise de dados.">
+	<meta name="theme-color" content="#0c100f">
+	<title>Playground de Prompts Inteligentes | Aprenda com AI</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+	<script src="https://cdn.tailwindcss.com"></script>
+	<script>
+		tailwind.config = {
+			theme: {
+				extend: {
+					colors: {
+						void: '#0c100f',
+						surface: '#141a17',
+						acid: '#d7ff3f',
+						signal: '#64d9f5',
+						chalk: '#f1f3eb',
+						quiet: '#9ba59c'
+					},
+					fontFamily: {
+						sans: ['Manrope', 'sans-serif'],
+						mono: ['DM Mono', 'monospace']
+					}
+				}
+			}
+		};
+	</script>
+	<link rel="stylesheet" href="style.css">
+	<style>
+		:root { color-scheme: dark; }
+		* { box-sizing: border-box; }
+		body { font-family: Manrope, sans-serif; }
+		.grid-field { background-image: linear-gradient(rgba(255,255,255,.022) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.022) 1px, transparent 1px); background-size: 40px 40px; mask-image: linear-gradient(to bottom, black, transparent 85%); }
+		.prompt-appear { animation: prompt-appear .36s ease-out both; }
+		@keyframes prompt-appear { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+		@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; } }
+	</style>
+  <link rel="icon" type="image/png" href="favicon.ico.png">
+<link rel="stylesheet" href="site-menu.css">
+</head>
+<body class="min-h-screen bg-void text-chalk antialiased">
+	<main class="relative min-h-screen overflow-hidden">
+		<div class="grid-field pointer-events-none absolute inset-0" aria-hidden="true"></div>
+		<header>
+    <nav class="navbar">
+        <a href="index.html" class="logo">Aprenda com AI</a>
+        <ul class="nav-links">
+            <li><a href="index.html">Início</a></li>
+            <li><a href="comece-aqui.html">Comece Aqui</a></li>
+            <li><a href="artigos.html">Artigos</a></li>
+            <li><a href="biblioteca-de-prompts.html">Biblioteca de Prompts</a></li>
+            <li><a href="calculadora-ia.html">Calculadora de Impacto</a></li>
+            <li><a href="sobre.html">Sobre</a></li>
+            <li><a href="contato.html">Contato</a></li>
+        </ul>
+    </nav>
+</header>
+
+		<section class="relative z-10 mx-auto max-w-7xl px-5 pb-14 pt-10 sm:px-9 sm:pt-14 lg:px-14 lg:pb-20 lg:pt-16">
+			<div class="mb-9 max-w-3xl sm:mb-12">
+				<p class="mb-4 flex items-center gap-3 font-mono text-[10px] uppercase tracking-[.17em] text-signal"><span class="h-px w-8 bg-signal"></span>Playground de Prompts Inteligentes</p>
+				<h1 class="text-4xl font-extrabold leading-[1.05] tracking-tight text-white sm:text-5xl lg:text-6xl">Dê forma à sua próxima boa pergunta.</h1>
+				<p class="mt-5 max-w-2xl text-sm leading-7 text-quiet sm:text-base sm:leading-8">Escolha uma categoria, descreva o que precisa e gere uma estrutura clara para orientar a conversa com sua ferramenta de IA.</p>
+			</div>
+
+			<div class="grid items-start gap-5 lg:grid-cols-[.88fr_1.12fr] lg:gap-6">
+				<form id="prompt-form" class="min-w-0 border border-white/10 bg-surface/95 p-5 sm:p-7" novalidate>
+					<div class="mb-7 flex items-center justify-between gap-4 border-b border-white/10 pb-5">
+						<div><p class="font-mono text-[9px] uppercase tracking-[.16em] text-quiet">Configure a tarefa</p><h2 class="mt-1 text-lg font-bold text-white">Seu ponto de partida</h2></div>
+						<span class="font-mono text-[10px] text-signal">A / INPUT</span>
+					</div>
+
+					<div class="space-y-6">
+						<div>
+							<label for="prompt-category" class="mb-2 block text-sm font-semibold text-chalk">Categoria</label>
+							<select id="prompt-category" class="min-h-12 w-full rounded-sm border border-white/15 bg-void px-4 text-sm text-white outline-none transition focus:border-signal focus:ring-2 focus:ring-signal/20" required>
+								<option value="copywriting">Copywriting</option>
+								<option value="summary">Resumo de Textos</option>
+								<option value="code">Criação de Código</option>
+								<option value="data">Análise de Dados</option>
+							</select>
+							<p id="category-description" class="mt-2 min-h-5 text-xs leading-5 text-quiet">Textos com objetivo, público e chamada para ação definidos.</p>
+						</div>
+
+						<div>
+							<label for="prompt-goal" class="mb-2 block text-sm font-semibold text-chalk">Tema principal ou objetivo</label>
+							<textarea id="prompt-goal" class="min-h-36 w-full resize-y rounded-sm border border-white/15 bg-void px-4 py-3 text-sm leading-6 text-white outline-none transition placeholder:text-white/30 focus:border-signal focus:ring-2 focus:ring-signal/20" placeholder="Ex.: criar uma página de apresentação para um serviço de consultoria financeira voltado a pequenas empresas" required></textarea>
+							<div class="mt-2 flex items-start justify-between gap-3"><p class="text-xs leading-5 text-quiet">Inclua contexto ou resultado esperado para personalizar a estrutura.</p><span id="character-count" class="shrink-0 font-mono text-[10px] text-quiet">0</span></div>
+						</div>
+					</div>
+
+					<p id="form-error" class="mt-4 min-h-5 text-xs text-rose-300" role="alert" aria-live="polite"></p>
+					<button class="mt-2 inline-flex min-h-12 w-full items-center justify-center gap-3 bg-acid px-5 py-3 text-sm font-extrabold text-void transition hover:bg-[#e6ff8c] focus:outline-none focus:ring-2 focus:ring-acid focus:ring-offset-2 focus:ring-offset-surface active:translate-y-px" type="submit">Gerar Estrutura de Prompt <span aria-hidden="true">↗</span></button>
+					<p class="mt-4 font-mono text-[9px] uppercase leading-5 tracking-wider text-quiet">Persona <span class="text-white/35">·</span> Contexto <span class="text-white/35">·</span> Instrução <span class="text-white/35">·</span> Formato</p>
+				</form>
+
+				<section class="flex min-w-0 flex-col border border-white/10 bg-[#111714]/95" aria-labelledby="output-title">
+					<div class="flex items-center justify-between gap-4 border-b border-white/10 px-5 py-5 sm:px-7">
+						<div><p class="font-mono text-[9px] uppercase tracking-[.16em] text-quiet">Resultado estruturado</p><h2 id="output-title" class="mt-1 text-lg font-bold text-white">Sua estrutura de prompt</h2></div>
+						<button id="copy-button" class="inline-flex min-h-10 shrink-0 items-center gap-2 border border-white/15 px-3 py-2 text-xs font-bold text-white transition hover:border-acid/60 hover:text-acid focus:outline-none focus:ring-2 focus:ring-acid disabled:cursor-not-allowed disabled:opacity-40" type="button" disabled><span aria-hidden="true">⧉</span><span id="copy-label">Copiar</span></button>
+					</div>
+
+					<div class="flex flex-1 flex-col p-5 sm:p-7">
+						<div id="empty-state" class="flex flex-1 flex-col justify-between gap-8 border border-dashed border-white/15 bg-void/65 p-5 sm:p-6">
+							<div><span class="font-mono text-[10px] text-signal">OUTPUT / AGUARDANDO ENTRADA</span><p class="mt-5 max-w-sm text-lg font-semibold leading-7 text-white">Uma estrutura mais clara começa com um objetivo bem definido.</p><p class="mt-3 max-w-md text-sm leading-6 text-quiet">Seu prompt organizado vai aparecer aqui, pronto para revisar, ajustar e copiar.</p></div>
+							<div class="grid grid-cols-4 gap-2" aria-hidden="true"><span class="h-1 bg-signal/60"></span><span class="h-1 bg-white/10"></span><span class="h-1 bg-white/10"></span><span class="h-1 bg-white/10"></span></div>
+						</div>
+						<pre id="generated-prompt" class="hidden min-h-80 flex-1 whitespace-pre-wrap break-words border border-signal/20 bg-void p-5 font-mono text-xs leading-6 text-[#d5e6e1] sm:p-6 sm:text-[13px]"></pre>
+						<p id="copy-status" class="mt-3 min-h-5 text-xs text-acid" role="status" aria-live="polite"></p>
+						<div class="mt-4 flex items-center justify-between gap-3 border-t border-white/[.07] pt-4 font-mono text-[9px] uppercase tracking-wider text-quiet"><span id="output-category">Nenhum prompt gerado</span><span>Estrutura 4 blocos</span></div>
+					</div>
+				</section>
+			</div>
+
+			<p class="mt-8 border-l border-signal/40 pl-4 text-xs leading-5 text-quiet">Revise o resultado antes de usar. Acrescente informações específicas e confira fatos, limites e requisitos do seu contexto.</p>
+		</section>
+
+		<footer class="relative z-10 flex items-center justify-between border-t border-white/[.07] px-5 py-5 font-mono text-[9px] text-quiet sm:px-9 lg:px-14"><span>© 2026 Aprenda com AI</span><span class="flex gap-4"><a href="politica-de-privacidade.html" class="transition hover:text-acid">Privacidade</a><a href="termos-de-uso.html" class="transition hover:text-acid">Termos</a></span><a href="biblioteca-de-prompts.html" class="transition hover:text-acid">Biblioteca de Prompts <span aria-hidden="true">↗</span></a></footer>
+	</main>
+
+	<script>
+		const promptForm = document.querySelector('#prompt-form');
+		const categorySelect = document.querySelector('#prompt-category');
+		const goalInput = document.querySelector('#prompt-goal');
+		const description = document.querySelector('#category-description');
+		const characterCount = document.querySelector('#character-count');
+		const errorMessage = document.querySelector('#form-error');
+		const emptyState = document.querySelector('#empty-state');
+		const generatedPrompt = document.querySelector('#generated-prompt');
+		const outputCategory = document.querySelector('#output-category');
+		const copyButton = document.querySelector('#copy-button');
+		const copyLabel = document.querySelector('#copy-label');
+		const copyStatus = document.querySelector('#copy-status');
+		let copyTimeout;
+
+		const promptBlueprints = {
+			copywriting: {
+				label: 'Copywriting',
+				description: 'Textos com objetivo, público e chamada para ação definidos.',
+				persona: 'Você é um copywriter estratégico, especialista em comunicação clara, persuasiva e responsável.',
+				context: (goal) => `O tema ou objetivo é: ${goal}\nSe o público, canal ou oferta não estiver definido, faça perguntas antes de assumir essas informações.`,
+				instruction: 'Desenvolva uma proposta de texto alinhada ao objetivo. Destaque o benefício central, use linguagem adequada ao público e evite promessas ou dados que não foram fornecidos. Apresente alternativas quando houver mais de uma abordagem plausível.',
+				format: 'Entregue: 1) ângulo e mensagem central; 2) versão principal do texto; 3) duas variações de título; 4) chamada para ação; 5) informações que precisam de confirmação.'
+			},
+			summary: {
+				label: 'Resumo de Textos',
+				description: 'Sínteses fiéis com pontos-chave, contexto e dúvidas a verificar.',
+				persona: 'Você é um editor e analista de conteúdo, atento à fidelidade ao material original e à distinção entre fatos e interpretações.',
+				context: (goal) => `O tema, texto ou objetivo do resumo é: ${goal}\nQuando eu fornecer o material-fonte, use-o como referência principal e não complete lacunas com suposições.`,
+				instruction: 'Resuma o material preservando ideias essenciais, relações entre argumentos e ressalvas importantes. Não acrescente fatos ausentes. Se o texto estiver incompleto ou ambíguo, sinalize isso claramente.',
+				format: 'Entregue: 1) resumo executivo em um parágrafo; 2) pontos-chave em tópicos; 3) conceitos ou termos importantes; 4) dúvidas e informações que precisam de verificação.'
+			},
+			code: {
+				label: 'Criação de Código',
+				description: 'Implementações com contexto técnico, explicações e verificações.',
+				persona: 'Você é uma pessoa desenvolvedora sênior, cuidadosa com legibilidade, segurança, manutenção e compatibilidade com o ambiente existente.',
+				context: (goal) => `O resultado técnico desejado é: ${goal}\nConsidere a linguagem, as dependências e as restrições informadas. Se algo essencial estiver faltando, pergunte antes de escolher uma stack.`,
+				instruction: 'Proponha uma solução simples e adequada ao contexto. Explique decisões relevantes, trate entradas inválidas e não invente APIs ou dependências. Preserve os padrões existentes quando houver código de referência.',
+				format: 'Entregue: 1) premissas; 2) abordagem resumida; 3) código completo em bloco identificado pela linguagem; 4) como executar; 5) testes ou casos de validação; 6) limitações conhecidas.'
+			},
+			data: {
+				label: 'Análise de Dados',
+				description: 'Análises transparentes com premissas, achados e limitações.',
+				persona: 'Você é uma pessoa analista de dados, rigorosa com qualidade, contexto, rastreabilidade e comunicação de incerteza.',
+				context: (goal) => `A pergunta ou objetivo da análise é: ${goal}\nAnalise somente os dados que eu fornecer. Se faltarem definições, período, unidades ou origem, liste as lacunas antes de concluir.`,
+				instruction: 'Investigue os dados sem inferir causalidade apenas por correlação. Declare premissas, diferencie observações de hipóteses, aponte valores ausentes ou inconsistentes e não invente números.',
+				format: 'Entregue: 1) resumo dos achados; 2) método e premissas; 3) tabela de métricas relevantes; 4) limitações e verificações necessárias; 5) próximos passos recomendados.'
+			}
+		};
+
+		const updateDescription = () => {
+			description.textContent = promptBlueprints[categorySelect.value].description;
+		};
+
+		categorySelect.addEventListener('change', updateDescription);
+		goalInput.addEventListener('input', () => {
+			characterCount.textContent = new Intl.NumberFormat('pt-BR').format(goalInput.value.length);
+			errorMessage.textContent = '';
+		});
+
+		promptForm.addEventListener('submit', (event) => {
+			event.preventDefault();
+			errorMessage.textContent = '';
+			if (!goalInput.value.trim()) {
+				errorMessage.textContent = 'Descreva o tema ou objetivo para montar seu prompt.';
+				goalInput.focus();
+				return;
+			}
+
+			const blueprint = promptBlueprints[categorySelect.value];
+			const prompt = [
+				`PERSONA\n${blueprint.persona}`,
+				`CONTEXTO\n${blueprint.context(goalInput.value.trim())}`,
+				`INSTRUÇÃO\n${blueprint.instruction}`,
+				`FORMATO DE SAÍDA\n${blueprint.format}`
+			].join('\n\n');
+
+			generatedPrompt.textContent = prompt;
+			emptyState.classList.add('hidden');
+			generatedPrompt.classList.remove('hidden');
+			generatedPrompt.classList.remove('prompt-appear');
+			requestAnimationFrame(() => generatedPrompt.classList.add('prompt-appear'));
+			outputCategory.textContent = blueprint.label;
+			copyButton.disabled = false;
+			copyStatus.textContent = 'Prompt pronto para revisar.';
+		});
+
+		const copyWithFallback = (text) => {
+			const temporaryInput = document.createElement('textarea');
+			temporaryInput.value = text;
+			temporaryInput.setAttribute('readonly', '');
+			temporaryInput.style.position = 'fixed';
+			temporaryInput.style.opacity = '0';
+			document.body.append(temporaryInput);
+			temporaryInput.select();
+			const copied = document.execCommand('copy');
+			temporaryInput.remove();
+			if (!copied) throw new Error('A cópia não foi concluída.');
+		};
+
+		copyButton.addEventListener('click', async () => {
+			if (!generatedPrompt.textContent) return;
+			try {
+				if (navigator.clipboard && window.isSecureContext) {
+					await navigator.clipboard.writeText(generatedPrompt.textContent);
+				} else {
+					copyWithFallback(generatedPrompt.textContent);
+				}
+				copyLabel.textContent = 'Copiado!';
+				copyStatus.textContent = 'Prompt copiado para a área de transferência.';
+				copyButton.classList.add('border-acid/70', 'text-acid');
+				window.clearTimeout(copyTimeout);
+				copyTimeout = window.setTimeout(() => {
+					copyLabel.textContent = 'Copiar';
+					copyButton.classList.remove('border-acid/70', 'text-acid');
+				}, 1600);
+			} catch {
+				copyStatus.textContent = 'Não foi possível copiar automaticamente. Selecione e copie o texto do prompt.';
+			}
+		});
+	</script>
+<script src="cookie-consent.js" defer></script>
+<script src="site-menu.js" defer></script>
+</body>
+</html>

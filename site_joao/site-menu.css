@@ -1,0 +1,17 @@
+/* Menu limpo: só o nome do site + botão sanduíche. Os links ficam na gaveta. */
+.navbar .nav-links,.navbar .menu-toggle{display:none!important}
+.aa-burger{margin-left:auto;display:inline-flex;flex-direction:column;justify-content:center;gap:5px;width:46px;height:46px;padding:0 11px;background:transparent;border:1px solid rgba(255,255,255,.2);border-radius:12px;color:#fff;cursor:pointer}
+.aa-burger span{display:block;height:2px;border-radius:2px;background:currentColor}
+.aa-burger:hover{border-color:#d7ff3f;color:#d7ff3f}
+.aa-burger:focus-visible,.aa-drawer a:focus-visible,.aa-drawer button:focus-visible{outline:3px solid #fff;outline-offset:2px}
+.aa-scrim{position:fixed;inset:0;z-index:2000;background:rgba(0,0,0,.62);opacity:0;pointer-events:none;transition:opacity .2s}
+.aa-drawer{position:fixed;top:0;right:0;bottom:0;z-index:2001;width:min(340px,86vw);padding:20px 22px;overflow:auto;display:flex;flex-direction:column;background:#0b0c0e;border-left:1px solid rgba(255,255,255,.14);transform:translateX(100%);visibility:hidden;transition:transform .25s,visibility .25s}
+body.aa-menu-open{overflow:hidden}
+body.aa-menu-open .aa-scrim{opacity:1;pointer-events:auto}
+body.aa-menu-open .aa-drawer{transform:none;visibility:visible}
+.aa-drawer-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;color:#fff;font-weight:700;font-size:18px}
+.aa-close{width:44px;height:44px;border-radius:12px;background:transparent;border:1px solid rgba(255,255,255,.2);color:#fff;font-size:22px;line-height:1;cursor:pointer}
+.aa-close:hover{border-color:#d7ff3f;color:#d7ff3f}
+.aa-drawer a.aa-link{display:block;padding:15px 4px;color:#e8eaed;text-decoration:none;font-size:18px;border-bottom:1px solid rgba(255,255,255,.08)}
+.aa-drawer a.aa-link:hover,.aa-drawer a.aa-link[aria-current=page]{color:#d7ff3f}
+@media (prefers-reduced-motion:reduce){.aa-drawer,.aa-scrim{transition:none}}
